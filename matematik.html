@@ -252,6 +252,7 @@ footer span{color:var(--fl)}
 .pa{margin-top:11px;padding:11px 14px;border-left:3px solid var(--fl);background:color-mix(in srgb,var(--fl) 7%,transparent);border-radius:0 8px 8px 0}
 .pts{margin:0;padding-left:18px;font-size:.88rem;line-height:1.6}
 .pts li{margin:3px 0}
+.pts-sub{margin:3px 0 6px;padding-left:16px;list-style:disc;color:var(--mut)}
 .selfm{display:flex;gap:8px;align-items:center;margin-top:11px;flex-wrap:wrap;font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;color:var(--dim)}
 .selfm span{margin-right:auto}
 .btn.sm{padding:7px 13px;font-size:.6rem;border-color:var(--okG);color:var(--okG)}
@@ -14189,9 +14190,14 @@ function go1(){ if(S.idx<S.items.length-1){ S.idx++; renderQuiz(); } else finish
    ========================================================================= */
 
 function pts2(arr){
-  // Render array of answer points as an <ol> list
   if(!arr||!arr.length) return '';
-  return '<ol class="pts">'+arr.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol>';
+  return '<ol class="pts">'+arr.map(s=>{
+    if(typeof s==='string') return '<li>'+esc(s)+'</li>';
+    // structured object: {f: "Feature heading", h: ["hint1","hint2",...]}
+    const feat = s.f ? '<b>'+esc(s.f)+'</b>' : '';
+    const hints = (s.h||[]).map(h=>'<li>'+esc(h)+'</li>').join('');
+    return '<li>'+feat+(hints?'<ul class="pts-sub">'+hints+'</ul>':'')+'</li>';
+  }).join('')+'</ol>';
 }
 
 function L(en, bm){ return (S && S.lang==='bm' && bm) ? bm : (en||''); }
