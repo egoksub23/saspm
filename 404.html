@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Halaman tidak dijumpai / Page not found</title>
+<style>
+:root{--bg:#f4f1e8;--fg:#171a21;--mut:#5c6674;--card:#fff;--line:#e2ddce;--acc:#3f5a00;--accbg:#eaf3c8}
+@media (prefers-color-scheme:dark){:root{--bg:#0b0e13;--fg:#e9e7dc;--mut:#96a0ac;--card:#141a25;--line:#242e3e;--acc:#c6f24e;--accbg:#1b2412}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;display:flex;flex-direction:column}
+main{width:100%;max-width:640px;margin:0 auto;padding:28px 16px 16px;flex:1}
+h1{font:700 1.7rem/1.2 Georgia,"Times New Roman",serif;margin-bottom:8px}
+.sub{color:var(--mut);margin-bottom:22px}
+.sub b{color:var(--fg);font-weight:600}
+.grid{display:grid;gap:12px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--acc);border-radius:14px;padding:18px 18px 16px;text-decoration:none;color:inherit;min-height:88px;-webkit-tap-highlight-color:transparent}
+.card:active,.card:hover,.card:focus-visible{background:var(--accbg);outline:none}
+.t{display:block;font-size:1.35rem;font-weight:700}
+.e{display:block;color:var(--mut);font-size:.95rem}
+.n{display:block;color:var(--acc);font-size:.85rem;margin-top:6px;font-weight:600}
+.tip{margin-top:20px;color:var(--mut);font-size:.88rem}
+footer{max-width:640px;width:100%;margin:0 auto;padding:16px 16px 28px;color:var(--mut);font-size:.85rem;border-top:1px solid var(--line)}
+footer p+p{margin-top:6px}
+main{text-align:center;padding-top:64px}.card{display:inline-block;margin-top:18px;min-height:0;text-align:center;border-left:1px solid var(--line)}</style>
+</head>
+<body>
+<main>
+  <h1>Halaman tidak dijumpai</h1>
+  <p class="sub">Page not found.</p>
+  <a class="card" href="/"><span class="t">SPM 2026 Latihan Soalan</span><span class="e">Kembali ke laman utama / Back to the home page</span></a>
+</main>
+</body>
+</html>
