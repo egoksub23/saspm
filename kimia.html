@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SPM 2026 · Kimia</title>
 
 <style>
+html{font-size:17px}
 :root{
   --ink:#0B0E13; --panel:#141A25; --panel2:#182030; --line:#242E3E;
   --txt:#E9E7DC; --mut:#96A0AC; --dim:#6B7684;
@@ -40,8 +41,10 @@ a{color:var(--fl)}
 .brand small{font-family:var(--mono);font-size:.56rem;letter-spacing:.18em;color:var(--dim);border:1px solid var(--line);border-radius:5px;padding:3px 7px;font-weight:400}
 .home-crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--dim);text-decoration:none;white-space:nowrap}
 .home-crumb:hover{color:var(--fl)}
-.crumb-sep{color:var(--dim);font-size:.7rem;letter-spacing:.05em;user-select:none}
-#breadSubj{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--mut);white-space:nowrap}
+.crumb-sep{color:var(--dim);font-size:.7rem;letter-spacing:.05em;user-select:none;padding:0 2px}
+#breadSubj{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--mut);white-space:nowrap;text-decoration:none}
+#breadSubj:hover{color:var(--fl)}
+.crumb-cur{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--fl);white-space:nowrap}
 .ghost{background:transparent;border:1px solid var(--line);color:var(--mut);font-family:var(--mono);
   font-size:.6rem;letter-spacing:.14em;padding:8px 13px;border-radius:100px;transition:.18s}
 .ghost:hover{border-color:var(--fl);color:var(--fl)}
@@ -258,9 +261,11 @@ footer span{color:var(--fl)}
 <body>
 <div class="wrap">
   <div class="bar">
-    <a href="https://saspm.vircle.tech/" class="home-crumb" title="Back to subject list">HOME</a>
+    <a href="https://saspm.vircle.tech/" class="home-crumb" title="Back to home">HOME</a>
     <span class="crumb-sep">&rsaquo;&rsaquo;</span>
-    <span id="breadSubj">DRILL</span>
+    <a id="breadSubj" href="https://saspm.vircle.tech/" class="home-crumb">SEJARAH</a>
+    <span class="crumb-sep">&rsaquo;&rsaquo;</span>
+    <span class="crumb-cur">DRILL NOW</span>
     <button class="brand" id="btnHome" title="Back to the filters"><b>SPM 2026</b> Trial Drill <small id="bankTag">BANK 0</small></button>
     <button class="ghost" id="btnLang">BM / EN</button>
     <button class="ghost" id="btnStats">MY STATS</button>
@@ -6566,7 +6571,9 @@ function renderSetup(){
   S=null;
   if(!BANK.length) return renderEmpty();
   if(!F.subject) F.subject = subjects()[0];
-  const bs=$('#breadSubj'); if(bs) bs.textContent=String(F.subject).toUpperCase();
+  const SUBJ_SLUG={'Sejarah':'sejarah','Biology':'biologi','Chemistry':'kimia','Modern Maths':'matematik','Physics':'fizik'};
+  const bs=$('#breadSubj');
+  if(bs){ bs.textContent=String(F.subject).toUpperCase(); const sl=SUBJ_SLUG[F.subject]; bs.href=sl?'https://saspm.vircle.tech/'+sl+'.html':'https://saspm.vircle.tech/'; }
 
   // If current paper not available for subject, reset to P1
   const subjectHasP2 = BANK.some(q=>q.subject===F.subject && q.paper===2);
