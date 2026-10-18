@@ -241,6 +241,11 @@ footer span{color:var(--fl)}
 .stim th,.stim td{border:1px solid var(--line);padding:4px 8px;text-align:center}
 .stim th{background:color-mix(in srgb,var(--line) 50%,var(--panel2));font-weight:600;text-align:center}
 .stim svg{display:block;margin:6px auto;max-width:100%}
+.kotak-grid{display:grid;gap:3px;margin:10px 0}
+.kotak-cell{border:1px solid var(--line);padding:8px 12px;text-align:center;background:var(--panel);font-size:.86rem;font-weight:500;border-radius:4px}
+.stim-block{background:color-mix(in srgb,var(--fl) 8%,transparent);border-left:3px solid var(--fl);border-radius:0 6px 6px 0;padding:7px 11px;margin:7px 0;font-size:.83rem;line-height:1.55}
+.stim-lbl{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;color:var(--fl);margin-right:6px;display:inline-block}
+.stim-ph{color:var(--dim);font-style:italic;font-size:.82rem;padding:4px 0}
 .part{border:1px solid var(--line);border-radius:11px;padding:14px 15px;margin-bottom:11px;background:var(--panel)}
 .part.ok{border-color:var(--okG)} .part.no{border-color:var(--badR)}
 .pq{display:flex;gap:10px;align-items:flex-start;font-size:.95rem;line-height:1.5}
@@ -6401,6 +6406,32 @@ function attr(s){ return String(s).replace(/"/g,'&quot;'); }
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function nl(s){ return esc(s||'').replace(/\n/g,'<br>'); }
 
+function stimFmt(raw){
+  if(!raw) return '';
+  let s = esc(raw);
+  // [Kotak: A; B; C; D] → CSS grid of boxes
+  s = s.replace(/\[Kotak:\s*([^\]]+)\]/gi, (_, items)=>{
+    const cells = items.split(';').map(c=>c.trim()).filter(Boolean);
+    const cols = cells.length<=3 ? cells.length : 2;
+    return '<div class="kotak-grid" style="grid-template-columns:repeat('+cols+',1fr)">'
+      +cells.map(c=>'<div class="kotak-cell">'+c+'</div>').join('')+'</div>';
+  });
+  s = s.replace(/\[Kotak\]/gi,'<div class="stim-ph">[Rajah — rujuk kertas asal]</div>');
+  // [Jadual...] → table callout
+  s = s.replace(/\[Jadual(?:\s+[^\]:]*)?\]/gi,'<div class="stim-block"><span class="stim-lbl">JADUAL</span> rujuk kertas asal</div>');
+  s = s.replace(/\[Jadual:\s*([^\]]+)\]/gi,(_,d)=>'<div class="stim-block"><span class="stim-lbl">JADUAL</span> '+d+'</div>');
+  // [Rajah...: ...] → diagram description
+  s = s.replace(/\[Rajah[^:\]]*:\s*([^\]]+)\]/gi,(_,d)=>
+    '<div class="stim-block"><span class="stim-lbl">RAJAH</span> '+d.replace(/->/g,'→')+'</div>');
+  // [Carta...: ...] → chart description
+  s = s.replace(/\[Carta[^:\]]*:\s*([^\]]+)\]/gi,(_,d)=>
+    '<div class="stim-block"><span class="stim-lbl">CARTA</span> '+d+'</div>');
+  // [Label N(x): text] → labelled callout (Petikan, Maklumat, Poster, Pantun, etc.)
+  s = s.replace(/\[([A-Za-z][^:\]]{0,30}):\s*([^\]]+)\]/g,(_,lbl,txt)=>
+    '<div class="stim-block"><span class="stim-lbl">'+lbl+'</span> '+txt+'</div>');
+  return s.replace(/\n/g,'<br>');
+}
+
 /* ---------- persistent store ---------- */
 const KEY='spm2026.v1';
 const DB={
@@ -6880,8 +6911,8 @@ function renderP2Quiz(){
       (q.img?'<img class="qimg" loading="lazy" decoding="async"'+imgDim(q.img)+' src="'+attr(q.img)+'" alt="'+attr(T(q.alt)||'Rajah')+'">':'')+
       (q.alt&&!q.img?'<p class="alt">'+T(q.alt)+'</p>':'')+
       (q.stimHtml?'<div class="stim">'+q.stimHtml+'</div>':
-       (S.lang==='bm'&&q.bm&&q.bm.stim?'<div class="stim">'+nl(q.bm.stim)+'</div>':
-        q.stim?'<div class="stim">'+nl(q.stim)+'</div>':''))+
+       (S.lang==='bm'&&q.bm&&q.bm.stim?'<div class="stim">'+stimFmt(q.bm.stim)+'</div>':
+        q.stim?'<div class="stim">'+stimFmt(q.stim)+'</div>':''))+
       q.parts.map(partHTML).join('')+
       (q.note?'<p class="alt">Nota: '+esc(q.note)+'</p>':'')+
       '<div class="nav">'+
