@@ -5612,12 +5612,13 @@ function renderSetup(){
        subjects().map(s=>chip(F.subject===s,s,BANK.filter(q=>q.subject===s).length,'data-v="'+attr(s)+'"')).join('')+
      '</div></div>' : '')+
 
-    // Paper selector — always show if P2 exists for this subject
-    (subjectHasP2 || p2count>0 ?
-     '<div class="sec"><div class="lab">PAPER</div><div class="chips" data-g="paper">'+
-       chip(F.paper===1,'KERTAS 1 &middot; OBJEKTIF',p1count,'data-v="1"')+
-       chip(F.paper===2,'KERTAS 2 &middot; BERSTRUKTUR',p2count,'data-v="2"')+
-     '</div></div>' : '')+
+    // Paper selector — always visible; K2 disabled if no P2 data loaded yet
+    '<div class="sec"><div class="lab">PAPER</div><div class="chips" data-g="paper">'+
+      chip(F.paper===1,'KERTAS 1 &middot; OBJEKTIF',p1count,'data-v="1"')+
+      (subjectHasP2||p2count>0
+        ? chip(F.paper===2,'KERTAS 2 &middot; BERSTRUKTUR',p2count,'data-v="2"')
+        : '<button class="chip" disabled style="opacity:.38;cursor:not-allowed">KERTAS 2 &middot; BERSTRUKTUR <span class="n" style="color:var(--dim)">SOON</span></button>')+
+    '</div></div>'+
 
     '<div class="sec"><div class="lab">STATE / PAPER <i data-clear="states">clear</i></div><div class="chips" data-g="states">'+
       stateList.map(s=>chip(F.states.has(s),s,countIn('states',s),'data-v="'+attr(s)+'"')).join('')+
