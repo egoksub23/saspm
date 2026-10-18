@@ -5,63 +5,275 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <meta name="description" content="Latihan soalan SPM 2026 percuma: Sejarah, Biologi, Kimia, Fizik, Matematik. Free SPM 2026 practice questions.">
-<title>SPM 2026 Latihan Soalan</title>
+<title>SPM 2026 Accelerator</title>
 <style>
-:root{--bg:#f4f1e8;--fg:#171a21;--mut:#5c6674;--card:#fff;--line:#e2ddce;--acc:#3f5a00;--accbg:#eaf3c8}
-@media (prefers-color-scheme:dark){:root{--bg:#0b0e13;--fg:#e9e7dc;--mut:#96a0ac;--card:#141a25;--line:#242e3e;--acc:#c6f24e;--accbg:#1b2412}}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;display:flex;flex-direction:column}
-main{width:100%;max-width:640px;margin:0 auto;padding:28px 16px 16px;flex:1}
-h1{font:700 1.7rem/1.2 Georgia,"Times New Roman",serif;margin-bottom:8px}
-.sub{color:var(--mut);margin-bottom:22px}
-.sub b{color:var(--fg);font-weight:600}
-.grid{display:grid;gap:12px}
-.card{display:block;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--acc);border-radius:14px;padding:18px 18px 16px;text-decoration:none;color:inherit;min-height:88px;-webkit-tap-highlight-color:transparent}
-.card:active,.card:hover,.card:focus-visible{background:var(--accbg);outline:none}
-.t{display:block;font-size:1.35rem;font-weight:700}
-.e{display:block;color:var(--mut);font-size:.95rem}
-.n{display:block;color:var(--acc);font-size:.85rem;margin-top:6px;font-weight:600}
-.tip{margin-top:20px;color:var(--mut);font-size:.88rem}
-footer{max-width:640px;width:100%;margin:0 auto;padding:16px 16px 28px;color:var(--mut);font-size:.85rem;border-top:1px solid var(--line)}
-footer p+p{margin-top:6px}
+:root{
+  --bg:#FFFFFF;--sf:#F5F7FC;--border:#E2E6F0;
+  --fg:#0D1D40;--fg2:#122460;--mut:#657186;
+  --brand:#E4499A;--brand-lt:#FDF0F7;--brand-dk:#122460;
+  --sky:#008AFC;
+  --shadow:0 2px 16px rgba(18,36,96,.08);
+  --r:16px;
+  color-scheme:light;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --bg:#0A0F1E;--sf:#111827;--border:#252F48;
+  --fg:#E8EEFF;--fg2:#B8C4E8;--mut:#7A89AA;
+  --brand:#F06AAD;--brand-lt:#2A0F1E;--brand-dk:#1E2D70;
+  --sky:#38AAFF;--shadow:0 2px 20px rgba(0,0,0,.4);
+  color-scheme:dark;
+}}
+:root[data-theme=dark]{
+  --bg:#0A0F1E;--sf:#111827;--border:#252F48;
+  --fg:#E8EEFF;--fg2:#B8C4E8;--mut:#7A89AA;
+  --brand:#F06AAD;--brand-lt:#2A0F1E;--brand-dk:#1E2D70;
+  --sky:#38AAFF;--shadow:0 2px 20px rgba(0,0,0,.4);
+  color-scheme:dark;
+}
+/* subject accent tokens */
+.card-sej{--c:#C8860A;--clt:#FEF9EC}
+.card-bio{--c:#16A34A;--clt:#F0FDF4}
+.card-chem{--c:#7C3AED;--clt:#F5F3FF}
+.card-phy{--c:#008AFC;--clt:#EEF6FF}
+.card-mm{--c:#E4499A;--clt:#FDF0F7}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .card-sej{--clt:#1E1400}:root:not([data-theme=light]) .card-bio{--clt:#001A0A}:root:not([data-theme=light]) .card-chem{--clt:#150030}:root:not([data-theme=light]) .card-phy{--clt:#001830}:root:not([data-theme=light]) .card-mm{--clt:#200A18}}
+:root[data-theme=dark] .card-sej{--clt:#1E1400}:root[data-theme=dark] .card-bio{--clt:#001A0A}:root[data-theme=dark] .card-chem{--clt:#150030}:root[data-theme=dark] .card-phy{--clt:#001830}:root[data-theme=dark] .card-mm{--clt:#200A18}
+*,*::before,*::after{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration:none}
+/* header */
+.site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);
+  padding:14px max(28px,env(safe-area-inset-left,0px));padding-right:max(28px,env(safe-area-inset-right,0px));
+  display:flex;align-items:center;justify-content:space-between;gap:12px;margin-left:-16px;margin-right:-16px;
+  padding-left:max(28px,env(safe-area-inset-left,0px))}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .site-header{background:rgba(10,15,30,.92)}}
+:root[data-theme=dark] .site-header{background:rgba(10,15,30,.92)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1rem;color:var(--brand-dk)}
+.logo-badge{background:var(--brand);color:#fff;font-size:.65rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;padding:3px 8px;border-radius:6px}
+#themeBtn{background:var(--sf);border:1.5px solid var(--border);border-radius:8px;padding:7px 10px;
+  cursor:pointer;font-size:1rem;line-height:1;color:var(--fg);transition:background .2s;flex-shrink:0}
+/* hero */
+.hero-wrap{background:linear-gradient(135deg,var(--brand-dk) 0%,#1a3280 60%,#2a1060 100%);
+  position:relative;overflow:hidden;
+  margin-left:-16px;margin-right:-16px;
+  padding:0 max(28px,env(safe-area-inset-left,0px));padding-right:max(28px,env(safe-area-inset-right,0px))}
+.hero-wrap::before{content:'';position:absolute;right:-100px;bottom:-100px;width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(228,73,154,.25) 0%,transparent 70%);pointer-events:none}
+.hero-wrap::after{content:'';position:absolute;left:-80px;top:-80px;width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,138,252,.18) 0%,transparent 70%);pointer-events:none}
+.hero{position:relative;z-index:1;max-width:760px;padding:56px 0 52px}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);
+  border-radius:999px;padding:5px 14px 5px 10px;font-size:.75rem;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:rgba(255,255,255,.9);margin-bottom:22px}
+.dot-live{width:8px;height:8px;border-radius:50%;background:var(--brand);animation:blink 2.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font:700 clamp(2.2rem,6vw,3.6rem)/1.15 Georgia,"Times New Roman",serif;color:#fff;
+  letter-spacing:-.02em;text-wrap:balance;margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--brand)}
+.hero-sub{color:rgba(255,255,255,.75);font-size:1rem;max-width:500px;margin-bottom:36px;line-height:1.7}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
+.pill{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:999px;
+  padding:6px 16px;font-size:.82rem;font-weight:600;color:#fff}
+.pill strong{color:var(--brand);font-weight:800}
+.hero-scroll{font-size:.78rem;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase}
+.hero-scroll::after{content:' ↓';animation:bounce 1.6s ease-in-out infinite;display:inline-block}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+/* wave */
+.wave{display:block;width:100%;height:40px;
+  background:linear-gradient(135deg,var(--brand-dk) 0%,#1a3280 60%,#2a1060 100%);
+  clip-path:ellipse(55% 100% at 50% 0%);
+  margin-left:-16px;margin-right:-16px}
+/* section */
+.section{max-width:1060px;margin:0 auto;padding:52px 0}
+.section-kicker{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--brand);margin-bottom:6px}
+.section-heading{font:700 clamp(1.5rem,3.5vw,2rem)/1.25 Georgia,"Times New Roman",serif;
+  color:var(--fg);letter-spacing:-.02em;text-wrap:balance;margin-bottom:8px}
+.section-desc{color:var(--mut);font-size:.95rem;margin-bottom:32px;max-width:540px;line-height:1.7}
+/* subject cards */
+.subject-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
+.subj-card{background:var(--bg);border:1.5px solid var(--border);border-top:4px solid var(--c);
+  border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;
+  transition:transform .2s,box-shadow .2s}
+.subj-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.12)}
+.card-top{padding:20px 18px 14px;flex:1;display:flex;flex-direction:column;gap:12px}
+.subj-icon{width:46px;height:46px;border-radius:12px;background:var(--clt);
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;line-height:1}
+.subj-name{font-weight:800;font-size:1rem;line-height:1.2;color:var(--fg)}
+.subj-name small{display:block;font-weight:500;font-size:.75rem;color:var(--mut);margin-top:2px}
+.subj-count{font-weight:700;font-size:1.4rem;line-height:1;color:var(--c);font-variant-numeric:tabular-nums}
+.subj-count span{font-size:.72rem;font-weight:500;color:var(--mut);margin-left:3px}
+.subj-papers{font-size:.78rem;color:var(--mut)}
+.card-btn{display:block;width:100%;padding:13px 16px;text-align:center;font-weight:700;
+  font-size:.85rem;letter-spacing:.02em;border:none;cursor:pointer;background:var(--c);
+  color:#fff;text-transform:uppercase;transition:filter .15s}
+.card-btn:hover{filter:brightness(1.08)}
+/* steps */
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0}
+.step{padding:24px 28px 24px 0;border-right:1px solid var(--border);margin-right:28px}
+.step:last-child{border-right:none;padding-right:0;margin-right:0}
+@media(max-width:600px){.steps-grid{display:flex;flex-direction:column}
+  .step{border-right:none;border-bottom:1px solid var(--border);padding:22px 0;margin:0}
+  .step:last-child{border-bottom:none}}
+.step-num{width:34px;height:34px;border-radius:10px;background:var(--brand);color:#fff;
+  font-weight:800;font-size:.95rem;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.step-title{font-weight:700;font-size:.92rem;margin-bottom:6px;color:var(--fg)}
+.step-desc{font-size:.83rem;color:var(--mut);line-height:1.7}
+/* cta band */
+.cta-band{background:linear-gradient(135deg,var(--brand-dk) 0%,#1a3280 50%,#2a1060 100%);
+  border-radius:18px;padding:44px 36px;margin:0 0 56px;display:flex;
+  align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  position:relative;overflow:hidden}
+.cta-band::before{content:'';position:absolute;right:-80px;bottom:-80px;width:240px;height:240px;
+  border-radius:50%;border:36px solid rgba(255,255,255,.07);pointer-events:none}
+.cta-text h2{font:700 1.4rem/1.2 Georgia,"Times New Roman",serif;color:#fff;margin-bottom:6px}
+.cta-text p{font-size:.88rem;color:rgba(255,255,255,.7)}
+.cta-action{background:var(--brand);color:#fff;font-weight:700;font-size:.88rem;
+  letter-spacing:.04em;text-transform:uppercase;padding:13px 26px;border-radius:10px;
+  white-space:nowrap;flex-shrink:0;transition:filter .15s}
+.cta-action:hover{filter:brightness(1.05)}
+/* footer */
+footer{background:var(--sf);border-top:1px solid var(--border);
+  padding:28px max(28px,env(safe-area-inset-left,0px));
+  padding-right:max(28px,env(safe-area-inset-right,0px));
+  padding-bottom:max(28px,env(safe-area-inset-bottom,0px));
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;
+  margin-left:-16px;margin-right:-16px}
+.footer-brand{font-weight:800;font-size:.95rem;color:var(--brand-dk)}
+.footer-copy{font-size:.78rem;color:var(--mut);max-width:460px;line-height:1.6}
 </style>
 </head>
 <body>
-<main>
-  <h1>SPM 2026 Latihan Soalan</h1>
-  <p class="sub"><b>Pilih subjek dan mula latihan. Jawapan dan penjelasan ada selepas setiap soalan.</b><br>Pick a subject and start practising. Answers and explanations come after each question.</p>
-  <nav class="grid" aria-label="Subjek / Subjects">
-    <a class="card" href="sejarah.html">
-      <span class="t">Sejarah</span>
-      <span class="e">History</span>
-      <span class="n">21 kertas / papers &middot; 840 soalan / questions</span>
-    </a>
-    <a class="card" href="biologi.html">
-      <span class="t">Biologi</span>
-      <span class="e">Biology</span>
-      <span class="n">14 kertas / papers &middot; 560 soalan / questions</span>
-    </a>
-    <a class="card" href="kimia.html">
-      <span class="t">Kimia</span>
-      <span class="e">Chemistry</span>
-      <span class="n">12 kertas / papers &middot; 479 soalan / questions</span>
-    </a>
-    <a class="card" href="fizik.html">
-      <span class="t">Fizik</span>
-      <span class="e">Physics</span>
-      <span class="n">32 kertas / papers &middot; 812 soalan / questions</span>
-    </a>
-    <a class="card" href="matematik.html">
-      <span class="t">Matematik</span>
-      <span class="e">Modern Mathematics</span>
-      <span class="n">16 kertas / papers &middot; 640 soalan / questions</span>
-    </a>
-  </nav>
-  <p class="tip">Gambar dimuat hanya bila soalan dipaparkan, jadi data telefon anda dijimatkan. / Pictures load only when a question is shown, to save your mobile data.</p>
+
+<header class="site-header">
+  <a class="logo" href="#">
+    <span class="logo-badge">SPM 2026</span>
+    Accelerator
+  </a>
+  <button id="themeBtn" aria-label="Toggle theme">🌙</button>
+</header>
+<script>
+(function(){
+  var btn=document.getElementById('themeBtn'),t;
+  try{t=localStorage.getItem('spm-theme')}catch(e){}
+  function apply(v){document.documentElement.setAttribute('data-theme',v);btn.textContent=v==='dark'?'☀️':'🌙';try{localStorage.setItem('spm-theme',v)}catch(e){}}
+  if(t)apply(t);
+  btn.onclick=function(){apply(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')};
+})();
+</script>
+
+<div class="hero-wrap">
+  <div class="hero">
+    <div class="hero-kicker"><span class="dot-live"></span>Trial 2026 · SPM Sebenar · Percuma sepenuhnya</div>
+    <h1>Latih lebih keras.<br><em>Markah lebih tinggi.</em></h1>
+    <p class="hero-sub">Soalan trial negeri 2026 — drill mengikut negeri, kertas, atau topik. Semua dalam satu tempat, tanpa log masuk, tanpa caj.</p>
+    <div class="hero-pills">
+      <div class="pill"><strong>5</strong> Subjek</div>
+      <div class="pill"><strong>95</strong> Kertas Trial</div>
+      <div class="pill"><strong>3331+</strong> Soalan</div>
+    </div>
+    <div class="hero-scroll">Tatal ke bawah</div>
+  </div>
+</div>
+<div class="wave"></div>
+
+<main style="max-width:1060px;margin:0 auto">
+
+<div class="section" id="subjects">
+  <div class="section-kicker">Drill mengikut subjek</div>
+  <div class="section-heading">Pilih Subjek Anda</div>
+  <p class="section-desc">Setiap drill mengandungi soalan trial pelbagai negeri. Pilih topik, tapis negeri, dan mula latih.</p>
+  <div class="subject-grid">
+      <div class="subj-card card-sej">
+        <div class="card-top">
+          <div class="subj-icon">📜</div>
+          <div class="subj-name">Sejarah<small>History</small></div>
+          <div class="subj-count">840+ <span>soalan</span></div>
+          <div class="subj-papers">21 kertas / papers</div>
+        </div>
+        <a class="card-btn" href="sejarah.html">Mula Drill →</a>
+      </div>
+      <div class="subj-card card-bio">
+        <div class="card-top">
+          <div class="subj-icon">🧬</div>
+          <div class="subj-name">Biologi<small>Biology</small></div>
+          <div class="subj-count">560+ <span>soalan</span></div>
+          <div class="subj-papers">14 kertas / papers</div>
+        </div>
+        <a class="card-btn" href="biologi.html">Mula Drill →</a>
+      </div>
+      <div class="subj-card card-chem">
+        <div class="card-top">
+          <div class="subj-icon">🧪</div>
+          <div class="subj-name">Kimia<small>Chemistry</small></div>
+          <div class="subj-count">479+ <span>soalan</span></div>
+          <div class="subj-papers">12 kertas / papers</div>
+        </div>
+        <a class="card-btn" href="kimia.html">Mula Drill →</a>
+      </div>
+      <div class="subj-card card-phy">
+        <div class="card-top">
+          <div class="subj-icon">⚡</div>
+          <div class="subj-name">Fizik<small>Physics</small></div>
+          <div class="subj-count">812+ <span>soalan</span></div>
+          <div class="subj-papers">32 kertas / papers</div>
+        </div>
+        <a class="card-btn" href="fizik.html">Mula Drill →</a>
+      </div>
+      <div class="subj-card card-mm">
+        <div class="card-top">
+          <div class="subj-icon">📐</div>
+          <div class="subj-name">Matematik<small>Modern Mathematics</small></div>
+          <div class="subj-count">640+ <span>soalan</span></div>
+          <div class="subj-papers">16 kertas / papers</div>
+        </div>
+        <a class="card-btn" href="matematik.html">Mula Drill →</a>
+      </div>
+  </div>
+</div>
+
+<div class="section" id="how">
+  <div class="section-kicker">Cara gunakannya</div>
+  <div class="section-heading">Tiga Langkah ke A+</div>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">Pilih subjek &amp; tapis</div>
+      <div class="step-desc">Pilih negeri, tahun, atau topik yang anda mahu fokus. Drill keseluruhan set atau topik lemah sahaja.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">Jawab &amp; tunjuk jawapan</div>
+      <div class="step-desc">Pilih jawapan dan baca penjelasan penuh selepas setiap soalan.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">Kenal pasti topik lemah</div>
+      <div class="step-desc">Ulang topik yang anda tandakan sehingga skor menjadi hijau.</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-band">
+  <div class="cta-text">
+    <h2>Sedia untuk mulakan?</h2>
+    <p>Tanpa pendaftaran. Tanpa caj. Buka dan mula drill sekarang.</p>
+  </div>
+  <a class="cta-action" href="#subjects">Pilih Subjek ↑</a>
+</div>
+
 </main>
+
 <footer>
-  <p><b>Percuma untuk semua pelajar / Free for all students</b></p>
-  <p>Jawapan cadangan AI — tiada skema jawapan rasmi untuk kertas SPM sebenar. / Answers marked AI-generated (CADANGAN) may contain errors.</p>
+  <div class="footer-brand">SPM 2026 Accelerator</div>
+  <div class="footer-copy">
+    Jawapan cadangan AI — tiada skema jawapan rasmi untuk kertas SPM sebenar. / Answers marked AI-generated (CADANGAN) may contain errors.
+    Laman ini percuma untuk semua pelajar Malaysia.
+  </div>
 </footer>
+
 </body>
 </html>
