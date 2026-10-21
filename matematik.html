@@ -14246,6 +14246,7 @@ function renderP2Quiz(){
         '<span>'+mdT((S.lang==='bm'&&q.bm&&q.bm.parts ? (q.bm.parts.find(x=>x.l===p.l)||{}).q||p.q : p.q))+'</span>'+
         '<span class="pm">'+p.m+'m'+(p.kbat?' &middot; KBAT':'')+'</span>'+
       '</div>'+
+      (p.img?'<img class="qimg" src="'+attr(p.img)+'" alt="Rajah">':'')+
       (open ?
         '<div class="pa">'+pts2(p.a)+'</div>'+
         '<div class="selfm"><span>DID YOU GET IT?</span>'+
