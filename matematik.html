@@ -70,6 +70,11 @@ a{color:var(--fl)}
 .chip.on{border-color:var(--fl);color:var(--fl);background:color-mix(in srgb,var(--fl) 12%,transparent)}
 .chip .n{color:var(--dim);margin-left:6px;font-size:.9em}
 .chip.on .n{color:var(--fl);opacity:.75}
+.chip.forecast{border-color:#E4499A;color:#E4499A}
+.chip.forecast:hover{border-color:#E4499A;color:#E4499A;background:color-mix(in srgb,#E4499A 10%,transparent)}
+.chip.forecast.on{border-color:#E4499A;color:#E4499A;background:color-mix(in srgb,#E4499A 18%,transparent)}
+.chip.forecast .n{color:#E4499A;opacity:.65}
+.chip.forecast.on .n{color:#E4499A;opacity:.8}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
 
 /* ---- start row ---- */
@@ -13978,8 +13983,10 @@ function renderSetup(){
   if(!subjectHasP2 && F.paper===2) F.paper=1;
 
   const p = pool();
-  const chip=(on,label,count,dataAttr)=>
-    '<button class="chip'+(on?' on':'')+'" '+dataAttr+'>'+label+(count!=null?'<span class="n">'+count+'</span>':'')+'</button>';
+  const chip=(on,label,count,dataAttr)=>{
+    const isForecast=/forecast/i.test(label);
+    return '<button class="chip'+(on?' on':'')+(isForecast?' forecast':'')+'" '+dataAttr+'>'+label+(count!=null?'<span class="n">'+count+'</span>':'')+'</button>';
+  };
   const keyOf={states:'state',forms:'form',topics:'topic',years:'year'};
   const countIn=(g,v)=>pool(g).filter(q=>String(q[keyOf[g]])===String(v)).length;
 
