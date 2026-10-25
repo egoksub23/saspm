@@ -14312,9 +14312,9 @@ function renderP2Quiz(){
                (q.q?'<div class="qq">'+mdT(q.q)+'</div>':''))+
       (q.img?'<img class="qimg" loading="lazy" decoding="async"'+imgDim(q.img)+' src="'+attr(q.img)+'" alt="'+attr(T(q.alt)||'Rajah')+'">':'')+
       (q.alt&&!q.img?'<p class="alt">'+T(q.alt)+'</p>':'')+
-      (q.stimHtml?'<div class="stim">'+q.stimHtml+'</div>':
-       (S.lang==='bm'&&q.bm&&q.bm.stim?'<div class="stim">'+stimFmt(q.bm.stim)+'</div>':
-        q.stim?'<div class="stim">'+stimFmt(q.stim)+'</div>':''))+
+      (S.lang==='bm'&&q.bm&&q.bm.stim?'<div class="stim">'+stimFmt(q.bm.stim)+'</div>':
+       q.stim?'<div class="stim">'+stimFmt(T(q.stim))+'</div>':'')+
+      (q.stimHtml?'<div class="stim">'+q.stimHtml+'</div>':'')+
       q.parts.map(partHTML).join('')+
       (q.note?'<p class="alt">Nota: '+esc(q.note)+'</p>':'')+
       '<div class="nav">'+
