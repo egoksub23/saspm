@@ -10466,6 +10466,19 @@ window.__SPM_START = function(){
 'use strict';
 function imgDim(s){var d=window.__IMGDIM&&window.__IMGDIM[s];return d?' width="'+d[0]+'" height="'+d[1]+'"':'';}
 
+/* ---------- tracker (fire-and-forget, never blocks UI) ---------- */
+const TRACK_URL = 'https://saspm.vircle.tech/track/hit';
+function track(e, extra){
+  try {
+    fetch(TRACK_URL, {
+      method:'POST', keepalive:true,
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(Object.assign({e}, extra||{}))
+    }).catch(()=>{});
+  } catch(_){}
+}
+track('visit');
+
 /* ---------- helpers ---------- */
 const $  = (s,r=document)=>r.querySelector(s);
 const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
@@ -10980,7 +10993,10 @@ function choose(i){
   const q=S.items[S.idx];
   if(S.mode==='practice' && S.picks[q.uid]!=null) return;
   S.picks[q.uid]=i;
-  if(S.mode==='practice'){ DB.record(q.uid, i===q.a); DB.save(); }
+  if(S.mode==='practice'){
+    DB.record(q.uid, i===q.a); DB.save();
+    track('answer',{subject:F.subject, pack:q.pack, correct:i===q.a?1:0});
+  }
   renderQuiz();
 }
 function go1(){ if(S.idx<S.items.length-1){ S.idx++; renderQuiz(); } else finish(); }
@@ -11145,7 +11161,15 @@ function finishP2(){
 function finish(){
   if(timerId) clearInterval(timerId);
   S.done=true;
-  if(S.mode==='exam'){ S.items.forEach(q=>{ const p=S.picks[q.uid]; if(p!=null) DB.record(q.uid,p===q.a); }); }
+  if(S.mode==='exam'){
+    S.items.forEach(q=>{
+      const p=S.picks[q.uid];
+      if(p!=null){
+        DB.record(q.uid,p===q.a);
+        track('answer',{subject:F.subject, pack:q.pack, correct:p===q.a?1:0});
+      }
+    });
+  }
   const score=S.items.filter(q=>S.picks[q.uid]===q.a).length;
   DB.d.history.push({at:Date.now(),mode:S.mode,score,total:S.items.length,subject:F.subject});
   if(DB.d.history.length>400) DB.d.history=DB.d.history.slice(-400);
