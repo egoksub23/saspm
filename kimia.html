@@ -15087,7 +15087,7 @@ function pts2(arr){
   }).join('')+'</ol>';
 }
 
-function L(en, bm){ return (S && S.lang==='bm' && bm) ? bm : (en||''); }
+function L(en, bm){ return (LANG==='bm' && bm) ? bm : (en||''); }
 
 function renderP2Quiz(){
   const q=S.items[S.idx];
@@ -15096,15 +15096,16 @@ function renderP2Quiz(){
 
   const partHTML=p=>{
     const id=q.uid+p.l, open=S.open[id], mk=S.marks[id];
+    const bp=q.bm&&q.bm.parts ? q.bm.parts.find(x=>x.l===p.l) : null;
     return '<div class="part'+(mk===true?' ok':mk===false?' no':'')+'">'+
       '<div class="pq">'+
         '<span class="pl">('+esc(p.l)+')</span>'+
-        '<span>'+mdT((S.lang==='bm'&&q.bm&&q.bm.parts ? (q.bm.parts.find(x=>x.l===p.l)||{}).q||p.q : p.q))+'</span>'+
+        '<span>'+mdT(L(p.q, bp&&bp.q))+'</span>'+
         '<span class="pm">'+p.m+'m'+(p.kbat?' &middot; KBAT':'')+'</span>'+
       '</div>'+
       (p.img?'<img class="qimg" src="'+attr(p.img)+'" alt="Rajah">':'')+
       (open ?
-        '<div class="pa">'+pts2(p.a)+'</div>'+
+        '<div class="pa">'+pts2(LANG==='bm'&&bp&&bp.a&&bp.a.length ? bp.a : p.a)+'</div>'+
         '<div class="selfm"><span>DID YOU GET IT?</span>'+
           '<button class="btn sm'+(mk===true?' on':'')+'" data-mk="1" data-id="'+attr(id)+'">&#10003; DAPAT</button>'+
           '<button class="btn sm bad'+(mk===false?' on':'')+'" data-mk="0" data-id="'+attr(id)+'">&#10007; BELUM</button>'+
@@ -15117,7 +15118,7 @@ function renderP2Quiz(){
    '<div class="card">'+
     '<div class="top"><div class="ctr-row"><span>SOALAN '+(S.idx+1)+' / '+S.items.length+'</span>'+
       '<span class="r">'+
-        (q.bm ? '<button class="ghost" id="btnLang" style="padding:4px 8px;font-size:.72rem">'+(S.lang==='bm'?'BM ✓':'EN/BM')+'</button>' : '')+
+        (q.bm ? '<button class="ghost" id="btnLangP2" style="padding:4px 8px;font-size:.72rem">'+(LANG==='bm'?'BM ✓':'EN/BM')+'</button>' : '')+
         '<span>SEKSYEN <b>'+q.sec+'</b></span><span>THIS Q <b>'+got+'/'+q.marks+'</b>m</span>'+
       '</span></div>'+
       '<div class="pbar"><i style="width:'+(S.idx/S.items.length*100)+'%"></i></div></div>'+
@@ -15133,11 +15134,11 @@ function renderP2Quiz(){
                (q.q?'<div class="qq">'+mdT(q.q)+'</div>':''))+
       (q.img?'<img class="qimg" loading="lazy" decoding="async"'+imgDim(q.img)+' src="'+attr(q.img)+'" alt="'+attr(T(q.alt)||'Rajah')+'">':'')+
       (q.alt&&!q.img?'<p class="alt">'+T(q.alt)+'</p>':'')+
-      (S.lang==='bm'&&q.bm&&q.bm.stim?'<div class="stim">'+stimFmt(q.bm.stim)+'</div>':
+      (LANG==='bm'&&q.bm&&q.bm.stim?'<div class="stim">'+stimFmt(q.bm.stim)+'</div>':
        q.stim?'<div class="stim">'+stimFmt(T(q.stim))+'</div>':'')+
       (q.stimHtml?'<div class="stim">'+q.stimHtml+'</div>':'')+
       q.parts.map(partHTML).join('')+
-      (q.note?'<p class="alt">Nota: '+esc(q.note)+'</p>':'')+
+      (q.note?'<p class="alt">Nota: '+esc(L(q.note, q.bm&&q.bm.note))+'</p>':'')+
       '<div class="nav">'+
         '<button class="btn mutebtn" id="prev"'+(S.idx?'':' disabled')+'>&larr; BACK</button>'+
         '<button class="btn mutebtn" id="openall">REVEAL ALL</button>'+
@@ -15155,7 +15156,7 @@ function renderP2Quiz(){
   on('next',go2);
   on('exit',()=>leaveDrill(renderSetup));
   on('openall',()=>{q.parts.forEach(p=>S.open[q.uid+p.l]=1); renderP2Quiz();});
-  on('btnLang',()=>{S.lang=S.lang==='bm'?'en':'bm'; renderP2Quiz();});
+  on('btnLangP2',()=>{LANG=LANG==='bm'?'en':'bm'; DB.d.settings.lang=LANG; DB.save(); renderP2Quiz();});
   renderMath();
   window.scrollTo({top:0});
 }
