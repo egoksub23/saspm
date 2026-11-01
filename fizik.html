@@ -31113,6 +31113,11 @@ const DB={
 DB.load();
 LANG = DB.d.settings.lang || 'en';
 
+/* what a finished drill records besides the score: which papers it drew from and how many questions were actually answered */
+function sessionInfo(items,att){
+  return { packs:[...new Set(items.map(q=>q.packId))].slice(0,12), nq:items.length, att:att };
+}
+
 /* ---------- topic taxonomy ---------- */
 const TOPICS = {
   Physics: {
@@ -31665,7 +31670,8 @@ function finishP2(){
     if(q.parts.some(p=>S.marks[q.uid+p.l]===false)) missed.push(q);
   });
 
-  DB.d.history.push({at:Date.now(),mode:'p2',score:got,total:tot||1,subject:F.subject});
+  DB.d.history.push(Object.assign({at:Date.now(),mode:'p2',score:got,total:tot||1,subject:F.subject},
+    sessionInfo(S.items,S.items.filter(q=>q.parts.some(p=>S.marks[q.uid+p.l]!=null)).length)));
   if(DB.d.history.length>400) DB.d.history=DB.d.history.slice(-400);
   DB.save();
 
@@ -31719,7 +31725,8 @@ function finish(){
     });
   }
   const score=S.items.filter(q=>S.picks[q.uid]===q.a).length;
-  DB.d.history.push({at:Date.now(),mode:S.mode,score,total:S.items.length,subject:F.subject});
+  DB.d.history.push(Object.assign({at:Date.now(),mode:S.mode,score,total:S.items.length,subject:F.subject},
+    sessionInfo(S.items,S.items.filter(q=>S.picks[q.uid]!=null).length)));
   if(DB.d.history.length>400) DB.d.history=DB.d.history.slice(-400);
   DB.save();
   renderReport(score);
@@ -31797,6 +31804,12 @@ function renderReport(score){
 /* =========================================================================
    STATS
    ========================================================================= */
+function histPapers(h){
+  if(!h.packs||!h.packs.length) return '';
+  const lbl=id=>{ const q=BANK.find(x=>x.packId===id); return q ? (q.kind==='actual'?q.year:q.state+' '+q.year)+' K'+q.paper : id; };
+  const l=h.packs.map(lbl);
+  return '<br><small>'+(l.length>2?l.slice(0,2).join(', ')+' +'+(l.length-2):l.join(', '))+'</small>';
+}
 function renderStats(){
   S=null;
   const seen=BANK.filter(q=>DB.d.progress[q.uid]&&DB.d.progress[q.uid].seen);
@@ -31821,10 +31834,10 @@ function renderStats(){
      (rows.length?'<div class="sec"><div class="lab">ACCURACY BY TOPIC &mdash; weakest first</div>'+bars(rows)+'</div>'
                  :'<div class="empty">No attempts recorded yet. Run a drill first.</div>')+
      (hist.length?'<div class="sec"><div class="lab">RECENT DRILLS</div>'+
-        hist.map(h=>'<div class="brow"><span>'+new Date(h.at).toLocaleDateString()+'</span>'+
+        hist.map(h=>'<div class="brow"><span>'+new Date(h.at).toLocaleDateString()+histPapers(h)+'</span>'+
           '<span class="tr"><span class="fl '+(h.score/h.total>=.75?'':h.score/h.total>=.5?'mid':'low')+
           '" style="width:'+Math.round(h.score/h.total*100)+'%"></span></span>'+
-          '<span class="v">'+h.score+'/'+h.total+(h.mode==='p2'?' P2':'')+'</span></div>').join('')+'</div>':'')+
+          '<span class="v">'+h.score+'/'+h.total+(h.mode==='p2'?' P2':'')+(h.att!=null?'<br><small>'+h.att+'/'+h.nq+' tried</small>':'')+'</span></div>').join('')+'</div>':'')+
      '<div class="startrow">'+
        '<button class="btn mutebtn" id="home">&larr; BACK</button>'+
        '<button class="btn mutebtn" id="exp">EXPORT PROGRESS</button>'+
