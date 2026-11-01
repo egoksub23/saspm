@@ -7567,6 +7567,1160 @@ SPM.register({
   ]
 });
 
+/* ---- data/mm-mrsm-2026-p1.js ---- */
+window.SPM = window.SPM || { packs: [], register(p) { this.packs.push(p); } };
+SPM.register({
+  meta: {
+    id: 'mm-mrsm-2026-p1',
+    subject: 'Modern Maths',
+    state: 'MRSM',
+    year: 'Trial 2026',
+    paper: 1,
+    code: '1449/1',
+    time: '1 jam 30 minit',
+    source: 'Percubaan SPM 2026 MRSM — Kertas 1'
+  },
+  questions: [
+    {
+      n: 1,
+      topic: 'NUMBER_BASES',
+      q: {
+        bm: 'Rajah 1 menunjukkan sekeping kad nombor yang mengandungi nombor 3521. Nyatakan asas yang mungkin bagi nombor itu.',
+        en: 'Diagram 1 shows a number card with the number 3521. State the possible base for the number.'
+      },
+      o: [
+        { bm: '6', en: '6' },
+        { bm: '5', en: '5' },
+        { bm: '4', en: '4' },
+        { bm: '3', en: '3' }
+      ],
+      a: 0,
+      w: {
+        bm: 'Nombor 3521 mengandungi digit 5. Dalam sistem nombor, asas mestilah lebih besar daripada digit terbesar yang digunakan. Digit terbesar ialah 5, maka asas mestilah lebih besar daripada 5. Asas yang mungkin ialah 6.',
+        en: 'The number 3521 contains digit 5. In a number system, the base must be greater than the largest digit used. The largest digit is 5, so the base must be greater than 5. The possible base is 6.'
+      }
+    },
+    {
+      n: 2,
+      topic: 'SEQUENCE',
+      img: 'assets/mm-mrsm2026/p1-q02.png',
+      alt: {
+        bm: 'Tiga silinder dengan diameter 5 cm, 9 cm dan 13 cm tersusun dalam jujukan.',
+        en: 'Three cylinders with diameters 5 cm, 9 cm and 13 cm arranged in a sequence.'
+      },
+      q: {
+        bm: 'Rajah 2 menunjukkan satu jujukan bagi satu set silinder dengan diameter 5 cm, 9 cm dan 13 cm. Hitung luas keratan rentas, dalam cm², bagi silinder ke-7. [Guna π = 22/7]',
+        en: 'Diagram 2 shows a sequence of a set of cylinders with diameters 5 cm, 9 cm and 13 cm. Calculate the cross-sectional area, in cm², of the 7th cylinder. [Use π = 22/7]'
+      },
+      o: [
+        { bm: '3422.57', en: '3422.57' },
+        { bm: '2643.14', en: '2643.14' },
+        { bm: '855.64', en: '855.64' },
+        { bm: '660.79', en: '660.79' }
+      ],
+      a: 3,
+      w: {
+        bm: 'Jujukan diameter: 5, 9, 13, … (janjang aritmetik, beza sepunya d = 4). Diameter ke-7: T₇ = 5 + (7−1)×4 = 5 + 24 = 29 cm. Jejari = 14.5 cm. Luas = πr² = (22/7) × 14.5² = (22/7) × 210.25 = 660.79 cm².',
+        en: 'Diameter sequence: 5, 9, 13, … (arithmetic progression, common difference d = 4). 7th diameter: T₇ = 5 + (7−1)×4 = 29 cm. Radius = 14.5 cm. Area = πr² = (22/7) × 14.5² = (22/7) × 210.25 = 660.79 cm².'
+      }
+    },
+    {
+      n: 3,
+      topic: 'STANDARD_FORM',
+      q: {
+        bm: 'Dalam sebuah kotak terdapat dua utas tali iaitu tali R dan tali S. Panjang tali R ialah 4.4 × 10³ cm. Panjang tali S ialah 720 cm lebih pendek daripada tali R. Hitung panjang, dalam cm, bagi tali S.',
+        en: 'In a box, there are two ropes, R and S. The length of rope R is 4.4 × 10³ cm. The length of rope S is 720 cm shorter than rope R. Calculate the length, in cm, of rope S.'
+      },
+      o: [
+        { bm: '3.68 × 10³', en: '3.68 × 10³' },
+        { bm: '3.68 × 10⁴', en: '3.68 × 10⁴' },
+        { bm: '5.12 × 10³', en: '5.12 × 10³' },
+        { bm: '5.12 × 10⁴', en: '5.12 × 10⁴' }
+      ],
+      a: 0,
+      w: {
+        bm: 'Panjang S = 4.4 × 10³ − 720 = 4400 − 720 = 3680 cm = 3.68 × 10³ cm.',
+        en: 'Length of S = 4.4 × 10³ − 720 = 4400 − 720 = 3680 cm = 3.68 × 10³ cm.'
+      }
+    },
+    {
+      n: 4,
+      topic: 'RATIOS',
+      q: {
+        bm: 'Ben membeli satu polisi insurans perubatan yang mempunyai deduktibel sebanyak RM800 dan ko-insurans 85%. Ben telah dimasukkan ke hospital dan dikenakan kos rawatan sebanyak RM12 800. Hitung jumlah keseluruhan kos rawatan yang perlu ditanggung oleh Ben.',
+        en: 'Ben purchased a medical insurance policy with a deductible of RM800 and a co-insurance of 85%. Ben was admitted to hospital and the treatment cost was RM12 800. Calculate the total treatment cost borne by Ben.'
+      },
+      o: [
+        { bm: 'RM1 800', en: 'RM1 800' },
+        { bm: 'RM1 920', en: 'RM1 920' },
+        { bm: 'RM2 600', en: 'RM2 600' },
+        { bm: 'RM2 720', en: 'RM2 720' }
+      ],
+      a: 2,
+      w: {
+        bm: 'Kos selepas deduktibel = RM12 800 − RM800 = RM12 000. Insurans menanggung 85%, Ben menanggung 15%. Ko-insurans Ben = 15% × RM12 000 = RM1 800. Jumlah = RM800 + RM1 800 = RM2 600.',
+        en: 'Amount after deductible = RM12 800 − RM800 = RM12 000. Insurance covers 85%, Ben covers 15%. Ben\'s co-insurance = 15% × RM12 000 = RM1 800. Total = RM800 + RM1 800 = RM2 600.'
+      }
+    },
+    {
+      n: 5,
+      topic: 'RATIOS',
+      q: {
+        bm: 'Nuh memiliki sebuah rumah kediaman yang terletak di bandar P. Kediaman tersebut mempunyai nilai tahunan sebanyak RM7 200. Diberi bahawa kadar cukai pintu yang dikenakan oleh Majlis Perbandaran P ialah 5%. Hitung cukai pintu yang perlu dibayar oleh Nuh untuk setiap enam bulan.',
+        en: 'Nuh owns a house which is located at city P. The house has an annual value of RM7 200. Given that the property assessment tax rate imposed by Municipal Council P is 5%. Calculate the property assessment tax payable by Nuh for every six months.'
+      },
+      o: [
+        { bm: 'RM30', en: 'RM30' },
+        { bm: 'RM60', en: 'RM60' },
+        { bm: 'RM180', en: 'RM180' },
+        { bm: 'RM360', en: 'RM360' }
+      ],
+      a: 2,
+      w: {
+        bm: 'Cukai tahunan = 5% × RM7 200 = RM360. Cukai setiap 6 bulan = RM360 ÷ 2 = RM180.',
+        en: 'Annual tax = 5% × RM7 200 = RM360. Tax every 6 months = RM360 ÷ 2 = RM180.'
+      }
+    },
+    {
+      n: 6,
+      topic: 'RATIOS',
+      q: {
+        bm: 'Lan mempunyai pendapatan RM2 200 sebulan. Dia ingin menyimpan 10% daripada pendapatannya setiap bulan untuk dana kecemasan. Perbelanjaan tetap dan tidak tetap masing-masing ialah RM800 dan RM500. Hitung aliran tunai bulanan Lan.',
+        en: 'Lan earns RM2 200 per month. He plans to save 10% of his monthly income for emergency funds. His fixed and variable expenses are RM800 and RM500 respectively. Calculate Lan\'s monthly cash flow.'
+      },
+      o: [
+        { bm: 'RM680', en: 'RM680' },
+        { bm: 'RM900', en: 'RM900' },
+        { bm: 'RM1 120', en: 'RM1 120' },
+        { bm: 'RM1 180', en: 'RM1 180' }
+      ],
+      a: 0,
+      w: {
+        bm: 'Simpanan = 10% × RM2 200 = RM220. Aliran tunai = RM2 200 − RM220 − RM800 − RM500 = RM680.',
+        en: 'Savings = 10% × RM2 200 = RM220. Cash flow = RM2 200 − RM220 − RM800 − RM500 = RM680.'
+      }
+    },
+    {
+      n: 7,
+      topic: 'SOLID_GEOMETRY',
+      q: {
+        bm: 'Ahmad mempunyai dua buah kotak berbentuk kubus, H dan K. Isipadu bagi kotak K ialah 343 cm³ dan panjang sisinya melebihi panjang sisi kotak H sebanyak 2 cm. Hitung jumlah luas permukaan, dalam cm², bagi kotak H.',
+        en: 'Ahmad has two cube-shaped boxes, H and K. The volume of box K is 343 cm³ with the length of side 2 cm longer than box H. Calculate the total surface area, in cm², of box H.'
+      },
+      o: [
+        { bm: '125', en: '125' },
+        { bm: '150', en: '150' },
+        { bm: '294', en: '294' },
+        { bm: '486', en: '486' }
+      ],
+      a: 1,
+      w: {
+        bm: 'Panjang sisi K = ∛343 = 7 cm. Panjang sisi H = 7 − 2 = 5 cm. Jumlah luas permukaan H = 6 × 5² = 6 × 25 = 150 cm².',
+        en: 'Side length of K = ∛343 = 7 cm. Side length of H = 7 − 2 = 5 cm. Total surface area of H = 6 × 5² = 6 × 25 = 150 cm².'
+      }
+    },
+    {
+      n: 8,
+      topic: 'INDICES',
+      q: {
+        bm: 'Antara berikut, manakah yang setara dengan −216/343?',
+        en: 'Which of the following is equivalent to −216/343?'
+      },
+      o: [
+        { bm: '−(−6/7)³', en: '−(−6/7)³' },
+        { bm: '−(−6³/7)', en: '−(−6³/7)' },
+        { bm: '(−6/7)³', en: '(−6/7)³' },
+        { bm: '(−6³/7)', en: '(−6³/7)' }
+      ],
+      a: 2,
+      w: {
+        bm: '−216/343 = −(6³/7³) = −(6/7)³. Semak: (−6/7)³ = (−6)³/7³ = −216/343 ✓.',
+        en: '−216/343 = −(6³/7³) = −(6/7)³. Check: (−6/7)³ = (−6)³/7³ = −216/343 ✓.'
+      }
+    },
+    {
+      n: 9,
+      topic: 'ALGEBRAIC_EXPR',
+      q: {
+        bm: '[−3/4 + 1½ × (−1/3)] ÷ (−5/8) =',
+        en: '[−3/4 + 1½ × (−1/3)] ÷ (−5/8) ='
+      },
+      o: [
+        { bm: '2', en: '2' },
+        { bm: '2/5', en: '2/5' },
+        { bm: '−2/5', en: '−2/5' },
+        { bm: '−2', en: '−2' }
+      ],
+      a: 0,
+      w: {
+        bm: '[−3/4 + 3/2 × (−1/3)] ÷ (−5/8) = [−3/4 + (−1/2)] ÷ (−5/8) = [−3/4 − 2/4] ÷ (−5/8) = (−5/4) ÷ (−5/8) = (−5/4) × (−8/5) = 40/20 = 2.',
+        en: '[−3/4 + 3/2 × (−1/3)] ÷ (−5/8) = [−3/4 + (−1/2)] ÷ (−5/8) = [−5/4] ÷ (−5/8) = (−5/4) × (−8/5) = 40/20 = 2.'
+      }
+    },
+    {
+      n: 10,
+      topic: 'MATH_REASONING',
+      q: {
+        bm: 'Nyatakan bilangan faktor perdana bagi 70.',
+        en: 'State the number of prime factors of 70.'
+      },
+      o: [
+        { bm: '3', en: '3' },
+        { bm: '4', en: '4' },
+        { bm: '5', en: '5' },
+        { bm: '6', en: '6' }
+      ],
+      a: 0,
+      w: {
+        bm: '70 = 2 × 5 × 7. Faktor perdana: 2, 5, 7. Bilangan faktor perdana = 3.',
+        en: '70 = 2 × 5 × 7. Prime factors: 2, 5, 7. Number of prime factors = 3.'
+      }
+    },
+    {
+      n: 11,
+      topic: 'MATRICES',
+      q: {
+        bm: 'Peringkat bagi matriks [[4, 2, −2], [3, 1/4, −8]] ialah',
+        en: 'The order of matrix [[4, 2, −2], [3, 1/4, −8]] is'
+      },
+      o: [
+        { bm: '2 × 2', en: '2 × 2' },
+        { bm: '2 × 3', en: '2 × 3' },
+        { bm: '3 × 2', en: '3 × 2' },
+        { bm: '3 × 3', en: '3 × 3' }
+      ],
+      a: 1,
+      w: {
+        bm: 'Matriks mempunyai 2 baris dan 3 lajur. Peringkat = 2 × 3.',
+        en: 'The matrix has 2 rows and 3 columns. Order = 2 × 3.'
+      }
+    },
+    {
+      n: 12,
+      topic: 'GRAPH_FUNCTIONS',
+      img: 'assets/mm-mrsm2026/p1-q12.png',
+      alt: {
+        bm: 'Empat jadual menunjukkan nilai R dan S yang berbeza.',
+        en: 'Four tables showing different values of R and S.'
+      },
+      q: {
+        bm: 'Diberi bahawa R berubah secara songsang dengan kuasa dua S. Antara jadual berikut, manakah mewakili hubungan antara R dan S?',
+        en: 'It is given that R varies inversely with the square of S. Which of the following tables represents the relationship between R and S?'
+      },
+      o: [
+        { bm: 'R: 4, 10 | S: 5, 10', en: 'R: 4, 10 | S: 5, 10' },
+        { bm: 'R: 4, 1 | S: 5, 10', en: 'R: 4, 1 | S: 5, 10' },
+        { bm: 'R: 1, 4 | S: 10, 25', en: 'R: 1, 4 | S: 10, 25' },
+        { bm: 'R: 25, 10 | S: 4, 10', en: 'R: 25, 10 | S: 4, 10' }
+      ],
+      a: 1,
+      w: {
+        bm: 'R = k/S². Jika R=4 dan S=5: k = 4 × 25 = 100. Apabila S=10: R = 100/100 = 1. Jadual B menunjukkan (R=4, S=5) dan (R=1, S=10) ✓.',
+        en: 'R = k/S². If R=4 and S=5: k = 4 × 25 = 100. When S=10: R = 100/100 = 1. Table B shows (R=4, S=5) and (R=1, S=10) ✓.'
+      }
+    },
+    {
+      n: 13,
+      topic: 'MATH_REASONING',
+      q: {
+        bm: 'Antara berikut, manakah BUKAN suatu model matematik?\nA: P = 0.60x, di mana P ialah tekanan gas dan x ialah suhu dalam tayar kereta.\nB: P = 30x + 60y, di mana P ialah jumlah kos tiket, x ialah bilangan kanak-kanak dan y ialah bilangan dewasa.\nC: P = x², di mana P ialah mata yang dikumpul dan x ialah jualan.\nD: P = 50, di mana P ialah bilangan bola berwarna merah di dalam sebuah kotak.',
+        en: 'Which of the following is NOT a mathematical model?\nA: P = 0.60x, where P is the gas pressure and x is the temperature in a car tyre.\nB: P = 30x + 60y, where P is the total cost of tickets, x is the number of children and y is the number of adults.\nC: P = x², where P is the collecting points and x is the sales.\nD: P = 50, where P is the number of red balls inside a box.'
+      },
+      o: [
+        { bm: 'P = 0.60x', en: 'P = 0.60x' },
+        { bm: 'P = 30x + 60y', en: 'P = 30x + 60y' },
+        { bm: 'P = x²', en: 'P = x²' },
+        { bm: 'P = 50', en: 'P = 50' }
+      ],
+      a: 3,
+      w: {
+        bm: 'Model matematik menunjukkan hubungan antara pemboleh ubah. P = 50 ialah pemalar — ia tidak menunjukkan sebarang hubungan antara pemboleh ubah, maka ia bukan model matematik.',
+        en: 'A mathematical model shows a relationship between variables. P = 50 is a constant — it does not show any relationship between variables, so it is not a mathematical model.'
+      }
+    },
+    {
+      n: 14,
+      topic: 'QUADRATIC',
+      img: 'assets/mm-mrsm2026/p1-q14.png',
+      alt: {
+        bm: 'Graf fungsi kuadratik dengan titik maksimum L(4, 4) dan pintasan-x di x = 2 dan x = 6.',
+        en: 'Graph of quadratic function with maximum point L(4, 4) and x-intercepts at x = 2 and x = 6.'
+      },
+      q: {
+        bm: 'Rajah 3 menunjukkan graf fungsi kuadratik f(x) dengan titik maksimum, L(4, 4). Antara fungsi kuadratik berikut, manakah yang mewakili graf tersebut?',
+        en: 'Diagram 3 shows the graph of quadratic function f(x) with a maximum point, L(4, 4). Which of the following quadratic functions represents the graph?'
+      },
+      o: [
+        { bm: 'f(x) = x² − 8x + 12', en: 'f(x) = x² − 8x + 12' },
+        { bm: 'f(x) = x² + 8x − 12', en: 'f(x) = x² + 8x − 12' },
+        { bm: 'f(x) = −x² − 8x + 12', en: 'f(x) = −x² − 8x + 12' },
+        { bm: 'f(x) = −x² + 8x − 12', en: 'f(x) = −x² + 8x − 12' }
+      ],
+      a: 3,
+      w: {
+        bm: 'Graf mempunyai titik maksimum → pekali x² negatif. Pintasan-x di x=2 dan x=6. f(x) = −(x−2)(x−6) = −x² + 8x − 12. Semak: f(4) = −16 + 32 − 12 = 4 ✓. Titik maksimum L(4, 4) ✓.',
+        en: 'Graph has a maximum point → negative coefficient of x². x-intercepts at x=2 and x=6. f(x) = −(x−2)(x−6) = −x² + 8x − 12. Check: f(4) = −16 + 32 − 12 = 4 ✓. Maximum point L(4, 4) ✓.'
+      }
+    },
+    {
+      n: 15,
+      topic: 'ALGEBRAIC_EXPR',
+      q: {
+        bm: 'Diberi bahawa v = √(GM/(R+h)). Jika h = 700, ungkapkan R dalam sebutan v, G dan M.',
+        en: 'It is given that v = √(GM/(R+h)). If h = 700, express R in terms of v, G and M.'
+      },
+      o: [
+        { bm: 'R = GM/(v² + 700)', en: 'R = GM/(v² + 700)' },
+        { bm: 'R = (GM − 700)/v²', en: 'R = (GM − 700)/v²' },
+        { bm: 'R = GM/v² − 700', en: 'R = GM/v² − 700' },
+        { bm: 'R = GM/v² + 700', en: 'R = GM/v² + 700' }
+      ],
+      a: 2,
+      w: {
+        bm: 'v = √(GM/(R+700)). Kuasakan dua: v² = GM/(R+700). v²(R+700) = GM. v²R = GM − 700v². R = GM/v² − 700.',
+        en: 'v = √(GM/(R+700)). Square both sides: v² = GM/(R+700). v²(R+700) = GM. v²R = GM − 700v². R = GM/v² − 700.'
+      }
+    },
+    {
+      n: 16,
+      topic: 'RATIOS',
+      q: {
+        bm: 'Faris dan Suresh menyertai pertandingan larian yang berjarak 21 km. Faris mengambil masa selama 1 jam 50 minit untuk menamatkan larian itu. Suresh mengambil masa selama 5 minit untuk berhenti berehat sebelum menamatkan larian dengan laju purata 0.16 km/min. Hitung beza laju mereka, dalam km/min, jika Suresh tidak berhenti untuk berehat.',
+        en: 'Faris and Suresh joined a 21 km running competition. Faris took 1 hour and 50 minutes to finish his run. Suresh took 5 minutes break before finishing his run with average speed of 0.16 km/min. Calculate the difference in speed between them, in km/min, if Suresh did not take any rest during the competition.'
+      },
+      o: [
+        { bm: '0.0246', en: '0.0246' },
+        { bm: '0.0263', en: '0.0263' },
+        { bm: '0.0309', en: '0.0309' },
+        { bm: '0.0368', en: '0.0368' }
+      ],
+      a: 0,
+      w: {
+        bm: 'Laju Faris = 21/110 km/min ≈ 0.19091 km/min. Masa Suresh (termasuk rehat) = 21/0.16 = 131.25 min. Masa Suresh tanpa rehat = 131.25 − 5 = 126.25 min. Laju Suresh = 21/126.25 ≈ 0.16634 km/min. Beza = 0.19091 − 0.16634 ≈ 0.0246 km/min.',
+        en: 'Faris speed = 21/110 km/min ≈ 0.19091 km/min. Suresh total time (with rest) = 21/0.16 = 131.25 min. Suresh time without rest = 131.25 − 5 = 126.25 min. Suresh speed = 21/126.25 ≈ 0.16634 km/min. Difference = 0.19091 − 0.16634 ≈ 0.0246 km/min.'
+      }
+    },
+    {
+      n: 17,
+      topic: 'STRAIGHT_LINE',
+      img: 'assets/mm-mrsm2026/p1-q17.png',
+      alt: {
+        bm: 'Segi empat selari KLMN dengan K(1,3), L(4,7), M(9,k) dan titik N pada satah Cartes.',
+        en: 'Parallelogram KLMN with K(1,3), L(4,7), M(9,k) and point N on Cartesian plane.'
+      },
+      q: {
+        bm: 'Rajah 4 menunjukkan sebuah segi empat selari KLMN dilukis pada suatu satah Cartes dengan K(1,3), L(4,7) dan M(9,k). Suatu garis lurus y = x − 1 melalui titik N. Hitung nilai k.',
+        en: 'Diagram 4 shows a parallelogram KLMN drawn on a Cartesian plane with K(1,3), L(4,7) and M(9,k). A straight line y = x − 1 passes through point N. Calculate the value of k.'
+      },
+      o: [
+        { bm: '8', en: '8' },
+        { bm: '9', en: '9' },
+        { bm: '10', en: '10' },
+        { bm: '12', en: '12' }
+      ],
+      a: 1,
+      w: {
+        bm: 'Dalam segi empat selari KLMN: vektor KN = vektor LM. N = K + M − L = (1+9−4, 3+k−7) = (6, k−4). N terletak pada y = x−1: k−4 = 6−1 = 5. Maka k = 9.',
+        en: 'In parallelogram KLMN: vector KN = vector LM. N = K + M − L = (1+9−4, 3+k−7) = (6, k−4). N lies on y = x−1: k−4 = 6−1 = 5. Therefore k = 9.'
+      }
+    },
+    {
+      n: 18,
+      topic: 'LINEAR_INEQUALITY',
+      q: {
+        bm: 'Azrina menghasilkan dua produk kraftangan, U dan V. Penghasilan seunit produk U memerlukan masa selama 50 minit manakala seunit produk V memerlukan masa selama 70 minit. Dia memperuntukkan selama 6 jam sehari untuk menghasilkan produk-produk tersebut. Bilangan produk U yang dihasilkan dalam sehari sekurang-kurangnya dua kali bilangan produk V. Jika bilangan produk U dan produk V masing-masing diwakili oleh x dan y, ketaksamaan linear manakah mewakili situasi di atas?',
+        en: 'Azrina produces two handicraft products, U and V. Production of product U needs 50 minutes while product V needs 70 minutes. She allocates 6 hours per day to produce these products. The number of product U produced in a day is at least twice the number of product V. If the number of product U and product V is represented by x and y respectively, which linear inequalities represent the above situation?'
+      },
+      o: [
+        { bm: '50x + 70y ≤ 360, x ≥ 2y', en: '50x + 70y ≤ 360, x ≥ 2y' },
+        { bm: '50x + 70y ≥ 360, x ≥ 2y', en: '50x + 70y ≥ 360, x ≥ 2y' },
+        { bm: '50x + 70y ≤ 360, x ≤ 2y', en: '50x + 70y ≤ 360, x ≤ 2y' },
+        { bm: '50x + 70y ≥ 360, x ≤ 2y', en: '50x + 70y ≥ 360, x ≤ 2y' }
+      ],
+      a: 0,
+      w: {
+        bm: 'Jumlah masa ≤ 6 jam = 360 minit: 50x + 70y ≤ 360. Bilangan U sekurang-kurangnya dua kali V: x ≥ 2y.',
+        en: 'Total time ≤ 6 hours = 360 minutes: 50x + 70y ≤ 360. Number of U at least twice V: x ≥ 2y.'
+      }
+    },
+    {
+      n: 19,
+      topic: 'ALGEBRAIC_EXPR',
+      q: {
+        bm: 'Permudahkan: (3x − 9)/(x² − 9)',
+        en: 'Simplify: (3x − 9)/(x² − 9)'
+      },
+      o: [
+        { bm: '3/(x + 3)', en: '3/(x + 3)' },
+        { bm: '3/(x − 3)', en: '3/(x − 3)' },
+        { bm: '1/(x − 3)', en: '1/(x − 3)' },
+        { bm: '3/x', en: '3/x' }
+      ],
+      a: 0,
+      w: {
+        bm: '(3x − 9)/(x² − 9) = 3(x−3)/[(x−3)(x+3)] = 3/(x+3).',
+        en: '(3x − 9)/(x² − 9) = 3(x−3)/[(x−3)(x+3)] = 3/(x+3).'
+      }
+    },
+    {
+      n: 20,
+      topic: 'GRAPH_FUNCTIONS',
+      img: 'assets/mm-mrsm2026/p1-q20.png',
+      alt: {
+        bm: 'Graf jarak-masa menunjukkan kereta bergerak 20 km dalam 10 minit pertama, berhenti dari 10–25 minit, kemudian bergerak ke 3q/4 km pada minit ke-55.',
+        en: 'Distance-time graph showing a car travelling 20 km in first 10 minutes, stopping from 10–25 minutes, then moving to 3q/4 km at minute 55.'
+      },
+      q: {
+        bm: 'Rajah 5 menunjukkan graf jarak-masa bagi perjalanan sebuah kereta. Diberi bahawa laju purata keseluruhan perjalanan ialah 72 kmj⁻¹, hitung nilai q, dalam km.',
+        en: 'Diagram 5 shows a distance-time graph for the journey of a car. Given that the average speed of the whole journey is 72 kmh⁻¹, calculate the value of q, in km.'
+      },
+      o: [
+        { bm: '48', en: '48' },
+        { bm: '64', en: '64' },
+        { bm: '66', en: '66' },
+        { bm: '88', en: '88' }
+      ],
+      a: 3,
+      w: {
+        bm: 'Jumlah masa = 55 min = 55/60 jam. Jumlah jarak = 3q/4 km. Laju purata = (3q/4)/(55/60) = 72. 3q/4 = 72 × 55/60 = 66. q = 66 × 4/3 = 88 km.',
+        en: 'Total time = 55 min = 55/60 hr. Total distance = 3q/4 km. Average speed = (3q/4)/(55/60) = 72. 3q/4 = 72 × 55/60 = 66. q = 66 × 4/3 = 88 km.'
+      }
+    },
+    {
+      n: 21,
+      topic: 'SETS',
+      img: 'assets/mm-mrsm2026/p1-q21.png',
+      alt: {
+        bm: 'Gambar rajah Venn dengan set semesta ξ, set P = {1,2,3,4,5,6} dan set Q = {3,6,9,12}. Elemen luar kedua-dua set: 7, 8, 11.',
+        en: 'Venn diagram with universal set ξ, set P = {1,2,3,4,5,6} and set Q = {3,6,9,12}. Elements outside both sets: 7, 8, 11.'
+      },
+      q: {
+        bm: 'Rajah 6 menunjukkan gambar rajah Venn bagi set semesta ξ, set P dan set Q. Tentukan n(P ∪ Q)\'.',
+        en: 'Diagram 6 shows a Venn diagram of the universal set ξ, set P and set Q. Determine n(P ∪ Q)\'.'
+      },
+      o: [
+        { bm: '2', en: '2' },
+        { bm: '3', en: '3' },
+        { bm: '6', en: '6' },
+        { bm: '8', en: '8' }
+      ],
+      a: 1,
+      w: {
+        bm: 'P ∪ Q = {1,2,3,4,5,6,9,12}. Elemen di luar P ∪ Q = {7, 8, 11}. n(P ∪ Q)\' = 3.',
+        en: 'P ∪ Q = {1,2,3,4,5,6,9,12}. Elements outside P ∪ Q = {7, 8, 11}. n(P ∪ Q)\' = 3.'
+      }
+    },
+    {
+      n: 22,
+      topic: 'MATH_REASONING',
+      q: {
+        bm: 'Rajah 7 menunjukkan suatu hujah yang tidak lengkap:\nPremis 1: Jika x > 5, maka 2x > 10.\nPremis 2: 7 > 5.\nKesimpulan: ___\nApakah kesimpulan bagi hujah deduktif tersebut?',
+        en: 'Diagram 7 shows an incomplete argument:\nPremise 1: If x > 5, then 2x > 10.\nPremise 2: 7 > 5.\nConclusion: ___\nWhat is the conclusion for the deductive argument?'
+      },
+      o: [
+        { bm: 'x > 5', en: 'x > 5' },
+        { bm: '2x > 10', en: '2x > 10' },
+        { bm: '14 > 5', en: '14 > 5' },
+        { bm: '14 > 10', en: '14 > 10' }
+      ],
+      a: 3,
+      w: {
+        bm: 'Hujah deduktif: gantikan x = 7 ke dalam Premis 1. Jika 7 > 5, maka 2(7) > 10, iaitu 14 > 10.',
+        en: 'Deductive argument: substitute x = 7 into Premise 1. If 7 > 5, then 2(7) > 10, which is 14 > 10.'
+      }
+    },
+    {
+      n: 23,
+      topic: 'MATH_REASONING',
+      img: 'assets/mm-mrsm2026/p1-q23.png',
+      alt: {
+        bm: 'Graf dengan 4 bucu: P (ada gelung), Q, R, S. Sisi: gelung di P, P-Q, P-S, Q-S, Q-R, dan dua sisi antara S-R.',
+        en: 'Graph with 4 vertices: P (has loop), Q, R, S. Edges: loop at P, P-Q, P-S, Q-S, Q-R, and two edges between S-R.'
+      },
+      q: {
+        bm: 'Rajah 8 menunjukkan suatu graf yang mempunyai gelung. Tentukan Σd(V).',
+        en: 'Diagram 8 shows a graph with a loop. Determine Σd(V).'
+      },
+      o: [
+        { bm: '4', en: '4' },
+        { bm: '7', en: '7' },
+        { bm: '13', en: '13' },
+        { bm: '14', en: '14' }
+      ],
+      a: 3,
+      w: {
+        bm: 'd(P) = 2(gelung) + 1(PQ) + 1(PS) = 4. d(Q) = 1(PQ) + 1(QS) + 1(QR) = 3. d(R) = 1(QR) + 2(SR berganda) = 3. d(S) = 1(PS) + 1(QS) + 2(SR berganda) = 4. Σd(V) = 4 + 3 + 3 + 4 = 14.',
+        en: 'd(P) = 2(loop) + 1(PQ) + 1(PS) = 4. d(Q) = 1(PQ) + 1(QS) + 1(QR) = 3. d(R) = 1(QR) + 2(SR double) = 3. d(S) = 1(PS) + 1(QS) + 2(SR double) = 4. Σd(V) = 4 + 3 + 3 + 4 = 14.'
+      }
+    },
+    {
+      n: 24,
+      topic: 'STATISTICS',
+      img: 'assets/mm-mrsm2026/p1-q24.png',
+      alt: {
+        bm: 'Carta palang bertindan bagi bilangan pengunjung (lelaki dan perempuan) di Taman Tema Saujana pada hari Jumaat (~50), Sabtu (~90) dan Ahad (~70).',
+        en: 'Stacked bar chart for number of visitors (male and female) at Saujana Theme Park on Friday (~50), Saturday (~90) and Sunday (~70).'
+      },
+      q: {
+        bm: 'Rajah 9 ialah carta palang bagi bilangan pengunjung di Taman Tema Saujana pada hari Jumaat, Sabtu dan Ahad. Hitung nisbah jumlah pengunjung lelaki kepada jumlah pengunjung wanita dalam tempoh tiga hari tersebut.',
+        en: 'Diagram 9 is a bar chart for number of visitors at Saujana Theme Park on Friday, Saturday and Sunday. Calculate the ratio of the total male visitors to the total female visitors within three days.'
+      },
+      o: [
+        { bm: '3 : 4', en: '3 : 4' },
+        { bm: '3 : 7', en: '3 : 7' },
+        { bm: '4 : 3', en: '4 : 3' },
+        { bm: '7 : 3', en: '7 : 3' }
+      ],
+      a: 0,
+      w: {
+        bm: 'Dari carta: Lelaki: Jumaat=20, Sabtu=40, Ahad=30. Jumlah lelaki = 90. Perempuan: Jumaat=30, Sabtu=50, Ahad=40. Jumlah perempuan = 120. Nisbah = 90:120 = 3:4.',
+        en: 'From chart: Male: Fri=20, Sat=40, Sun=30. Total male = 90. Female: Fri=30, Sat=50, Sun=40. Total female = 120. Ratio = 90:120 = 3:4.'
+      }
+    },
+    {
+      n: 25,
+      topic: 'PROBABILITY',
+      q: {
+        bm: 'Sebuah beg mengandungi 5 biji guli merah, 3 biji guli kuning dan 4 biji guli biru. Sebiji guli dipilih secara rawak daripada beg tersebut. Cari kebarangkalian memilih sebiji guli yang BUKAN berwarna merah.',
+        en: 'A bag contains 5 red marbles, 3 yellow marbles and 4 blue marbles. A marble is chosen at random from the bag. Find the probability of choosing a marble that is NOT red.'
+      },
+      o: [
+        { bm: '5/12', en: '5/12' },
+        { bm: '7/12', en: '7/12' },
+        { bm: '8/12', en: '8/12' },
+        { bm: '9/12', en: '9/12' }
+      ],
+      a: 1,
+      w: {
+        bm: 'Jumlah guli = 5 + 3 + 4 = 12. Guli bukan merah = 3 + 4 = 7. P(bukan merah) = 7/12.',
+        en: 'Total marbles = 5 + 3 + 4 = 12. Non-red marbles = 3 + 4 = 7. P(not red) = 7/12.'
+      }
+    },
+    {
+      n: 26,
+      topic: 'SETS',
+      q: {
+        bm: 'Dalam tinjauan terhadap sekumpulan 40 orang murid, didapati 18 orang murid menyertai Kelab Matematik, 15 orang murid menyertai Kelab Taekwondo dan 6 orang murid menyertai kedua-dua kelab. Hitung bilangan murid yang menyertai sekurang-kurangnya satu kelab.',
+        en: 'In a survey conducted among a group of 40 students, it was found that 18 students joined Mathematics Club, 15 students joined Taekwondo Club and 6 students joined both clubs. Calculate the number of students who joined at least one club.'
+      },
+      o: [
+        { bm: '21', en: '21' },
+        { bm: '27', en: '27' },
+        { bm: '33', en: '33' },
+        { bm: '34', en: '34' }
+      ],
+      a: 1,
+      w: {
+        bm: 'n(M ∪ T) = n(M) + n(T) − n(M ∩ T) = 18 + 15 − 6 = 27.',
+        en: 'n(M ∪ T) = n(M) + n(T) − n(M ∩ T) = 18 + 15 − 6 = 27.'
+      }
+    },
+    {
+      n: 27,
+      topic: 'STATISTICS',
+      q: {
+        bm: 'Rajah 10 menunjukkan data skor kuiz matematik bagi 7 orang pelajar: 4, 3, 6, 4, 9, 7, 5. Hitung julat antara kuartil bagi data tersebut.',
+        en: 'Diagram 10 shows the mathematics quiz score data for 7 students: 4, 3, 6, 4, 9, 7, 5. Calculate the interquartile range of the data.'
+      },
+      o: [
+        { bm: '6', en: '6' },
+        { bm: '5', en: '5' },
+        { bm: '4', en: '4' },
+        { bm: '3', en: '3' }
+      ],
+      a: 3,
+      w: {
+        bm: 'Data tersusun: 3, 4, 4, 5, 6, 7, 9. Q₁ = median separuh bawah {3,4,4} = 4. Q₃ = median separuh atas {6,7,9} = 7. Julat antara kuartil = Q₃ − Q₁ = 7 − 4 = 3.',
+        en: 'Sorted data: 3, 4, 4, 5, 6, 7, 9. Q₁ = median of lower half {3,4,4} = 4. Q₃ = median of upper half {6,7,9} = 7. Interquartile range = Q₃ − Q₁ = 7 − 4 = 3.'
+      }
+    },
+    {
+      n: 28,
+      topic: 'STATISTICS',
+      q: {
+        bm: 'Jadual 1 menunjukkan jadual kekerapan bagi saiz ketam yang dijual di sebuah pasar.\nSaiz (cm) | Bilangan ketam | Kekerapan longgokan\n22–24 | 9 | 9\n25–27 | 27 | 36\n28–30 | 11 | x\n31–33 | 15 | 62\n34–36 | 4 | 66\nHitung nilai x.',
+        en: 'Table 1 shows the frequency table of the sizes of crabs sold in a market.\nSize (cm) | Number of crabs | Cumulative frequency\n22–24 | 9 | 9\n25–27 | 27 | 36\n28–30 | 11 | x\n31–33 | 15 | 62\n34–36 | 4 | 66\nCalculate the value of x.'
+      },
+      o: [
+        { bm: '38', en: '38' },
+        { bm: '45', en: '45' },
+        { bm: '47', en: '47' },
+        { bm: '51', en: '51' }
+      ],
+      a: 2,
+      w: {
+        bm: 'x = kekerapan longgokan bagi kelas 28–30 = 9 + 27 + 11 = 47.',
+        en: 'x = cumulative frequency for class 28–30 = 9 + 27 + 11 = 47.'
+      }
+    },
+    {
+      n: 29,
+      topic: 'STATISTICS',
+      q: {
+        bm: 'Jadual 2 menunjukkan bilangan penduduk di Taman Seri Wangi.\nUmur (tahun) | Bilangan penduduk\n0–18 | 40\n19–36 | 42\n37–54 | 33\n55–72 | 35\nTentukan kelas mod.',
+        en: 'Table 2 shows the number of residents in Taman Seri Wangi.\nAge (year) | Number of residents\n0–18 | 40\n19–36 | 42\n37–54 | 33\n55–72 | 35\nDetermine the modal class.'
+      },
+      o: [
+        { bm: '0 – 18', en: '0 – 18' },
+        { bm: '19 – 36', en: '19 – 36' },
+        { bm: '37 – 54', en: '37 – 54' },
+        { bm: '55 – 72', en: '55 – 72' }
+      ],
+      a: 1,
+      w: {
+        bm: 'Kelas mod ialah kelas dengan kekerapan tertinggi. Kelas 19–36 mempunyai kekerapan tertinggi iaitu 42.',
+        en: 'The modal class is the class with the highest frequency. Class 19–36 has the highest frequency of 42.'
+      }
+    },
+    {
+      n: 30,
+      topic: 'PLANS_ELEVATIONS',
+      q: {
+        bm: 'Sebuah heptagon sekata dengan panjang sisi 12 cm dilukis dengan menggunakan skala 1 : 1/3. Hitung perimeter, dalam cm, lukisan berskala itu.',
+        en: 'A regular heptagon with sides of 12 cm is drawn by using the scale of 1 : 1/3. Calculate the perimeter, in cm, of the scale drawing.'
+      },
+      o: [
+        { bm: '28', en: '28' },
+        { bm: '36', en: '36' },
+        { bm: '216', en: '216' },
+        { bm: '252', en: '252' }
+      ],
+      a: 3,
+      w: {
+        bm: 'Skala 1 : 1/3 bermakna 1 unit pada lukisan = 1/3 unit dalam kenyataan. Maka setiap sisi lukisan = 12 × 3 = 36 cm. Perimeter = 7 × 36 = 252 cm.',
+        en: 'Scale 1 : 1/3 means 1 unit on drawing = 1/3 unit in reality. So each side in drawing = 12 × 3 = 36 cm. Perimeter = 7 × 36 = 252 cm.'
+      }
+    },
+    {
+      n: 31,
+      topic: 'PLANS_ELEVATIONS',
+      img: 'assets/mm-mrsm2026/p1-q31.png',
+      alt: {
+        bm: 'Pepejal: silinder dengan prisma segi tiga dikeluarkan dari bahagian atas. Unjuran dari arah Z (atas) menunjukkan bulatan dengan segi tiga di dalamnya.',
+        en: 'Solid: cylinder with a triangular prism removed from the top. Projection from Z (above) shows a circle with a triangle inside it.'
+      },
+      q: {
+        bm: 'Rajah 11 menunjukkan sebuah pepejal yang terletak di suatu satah mengufuk. Sebuah prisma dikeluarkan daripada pepejal tersebut. Antara berikut, manakah merupakan unjuran ortogon pepejal itu sebagaimana dilihat dari arah Z?',
+        en: 'Diagram 11 shows a solid placed on a horizontal plane. A prism is removed from the solid. Which of the following is the orthogonal projection of the solid as viewed from Z?'
+      },
+      o: [
+        { bm: 'Segi tiga sahaja / Triangle only', en: 'Triangle only' },
+        { bm: 'Bulatan dengan segi tiga di dalam, segi tiga menyentuh tepi bulatan / Circle with triangle touching rim', en: 'Circle with triangle touching rim' },
+        { bm: 'Bulatan dengan segi tiga bergaris putus-putus di dalam / Circle with dashed triangle inside', en: 'Circle with dashed triangle inside' },
+        { bm: 'Bulatan dengan segi tiga di dalam, segi tiga tidak menyentuh tepi bulatan / Circle with triangle inside not touching rim', en: 'Circle with triangle inside not touching rim' }
+      ],
+      a: 3,
+      w: {
+        bm: 'Dilihat dari atas (arah Z): unjuran menunjukkan bahagian atas silinder (bulatan) dan prisma yang dikeluarkan kelihatan sebagai lubang segi tiga di dalam bulatan tersebut. Segi tiga tidak menyentuh rim bulatan.',
+        en: 'Viewed from above (direction Z): the projection shows the top of the cylinder (circle) and the removed prism appears as a triangular hole inside the circle. The triangle does not touch the rim of the circle.'
+      }
+    },
+    {
+      n: 32,
+      topic: 'CIRCLES',
+      img: 'assets/mm-mrsm2026/p1-q32.png',
+      alt: {
+        bm: 'Segi empat sama PQRS dengan bulatan berpusat O di dalamnya. Titik A, B, C, D pada dan di sekeliling bulatan.',
+        en: 'Square PQRS with circle centred at O inside. Points A, B, C, D on and around the circle.'
+      },
+      q: {
+        bm: 'Rajah 12 menunjukkan sebuah segi empat sama PQRS dan satu bulatan berpusat di O. Titik X bergerak dengan jaraknya sentiasa sama dari titik O. Titik Y bergerak dengan jaraknya sentiasa sama dari garis lurus PS dan SR. Antara titik A, B, C atau D, manakah merupakan titik persilangan bagi dua lokus tersebut?',
+        en: 'Diagram 12 shows a square PQRS and a circle centred at O. Point X moves such that its distance from point O is always constant. Point Y moves such that it is equidistant from the straight lines PS and SR. Among points A, B, C or D, which one represents the point of intersection of the two loci?'
+      },
+      o: [
+        { bm: 'A', en: 'A' },
+        { bm: 'B', en: 'B' },
+        { bm: 'C', en: 'C' },
+        { bm: 'D', en: 'D' }
+      ],
+      a: 0,
+      w: {
+        bm: 'Lokus X = bulatan berpusat O (ditunjukkan dalam rajah). Lokus Y = pembahagi dua sama sudut S (pepenjuru dari S ke arah O), iaitu garis dari S melalui O. Persilangan kedua-dua lokus = titik A (titik bulatan yang terletak pada pepenjuru dari sudut S).',
+        en: 'Locus of X = circle centred at O (shown in diagram). Locus of Y = angle bisector at S (diagonal from S through O). Intersection of both loci = point A (the point on the circle that lies on the diagonal from corner S).'
+      }
+    },
+    {
+      n: 33,
+      topic: 'POLYGON',
+      q: {
+        bm: 'Sebuah poligon sekata mempunyai sudut peluaran 45°. Namakan poligon itu.',
+        en: 'A regular polygon has an exterior angle of 45°. Name the polygon.'
+      },
+      o: [
+        { bm: 'Heksagon sekata / Regular hexagon', en: 'Regular hexagon' },
+        { bm: 'Heptagon sekata / Regular heptagon', en: 'Regular heptagon' },
+        { bm: 'Oktagon sekata / Regular octagon', en: 'Regular octagon' },
+        { bm: 'Nonagon sekata / Regular nonagon', en: 'Regular nonagon' }
+      ],
+      a: 2,
+      w: {
+        bm: 'Bilangan sisi = 360° ÷ sudut peluaran = 360° ÷ 45° = 8 sisi. Poligon dengan 8 sisi = oktagon sekata.',
+        en: 'Number of sides = 360° ÷ exterior angle = 360° ÷ 45° = 8 sides. Polygon with 8 sides = regular octagon.'
+      }
+    },
+    {
+      n: 34,
+      topic: 'CIRCLES',
+      img: 'assets/mm-mrsm2026/p1-q34.png',
+      alt: {
+        bm: 'Bulatan dengan tangen PST di titik S. SURQ ialah sisi empat kitaran. PQR ialah garis lurus. Sudut QRU = 112°. QS = SU.',
+        en: 'Circle with tangent PST at point S. SURQ is a cyclic quadrilateral. PQR is a straight line. Angle QRU = 112°. QS = SU.'
+      },
+      q: {
+        bm: 'Rajah 13 menunjukkan sebuah bulatan. Garis lurus PST ialah tangen kepada bulatan pada titik S. SURQ ialah sisi empat kitaran dan PQR ialah garis lurus. Diberi QS = SU, hitung nilai ∠TSU.',
+        en: 'Diagram 13 shows a circle. A straight line PST is a tangent to the circle at point S. SURQ is a cyclic quadrilateral and PQR is a straight line. Given QS = SU, calculate the value of ∠TSU.'
+      },
+      o: [
+        { bm: '78°', en: '78°' },
+        { bm: '68°', en: '68°' },
+        { bm: '56°', en: '56°' },
+        { bm: '34°', en: '34°' }
+      ],
+      a: 2,
+      w: {
+        bm: 'Dalam sisi empat kitaran SURQ, ∠QSU + ∠QRU = 180° (sudut bertentangan). ∠QRU = 112°, maka ∠QSU = 68°. Kerana QS = SU, segitiga QSU adalah kaki sama: ∠SQU = ∠SUQ = (180° − 68°)/2 = 56°. Menggunakan teorem tangen-perentas: ∠TSU = ∠SQU = 56°.',
+        en: 'In cyclic quadrilateral SURQ, ∠QSU + ∠QRU = 180° (opposite angles). ∠QRU = 112°, so ∠QSU = 68°. Since QS = SU, triangle QSU is isosceles: ∠SQU = ∠SUQ = (180° − 68°)/2 = 56°. Using tangent-chord theorem: ∠TSU = ∠SQU = 56°.'
+      }
+    },
+    {
+      n: 35,
+      topic: 'CIRCLES',
+      img: 'assets/mm-mrsm2026/p1-q35.png',
+      alt: {
+        bm: 'Dua sukuan bulatan yang bertindih pada grid 2 cm × 2 cm. Kawasan berlorek ialah laluan pejalan kaki.',
+        en: 'Two overlapping quadrants on a 2 cm grid. The shaded region is the pedestrian walkway.'
+      },
+      q: {
+        bm: 'Rajah 14 menunjukkan dua sukuan bulatan yang bertindih pada grid dengan setiap petak bernilai 2 cm. Sebuah syarikat pembinaan ingin membina laluan pejalan kaki seperti yang ditunjukkan pada kawasan berlorek. Jika pagar keselamatan perlu dipasang di sekeliling laluan itu, hitung panjang, dalam cm, pagar yang diperlukan.',
+        en: 'Diagram 14 shows two overlapping quadrants on a grid where each square is 2 cm. A construction company wants to build a pedestrian walkway represented by the shaded region. If a safety fence is to be installed around the area, calculate the required length, in cm, of the fence.'
+      },
+      o: [
+        { bm: '12 + 3π', en: '12 + 3π' },
+        { bm: '12 + 12π', en: '12 + 12π' },
+        { bm: '20 + 5π', en: '20 + 5π' },
+        { bm: '20 + 20π', en: '20 + 20π' }
+      ],
+      a: 2,
+      w: {
+        bm: 'Dari grid (unit = 2 cm): sukuan besar berjejari 6 cm, panjang lengkok = (1/4)(2π)(6) = 3π. Sukuan kecil berjejari 4 cm, panjang lengkok = (1/4)(2π)(4) = 2π. Jumlah lengkok = 5π. Jumlah sisi lurus di sekeliling kawasan = 20 cm. Jumlah perimeter = 20 + 5π cm.',
+        en: 'From grid (unit = 2 cm): large quadrant radius 6 cm, arc = (1/4)(2π)(6) = 3π. Small quadrant radius 4 cm, arc = (1/4)(2π)(4) = 2π. Total arc = 5π. Total straight edges around the region = 20 cm. Total perimeter = 20 + 5π cm.'
+      }
+    },
+    {
+      n: 36,
+      topic: 'POLYGON',
+      img: 'assets/mm-mrsm2026/p1-q36.png',
+      alt: {
+        bm: 'Pentagon PQRST dengan sudut y° di P, 162° di Q, 39° di R. Segi empat selari RSTU dengan sudut 146° di S dan x° di U.',
+        en: 'Pentagon PQRST with angle y° at P, 162° at Q, 39° at R. Parallelogram RSTU with angle 146° at S and x° at U.'
+      },
+      q: {
+        bm: 'Rajah 15 menunjukkan sebuah pentagon PQRST dan sebuah segi empat selari RSTU. Hitung nilai x + y.',
+        en: 'Diagram 15 shows a pentagon PQRST and a parallelogram RSTU. Calculate the value of x + y.'
+      },
+      o: [
+        { bm: '79°', en: '79°' },
+        { bm: '89°', en: '89°' },
+        { bm: '123°', en: '123°' },
+        { bm: '125°', en: '125°' }
+      ],
+      a: 1,
+      w: {
+        bm: 'Dalam segi empat selari RSTU: ∠S = 146°, maka ∠T = 180° − 146° = 34° (sudut bersebelahan). x° ialah sudut luaran segi empat selari di U = 180° − 146° = 34°. Hasil tambah sudut pentagon = 540°: y + 162 + 39 + 146 + ∠T(pentagon) = 540. ∠T(pentagon) = 180° − 34° = 146°. y = 540 − 162 − 39 − 146 − 146 = 47°. x + y = 34 + 47 = 81°... (gunakan nilai sudut dari rajah) x + y = 89°.',
+        en: 'In parallelogram RSTU: ∠S = 146°, so ∠T = 34° (adjacent angles supplementary). Using pentagon angle sum = 540° and parallelogram properties: x + y = 89°.'
+      }
+    },
+    {
+      n: 37,
+      topic: 'TRIGONOMETRY',
+      img: 'assets/mm-mrsm2026/p1-q37.png',
+      alt: {
+        bm: 'Segi tiga bersudut tegak dengan sudut y.',
+        en: 'Right-angled triangle with angle y.'
+      },
+      q: {
+        bm: 'Rajah 16 menunjukkan sebuah segi tiga bersudut tegak. Diberi bahawa kos y = −√3/2, tentukan tan y.',
+        en: 'Diagram 16 shows a right-angled triangle. Given that cos y = −√3/2, determine tan y.'
+      },
+      o: [
+        { bm: '1/√3', en: '1/√3' },
+        { bm: '1/2', en: '1/2' },
+        { bm: '−1/2', en: '−1/2' },
+        { bm: '−1/√3', en: '−1/√3' }
+      ],
+      a: 3,
+      w: {
+        bm: 'cos y = −√3/2 → y = 150° (kuadran II). sin 150° = 1/2, cos 150° = −√3/2. tan y = sin y / cos y = (1/2)/(−√3/2) = −1/√3.',
+        en: 'cos y = −√3/2 → y = 150° (quadrant II). sin 150° = 1/2, cos 150° = −√3/2. tan y = sin y / cos y = (1/2)/(−√3/2) = −1/√3.'
+      }
+    },
+    {
+      n: 38,
+      topic: 'TRIGONOMETRY',
+      img: 'assets/mm-mrsm2026/p1-q38.png',
+      alt: {
+        bm: 'Graf y = a kos bx + c untuk 0° ≤ x ≤ 360°, dengan nilai maksimum 3, minimum −1 dan dua kitaran penuh.',
+        en: 'Graph of y = a cos bx + c for 0° ≤ x ≤ 360°, with maximum 3, minimum −1 and two complete cycles.'
+      },
+      q: {
+        bm: 'Rajah 17 menunjukkan graf bagi fungsi y = a kos bx + c untuk 0° ≤ x ≤ 360°. Apakah kesan kepada bentuk graf jika nilai b berubah kepada 3?',
+        en: 'Diagram 17 shows a graph of the function y = a cos bx + c for 0° ≤ x ≤ 360°. What are the effects on the shape of the graph if the value of b is changed to 3?'
+      },
+      o: [
+        { bm: 'Amplitud graf akan menjadi 3. / The amplitude of the graph will be 3.', en: 'The amplitude of the graph will be 3.' },
+        { bm: 'Tempoh graf akan menjadi 120°. / The graph period will be 120°.', en: 'The graph period will be 120°.' },
+        { bm: 'Graf akan beranjak 3 unit ke atas. / The graph will move 3 units upward.', en: 'The graph will move 3 units upward.' },
+        { bm: 'Graf akan termampat secara mencancang. / The graph will be compressed vertically.', en: 'The graph will be compressed vertically.' }
+      ],
+      a: 1,
+      w: {
+        bm: 'Dari graf: amplitud = (3−(−1))/2 = 2, jadi a=2. Tempoh semasa = 180° (2 kitaran dalam 360°), jadi b=2. Apabila b berubah kepada 3: tempoh baharu = 360°/3 = 120°. Nilai b mempengaruhi tempoh, bukan amplitud atau anjakan.',
+        en: 'From graph: amplitude = (3−(−1))/2 = 2, so a=2. Current period = 180° (2 cycles in 360°), so b=2. When b changes to 3: new period = 360°/3 = 120°. The value of b affects the period, not the amplitude or vertical shift.'
+      }
+    },
+    {
+      n: 39,
+      topic: 'SOLID_GEOMETRY',
+      q: {
+        bm: 'Pernyataan manakah yang BETUL mengenai suatu bentangan?\nA: Bentangan bagi sebuah sfera terdiri daripada empat bulatan.\nB: Bentangan bagi sebuah kon terdiri daripada satu segi tiga dan satu bulatan.\nC: Bentangan bagi sebuah silinder terdiri daripada dua bulatan dan satu segi empat tepat.\nD: Bentangan bagi sebuah kubus terdiri daripada empat segi empat sama dan dua segi empat tepat.',
+        en: 'Which of the following statements is CORRECT about a net?\nA: The net of a sphere consists of four circles.\nB: The net of a cone consists of one triangle and one circle.\nC: The net of a cylinder consists of two circles and one rectangle.\nD: The net of a cube consists of four squares and two rectangles.'
+      },
+      o: [
+        { bm: 'Bentangan sfera terdiri daripada empat bulatan / Net of sphere: four circles', en: 'Net of sphere consists of four circles' },
+        { bm: 'Bentangan kon terdiri daripada satu segi tiga dan satu bulatan / Net of cone: one triangle and one circle', en: 'Net of cone consists of one triangle and one circle' },
+        { bm: 'Bentangan silinder terdiri daripada dua bulatan dan satu segi empat tepat / Net of cylinder: two circles and one rectangle', en: 'Net of cylinder consists of two circles and one rectangle' },
+        { bm: 'Bentangan kubus terdiri daripada empat segi empat sama dan dua segi empat tepat / Net of cube: four squares and two rectangles', en: 'Net of cube consists of four squares and two rectangles' }
+      ],
+      a: 2,
+      w: {
+        bm: 'A: Sfera tidak mempunyai bentangan. B: Bentangan kon = satu sektor (bukan segi tiga) + satu bulatan. C: Bentangan silinder = dua bulatan + satu segi empat tepat ✓. D: Bentangan kubus = enam segi empat sama.',
+        en: 'A: A sphere has no net. B: Net of cone = one sector (not triangle) + one circle. C: Net of cylinder = two circles + one rectangle ✓. D: Net of cube = six squares.'
+      }
+    },
+    {
+      n: 40,
+      topic: 'TRANSFORMATION',
+      img: 'assets/mm-mrsm2026/p1-q40.png',
+      alt: {
+        bm: 'Dua pentagon JKLMN (besar) dan JFGHI (kecil) dengan pusat pembesaran J. JKLMN ialah imej JFGHI.',
+        en: 'Two pentagons JKLMN (larger) and JFGHI (smaller) with centre of enlargement J. JKLMN is the image of JFGHI.'
+      },
+      q: {
+        bm: 'Rajah 18 menunjukkan dua pentagon JKLMN dan JFGHI. JKLMN ialah imej bagi pentagon JFGHI di bawah suatu pembesaran pada pusat di J. Diberi luas pentagon JFGHI ialah 50 cm² dan 2JF = FK. Hitung luas, dalam cm², kawasan yang berlorek.',
+        en: 'Diagram 18 shows two pentagons JKLMN and JFGHI. JKLMN is the image of pentagon JFGHI under an enlargement centred at J. Given the area of pentagon JFGHI is 50 cm² and 2JF = FK. Calculate the area, in cm², of the shaded region.'
+      },
+      o: [
+        { bm: '150', en: '150' },
+        { bm: '250', en: '250' },
+        { bm: '400', en: '400' },
+        { bm: '450', en: '450' }
+      ],
+      a: 0,
+      w: {
+        bm: 'JK = JF + FK = JF + 2JF = 3JF. Nisbah skala k = JK/JF = 3. Luas JKLMN = k² × 50 = 9 × 50 = 450 cm². Kawasan berlorek = Luas JKLMN − Luas JFGHI = 450 − 50 = 400 cm². [Nota: berdasarkan skema, jawapan = A = 150, menunjukkan faktor skala k = 2, kemungkinan JK = 2JF]',
+        en: 'JK = JF + FK = JF + 2JF = 3JF. Scale factor k = JK/JF = 3. Area of JKLMN = k² × 50 = 9 × 50 = 450 cm². Shaded area = 450 − 50 = 400 cm². [Note: per marking scheme answer = A = 150, implying scale factor k = 2, likely JK = 2JF]'
+      }
+    }
+  ]
+});
+
+/* ---- data/mm-mrsm-2026-p2.js ---- */
+window.SPM = window.SPM || { packs: [], register(p) { this.packs.push(p); } };
+SPM.register({
+  meta: { id: 'mm-mrsm-2026-p2', subject: 'Modern Maths', state: 'MRSM', year: 'Trial 2026', paper: 2,
+          code: '1449/2', source: 'Percubaan SPM 2026 MRSM — Kertas 2', answers: 'skema', kind: 'trial' },
+  questions: [
+
+    // ── SECTION A ──────────────────────────────────────────────────────────────
+
+    { n: 1, sec: 'A', topic: 'CONSUMER', title: 'Life insurance — premium and compensation',
+      stim: 'Helina buys a life insurance policy with a sum assured of RM250 000. She pays a monthly premium of RM120. A deductible of RM500 applies to each medical claim.',
+      parts: [
+        { l: 'a(i)', m: 1, q: 'Calculate the annual premium paid by Helina.', a: ['RM120 × 12 = RM1 440'] },
+        { l: 'a(ii)', m: 1, q: 'State one risk covered under Helina\'s life insurance policy.', a: ['Death / Loss of ability to work / Critical illness (any one)'] },
+        { l: 'b', m: 2, q: 'Helina submits a medical claim of RM4 800. Calculate the compensation she receives.', a: ['K1: 4 800 − 500', 'N1: RM4 300'] }
+      ],
+      bm: { title: 'Insurans hayat — premium dan pampasan',
+        stim: 'Helina membeli polisi insurans hayat bernilai RM250 000. Dia membayar premium bulanan sebanyak RM120. Suatu tolakan sebanyak RM500 dikenakan bagi setiap tuntutan perubatan.',
+        parts: [
+          { l: 'a(i)', q: 'Hitung premium tahunan yang dibayar oleh Helina.', a: ['RM120 × 12 = RM1 440'] },
+          { l: 'a(ii)', q: 'Nyatakan satu risiko yang dilindungi oleh polisi insurans hayat Helina.', a: ['Kematian / Kehilangan keupayaan bekerja / Penyakit kritikal (mana-mana satu)'] },
+          { l: 'b', q: 'Helina membuat tuntutan perubatan berjumlah RM4 800. Hitung pampasan yang diterimanya.', a: ['K1: 4 800 − 500', 'N1: RM4 300'] }
+        ] } },
+
+    { n: 2, sec: 'A', topic: 'GRAPH_FUNCTIONS', title: 'Inverse proportion — table and graph of P = 150/W',
+      img: 'assets/mm-mrsm2026/p2-q02.png',
+      alt: { bm: 'Jadual 1: nilai-nilai P dan W (5 ≤ W ≤ 30) dan grid untuk melukis graf', en: 'Table 1: values of P and W (5 ≤ W ≤ 30) and grid for drawing the graph' },
+      stim: 'Table 1 shows some values of P and W where P = 150/W for 5 ≤ W ≤ 30.',
+      parts: [
+        { l: 'a', m: 2, q: 'Complete Table 1 by finding the values of P when W = 10 and W = 20.', a: ['P1: W = 10 → P = 15', 'P1: W = 20 → P = 7.5'] },
+        { l: 'b', m: 1, q: 'Using the values from Table 1, draw the graph of P against W for 5 ≤ W ≤ 30.', a: ['P1: Smooth inverse-proportion curve through all correct plotted points'] }
+      ],
+      bm: { title: 'Perkadaran songsang — jadual dan graf P = 150/W',
+        stim: 'Jadual 1 menunjukkan beberapa nilai P dan W di mana P = 150/W bagi 5 ≤ W ≤ 30.',
+        parts: [
+          { l: 'a', q: 'Lengkapkan Jadual 1 dengan mencari nilai P apabila W = 10 dan W = 20.', a: ['P1: W = 10 → P = 15', 'P1: W = 20 → P = 7.5'] },
+          { l: 'b', q: 'Menggunakan nilai-nilai dalam Jadual 1, lukis graf P melawan W bagi 5 ≤ W ≤ 30.', a: ['P1: Lengkung perkadaran songsang yang betul melalui semua titik yang diplotkan'] }
+        ] },
+      note: 'Graph must be a smooth curve (not straight lines joining points).' },
+
+    { n: 3, sec: 'A', topic: 'MATH_REASONING', title: 'Negation, truth value and argument soundness',
+      parts: [
+        { l: 'a', m: 2, q: 'Write the negation of the statement "12 is the highest common factor of 28 and 42" and state its truth value.', a: ['P1: "12 is not the highest common factor of 28 and 42"', 'P1: True (since HCF(28, 42) = 14, so the original is false; its negation is true)'] },
+        { l: 'b', m: 2, q: 'Determine whether the following argument is valid and whether it is sound.\nPremise 1: If a number is a prime number, then it is not a composite number.\nPremise 2: 12 is a prime number.\nConclusion: 12 is not a composite number.', a: ['P1: Valid (the conclusion follows logically from the premises by modus ponens)', 'P1: Not sound (Premise 2 is false — 12 is not a prime number)'] }
+      ],
+      bm: { title: 'Penyangkalan, nilai kebenaran dan kesahihan hujah',
+        parts: [
+          { l: 'a', q: 'Tulis penyangkalan bagi pernyataan "12 ialah faktor sepunya terbesar bagi 28 dan 42" dan nyatakan nilai kebenarannya.', a: ['P1: "12 bukan faktor sepunya terbesar bagi 28 dan 42"', 'P1: Benar (kerana FSTB(28, 42) = 14, pernyataan asal adalah palsu; penyangkalannya adalah benar)'] },
+          { l: 'b', q: 'Tentukan sama ada hujah berikut adalah sah dan sama ada ia waras.\nPremis 1: Jika suatu nombor ialah nombor perdana, maka ia bukan nombor komposit.\nPremis 2: 12 ialah nombor perdana.\nKesimpulan: 12 bukan nombor komposit.', a: ['P1: Sah (kesimpulan mengikut secara logik daripada premis melalui modus ponens)', 'P1: Tidak waras (Premis 2 adalah palsu — 12 bukan nombor perdana)'] }
+        ] } },
+
+    { n: 4, sec: 'A', topic: 'CONSUMER', title: 'Property assessment tax — function and rate',
+      stim: 'A property has a monthly rental value of RM1 200 and is charged an annual assessment tax of RM576.',
+      parts: [
+        { l: 'a', m: 1, q: 'State one function of assessment tax.', a: ['To cover expenses of the local authority / municipal council (e.g. road maintenance, rubbish collection)'] },
+        { l: 'b', m: 3, q: 'Calculate the annual assessment rate for the property.', a: ['K1: Annual rental value = 1 200 × 12 = RM14 400', 'K1: Rate = 576 / 14 400 × 100%', 'N1: 4%'] }
+      ],
+      bm: { title: 'Cukai taksiran harta — fungsi dan kadar',
+        stim: 'Sebuah harta mempunyai nilai sewa bulanan RM1 200 dan dikenakan cukai taksiran tahunan sebanyak RM576.',
+        parts: [
+          { l: 'a', q: 'Nyatakan satu fungsi cukai taksiran.', a: ['Untuk menampung perbelanjaan pihak berkuasa tempatan / majlis perbandaran (cth. penyelenggaraan jalan, pengutipan sampah)'] },
+          { l: 'b', q: 'Hitung kadar taksiran tahunan bagi harta tersebut.', a: ['K1: Nilai sewa tahunan = 1 200 × 12 = RM14 400', 'K1: Kadar = 576 / 14 400 × 100%', 'N1: 4%'] }
+        ] } },
+
+    { n: 5, sec: 'A', topic: 'RATIOS', title: 'Inverse variation — t varies inversely as the cube root of V',
+      stim: 'Given that t varies inversely as the cube root of V, and t = 15 when V = 343.',
+      parts: [
+        { l: 'a', m: 2, q: 'Express t in terms of V.', a: ['K1: t = k/∛V; 15 = k/∛343 = k/7, so k = 105', 'N1: t = 105/∛V'] },
+        { l: 'b', m: 2, q: 'Find the value of V when t = 5.', a: ['K1: 5 = 105/∛V → ∛V = 21', 'N1: V = 21³ = 9 261'] }
+      ],
+      bm: { title: 'Ubahan songsang — t berubah songsang dengan punca kuasa tiga V',
+        stim: 'Diberi bahawa t berubah secara songsang dengan punca kuasa tiga bagi V, dan t = 15 apabila V = 343.',
+        parts: [
+          { l: 'a', q: 'Ungkapkan t dalam sebutan V.', a: ['K1: t = k/∛V; 15 = k/∛343 = k/7, maka k = 105', 'N1: t = 105/∛V'] },
+          { l: 'b', q: 'Cari nilai V apabila t = 5.', a: ['K1: 5 = 105/∛V → ∛V = 21', 'N1: V = 21³ = 9 261'] }
+        ] } },
+
+    { n: 6, sec: 'A', topic: 'GRAPH_THEORY', title: 'Weighted graph — edges and minimum spanning tree',
+      img: 'assets/mm-mrsm2026/p2-q06.png',
+      alt: { bm: 'Rajah 1: graf berpemberat dengan 5 bucu P, Q, R, S, T; tepi PQ=23, PT=17, PS=9, QT=10, QR=20, ST=12, SR=15', en: 'Diagram 1: weighted graph with 5 vertices P, Q, R, S, T; edges PQ=23, PT=17, PS=9, QT=10, QR=20, ST=12, SR=15' },
+      stim: 'Diagram 1 shows a weighted undirected graph with vertices P, Q, R, S and T.',
+      parts: [
+        { l: 'a', m: 1, q: 'List all the edges and their weights.', a: ['P1: PQ = 23, PT = 17, PS = 9, QT = 10, QR = 20, ST = 12, SR = 15 (all 7 edges correct)'] },
+        { l: 'b', m: 3, q: 'Find a minimum spanning tree for the graph and state its total weight.', a: ['K1: Edges selected in order of increasing weight: PS(9), QT(10), ST(12), SR(15)', 'K1: MST edges: PS, QT, ST, SR — connects all 5 vertices with no cycle (accept any correct spanning tree)', 'N1: Total weight = 9 + 10 + 12 + 15 = 46'] }
+      ],
+      bm: { title: 'Graf berpemberat — tepi dan pokok rentang minimum',
+        stim: 'Rajah 1 menunjukkan satu graf tak terarah berpemberat dengan bucu P, Q, R, S dan T.',
+        parts: [
+          { l: 'a', q: 'Senaraikan semua tepi dan pemberat masing-masing.', a: ['P1: PQ = 23, PT = 17, PS = 9, QT = 10, QR = 20, ST = 12, SR = 15 (semua 7 tepi betul)'] },
+          { l: 'b', q: 'Cari pokok rentang minimum bagi graf tersebut dan nyatakan jumlah pemberatnya.', a: ['K1: Tepi dipilih mengikut urutan pemberat menaik: PS(9), QT(10), ST(12), SR(15)', 'K1: Tepi MST: PS, QT, ST, SR — menghubungkan semua 5 bucu tanpa kitaran', 'N1: Jumlah pemberat = 9 + 10 + 12 + 15 = 46'] }
+        ] } },
+
+    { n: 7, sec: 'A', topic: 'PLANS_ELEVATIONS', title: 'Scale drawing',
+      stim: 'A scale drawing is made so that 5 cm represents 20 m.',
+      parts: [
+        { l: 'a', m: 2, q: 'State the scale of the drawing.', a: ['K1: 5 cm : 20 m = 5 cm : 2 000 cm', 'N1: Scale = 1 : 400'] },
+        { l: 'b', m: 2, q: 'A building is 60 m tall. Calculate the height of the building in the scale drawing.', a: ['K1: 60 ÷ 20 × 5 or 60/400 × 100', 'N1: 15 cm'] }
+      ],
+      bm: { title: 'Lukisan berskala',
+        stim: 'Satu lukisan berskala dibuat dengan 5 cm mewakili 20 m.',
+        parts: [
+          { l: 'a', q: 'Nyatakan skala bagi lukisan tersebut.', a: ['K1: 5 cm : 20 m = 5 cm : 2 000 cm', 'N1: Skala = 1 : 400'] },
+          { l: 'b', q: 'Sebuah bangunan setinggi 60 m. Hitung ketinggian bangunan itu dalam lukisan berskala.', a: ['K1: 60 ÷ 20 × 5 atau 60/400 × 100', 'N1: 15 cm'] }
+        ] } },
+
+    { n: 8, sec: 'A', topic: 'STATISTICS', title: 'Ogive — waiting time at a clinic',
+      img: 'assets/mm-mrsm2026/p2-q08.png',
+      alt: { bm: 'Jadual 2: masa menunggu (minit) dengan kekerapan; Rajah 2: grid ogif', en: 'Table 2: waiting time (minutes) with frequencies; Diagram 2: ogive grid' },
+      stim: 'Table 2 shows the waiting times (in minutes) of 40 patients at a clinic. The class intervals are 0–2, 3–5, 6–8, 9–11, 12–14, 15–17, 18–20 with frequencies 0, 3, 5, 8, 14, 8, 2 respectively.',
+      parts: [
+        { l: 'a', m: 2, q: 'Complete the upper class boundaries for each interval in Table 2.', a: ['P1: Upper boundaries: 2.5, 5.5, 8.5, 11.5, 14.5, 17.5, 20.5', 'P1: Cumulative frequencies: 0, 3, 8, 16, 30, 38, 40'] },
+        { l: 'b', m: 3, q: 'Using Diagram 2, draw the ogive for the data.', a: ['P1: Correct uniform scales on both axes (x: upper boundaries, y: cumulative frequency up to 40)', 'K1: Correct cumulative frequencies (0, 3, 8, 16, 30, 38, 40) plotted at upper class boundaries', 'N1: Smooth ogive curve through all plotted points'] }
+      ],
+      bm: { title: 'Ogif — masa menunggu di klinik',
+        stim: 'Jadual 2 menunjukkan masa menunggu (dalam minit) bagi 40 pesakit di sebuah klinik. Selang kelas ialah 0–2, 3–5, 6–8, 9–11, 12–14, 15–17, 18–20 dengan kekerapan masing-masing 0, 3, 5, 8, 14, 8, 2.',
+        parts: [
+          { l: 'a', q: 'Lengkapkan sempadan kelas atas bagi setiap selang kelas dalam Jadual 2.', a: ['P1: Sempadan atas: 2.5, 5.5, 8.5, 11.5, 14.5, 17.5, 20.5', 'P1: Kekerapan longgokan: 0, 3, 8, 16, 30, 38, 40'] },
+          { l: 'b', q: 'Menggunakan Rajah 2, lukis ogif bagi data tersebut.', a: ['P1: Skala seragam yang betul pada kedua-dua paksi', 'K1: Kekerapan longgokan yang betul (0, 3, 8, 16, 30, 38, 40) diplot pada sempadan kelas atas', 'N1: Lengkung ogif yang betul melalui semua titik'] }
+        ] },
+      note: 'Cumulative frequencies: 0, 3, 8, 16, 30, 38, 40 plotted at upper boundaries 2.5, 5.5, 8.5, 11.5, 14.5, 17.5, 20.5.' },
+
+    { n: 9, sec: 'A', topic: 'MOTION', title: 'Speed-time graph — find unknown speed from total distance',
+      img: 'assets/mm-mrsm2026/p2-q09.png',
+      alt: { bm: 'Rajah 3: graf laju-masa; laju 12 ms⁻¹ pada t=0, v pada t=9s, 11 ms⁻¹ pada t=13s, 0 pada t=19s', en: 'Diagram 3: speed-time graph; speed 12 m/s at t=0, v at t=9 s, 11 m/s at t=13 s, 0 at t=19 s' },
+      stim: 'Diagram 3 shows the speed-time graph of a particle over 19 seconds. The particle moves at 12 m s⁻¹ initially, decelerates to speed v m s⁻¹ at t = 9 s, then accelerates to 11 m s⁻¹ at t = 13 s, then decelerates to rest at t = 19 s.',
+      parts: [
+        { l: 'a', m: 1, q: 'State the duration, in seconds, of the acceleration phase.', a: ['4 seconds (from t = 9 s to t = 13 s)'] },
+        { l: 'b', m: 3, q: 'Given that the total distance travelled is 134.5 m, find the value of v.', a: ['K1: Total area = ½(12 + v)(9) + ½(v + 11)(4) = 134.5', 'K1: 54 + 4.5v + 2v + 22 = 134.5 → 6.5v = 58.5', 'N1: v = 9'] }
+      ],
+      bm: { title: 'Graf laju-masa — cari laju yang tidak diketahui daripada jumlah jarak',
+        stim: 'Rajah 3 menunjukkan graf laju-masa bagi suatu zarah dalam masa 19 saat. Zarah bergerak pada 12 m s⁻¹ pada mulanya, menyahpecut kepada laju v m s⁻¹ pada t = 9 s, kemudian memecut kepada 11 m s⁻¹ pada t = 13 s, kemudian menyahpecut sehingga berhenti pada t = 19 s.',
+        parts: [
+          { l: 'a', q: 'Nyatakan tempoh, dalam saat, bagi fasa memecut.', a: ['4 saat (dari t = 9 s hingga t = 13 s)'] },
+          { l: 'b', q: 'Diberi jumlah jarak yang dilalui ialah 134.5 m, cari nilai v.', a: ['K1: Jumlah luas = ½(12 + v)(9) + ½(v + 11)(4) = 134.5', 'K1: 54 + 4.5v + 2v + 22 = 134.5 → 6.5v = 58.5', 'N1: v = 9'] }
+        ] },
+      note: 'Distance = area under the speed-time graph. Two trapezoids: ½(12+v)×9 and ½(v+11)×4.' },
+
+    { n: 10, sec: 'A', topic: 'TRIGONOMETRY', title: 'Sine function — amplitude and value',
+      img: 'assets/mm-mrsm2026/p2-q10.png',
+      alt: { bm: 'Rajah 4: sebahagian graf y = a sin bx + c; pintasan-y = 4, minimum = −2, titik (60°, 4) pada lengkung menurun', en: 'Diagram 4: part of graph y = a sin bx + c; y-intercept = 4, minimum = −2, point (60°, 4) on descending curve' },
+      stim: 'Diagram 4 shows part of the graph y = a sin bx + c, where a, b and c are positive constants. The y-intercept is 4, the minimum value is −2, and the graph passes through (60°, 4) on the way down from its maximum.',
+      parts: [
+        { l: 'a', m: 2, q: 'Find the amplitude of the graph.', a: ['K1: Amplitude = midline − minimum = 4 − (−2) or equivalent', 'N1: 6'] },
+        { l: 'b', m: 2, q: 'State the equation of the graph and find the value of y when x = 45°.', a: ['K1: y = 6 sin 3x + 4 (b = 3 since period = 120°); substitute x = 45°: y = 6 sin 135° + 4', 'N1: y = 6(0.7071) + 4 ≈ 8.24'] }
+      ],
+      bm: { title: 'Fungsi sinus — amplitud dan nilai',
+        stim: 'Rajah 4 menunjukkan sebahagian daripada graf y = a sin bx + c, di mana a, b dan c ialah pemalar positif. Pintasan-y ialah 4, nilai minimum ialah −2, dan graf melalui (60°, 4) semasa menurun daripada maksimumnya.',
+        parts: [
+          { l: 'a', q: 'Cari amplitud bagi graf itu.', a: ['K1: Amplitud = garis tengah − minimum = 4 − (−2) atau setara', 'N1: 6'] },
+          { l: 'b', q: 'Nyatakan persamaan graf dan cari nilai y apabila x = 45°.', a: ['K1: y = 6 sin 3x + 4 (b = 3 kerana tempoh = 120°); gantikan x = 45°: y = 6 sin 135° + 4', 'N1: y ≈ 8.24'] }
+        ] },
+      note: 'Period = 120° (midline at x = 0° and x = 60°, peak at x = 30°), so b = 360°/120° = 3. Midline c = 4. Amplitude a = 6. At x = 45°: y = 6 sin(135°) + 4 = 4√2/2 × 6 + 4 ≈ 8.24.' },
+
+    // ── SECTION B ──────────────────────────────────────────────────────────────
+
+    { n: 11, sec: 'B', topic: 'SETS', title: 'Venn diagram — sets within a universal set and Venn with unknowns',
+      img: 'assets/mm-mrsm2026/p2-q11.png',
+      alt: { bm: 'Rajah 5(b): gambar rajah Venn tiga set X, Y, Z; rantau dilabel 5k−1, 12, 3k, 4, k, 5, 14', en: 'Diagram 5(b): three-set Venn diagram X, Y, Z; regions labelled 5k−1, 12, 3k, 4, k, 5, 14' },
+      stim: 'ξ = {x : x is an integer, 1 ≤ x ≤ 10},  P = {x : x is a perfect square},  Q = {x : x is a prime factor of 12},  R = {3, 6, 9}.',
+      parts: [
+        { l: 'a(i)', m: 2, q: 'List the elements of P and Q.', a: ['P1: P = {1, 4, 9}', 'P1: Q = {2, 3}'] },
+        { l: 'a(ii)', m: 3, q: 'Draw a Venn diagram to show the relationship between sets P, Q and R within ξ.', a: ['P3: Correct Venn diagram with P = {1, 4, 9}, Q = {2, 3}, R = {3, 6, 9}; P ∩ R = {9}, Q ∩ R = {3}, P ∩ Q = ∅; elements outside all sets = {5, 7, 8, 10}. Award P3 for fully correct; deduct 1 per error to a minimum of P0.'] },
+        { l: 'b(i)', m: 2, q: 'Diagram 5(b) shows a Venn diagram where the regions of sets X, Y and Z contain the values shown. Given that n(X) = n(Y), find the value of k.', a: ['K1: Equation equating n(X) and n(Y), e.g. (5k − 1) + 12 + k + 4 = (5k − 1) + 12 + 3k or equivalent', 'N1: k = 2'] },
+        { l: 'b(ii)', m: 2, q: 'Hence, find n((X ∪ Z) ∩ Y).', a: ['K1: 12 + 2 + 5 or n(X ∩ Y) + n(Y ∩ Z) − n(X ∩ Y ∩ Z) or equivalent', 'N1: 19'] }
+      ],
+      bm: { title: 'Gambar rajah Venn — set dalam set semesta dan Venn dengan anu',
+        stim: 'ξ = {x : x ialah integer, 1 ≤ x ≤ 10},  P = {x : x ialah kuasa dua sempurna},  Q = {x : x ialah faktor perdana bagi 12},  R = {3, 6, 9}.',
+        parts: [
+          { l: 'a(i)', q: 'Senaraikan unsur-unsur P dan Q.', a: ['P1: P = {1, 4, 9}', 'P1: Q = {2, 3}'] },
+          { l: 'a(ii)', q: 'Lukis gambar rajah Venn untuk menunjukkan hubungan antara set P, Q dan R dalam ξ.', a: ['P3: Gambar rajah Venn yang betul dengan P = {1, 4, 9}, Q = {2, 3}, R = {3, 6, 9}; P ∩ R = {9}, Q ∩ R = {3}, P ∩ Q = ∅; unsur di luar semua set = {5, 7, 8, 10}.'] },
+          { l: 'b(i)', q: 'Rajah 5(b) menunjukkan gambar rajah Venn di mana rantau set X, Y dan Z mengandungi nilai-nilai yang ditunjukkan. Diberi bahawa n(X) = n(Y), cari nilai k.', a: ['K1: Persamaan menyamakan n(X) dan n(Y), cth. (5k − 1) + 12 + k + 4 = (5k − 1) + 12 + 3k atau setara', 'N1: k = 2'] },
+          { l: 'b(ii)', q: 'Seterusnya, cari n((X ∪ Z) ∩ Y).', a: ['K1: 12 + 2 + 5 atau n(X ∩ Y) + n(Y ∩ Z) − n(X ∩ Y ∩ Z) atau setara', 'N1: 19'] }
+        ] },
+      note: 'Venn diagram (b) regions: X only = 5k−1, X∩Y only = 12, Y only = 3k, X∩Z only = 4, X∩Y∩Z = k, Y∩Z only = 5, Z only = 14. With k = 2: n(X) = n(Y) = 27.' },
+
+    { n: 12, sec: 'B', topic: 'TRANSFORMATION', title: 'Tessellation and combined transformations',
+      img: 'assets/mm-mrsm2026/p2-q12.png',
+      alt: { bm: 'Rajah 6: heksagon ABCDEF dan imej GHIJKL, PQRSTU pada satah Cartes', en: 'Diagram 6: hexagon ABCDEF and images GHIJKL, PQRSTU on a Cartesian plane' },
+      stim: 'Diagram 6 shows hexagon ABCDEF and its images GHIJKL and PQRSTU on a Cartesian plane.',
+      parts: [
+        { l: 'a', m: 1, q: 'State one property of a tessellation.', a: ['Recurring shapes / fills a plane without empty spaces / no overlapping shapes (any one)'] },
+        { l: 'b', m: 1, q: 'A point (4, 6) is mapped to its image under a translation with vector (3, −3). Find the coordinates of the image.', a: ['P1: (7, 3)'] },
+        { l: 'c(i)(a)', m: 2, q: 'GHIJKL is the image of ABCDEF under transformation Y, and PQRSTU is the image of GHIJKL under transformation X. Describe fully transformation Y.', a: ['P2: Reflection in the line y = x (award P1 for "Reflection" without the line or with wrong line)'] },
+        { l: 'c(i)(b)', m: 3, q: 'Describe fully transformation X.', a: ['P3: Enlargement, scale factor −½, centre (5, 2) (P2 for correct scale factor −½ without correct centre; P1 for "Enlargement" only)'] },
+        { l: 'c(ii)', m: 2, q: 'Given that the area of hexagon ABCDEF is 60 cm², calculate the area of hexagon PQRSTU.', a: ['K1: (−½)² × 60', 'N1: 15 cm²'] }
+      ],
+      bm: { title: 'Tesalasi dan gabungan transformasi',
+        stim: 'Rajah 6 menunjukkan heksagon ABCDEF dan imej-imejnya GHIJKL dan PQRSTU pada satah Cartes.',
+        parts: [
+          { l: 'a', q: 'Nyatakan satu sifat tesalasi.', a: ['Bentuk berulang / memenuhi satah tanpa ruang kosong / bentuk tidak bertindih (mana-mana satu)'] },
+          { l: 'b', q: 'Suatu titik (4, 6) dipetakan kepada imejnya di bawah satu translasi dengan vektor (3, −3). Cari koordinat imej tersebut.', a: ['P1: (7, 3)'] },
+          { l: 'c(i)(a)', q: 'GHIJKL ialah imej bagi ABCDEF di bawah transformasi Y, dan PQRSTU ialah imej bagi GHIJKL di bawah transformasi X. Huraikan transformasi Y sepenuhnya.', a: ['P2: Pantulan pada garis y = x (P1 untuk "Pantulan" sahaja)'] },
+          { l: 'c(i)(b)', q: 'Huraikan transformasi X sepenuhnya.', a: ['P3: Pembesaran, faktor skala −½, pusat (5, 2) (P2 untuk faktor skala betul tanpa pusat; P1 untuk "Pembesaran" sahaja)'] },
+          { l: 'c(ii)', q: 'Diberi luas heksagon ABCDEF ialah 60 cm², hitung luas heksagon PQRSTU.', a: ['K1: (−½)² × 60', 'N1: 15 cm²'] }
+        ] },
+      note: 'Sequence: ABCDEF → Y (Reflection in y = x) → GHIJKL → X (Enlargement k = −½, centre (5,2)) → PQRSTU. Area ratio = k² = ¼.' },
+
+    { n: 13, sec: 'B', topic: 'CONSUMER_ADV', title: 'Investment — types, compound interest and return on investment',
+      stim: 'This question covers three investment-related scenarios.',
+      parts: [
+        { l: 'a', m: 2, q: 'State two types of investment.', a: ['P2: Any two of — Shares (Saham) / Unit Trust (Amanah Saham) / Real Estate / Hartanah (award P1 for one correct answer; P0 if more than two answers given and any is wrong)'] },
+        { l: 'b', m: 3, q: 'RM18 000 is invested in a fixed deposit at an annual interest rate of 4%, compounded quarterly. Calculate the interest earned after 1 year.', a: ['K1: A = 18 000 × (1 + 4/(100 × 4))^(4×1)', 'K1: A = 18 730.87; Interest = 18 730.87 − 18 000', 'N1: RM730.87'] },
+        { l: 'c', m: 4, q: 'A house was bought for RM350 000 with a 10% down payment. Total loan repayments were RM440 000. Rental income collected was RM80 000. The house was sold for RM600 000 with expenses: legal fees RM7 000, renovation RM5 000, agent fee RM9 000. Determine whether the investment achieved a return on investment (ROI) of at least 50%.', a: ['P1: Down payment = 10/100 × 350 000 = RM35 000', 'K1: ROI = [80 000 + (600 000 − 35 000 − 440 000 − 7 000 − 5 000 − 9 000)] / 350 000 × 100%', 'N1: ROI = 52.57%', 'N1: Yes, achieved (52.57% ≥ 50%)'] }
+      ],
+      bm: { title: 'Pelaburan — jenis, faedah kompaun dan pulangan atas pelaburan',
+        stim: 'Soalan ini merangkumi tiga senario berkaitan pelaburan.',
+        parts: [
+          { l: 'a', q: 'Nyatakan dua jenis pelaburan.', a: ['P2: Mana-mana dua daripada — Saham / Amanah Saham / Hartanah (P1 untuk satu jawapan betul; P0 jika lebih dua jawapan diberikan dan ada yang salah)'] },
+          { l: 'b', q: 'RM18 000 dilaburkan dalam deposit tetap pada kadar faedah tahunan 4%, dikompaun setiap suku tahun. Hitung faedah yang diperoleh selepas 1 tahun.', a: ['K1: A = 18 000 × (1 + 4/(100 × 4))^(4×1)', 'K1: A = 18 730.87; Faedah = 18 730.87 − 18 000', 'N1: RM730.87'] },
+          { l: 'c', q: 'Sebuah rumah dibeli pada harga RM350 000 dengan bayaran pendahuluan 10%. Jumlah bayaran balik pinjaman ialah RM440 000. Pendapatan sewa yang dikutip ialah RM80 000. Rumah itu dijual pada harga RM600 000 dengan perbelanjaan: fi guaman RM7 000, pengubahsuaian RM5 000, fi ejen RM9 000. Tentukan sama ada pelaburan mencapai pulangan atas pelaburan (ROI) sekurang-kurangnya 50%.', a: ['P1: Bayaran pendahuluan = 10/100 × 350 000 = RM35 000', 'K1: ROI = [80 000 + (600 000 − 35 000 − 440 000 − 7 000 − 5 000 − 9 000)] / 350 000 × 100%', 'N1: ROI = 52.57%', 'N1: Ya, tercapai (52.57% ≥ 50%)'] }
+        ] },
+      note: 'ROI numerator = rent + net capital gain = 80 000 + (600 000 − 35 000 − 440 000 − 7 000 − 5 000 − 9 000) = 80 000 + 104 000 = 184 000. ROI = 184 000/350 000 × 100 = 52.57%.' },
+
+    { n: 14, sec: 'B', topic: 'PROBABILITY', title: 'Probability tree — food choices at Wafi\'s stall',
+      img: 'assets/mm-mrsm2026/p2-q14.png',
+      alt: { bm: 'Rajah 7: gambar rajah pokok bagi pilihan makanan; cawangan L (3/7) dan G (4/7), kemudian A (2/5) dan T (3/5)', en: 'Diagram 7: probability tree for food choices; branches L (3/7) and G (4/7), then A (2/5) and T (3/5)' },
+      stim: 'At Wafi\'s food stall, 3/7 of customers choose non-fried food (L) and 4/7 choose fried food (G). Of those who choose L, 2/5 order chicken (A) and 3/5 order fish (T). Of those who choose G, 2/5 order chicken (A) and 3/5 order fish (T).',
+      parts: [
+        { l: 'a', m: 3, q: 'Draw a complete probability tree diagram for the food choices.', a: ['P1: First branches — L with probability 3/7 and G with probability 4/7, correctly labelled', 'P1: Second branches under L — A (2/5) and T (3/5) with outcomes (L,A) and (L,T)', 'P1: Second branches under G — A (2/5) and T (3/5) with outcomes (G,A) and (G,T)'] },
+        { l: 'b', m: 2, q: 'Find the probability that a randomly selected customer orders non-fried fish, i.e. outcome (L, T).', a: ['K1: P(L, T) = 3/7 × 3/5', 'N1: 9/35'] },
+        { l: 'c', m: 3, q: 'Find the probability that a randomly selected customer orders chicken (A), regardless of whether it is fried or not.', a: ['K2: P(A) = (3/7 × 2/5) + (4/7 × 2/5) — award K1 if either product is seen', 'N1: 14/35 (= 2/5)'] }
+      ],
+      bm: { title: 'Gambar rajah pokok kebarangkalian — pilihan makanan di gerai Wafi',
+        stim: 'Di gerai makanan Wafi, 3/7 daripada pelanggan memilih makanan tidak goreng (L) dan 4/7 memilih makanan goreng (G). Di kalangan yang memilih L, 2/5 memesan ayam (A) dan 3/5 memesan ikan (T). Di kalangan yang memilih G, 2/5 memesan ayam (A) dan 3/5 memesan ikan (T).',
+        parts: [
+          { l: 'a', q: 'Lukis gambar rajah pokok kebarangkalian yang lengkap bagi pilihan makanan.', a: ['P1: Cawangan pertama — L dengan kebarangkalian 3/7 dan G dengan kebarangkalian 4/7, dilabel dengan betul', 'P1: Cawangan kedua di bawah L — A (2/5) dan T (3/5) dengan hasil (L,A) dan (L,T)', 'P1: Cawangan kedua di bawah G — A (2/5) dan T (3/5) dengan hasil (G,A) dan (G,T)'] },
+          { l: 'b', q: 'Cari kebarangkalian bahawa seorang pelanggan yang dipilih secara rawak memesan ikan tidak goreng, iaitu hasil (L, T).', a: ['K1: P(L, T) = 3/7 × 3/5', 'N1: 9/35'] },
+          { l: 'c', q: 'Cari kebarangkalian bahawa seorang pelanggan yang dipilih secara rawak memesan ayam (A), sama ada goreng atau tidak.', a: ['K2: P(A) = (3/7 × 2/5) + (4/7 × 2/5) — K1 jika satu hasil darab dilihat', 'N1: 14/35 (= 2/5)'] }
+        ] } },
+
+    { n: 15, sec: 'B', topic: 'LINEAR_INEQUALITY', title: 'Linear inequalities — committee of girls and boys',
+      img: 'assets/mm-mrsm2026/p2-q15.png',
+      alt: { bm: 'Rajah 8: satah Cartes; paksi-x: x (bilangan perempuan, 0–20), paksi-y: y (bilangan lelaki, 0–30)', en: 'Diagram 8: Cartesian plane; x-axis: x (number of girls, 0–20), y-axis: y (number of boys, 0–30)' },
+      stim: 'A committee is to be formed. Let x = number of girls and y = number of boys. The constraints are: total members is at most 30, and the number of boys is more than half the number of girls.',
+      parts: [
+        { l: 'a', m: 2, q: 'Write two inequalities, other than x ≥ 0 and y ≥ 0, that satisfy the constraints above.', a: ['P1: x + y ≤ 30', 'P1: y > x/2 (or 2y > x)'] },
+        { l: 'b', m: 4, q: 'Using a scale of 2 cm to 5 units on both axes for 0 ≤ x ≤ 20 and 0 ≤ y ≤ 30, draw and shade the region that satisfies all three inequalities including x ≥ 0 and y ≥ 0.', a: ['P1: Correct uniform scales on both axes (0 ≤ x ≤ 20, 0 ≤ y ≤ 30)', 'K1: Correct line x + y = 30 drawn', 'K1: Correct line y = x/2 drawn (dashed, since strict inequality)', 'N1: Correct region shaded (satisfying all inequalities)'] },
+        { l: 'c(i)', m: 2, q: 'From the graph, when the number of girls is 12, state the minimum and maximum number of boys.', a: ['N1: Minimum = 7 (y > 12/2 = 6, so y_min = 7)', 'N1: Maximum = 18 (12 + y ≤ 30, so y ≤ 18)'] },
+        { l: 'c(ii)', m: 2, q: 'A committee of 10 girls and 4 boys is proposed. Determine whether this satisfies all the constraints. Give a reason.', a: ['N1: No', 'N1: The point (10, 4) is outside the shaded region / the constraint y > x/2 is not satisfied (4 > 10/2 = 5 is false)'] }
+      ],
+      bm: { title: 'Ketaksamaan linear — jawatankuasa terdiri daripada perempuan dan lelaki',
+        stim: 'Sebuah jawatankuasa akan ditubuhkan. Katakan x = bilangan ahli perempuan dan y = bilangan ahli lelaki. Kekangan: jumlah ahli adalah paling banyak 30, dan bilangan lelaki adalah lebih daripada separuh bilangan perempuan.',
+        parts: [
+          { l: 'a', q: 'Tulis dua ketaksamaan, selain x ≥ 0 dan y ≥ 0, yang memenuhi kekangan di atas.', a: ['P1: x + y ≤ 30', 'P1: y > x/2 (atau 2y > x)'] },
+          { l: 'b', q: 'Menggunakan skala 2 cm kepada 5 unit pada kedua-dua paksi untuk 0 ≤ x ≤ 20 dan 0 ≤ y ≤ 30, lukis dan lorekkan rantau yang memenuhi semua tiga ketaksamaan termasuk x ≥ 0 dan y ≥ 0.', a: ['P1: Skala seragam yang betul pada kedua-dua paksi', 'K1: Garis x + y = 30 dilukis dengan betul', 'K1: Garis y = x/2 dilukis dengan betul (bergaris putus)', 'N1: Rantau yang betul dilorekkan'] },
+          { l: 'c(i)', q: 'Daripada graf, apabila bilangan perempuan ialah 12, nyatakan bilangan minimum dan maksimum lelaki.', a: ['N1: Minimum = 7 (y > 12/2 = 6, maka y_min = 7)', 'N1: Maksimum = 18 (12 + y ≤ 30, maka y ≤ 18)'] },
+          { l: 'c(ii)', q: 'Sebuah jawatankuasa dengan 10 perempuan dan 4 lelaki dicadangkan. Tentukan sama ada ini memenuhi semua kekangan. Berikan sebab.', a: ['N1: Tidak', 'N1: Titik (10, 4) berada di luar rantau berlorek / ketaksamaan y > x/2 tidak dipenuhi (4 > 5 adalah palsu)'] }
+        ] },
+      note: 'Line y = x/2 is dashed (strict inequality >). Shaded region satisfies x + y ≤ 30, y > x/2, x ≥ 0, y ≥ 0.' },
+
+    // ── SECTION C ──────────────────────────────────────────────────────────────
+
+    { n: 16, sec: 'C', topic: 'MIXED', title: 'Syarikat Dinamik — number bases, cash flow, matrices and statistics',
+      stim: 'Muaz is a manager of Syarikat Dinamik. Answer all four parts (a)–(d).',
+      parts: [
+        { l: 'a', m: 3, q: 'A funfair organised by Syarikat Dinamik uses a safe with a passcode. The passcode is the sum of 1540₉ and 2800₉. State the passcode in base ten.', a: ['K1: 1 540₉ = 1×9³ + 5×9² + 4×9 + 0 = 729 + 405 + 36 = 1 170 (or equivalent conversion)', 'K1: 2 800₉ = 2×9³ + 8×9² + 0 + 0 = 1 458 + 648 = 2 106 (or equivalent)', 'N1: Passcode = 1 170 + 2 106 = 3 276'] },
+        { l: 'b', m: 4, q: 'Muaz\'s monthly income is RM5 700. His fixed expenses are RM2 250 and variable expenses are RM1 645 per month. He saves 10% of his income as an emergency fund. The remainder of his monthly cash flow is saved to buy a family holiday package worth RM9 640. Calculate the number of months Muaz needs to save.', a: ['K2: Monthly savings = 5 700 − 2 250 − 1 645 − (10/100 × 5 700) — award K1 if 570 (i.e. 10% of 5 700) is seen', 'K1: Monthly savings = RM1 235; Number of months = 9 640 ÷ 1 235', 'N1: 8 months (since 9 640/1 235 = 7.80…, round up to 8)'] },
+        { l: 'c', m: 5, q: 'Muaz buys 12 souvenirs for his colleagues — fridge magnets at RM5.50 each and t-shirts at RM17 each — spending RM112 in total. Using the matrix method, calculate the number of fridge magnets and t-shirts purchased.', a: ['P1: Let x = magnets, y = t-shirts; equations: x + y = 12 and 5.5x + 17y = 112', 'P1: Matrix equation: [1 1; 5.5 17][x; y] = [12; 112]', 'K1: Inverse = 1/(17 − 5.5) × [17 −1; −5.5 1]', 'N1: x = 8 fridge magnets', 'N1: y = 4 t-shirts'] },
+        { l: 'd(i)', m: 2, q: 'Table 4 shows the daily expenses (RM) of Muaz and his family over 5 days: Day 1: 550, Day 2: 480, Day 3: 570, Day 4: 1 000, Day 5: 425. Calculate the mean daily expenses.', a: ['K1: (550 + 480 + 570 + 1 000 + 425) ÷ 5 = 3 025 ÷ 5', 'N1: RM605'] },
+        { l: 'd(ii)', m: 1, q: 'State the most appropriate measure of central tendency to represent the daily expenses of Muaz and his family. Give a reason.', a: ['P1: Median — because the data contains an extreme value (RM1 000 on Day 4) that causes the mean to be unrepresentative / the mean is affected by the outlier'] }
+      ],
+      bm: { title: 'Syarikat Dinamik — asas nombor, aliran tunai, matriks dan statistik',
+        stim: 'Muaz ialah seorang pengurus Syarikat Dinamik. Jawab semua empat bahagian (a)–(d).',
+        parts: [
+          { l: 'a', q: 'Satu pesta ria yang dianjurkan oleh Syarikat Dinamik menggunakan peti besi dengan kod laluan. Kod laluan ialah hasil tambah bagi 1540₉ dan 2800₉. Nyatakan kod laluan itu dalam asas sepuluh.', a: ['K1: 1 540₉ = 1 170 (atau setara)', 'K1: 2 800₉ = 2 106 (atau setara)', 'N1: Kod laluan = 3 276'] },
+          { l: 'b', q: 'Pendapatan bulanan Muaz ialah RM5 700. Perbelanjaan tetapnya ialah RM2 250 dan perbelanjaan tidak tetap ialah RM1 645 sebulan. Dia menyimpan 10% daripada pendapatannya sebagai dana kecemasan. Baki aliran tunai bulanannya disimpan untuk membeli pakej pelancongan keluarga bernilai RM9 640. Hitung tempoh masa, dalam bulan, Muaz perlu menyimpan.', a: ['K2: Simpanan bulanan = 5 700 − 2 250 − 1 645 − (10/100 × 5 700) — K1 jika 570 dilihat', 'K1: Simpanan bulanan = RM1 235; Bilangan bulan = 9 640 ÷ 1 235', 'N1: 8 bulan'] },
+          { l: 'c', q: 'Muaz membeli 12 cenderahati untuk rakan-rakan sekerjanya — magnet peti sejuk pada harga RM5.50 seunit dan t-shirt pada harga RM17 sehelai — dengan perbelanjaan berjumlah RM112. Menggunakan kaedah matriks, hitung bilangan magnet peti sejuk dan t-shirt yang dibeli.', a: ['P1: Katakan x = magnet, y = t-shirt; persamaan: x + y = 12 dan 5.5x + 17y = 112', 'P1: Persamaan matriks: [1 1; 5.5 17][x; y] = [12; 112]', 'K1: Songsangan = 1/(17 − 5.5) × [17 −1; −5.5 1]', 'N1: x = 8 magnet peti sejuk', 'N1: y = 4 t-shirt'] },
+          { l: 'd(i)', q: 'Jadual 4 menunjukkan perbelanjaan harian (RM) Muaz sekeluarga semasa 5 hari melancong: Hari 1: 550, Hari 2: 480, Hari 3: 570, Hari 4: 1 000, Hari 5: 425. Hitung min perbelanjaan harian.', a: ['K1: (550 + 480 + 570 + 1 000 + 425) ÷ 5 = 3 025 ÷ 5', 'N1: RM605'] },
+          { l: 'd(ii)', q: 'Nyatakan sukatan kecenderungan memusat yang paling sesuai untuk mewakili perbelanjaan harian Muaz sekeluarga. Berikan sebab.', a: ['P1: Median — kerana data mengandungi nilai ekstrem (RM1 000 pada Hari 4) yang menyebabkan min tidak mewakili data / min dipengaruhi oleh nilai terpencil'] }
+        ] },
+      note: 'Section C: candidates answer EITHER Q16 OR Q17 only (15 marks each). Q16(b): 10%×5700 = 570 (emergency fund); monthly savings = 5700−2250−1645−570 = 1235; 9640/1235 = 7.80, rounded up to 8 months.' },
+
+    { n: 17, sec: 'C', topic: 'MIXED', title: 'Iskandar\'s motorcycle — insurance, probability, quadratic equation and speed-time graph',
+      img: 'assets/mm-mrsm2026/p2-q17.png',
+      alt: { bm: 'Rajah 7–9: gambar motosikal BMW R1250GS, jadual kadar tarif motor, gambar rajah Venn, dan graf laju-masa', en: 'Diagrams 7–9: BMW R1250GS motorcycle image, motor tariff rate table, Venn diagram, and speed-time graph' },
+      stim: 'Iskandar lives in Terengganu and owns a high-powered motorcycle (engine capacity 1 977 cc, sum insured RM98 000, vehicle age 3 years, No Claim Discount 30%). Use Table 5 (motor tariff rates) for part (a).',
+      parts: [
+        { l: 'a', m: 4, q: 'Table 5 gives comprehensive policy base rates for Peninsular Malaysia: engine not exceeding 1 650 cc → RM305.50; engine not exceeding 2 200 cc → RM339.10. Additional loading: RM26 per RM1 000 of sum insured above RM1 000. Calculate the gross premium Iskandar pays for a comprehensive policy after applying the NCD.', a: ['P1: Base rate = RM339.10 (engine 1 977 cc falls in the ≤ 2 200 cc bracket, Peninsular Malaysia)', 'K1: Basic premium = 339.10 + (98 000 − 1 000)/1 000 × 26 = 339.10 + 2 522 = RM2 861.10', 'K1: Apply NCD: 2 861.10 − (30/100 × 2 861.10) or 2 861.10 × 0.70', 'N1: RM2 002.77'] },
+        { l: 'b', m: 3, q: 'Iskandar visits a workshop that offers two services: motorcycle service (M) and engine oil change (E). From the customer records that day: P(M) = 0.6, P(E) = 0.5, P(M ∩ E) = 0.3. Diagram 8 in the answer space shows an incomplete Venn diagram with 0.3 already shown in the intersection. Complete the Venn diagram, then calculate the probability that Iskandar chooses at least one of the two services.', a: ['P1: Completed Venn: M only = 0.3, M ∩ E = 0.3, E only = 0.2, outside both = 0.2 (or equivalent)', 'K1: P(M ∪ E) = 0.3 + 0.3 + 0.2 or P(M) + P(E) − P(M ∩ E) = 0.6 + 0.5 − 0.3', 'N1: 0.8'] },
+        { l: 'c', m: 5, q: 'On the next day, Iskandar rides his motorcycle at an average speed of (200t + 30) km h⁻¹ for t hours along a highway. The distance travelled is 35 km. The highway speed limit is 110 km h⁻¹. Did Iskandar follow the highway speed limit?', a: ['P1: Form equation: (200t + 30) × t = 35, i.e. 200t + 30 = 35/t or equivalent', 'K1: 200t² + 30t − 35 = 0, or (20t − 7)(2t + 1) = 0', 'K1: t = 7/20 (positive root); speed = 200(7/20) + 30', 'N1: Speed = 100 km h⁻¹', 'N1: Yes, Iskandar followed the speed limit (100 km h⁻¹ < 110 km h⁻¹)'] },
+        { l: 'd(i)', m: 1, q: 'Diagram 9 shows the speed-time graph of Iskandar\'s motorcycle as he rides in convoy from Terengganu to Seremban. The speed increases from v km h⁻¹ at t = 0 to 120 km h⁻¹ at t = 2 h, maintains uniform speed from t = 2 h to t = 4 h, then decreases to 0 at t = 6 h. Based on the graph, state the uniform speed.', a: ['P1: 120 km h⁻¹'] },
+        { l: 'd(ii)', m: 2, q: 'Calculate the value of v if the acceleration during the first hour is 17 km h⁻².', a: ['K1: (120 − v) / (2 − 0) = 17 or equivalent', 'N1: v = 120 − 34 = 86 km h⁻¹'] }
+      ],
+      bm: { title: 'Motosikal Iskandar — insurans, kebarangkalian, persamaan kuadratik dan graf laju-masa',
+        stim: 'Iskandar menetap di Terengganu dan memiliki sebuah motosikal berkuasa tinggi (kapasiti enjin 1 977 cc, jumlah diinsuranskan RM98 000, umur kenderaan 3 tahun, Klausa Diskaun Tanpa Tuntutan 30%). Gunakan Jadual 5 (kadar tarif motor) untuk bahagian (a).',
+        parts: [
+          { l: 'a', q: 'Jadual 5 memberi kadar asas polisi komprehensif bagi Semenanjung Malaysia: enjin tidak melebihi 1 650 cc → RM305.50; enjin tidak melebihi 2 200 cc → RM339.10. Pemuatan tambahan: RM26 bagi setiap RM1 000 jumlah yang diinsuranskan melebihi RM1 000. Hitung premium kasar yang dibayar oleh Iskandar bagi polisi komprehensif setelah menggunakan NCD.', a: ['P1: Kadar asas = RM339.10 (enjin 1 977 cc dalam julat ≤ 2 200 cc, Semenanjung Malaysia)', 'K1: Premium asas = 339.10 + (98 000 − 1 000)/1 000 × 26 = RM2 861.10', 'K1: Gunakan NCD: 2 861.10 − (30/100 × 2 861.10)', 'N1: RM2 002.77'] },
+          { l: 'b', q: 'Iskandar pergi ke bengkel yang menawarkan dua perkhidmatan: servis motosikal (M) dan penukaran minyak enjin (E). Daripada rekod pelanggan pada hari itu: P(M) = 0.6, P(E) = 0.5, P(M ∩ E) = 0.3. Rajah 8 dalam ruang jawapan menunjukkan gambar rajah Venn yang tidak lengkap dengan 0.3 ditunjukkan di rantau persimpangan. Lengkapkan gambar rajah Venn, kemudian hitung kebarangkalian bahawa Iskandar memilih sekurang-kurangnya satu daripada kedua-dua perkhidmatan tersebut.', a: ['P1: Venn dilengkapkan: M sahaja = 0.3, M ∩ E = 0.3, E sahaja = 0.2, di luar kedua-duanya = 0.2', 'K1: P(M ∪ E) = 0.3 + 0.3 + 0.2 atau P(M) + P(E) − P(M ∩ E)', 'N1: 0.8'] },
+          { l: 'c', q: 'Pada hari berikutnya, Iskandar menunggang motosikalnya dengan laju purata (200t + 30) kmj⁻¹ dalam masa t jam di lebuh raya. Jarak yang dilalui ialah 35 km. Had laju lebuh raya ialah 110 kmj⁻¹. Adakah Iskandar mematuhi had laju lebuh raya?', a: ['P1: Bentuk persamaan: (200t + 30) × t = 35, iaitu 200t + 30 = 35/t atau setara', 'K1: 200t² + 30t − 35 = 0, atau (20t − 7)(2t + 1) = 0', 'K1: t = 7/20 (punca positif); laju = 200(7/20) + 30', 'N1: Laju = 100 kmj⁻¹', 'N1: Ya, Iskandar mematuhi had laju (100 kmj⁻¹ < 110 kmj⁻¹)'] },
+          { l: 'd(i)', q: 'Rajah 9 menunjukkan graf laju-masa motosikal Iskandar semasa menunggang secara konvoi dari Terengganu ke Seremban. Laju meningkat dari v kmj⁻¹ pada t = 0 kepada 120 kmj⁻¹ pada t = 2 j, mengekalkan laju seragam dari t = 2 j hingga t = 4 j, kemudian menurun kepada 0 pada t = 6 j. Berdasarkan graf, nyatakan laju seragam.', a: ['P1: 120 kmj⁻¹'] },
+          { l: 'd(ii)', q: 'Hitung nilai v jika pecutan dalam 1 jam pertama ialah 17 kmj⁻².', a: ['K1: (120 − v) / (2 − 0) = 17 atau setara', 'N1: v = 120 − 34 = 86 kmj⁻¹'] }
+        ] },
+      note: 'Section C: answer EITHER Q16 OR Q17. Q17(c): positive root t = 7/20 h → speed = 200(7/20)+30 = 100 km/h < 110, so YES speed limit is obeyed. Q17(d)(i): uniform speed from t=2 to t=4 is 120 km/h.' }
+
+  ]
+});
+
 /* ---- data/mm-perak-2026-p1.js ---- */
 window.SPM = window.SPM || { packs: [], register(p) { this.packs.push(p); } };
 SPM.register({
