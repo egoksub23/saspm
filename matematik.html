@@ -32266,21 +32266,56 @@ SPM.register({
     },
 
     {
-      n: 2, sec: 'A', topic: 'MISSING',
-      title: 'Question 2 — not in source',
-      stim:  '',
-      parts: [],
-      bm: { title: 'Soalan 2 — tidak ada dalam sumber', stim: '', parts: [] },
-      note: 'Q2 pages are absent from the source scan.',
+      n: 2, sec: 'A', topic: 'GRAPH_FUNCTIONS',
+      title: 'Graph of a cubic function',
+      stim:  'Table 1 gives values of y = x³ + 1 for −3 ≤ x ≤ 2.',
+      parts: [
+        { l: 'a', m: 3,
+          q: 'Using a scale of 2 cm to 1 unit on the x-axis and 2 cm to 5 units on the y-axis, draw the graph of y = x³ + 1 for −3 ≤ x ≤ 2.\n\nTable 1:\n| x  | −3  | −2 | −1 | 0 | 1 | 2 |\n| y  | −26 | −7 |  0 | 1 | 2 | 9 |',
+          a: [
+            'P3: all 6 points correctly plotted and a smooth curve drawn through them',
+            'P2: at least 4 points correctly plotted with a smooth curve',
+            'P1: at least 2 points correctly plotted',
+          ] },
+      ],
+      bm: {
+        title: 'Graf fungsi kubik',
+        stim:  'Jadual 1 memberikan nilai y = x³ + 1 bagi −3 ≤ x ≤ 2.',
+        parts: [
+          { l: 'a', q: 'Menggunakan skala 2 cm kepada 1 unit pada paksi-x dan 2 cm kepada 5 unit pada paksi-y, lukis graf y = x³ + 1 bagi −3 ≤ x ≤ 2.\n\nJadual 1:\n| x  | −3  | −2 | −1 | 0 | 1 | 2 |\n| y  | −26 | −7 |  0 | 1 | 2 | 9 |',
+            a: [
+              'P3: semua 6 titik diplot dengan betul dan lengkung licin dilukis melaluinya',
+              'P2: sekurang-kurangnya 4 titik diplot dengan betul beserta lengkung licin',
+              'P1: sekurang-kurangnya 2 titik diplot dengan betul',
+            ] },
+        ],
+      },
+      note: 'Q2 pages absent from source scan; question reconstructed from third-party answer scheme.',
     },
 
     {
-      n: 3, sec: 'A', topic: 'MISSING',
-      title: 'Question 3 — not in source',
-      stim:  '',
-      parts: [],
-      bm: { title: 'Soalan 3 — tidak ada dalam sumber', stim: '', parts: [] },
-      note: 'Q3 pages are absent from the source scan.',
+      n: 3, sec: 'A', topic: 'TRIGONOMETRY',
+      title: '3D geometry — cuboid, angle of elevation',
+      stim:  'Diagram 1 shows a cuboid ABCDEFGH. ABCD is the bottom face and EFGH is the top face. AB = 40 cm, BC = 60 cm and AE = 30 cm. P is the midpoint of EH.',
+      parts: [
+        { l: 'a', m: 1,
+          q: 'State the length, in cm, of GP.',
+          a: ['GP = √(40² + 30²) = √(1600 + 900) = √2500 = 50 cm'] },
+        { l: 'b', m: 2,
+          q: 'Calculate the angle of elevation of P from B.',
+          a: ['K1: tan θ = AE / GP = 30 / 50', 'N1: θ = 30°58′'] },
+      ],
+      bm: {
+        title: 'Geometri 3D — kuboid, sudut dongakan',
+        stim:  'Rajah 1 menunjukkan sebuah kuboid ABCDEFGH. ABCD ialah tapak bawah dan EFGH ialah tapak atas. AB = 40 cm, BC = 60 cm dan AE = 30 cm. P ialah titik tengah EH.',
+        parts: [
+          { l: 'a', q: 'Nyatakan panjang, dalam cm, bagi GP.',
+            a: ['GP = √(40² + 30²) = 50 cm'] },
+          { l: 'b', q: 'Hitung sudut dongakan P dari B.',
+            a: ['K1: tan θ = AE / GP = 30 / 50', 'N1: θ = 30°58′'] },
+        ],
+      },
+      note: 'Q3 pages absent from source scan; cuboid dimensions reconstructed from answer working (3-4-5 triple × 10); answers confirmed from third-party answer scheme.',
     },
 
     {
