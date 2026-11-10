@@ -36,8 +36,9 @@
 .card-chem{--c:#7C3AED;--clt:#F5F3FF}
 .card-phy{--c:#008AFC;--clt:#EEF6FF}
 .card-mm{--c:#E4499A;--clt:#FDF0F7}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .card-sej{--clt:#1E1400}:root:not([data-theme=light]) .card-bio{--clt:#001A0A}:root:not([data-theme=light]) .card-chem{--clt:#150030}:root:not([data-theme=light]) .card-phy{--clt:#001830}:root:not([data-theme=light]) .card-mm{--clt:#200A18}}
-:root[data-theme=dark] .card-sej{--clt:#1E1400}:root[data-theme=dark] .card-bio{--clt:#001A0A}:root[data-theme=dark] .card-chem{--clt:#150030}:root[data-theme=dark] .card-phy{--clt:#001830}:root[data-theme=dark] .card-mm{--clt:#200A18}
+.card-bm{--c:#0D7C5F;--clt:#E8F7F3}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .card-sej{--clt:#1E1400}:root:not([data-theme=light]) .card-bio{--clt:#001A0A}:root:not([data-theme=light]) .card-chem{--clt:#150030}:root:not([data-theme=light]) .card-phy{--clt:#001830}:root:not([data-theme=light]) .card-mm{--clt:#200A18}:root:not([data-theme=light]) .card-bm{--clt:#001A14}}
+:root[data-theme=dark] .card-sej{--clt:#1E1400}:root[data-theme=dark] .card-bio{--clt:#001A0A}:root[data-theme=dark] .card-chem{--clt:#150030}:root[data-theme=dark] .card-phy{--clt:#001830}:root[data-theme=dark] .card-mm{--clt:#200A18}:root[data-theme=dark] .card-bm{--clt:#001A14}
 *,*::before,*::after{box-sizing:border-box;margin:0}
 body{background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -190,7 +191,7 @@ footer{background:var(--sf);border-top:1px solid var(--border);
     <h1>Banyakkan Latihan, Tingkatkan Keyakinan</h1>
     <p class="hero-sub">Soalan trial 2025 &amp; 2026 pelbagai negeri — drill mengikut negeri, kertas, atau topik. Semua dalam satu tempat, tanpa log masuk, tanpa caj.</p>
     <div class="hero-pills">
-      <div class="pill"><strong>5</strong> Subjek</div>
+      <div class="pill"><strong>6</strong> Subjek</div>
       <div class="pill"><strong>298</strong> Kertas Trial</div>
       <div class="pill"><strong>7879+</strong> Soalan</div>
     </div>
@@ -256,6 +257,15 @@ footer{background:var(--sf);border-top:1px solid var(--border);
         </div>
         <a class="card-btn" href="matematik.html">Mula Drill →</a>
       </div>
+      <div class="subj-card card-bm">
+        <div class="card-top">
+          <div class="subj-icon">✍️</div>
+          <div class="subj-name">Bahasa Melayu<small>BM SPM</small></div>
+          <div class="subj-count">15 <span>set soalan</span></div>
+          <div class="subj-papers">12 negeri percubaan 2026 + SPM 2023–2025 + KMJ</div>
+        </div>
+        <a class="card-btn" href="https://claude.ai/artifact/17qEEsRmw17DBBnpvorWdz" target="_blank">Mula Drill →</a>
+      </div>
   </div>
 </div>
 
@@ -311,7 +321,7 @@ box.appendChild(el('p','log-note','Rekod ini disimpan dalam pelayar peranti ini 
 <div class="section" id="ramalan">
   <div class="section-kicker">Laporan ramalan</div>
   <div class="section-heading">Ramalan SPM 2026</div>
-  <p class="section-desc">Analisis kertas SPM sebenar dan trial negeri: topik yang paling berkemungkinan keluar pada SPM 2026. Laporan dalam Bahasa Inggeris.</p>
+  <p class="section-desc">Analisis kertas SPM sebenar dan trial negeri: topik yang paling berkemungkinan keluar pada SPM 2026.</p>
   <div class="subject-grid">
       <div class="subj-card card-sej">
         <div class="card-top">
@@ -336,6 +346,14 @@ box.appendChild(el('p','log-note','Rekod ini disimpan dalam pelayar peranti ini 
           <div class="subj-papers">Laporan ramalan + set latihan Forecast 2026</div>
         </div>
         <a class="card-btn" href="ramalan-fizik.html">Baca Laporan →</a>
+      </div>
+      <div class="subj-card card-bm">
+        <div class="card-top">
+          <div class="subj-icon">✍️</div>
+          <div class="subj-name">Bahasa Melayu<small>BM SPM</small></div>
+          <div class="subj-papers">Analisis trend Q6/Q7/Q9 · Ramalan AI Opus 5.5 · 12 negeri + SPM 2023–2025</div>
+        </div>
+        <a class="card-btn" href="https://claude.ai/artifact/8qQvCeHXY6oFe1mMqqZWcR" target="_blank">Baca Ramalan →</a>
       </div>
   </div>
 </div>
