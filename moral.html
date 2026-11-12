@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SPM 2026 · Pendidikan Moral</title>
+
+<style>
+html{font-size:17px}
+:root{
+  --ink:#0B0E13; --panel:#141A25; --panel2:#182030; --line:#242E3E;
+  --txt:#E9E7DC; --mut:#96A0AC; --dim:#6B7684;
+  --fl:#C6F24E; --am:#FFB454; --vi:#9D8CFF; --okG:#57C76A; --badR:#FF6B6B;
+  --onFl:#111; --dot:rgba(233,231,220,.03);
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --disp:Georgia,'Times New Roman',serif;
+  --body:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+[data-theme="light"]{
+  --ink:#F4F1E8; --panel:#FFFFFF; --panel2:#F7F5EE; --line:#E2DDCE;
+  --txt:#171A21; --mut:#5C6674; --dim:#8A93A0;
+  --fl:#5C7A00; --am:#A85F00; --vi:#5B44C7; --okG:#237A33; --badR:#C0292F;
+  --onFl:#fff; --dot:rgba(0,0,0,.04);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--ink);color:var(--txt);font-family:var(--body);line-height:1.6;min-height:100vh;
+  background-image:radial-gradient(var(--dot) 1px,transparent 1px);background-size:32px 32px;
+  -webkit-font-smoothing:antialiased}
+::selection{background:var(--fl);color:var(--onFl)}
+button,input,select{font-family:inherit;cursor:pointer;color:inherit}
+a{color:var(--fl)}
+.wrap{max-width:900px;margin:0 auto;padding:26px 20px 70px}
+
+/* ---- top bar ---- */
+.bar{display:flex;align-items:center;gap:10px;margin-bottom:26px;flex-wrap:wrap}
+.brand{font-family:var(--disp);font-weight:900;font-size:1.05rem;letter-spacing:-.01em;margin-right:auto;
+  display:flex;align-items:center;gap:9px;background:transparent;border:0;padding:0;color:var(--txt);cursor:pointer}
+.brand:hover b{filter:brightness(1.15)}
+.brand:hover small{border-color:var(--fl);color:var(--fl)}
+.brand b{color:var(--fl)}
+.brand small{font-family:var(--mono);font-size:.56rem;letter-spacing:.18em;color:var(--dim);border:1px solid var(--line);border-radius:5px;padding:3px 7px;font-weight:400}
+.home-crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--dim);text-decoration:none;white-space:nowrap}
+.home-crumb:hover{color:var(--fl)}
+.crumb-sep{color:var(--dim);font-size:.7rem;letter-spacing:.05em;user-select:none;padding:0 2px}
+#breadSubj{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--mut);white-space:nowrap;text-decoration:none}
+#breadSubj:hover{color:var(--fl)}
+.crumb-cur{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--fl);white-space:nowrap}
+.ghost{background:transparent;border:1px solid var(--line);color:var(--mut);font-family:var(--mono);
+  font-size:.6rem;letter-spacing:.14em;padding:8px 13px;border-radius:100px;transition:.18s}
+.ghost:hover{border-color:var(--fl);color:var(--fl)}
+.ghost.on{border-color:var(--fl);color:var(--fl);background:color-mix(in srgb,var(--fl) 10%,transparent)}
+
+/* ---- hero ---- */
+.kick{font-family:var(--disp);font-size:clamp(1.8rem,5vw,3rem);font-weight:900;letter-spacing:.04em;color:var(--fl);text-align:center;margin-bottom:18px;line-height:1.08}
+.sub{text-align:center;color:var(--mut);margin-top:0;font-size:.95rem;max-width:58ch;margin-inline:auto;line-height:1.65}
+.sub em{font-style:normal;color:var(--txt);font-weight:600}
+
+/* ---- panels ---- */
+.card{border:1px solid var(--line);border-radius:16px;background:var(--panel);overflow:hidden}
+.sec{padding:18px 20px;border-bottom:1px solid var(--line)}
+.sec:last-child{border-bottom:0}
+.lab{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;color:var(--dim);margin-bottom:11px;display:flex;gap:10px;align-items:center}
+.lab i{font-style:normal;color:var(--fl);cursor:pointer;border-bottom:1px dotted var(--fl)}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{background:var(--panel2);border:1px solid var(--line);color:var(--mut);font-family:var(--mono);
+  font-size:.73rem;letter-spacing:.08em;padding:8px 14px;border-radius:100px;transition:.16s;white-space:nowrap}
+.chip:hover{border-color:var(--fl);color:var(--txt)}
+.chip.on{border-color:var(--fl);color:var(--fl);background:color-mix(in srgb,var(--fl) 12%,transparent)}
+.chip .n{color:var(--dim);margin-left:6px;font-size:.9em}
+.chip.on .n{color:var(--fl);opacity:.75}
+.chip.forecast{border-color:#E4499A;color:#E4499A}
+.chip.forecast:hover{border-color:#E4499A;color:#E4499A;background:color-mix(in srgb,#E4499A 10%,transparent)}
+.chip.forecast.on{border-color:#E4499A;color:#E4499A;background:color-mix(in srgb,#E4499A 18%,transparent)}
+.chip.forecast .n{color:#E4499A;opacity:.65}
+.chip.forecast.on .n{color:#E4499A;opacity:.8}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+
+/* ---- start row ---- */
+.startrow{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:18px 20px;background:var(--panel2)}
+.cta{background:var(--fl);border:1px solid var(--fl);color:var(--onFl);font-family:var(--mono);font-weight:700;
+  font-size:.72rem;letter-spacing:.16em;padding:14px 26px;border-radius:8px;transition:.18s}
+.cta:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.cta:disabled{opacity:.35;cursor:not-allowed;transform:none}
+.count{font-family:var(--mono);font-size:.68rem;color:var(--mut);margin-right:auto}
+.count b{color:var(--fl);font-size:1.4rem;font-family:var(--disp);vertical-align:-2px;margin-right:4px}
+
+/* ---- quiz ---- */
+.top{padding:14px 20px;border-bottom:1px solid var(--line)}
+.ctr-row{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--mono);
+  font-size:.66rem;letter-spacing:.14em;color:var(--fl);margin-bottom:10px;flex-wrap:wrap}
+.ctr-row .r{display:flex;gap:14px;align-items:center;color:var(--mut)}
+.ctr-row .r b{color:var(--fl)}
+.ctr-row .r .warn{color:var(--badR)}
+.pbar{height:5px;background:var(--line);border-radius:5px;overflow:hidden}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--fl),var(--am));width:0;transition:width .3s}
+.qbody{padding:24px 22px 26px}
+.meta{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.tag{display:inline-block;font-family:var(--mono);font-size:.55rem;letter-spacing:.13em;border:1px solid var(--line);
+  color:var(--mut);border-radius:5px;padding:4px 8px}
+.tag.am{border-color:var(--am);color:var(--am)}
+.tag.vi{border-color:var(--vi);color:var(--vi)}
+.qq{font-family:var(--disp);font-size:1.16rem;font-weight:700;line-height:1.5;margin-bottom:8px}
+.qq sub,.qq sup{font-size:.72em}
+.qq table,.opt table{border-collapse:collapse;margin:12px 0;font-family:var(--body);font-size:.85rem;font-weight:400}
+.qq th,.qq td,.opt th,.opt td{border:1px solid var(--line);padding:6px 11px;text-align:left}
+.qq th{background:var(--panel2);font-family:var(--mono);font-size:.62rem;letter-spacing:.08em}
+.qq .fig{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--dim);font-weight:400}
+.qlist{margin:8px 0 8px 20px;font-family:var(--body);font-size:.9rem;font-weight:400;line-height:1.65}
+.stmt{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin-bottom:14px}
+.stmt-lbl{font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.14em;color:var(--dim);margin-bottom:7px}
+.stmt-item{font-family:var(--body);font-size:.93rem;font-weight:400;line-height:1.62;color:var(--body)}
+.stmt-item+.stmt-item{margin-top:5px}
+img{height:auto}.qq img,.qimg{max-width:100%;border:1px solid var(--line);border-radius:10px;margin:6px 0 16px;background:#fff}
+.alt{font-size:.84rem;color:var(--dim);font-style:italic;margin:-2px 0 16px;font-family:var(--body);font-weight:400}
+.opts{display:flex;flex-direction:column;gap:9px;margin-top:16px}
+.opt{display:flex;gap:13px;align-items:flex-start;text-align:left;background:var(--panel2);border:1px solid var(--line);
+  border-radius:9px;padding:12px 15px;color:var(--txt);font-size:.92rem;line-height:1.5;transition:border-color .16s,background .16s;width:100%}
+.opt:not(:disabled):hover{border-color:var(--fl)}
+.opt .k{font-family:var(--mono);font-size:.64rem;color:var(--dim);border:1px solid var(--line);border-radius:5px;
+  padding:3px 8px;flex-shrink:0;margin-top:2px}
+.opt.pick{border-color:var(--vi);background:color-mix(in srgb,var(--vi) 12%,transparent)}
+.opt.pick .k{color:var(--vi);border-color:var(--vi)}
+.opt.right{border-color:var(--okG);background:color-mix(in srgb,var(--okG) 14%,transparent)}
+.opt.right .k{color:var(--okG);border-color:var(--okG)}
+.opt.wrong{border-color:var(--badR);background:color-mix(in srgb,var(--badR) 12%,transparent);animation:shake .4s}
+.opt.dim{opacity:.42}
+@keyframes shake{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+.why{margin-top:18px;padding:14px 16px;border-left:3px solid var(--fl);
+  background:color-mix(in srgb,var(--fl) 7%,transparent);font-size:.87rem;color:var(--mut);border-radius:0 8px 8px 0}
+.why b{color:var(--fl);font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;display:block;margin-bottom:5px}
+.why.none{border-left-color:var(--dim);background:transparent;color:var(--dim);font-style:italic}
+.nav{margin-top:22px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.nav .sp{margin-left:auto}
+.btn{background:transparent;border:1px solid var(--fl);color:var(--fl);font-family:var(--mono);font-size:.68rem;
+  letter-spacing:.14em;padding:11px 19px;border-radius:7px;transition:.18s}
+.btn:hover{background:var(--fl);color:var(--onFl)}
+.btn.mutebtn{border-color:var(--line);color:var(--mut)}
+.btn.mutebtn:hover{background:transparent;border-color:var(--mut);color:var(--txt)}
+.btn.flag.on{border-color:var(--am);color:var(--am)}
+.btn:disabled{opacity:.3;cursor:not-allowed}
+.hint{font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;color:var(--dim);margin-top:14px}
+
+/* ---- navigator ---- */
+.navg{display:none;padding:16px 20px;border-top:1px solid var(--line);background:var(--panel2)}
+.navg.show{display:block}
+.navg .cells{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:6px}
+.cell{aspect-ratio:1;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--dim);
+  font-family:var(--mono);font-size:.62rem;display:flex;align-items:center;justify-content:center;transition:.14s;position:relative}
+.cell:hover{border-color:var(--fl);color:var(--fl)}
+.cell.done{color:var(--txt);border-color:var(--mut)}
+.cell.ok{border-color:var(--okG);color:var(--okG)}
+.cell.no{border-color:var(--badR);color:var(--badR)}
+.cell.cur{outline:2px solid var(--fl);outline-offset:1px}
+.cell.flag::after{content:'';position:absolute;top:3px;right:3px;width:5px;height:5px;border-radius:50%;background:var(--am)}
+
+/* ---- report ---- */
+.res{text-align:center;padding:26px 20px 8px}
+.res .score{font-family:var(--disp);font-weight:900;font-size:4rem;line-height:1}
+.res .score span{font-size:1.5rem;color:var(--dim)}
+.res .pc{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;color:var(--fl);margin-top:6px}
+.res .msg{font-family:var(--disp);font-style:italic;font-size:1.15rem;margin-top:12px;color:var(--am);max-width:46ch;margin-inline:auto}
+.brow{display:grid;grid-template-columns:minmax(96px,1.1fr) 2fr 88px;gap:11px;align-items:center;margin-bottom:9px;
+  font-family:var(--mono);font-size:.62rem;color:var(--mut)}
+.brow .tr{height:7px;background:var(--line);border-radius:5px;overflow:hidden}
+.brow .fl{height:100%;background:var(--fl);border-radius:5px;transition:width .5s}
+.brow .fl.mid{background:var(--am)} .brow .fl.low{background:var(--badR)}
+.brow .v{text-align:right}
+.rev{border-top:1px solid var(--line);padding:16px 20px}
+.rq{border:1px solid var(--line);border-radius:10px;padding:13px 15px;margin-bottom:9px;background:var(--panel2)}
+.rq .h{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;color:var(--dim);margin-bottom:7px;display:flex;gap:9px;flex-wrap:wrap}
+.rq .h b{color:var(--badR)} .rq .h b.ok{color:var(--okG)}
+.rq .t{font-size:.9rem;margin-bottom:8px}
+.rq .ans{font-family:var(--mono);font-size:.66rem;color:var(--mut);line-height:1.9}
+.rq .ans em{font-style:normal;color:var(--okG)} .rq .ans s{color:var(--badR)}
+.rq .w{margin-top:8px;font-size:.82rem;color:var(--mut);padding-left:11px;border-left:2px solid var(--line)}
+
+/* ---- misc ---- */
+.empty{text-align:center;padding:44px 24px;color:var(--mut);font-size:.9rem}
+.empty code{font-family:var(--mono);font-size:.8rem;color:var(--fl);background:var(--panel2);padding:2px 7px;border-radius:5px}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,80px);background:var(--panel);border:1px solid var(--fl);
+  color:var(--fl);font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;padding:11px 20px;border-radius:100px;
+  transition:transform .3s;z-index:99;box-shadow:0 14px 34px rgba(0,0,0,.45)}
+.toast.show{transform:translate(-50%,0)}
+footer{text-align:center;padding:32px 20px;font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;color:var(--dim)}
+footer span{color:var(--fl)}
+@media (max-width:560px){
+  .wrap{padding:18px 14px 60px}
+  .qbody{padding:20px 16px 22px}
+  .brow{grid-template-columns:minmax(76px,1fr) 1.3fr 74px;font-size:.55rem}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{.bar,.nav,.navg,footer,.startrow{display:none}}
+
+/* ============================================================
+   PAPER 2 — STRUCTURED QUESTIONS
+   ============================================================ */
+.p2parts{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.p2part{border:1px solid var(--line);border-radius:10px;background:var(--panel2);overflow:hidden}
+.p2part-head{display:flex;gap:10px;align-items:baseline;padding:12px 15px}
+.p2part-label{font-family:var(--mono);font-size:.7rem;font-weight:700;color:var(--fl);
+  background:color-mix(in srgb,var(--fl) 12%,transparent);border-radius:5px;padding:3px 9px;
+  flex-shrink:0;align-self:flex-start;margin-top:2px}
+.p2part-q{font-size:.93rem;line-height:1.6;flex:1}
+.p2part-m{font-family:var(--mono);font-size:.57rem;color:var(--dim);flex-shrink:0;
+  border:1px solid var(--line);border-radius:4px;padding:2px 7px;margin-left:8px;align-self:flex-start;margin-top:4px}
+.p2reveal-btn{width:100%;background:transparent;border:0;border-top:1px solid var(--line);
+  color:var(--mut);font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;
+  padding:9px 15px;text-align:left;display:flex;gap:8px;align-items:center;transition:.15s;cursor:pointer}
+.p2reveal-btn:hover{background:color-mix(in srgb,var(--fl) 6%,transparent);color:var(--fl)}
+.p2reveal-btn.open{color:var(--okG);border-top-color:color-mix(in srgb,var(--okG) 30%,var(--line))}
+.p2reveal-btn .arr{transition:transform .2s}
+.p2reveal-btn.open .arr{transform:rotate(180deg)}
+.p2ans{padding:13px 15px;border-top:1px solid color-mix(in srgb,var(--okG) 30%,var(--line));
+  background:color-mix(in srgb,var(--okG) 6%,transparent)}
+.p2ans-lbl{font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;color:var(--okG);margin-bottom:6px}
+.p2ans-txt{font-size:.92rem;color:var(--txt);line-height:1.65}
+.p2ans-note{font-family:var(--mono);font-size:.58rem;color:var(--am);margin-top:6px;
+  padding:5px 10px;border:1px solid color-mix(in srgb,var(--am) 30%,transparent);border-radius:5px;display:inline-block}
+.p2ans-img{max-width:100%;border:1px solid var(--line);border-radius:8px;margin-top:10px;background:#fff}
+/* Reveal-all button */
+.p2revall{background:transparent;border:1px solid var(--line);color:var(--mut);font-family:var(--mono);
+  font-size:.6rem;letter-spacing:.12em;padding:8px 15px;border-radius:7px;margin-top:16px;transition:.15s;cursor:pointer}
+.p2revall:hover{border-color:var(--fl);color:var(--fl)}
+/* Self-mark panel */
+.p2score{margin-top:24px;padding:16px 18px;border:1px solid color-mix(in srgb,var(--am) 40%,var(--line));
+  border-radius:10px;background:color-mix(in srgb,var(--am) 5%,transparent)}
+.p2score-lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--am);margin-bottom:10px}
+.p2score-btns{display:flex;gap:8px;flex-wrap:wrap}
+.p2sb{background:var(--panel2);border:1px solid var(--line);color:var(--mut);font-family:var(--mono);
+  font-size:.62rem;letter-spacing:.1em;padding:9px 16px;border-radius:7px;transition:.15s;cursor:pointer}
+.p2sb:hover{border-color:var(--fl);color:var(--txt)}
+.p2sb.got{border-color:var(--okG)!important;color:var(--okG)!important;background:color-mix(in srgb,var(--okG) 10%,transparent)!important}
+.p2sb.partly{border-color:var(--am)!important;color:var(--am)!important;background:color-mix(in srgb,var(--am) 10%,transparent)!important}
+.p2sb.missed{border-color:var(--badR)!important;color:var(--badR)!important;background:color-mix(in srgb,var(--badR) 10%,transparent)!important}
+/* P2 summary report */
+.p2summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:18px 20px}
+.p2stat{text-align:center;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--panel2)}
+.p2stat b{font-family:var(--disp);font-size:2.2rem;font-weight:900;display:block;line-height:1}
+.p2stat.ok b{color:var(--okG)} .p2stat.ok{border-color:color-mix(in srgb,var(--okG) 30%,var(--line))}
+.p2stat.mid b{color:var(--am)} .p2stat.mid{border-color:color-mix(in srgb,var(--am) 30%,var(--line))}
+.p2stat.bad b{color:var(--badR)} .p2stat.bad{border-color:color-mix(in srgb,var(--badR) 30%,var(--line))}
+.p2stat small{font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;color:var(--dim);margin-top:4px;display:block}
+/* Sejarah-compatible P2 classes */
+.stim{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:13px 15px;font-size:.88rem;color:var(--mut);margin:4px 0 18px;line-height:1.65}
+.stim table{border-collapse:collapse;width:100%;margin:8px 0;font-size:.82rem}
+.stim th,.stim td{border:1px solid var(--line);padding:4px 8px;text-align:center}
+.stim th{background:color-mix(in srgb,var(--line) 50%,var(--panel2));font-weight:600;text-align:center}
+.stim svg{display:block;margin:6px auto;max-width:100%}
+.kotak-grid{display:grid;gap:3px;margin:10px 0}
+.kotak-cell{border:1px solid var(--line);padding:8px 12px;text-align:center;background:var(--panel);font-size:.86rem;font-weight:500;border-radius:4px}
+.stim-block{background:color-mix(in srgb,var(--fl) 8%,transparent);border-left:3px solid var(--fl);border-radius:0 6px 6px 0;padding:7px 11px;margin:7px 0;font-size:.83rem;line-height:1.55}
+.stim-lbl{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;color:var(--fl);margin-right:6px;display:inline-block}
+.stim-ph{color:var(--dim);font-style:italic;font-size:.82rem;padding:4px 0}
+.part{border:1px solid var(--line);border-radius:11px;padding:14px 15px;margin-bottom:11px;background:var(--panel)}
+.part.ok{border-color:var(--okG)} .part.no{border-color:var(--badR)}
+.pq{display:flex;gap:10px;align-items:flex-start;font-size:.95rem;line-height:1.5}
+.pq .pl{font-family:var(--mono);font-size:.7rem;color:var(--fl);flex-shrink:0;margin-top:2px}
+.pq .pm{margin-left:auto;flex-shrink:0;font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;color:var(--am);border:1px solid var(--am);border-radius:5px;padding:2px 7px;margin-top:2px;white-space:nowrap}
+.reveal{margin-top:11px;padding:8px 14px;font-size:.6rem}
+.pa{margin-top:11px;padding:11px 14px;border-left:3px solid var(--fl);background:color-mix(in srgb,var(--fl) 7%,transparent);border-radius:0 8px 8px 0}
+.pts{margin:0;padding-left:18px;font-size:.88rem;line-height:1.6}
+.pts li{margin:3px 0}
+.pts-sub{margin:3px 0 6px;padding-left:16px;list-style:disc;color:var(--mut)}
+.selfm{display:flex;gap:8px;align-items:center;margin-top:11px;flex-wrap:wrap;font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;color:var(--dim)}
+.selfm span{margin-right:auto}
+.btn.sm{padding:7px 13px;font-size:.6rem;border-color:var(--okG);color:var(--okG)}
+.btn.sm:hover,.btn.sm.on{background:var(--okG);color:var(--onFl)}
+.btn.sm.bad{border-color:var(--badR);color:var(--badR)}
+.btn.sm.bad:hover,.btn.sm.bad.on{background:var(--badR);color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <a href="https://saspm.vircle.tech/" class="home-crumb" title="Back to home">HOME</a>
+    <span class="crumb-sep">&rsaquo;&rsaquo;</span>
+    <a id="breadSubj" href="https://saspm.vircle.tech/" class="home-crumb">SEJARAH</a>
+    <span class="crumb-sep">&rsaquo;&rsaquo;</span>
+    <span class="crumb-cur">DRILL NOW</span>
+    <button class="brand" id="btnHome" title="Back to the filters"><b>SPM 2026</b> Trial Drill <small id="bankTag">BANK 0</small></button>
+    <button class="ghost" id="btnLang">BM / EN</button>
+    <button class="ghost" id="btnStats">MY STATS</button>
+    <button class="ghost" id="btnTheme">THEME</button>
+  </div>
+  <main id="app"></main>
+</div>
+<footer>BUILT FOR ALL SPM 2026 &middot; SMK SULTAN ABDUL SAMAD PJ &middot; Student By Gokula K.S<br><span>&middot; SEMOGA CEMERLANG SPM 2026 &middot;</span></footer>
+<div class="toast" id="toast"></div>
+
+<!-- data layer: every pack file calls SPM.register({...}) -->
+<script>
+window.SPM = { packs: [], register(p){ this.packs.push(p); } };
+</script>
+<script>window.__IMGDIM={};document.addEventListener('error',function(e){var t=e.target;if(t&&t.tagName==='IMG')t.style.visibility='hidden'},true);</script>
+<script>
+/* ---- Moral/data/moral-kelantan-2026-p1.js ---- */
+'use strict';
+/* P.Moral K1 — Kelantan · Percubaan SPM 2026 */
+window.SPM.register({"meta":{"id":"moral-kelantan-2026-p1","subject":"Pendidikan Moral","state":"Kelantan","year":2026,"paper":1,"code":"3755/1","source":"Percubaan SPM 2026 — Kelantan","answers":"skema","kind":"trial","total":9,"ai_answers":false},"questions":[{"n":1,"sec":"A","topic":"Tanggungjawab Sosial — Teknologi Maklumat","title":"Penyalahgunaan Media Sosial","stim":"Maklumat di bawah berkaitan isu penyalahgunaan media sosial dalam kalangan remaja.\n\n\"Oh, ramai yang berkongsi tentang mesej ini! Lebih baik saya kongsikannya dengan rakan-rakan. Saya berharap menjadi orang pertama berkongsi mesej ini dalam kumpulan media sosial saya.\"","marks":10,"parts":[{"l":"a","q":"Wajarkah tindakan anda menular mesej seperti di atas kepada rakan-rakan? Justifikasikan jawapan anda.","m":3,"a":["Tidak wajar","Menentukan kesahihan maklumat yang diterima sebelum berkongsi dengan rakan-rakan","Tidak terburu-buru menyebarkan maklumat yang diterima","Mendapatkan pengesahan daripada pihak yang sepatutnya sebelum menyebarkan maklumat","Berfikir dahulu dalam setiap tindakan yang diambil","(Terima mana-mana jawapan munasabah — Max 3m)"]},{"l":"b","q":"Nyatakan TIGA etika penggunaan teknologi maklumat dan komunikasi dalam kalangan remaja pada masa kini.","m":3,"a":["Tidak memuat naik sebarang bahan dalam pelbagai bentuk tanpa keiznan pemilik yang sah","Berkomunikasi secara berhemah","Berintegriti dalam memberikan maklumat yang betul untuk sebarang penggunaan dalam talian","Tidak menyebarkan maklumat palsu atau diragui kesahihannya yang boleh menggugat ketenteraman awam","Tidak mengeksploitasi maklumat dan data peribadi pihak lain","(Terima mana-mana jawapan munasabah — Max 3m)"]},{"l":"c","q":"Jelaskan peranan ibu bapa dalam usaha mengurangkan penglibatan remaja dalam penyalahgunaan media sosial.","m":4,"a":[{"f":"Memberi didikan agama sejak kecil","h":["Remaja dapat membezakan perkara yang baik dan buruk"]},{"f":"Mengawal dan memantau aktiviti anak dalam media sosial","h":["Remaja tidak terlibat dengan perkara yang negatif"]},{"f":"Mewujudkan peraturan dan batasan dalam penggunaan internet","h":["Menjadikan remaja lebih berdisiplin dalam penggunaan teknologi maklumat"]},{"f":"Meluangkan banyak masa bersama","h":["Remaja tidak mencari keseronokkan yang negatif dalam media sosial"]}]}]},{"n":2,"sec":"A","topic":"Kesederhanaan — Pengurusan Kewangan","title":"Individu yang Boros Berbelanja","stim":"Aminah ialah seorang remaja yang suka kepada fesyen dan alat aksesori wanita. Dia sering menggunakan wang simpanannya untuk membeli barang tersebut kerana pada pendapatnya mengikut trend remaja masa ini merupakan satu kepuasan. Oleh itu, dia sanggup menggunakan keseluruhan wang simpanan semata-mata untuk mengikut trend.","marks":10,"parts":[{"l":"a","q":"Nyatakan cara pengurusan perbelanjaan secara beretika yang sepatutnya diamalkan oleh Aminah.","m":3,"a":["Menentukan kedudukan kewangan yang dimiliki","Mengenal pasti dan membuat anggaran perbelanjaan","Mendisiplinkan diri ketika berbelanja","Tidak terpengaruh dengan jualan murah atau jualan dalam talian","(Mana-mana jawapan munasabah — Max 3m)"]},{"l":"b","q":"Perkara yang dilakukan oleh Aminah menunjukkan dia seorang yang tidak menguruskan perbelanjaan secara beretika dan berhemat. Pada pandangan anda, jelaskan kepentingan seseorang itu perlu menguruskan perbelanjaan secara beretika.","m":3,"a":["Menjamin masa depan yang cerah","Mengurangkan bebanan hutang","Mengelakkan pembaziran","Mempunyai simpanan untuk digunakan semasa kecemasan","(Mana-mana jawapan munasabah — Max 3m)"]},{"l":"c","q":"Jika rakyat Malaysia berbelanja seperti Aminah, huraikan kesan kepada individu tersebut.","m":4,"a":[{"f":"Hutang akan bertambah","h":["Terpaksa berhutang untuk membayar hutang dan meneruskan hidup"]},{"f":"Mengalami tekanan / stres","h":["Cenderung mencederakan diri atau membunuh diri"]},{"f":"Terlibat dengan jenayah","h":["Mencuri atau merompak untuk mendapatkan wang"]}]}]},{"n":3,"sec":"A","topic":"Keprihatinan — Isu Pelarian","title":"Isu Pelarian","stim":"Gambar berkaitan isu pelarian — pelarian di atas bot (Sumber: BERNAMA). Beratus-ratus pelarian terpaksa meninggalkan negara mereka akibat peperangan, konflik, dan bencana alam.","marks":10,"parts":[{"l":"a","q":"Tanpa bantuan orang ramai, kehidupan pelarian akan menghadapi masalah. Pada pendapat anda, mengapakah kita perlu membantu mangsa pelarian tersebut.","m":4,"a":[{"f":"Menunjukkan sikap prihatin dan kemanusiaan","h":["Mereka kehilangan tempat tinggal dan perlindungan akibat peperangan, konflik, bencana"]},{"f":"Memenuhi keperluan asas mereka","h":["Mereka memerlukan makanan, pakaian, rawatan untuk meneruskan hidup"]},{"f":"Mewujudkan keamanan dan keharmonian sejagat","h":["Mengurangkan penderitaan dan memupuk semangat perpaduan sejagat"]}]},{"l":"b","q":"Isu pelarian sering mendatangkan pelbagai masalah kepada negara kita. Jelaskan masalah yang dibawa oleh pelarian dari aspek-aspek di bawah.\n\nAspek ekonomi:\nAspek sosial:","m":4,"a":[{"f":"Aspek ekonomi","h":["Persaingan dalam perniagaan — menjejaskan perniagaan tempatan","Peluang pekerjaan — berebut peluang pekerjaan dengan rakyat tempatan","Menjejaskan pendapatan negara — hasil pendapatan pelarian dibawa ke luar negara"]},{"f":"Aspek sosial","h":["Penggunaan kemudahan awam — berebut penggunaan pengangkutan awam dengan rakyat tempatan","Peluang pendidikan — terutama dalam pengajian swasta","Mengganggu keselamatan awam — pendatang asing yang ramai menggugat keselamatan negara; sering berlaku pergaduhan dan pembunuhan"]}]},{"l":"c","q":"Pada pendapat anda, mengapakah pelarian melarikan diri dari negara asal mereka untuk mendapatkan perlindungan di negara lain?","m":2,"a":["Mendapat perlindungan — negara asal terlibat perang/bencana alam","Masalah ekonomi — kadar kemiskinan/taraf hidup rendah","(Max 2m)"]}]},{"n":4,"sec":"A","topic":"Kerjasama — Masyarakat Global","title":"Revolusi Pembuatan Kereta","stim":"Gambar di bawah menunjukkan perbezaan antara kereta dahulu dengan kereta sekarang. (Dahulu: kereta lama merah; Sekarang: kereta baru moden) — Sumber: www.google.com","marks":10,"parts":[{"l":"a","q":"Terangkan contoh kerjasama masyarakat global yang dijalankan berdasarkan gambar di atas.","m":2,"a":["Industri automobil / pembuatan kereta","Eksport kereta tempatan ke luar negara","(Terima jawapan di atas sahaja — Max 2m)"]},{"l":"b","q":"Senaraikan kepentingan revolusi pembuatan kereta kepada masyarakat global.","m":4,"a":["Meningkatkan teknologi pembuatan kereta","Meningkatkan ekonomi global","Berkongsi idea pembuatan kereta terkini","Melahirkan tenaga pakar lebih berkualiti","(Mana-mana jawapan munasabah — Max 4m)"]},{"l":"c","q":"Kerjasama masyarakat global banyak memberi manfaat kepada negara. Berikan ulasan anda.","m":4,"a":[{"f":"Negara akan dipandang tinggi / imej negara meningkat","h":["Mereka akan kagum dengan keupayaan negara di peringkat antarabangsa"]},{"f":"Ekonomi negara berkembang pesat","h":["Pendapatan negara meningkat kerana wujud perdagangan antarabangsa"]},{"f":"Mengukuhkan hubungan dalam pelbagai bidang","h":["Dapat berkongsi idea dan kemahiran"]}]}]},{"n":5,"sec":"A","topic":"Semangat Bermasyarakat — Sukan","title":"Atlet Paralimpik Negara","stim":"Pada tahun 2016, Malaysia telah meraih pingat emas pertama dalam pertandingan Sukan Paralimpik Rio de Janeiro. Manakala pada tahun 2020, Malaysia telah memenangi sebanyak 3 pingat emas dalam Sukan Paralimpik Musim Panas Tokyo. Kejayaan-kejayaan atlet paralimpik ini telah membakar semangat atlet kurang upaya untuk meraih kejayaan dalam acara sukan di peringkat antarabangsa. Terkini pada tahun 2023, Malaysia telah meraih 50 pingat emas dalam Sukan Para ASEAN Kemboja. (Sumber: http://www.google.com)","marks":10,"parts":[{"l":"a","q":"Kejayaan atlet kurang upaya di peringkat antarabangsa amat membanggakan. Cadangkan tiga bentuk pengiktirafan yang boleh diberikan kepada mereka.","m":3,"a":["Sijil penghargaan","Sumbangan wang tunai berdasarkan warna pingat","Penganugerahan pangkat/gelaran seperti Datuk","Dijadikan sebagai ikon sukan","Peluang pekerjaan","Rumah","Skim imbuhan kewangan","Kenaikan gaji/pendapatan","(Mana-mana jawapan munasabah — Max 3m)"]},{"l":"b","q":"Nyatakan TIGA cabaran untuk mengharumkan nama negara di persada dunia dalam bidang sukan.","m":3,"a":["Sumber kewangan terhad","Kekurangan jurulatih berpengalaman","Kemudahan infrastruktur sukan yang kurang/terhad","Fizikal yang lebih kecil berbanding peserta luar negara","Faktor cuaca sekiranya sukan berlangsung di luar negara","Sikap individualistik","(Mana-mana jawapan munasabah — Max 3m)"]},{"l":"c","q":"Rakyat Malaysia berlumba-lumba untuk memenangi pertandingan di peringkat antarabangsa dalam pelbagai bidang. Jelaskan kepentingan mengharumkan nama negara di persada dunia.","m":4,"a":[{"f":"Negara akan dipandang tinggi / imej negara meningkat","h":["Mereka akan kagum dengan keupayaan negara di peringkat antarabangsa"]},{"f":"Memperkenalkan negara kepada negara luar","h":["Menarik minat orang luar untuk mengenali negara dengan lebih dekat"]},{"f":"Mengukuhkan hubungan dalam pelbagai bidang","h":["Jurulatih luar berminat untuk melatih atlet negara kerana berbakat"]}]}]},{"n":6,"sec":"B","topic":"Kerjasama Antarabangsa — PBB","title":"Kerjasama Malaysia dengan PBB","note":"Bahagian B — Jawab SATU soalan sahaja (Soalan 6 atau Soalan 7)","stim":"Pertubuhan Bangsa-Bangsa Bersatu (PBB) ialah sebuah pertubuhan antarabangsa yang ditubuhkan pada 24 Oktober 1945. Matlamat utamanya adalah untuk memelihara keamanan dan keselamatan sejagat, mempromosikan hak asasi manusia, serta mengeratkan kerjasama antarabangsa. PBB beribu pejabat di New York, Amerika Syarikat, dan mempunyai 193 negara anggota. Malaysia secara rasmi menyertai pertubuhan ini sebagai negara anggota ke-92 pada tahun 1957. (Sumber: https://ms.wikipedia.org/wiki/Pertubuhan_Bangsa-Bangsa_Bersatu)","marks":10,"parts":[{"l":"a","q":"Senaraikan contoh agensi di bawah PBB.","m":2,"a":["FAO (Pertubuhan Makanan dan Pertanian)","ICAO (Pertubuhan Penerbangan Awam Antarabangsa)","IFAD (Tabung Antarabangsa bagi Pembangunan Pertanian)","ILO (Pertubuhan Buruh Antarabangsa)","IMF (Tabung Kewangan Antarabangsa)","IMO (Pertubuhan Maritim Antarabangsa)","ITU (Kesatuan Telekomunikasi Antarabangsa)","UNESCO (Pertubuhan Pendidikan, Sains dan Kebudayaan PBB)","UNIDO / WHO / WIPO / WMO / UN Tourism","(Max 2m — nyatakan mana-mana 2)"]},{"l":"b","q":"Malaysia sentiasa bekerjasama dengan PBB dalam pelbagai misi kemanusiaan dan keamanan antarabangsa. Huraikan kepentingan kerjasama Malaysia dengan PBB demi kesejahteraan masyarakat sejagat.","m":8,"kbat":true,"a":["Mengekalkan keamanan dan keselamatan sejagat","Memperjuangkan hak asasi manusia","Menyalurkan bantuan kemanusiaan kepada mangsa","Meningkatkan imej negara di peringkat antarabangsa","Mengeratkan hubungan diplomatik dengan negara lain","Membuktikan komitmen Malaysia terhadap tanggungjawab global","(Aras 4: 7-8m; Aras 3: 5-6m; Aras 2: 3-4m; Aras 1: 1-2m)"]}]},{"n":7,"sec":"B","topic":"Integriti — Amanah","title":"Dilema Lalissa — Integriti Individu","note":"Bahagian B — Jawab SATU soalan sahaja (Soalan 6 atau Soalan 7)","stim":"Lalissa memegang jawatan sebagai Bendahari Kelab Kebudayaan di sekolahnya. Dia merupakan seorang yang amanah dalam mengutip dan menyimpan yuran kelab. Suatu hari, ibu Lalissa terlibat dalam kemalangan. Keluarga Lalissa tidak mampu untuk membiayai kos rawatan ibunya.\n\nDisebabkan keadaan yang terdesak, Lalissa menggunakan duit kelabnya untuk membayar kos rawatan ibunya. Setelah mendapat wang daripada insurans perlindungan ibunya, Lalissa memulangkan sebahagian wang tersebut.","marks":10,"parts":[{"l":"a","q":"Wajarkah tindakan Lalissa tersebut? Berikan justifikasi anda berdasarkan penaakulan moral.","m":2,"a":["Tidak wajar","Hilang kepercayaan guru dan rakan terhadapnya","Tindakan tersebut salah di sisi undang-undang","Menjejaskan imej diri dan keluarga","(Max 2m)"]},{"l":"b","q":"Integriti harus dipupuk dalam diri setiap individu bagi melahirkan insan yang amanah dan jujur dalam setiap perlakuan. Huraikan kepentingan integriti individu dalam kehidupan harian.","m":8,"kbat":true,"a":[{"f":"Dipecat daripada jawatannya / masa hadapan terjejas","h":["Dijauhi oleh rakan-rakan","Dipersenda atau dihina oleh rakan","Mengalami trauma"]},{"f":"Menjejaskan imej diri dan keluarga","h":["Hidup dalam keadaan tertekan","Menjejaskan institusi kekeluargaan","Berlaku pergaduhan anggota-anggota keluarga","Maruah diri dan keluarga tercalar"]}]}]},{"n":8,"sec":"C","topic":"Patriotisme — Kedaulatan Negara","title":"Mempertahankan Kedaulatan Negara","stim":"Langkah mempertahankan kedaulatan negara menjadi tanggungjawab setiap warganegara. Kedaulatan negara diperoleh daripada hasil perjuangan dan pengorbanan generasi dahulu. Generasi sekarang haruslah memahami kepentingan mempertahankan kedaulatan negara yang dinikmati.","marks":20,"parts":[{"l":"a","q":"Senaraikan ciri negara berdaulat.","m":4,"a":["Merdeka","Beridentiti nasional","Bermaruah dan berwibawa","Berstruktur pemerintahan sendiri","Bebas daripada pengaruh luar","(Max 4m)"]},{"l":"b","q":"Sebagai rakyat Malaysia yang berjiwa merdeka, huraikan tindakan yang patut diambil bagi menangani isu-isu yang menggugat kedaulatan negara. Jawapan anda perlu disokong dengan nilai-nilai universal.","m":8,"kbat":true,"a":[{"f":"Meningkatkan semangat cinta akan negara [Nilai: Patriotisme]","h":["Rakyat harus memuliakan lambang-lambang negara","Taat setia kepada raja dan negara dan tidak mengkhianati negara","Penekanan Pendidikan Sivik dan Sejarah","Penguatkuasaan undang-undang seperti Akta Hasutan","Bersedia berkorban demi kedaulatan negara"]},{"f":"Tingkatkan perpaduan dalam negara [Nilai: Toleransi, Betanggungjawab, Rasional]","h":["Rakyat harus menerima dan menghargai agama dan kepercayaan semua kaum","Rakyat haruslah belajar hidup bertolak ansur untuk mengelakkan pertelingkahan demi kesejahteraan negara","Perpaduan antara kaum penting bagi membentuk semangat nasionalisme agar rakyat Malaysia dapat bersatu-padu","Perpaduan membawa kepada pembangunan dan kemajuan negara"]}]},{"l":"c","q":"Terangkan cabaran yang boleh menggugat usaha untuk mengekalkan kedaulatan negara.","m":8,"kbat":true,"a":[{"f":"Generasi muda kurang semangat cinta akan negara","h":["Generasi muda tidak pernah merasai kesusahan hidup semasa zaman penjajahan dulu","Mereka dilimpahi dengan nikmat dan kesenangan sehingga tidak lagi menitikberatkan semangat nasionalisme","Contohnya, golongan muda kini hanya pentingkan kerjaya dan lebih mudah berhijrah ke negara asing jika mendapat tawaran gaji yang lebih lumayan"]},{"f":"Taraf ekonomi dan sosial yang tidak seimbang rakyat Malaysia","h":["Jurang sosioekonomi antara kaum di Malaysia agak ketara","Jurang sosioekonomi antara penduduk bandar dan luar bandar","Wujud ketidakpuasan dalam kalangan masyarakat dalam pelbagai bidang seperti peluang Pendidikan dan pekerjaan"]}]}]},{"n":9,"sec":"C","topic":"Semangat Bermasyarakat — Program Komuniti","title":"Program Komuniti dan Kesejahteraan Bersama","stim":"Teliti maklumat di bawah dan jawab soalan yang diberikan.\n\nProgram Khidmat Bantu Di Rumah (KBDR) — 'Sentuhan Kasih, Membawa Sinar Harapan'\nAnjuran: Jabatan Kebajikan Masyarakat (JKM) dengan kerjasama Kementerian Pembangunan Wanita, Keluarga dan Masyarakat (KPWKM)\n\nSasaran: Warga emas yang tinggal bersendirian; Orang Kurang Upaya (OKU) yang memerlukan sokongan; Keluarga yang memerlukan bantuan penjagaan ahli keluarga.\n\nObjektif Program: Aktiviti Sosial & Sokongan Emosi (Menemani dan bersembang untuk menceriakan hari mereka); Bantuan Fizikal Ringan (Membantu mengemas rumah dan pengurusan diri mereka); Urusan Kesihatan (Membantu mengiringi klien ke klinik atau hospital untuk rawatan).","marks":20,"parts":[{"l":"a","q":"Selain program di atas, berikan contoh aktiviti komuniti yang boleh dilaksanakan demi kesejahteraan bersama.","m":4,"a":["Aktiviti gotong royong Perdana / Program Kitar Semula","Aktiviti Bank Makanan","Aktiviti Kunjungan Kasih / Program Sukarelawan","Program Rukun Tetangga","Aktiviti Sukaneka / Aktiviti Senaman","Aktiviti Saringan Kesihatan Percuma / Program Derma Darah","(Mana-mana jawapan yang munasabah — Max 4m)"]},{"l":"b","q":"Ramalkan kesan jika kurangnya penglibatan masyarakat dalam program seperti di atas.","m":8,"kbat":true,"a":[{"f":"Kesihatan mental dan emosi terjejas [Watak: warga tua/golongan tua]","h":["Golongan tua akan berasa terpinggir","Mengalami sindrom pengasingan diri/kemurungan kritikal","Menarik diri daripada komuniti/tidak mahu berinteraksi","Hidup dalam ketakutan dan kebimbangan"]},{"f":"Boleh menjejaskan pembangunan negara","h":["Beban kerajaan bertambah untuk membantu golongan tersebut","Menyalurkan banyak dana untuk rawatan perubatan","Pusat jagaan kerajaan dan swasta mengalami lambakan permohonan kemasukan"]},{"f":"Kesihatan fizikal dan keselamatan terancam/terjejas","h":["Tidak mendapat rawatan berkala/tiada pemantauan khusus","Gagal ikuti temujanji susulan/pengambilan ubat-ubatan tidak disambung","Kecederaan akibat pingsan atau terjatuh","Masalah malnutrisi akibat pemakanan tidak seimbang"]}]},{"l":"c","q":"Bersetujukah anda bahawa penglibatan diri dalam program komuniti sangat penting untuk mengatasi masalah yang dihadapi oleh negara kita? Justifikasikan jawapan anda berdasarkan nilai-nilai universal yang telah dipelajari.","m":8,"kbat":true,"a":[{"f":"Mengurangkan kes gejala sosial dan jenayah [Nilai: Kerjasama, Bertanggungjawab, Kasih Sayang] — Setuju","h":["Membantu memantau kes negatif/pengawasan kejiranan","Ambil berat situasi sekeliling","Kes dilaporkan lebih awal","Mengurangkan niat negatif/cubaan melakukan kes jenayah"]},{"f":"Mengukuhkan perpaduan","h":["Memupuk sikap tolong menolong","Interaksi antara satu sama lain membina rasa cinta/tolak ansur","Membina jaringan keselamatan sosial/rasa percaya antara satu sama lain"]},{"f":"Mengurangkan beban kerajaan","h":["Memupuk sikap sukarelawan/membantu mangsa bencana","Bantuan dapat disalurkan lebih awal/cepat","Kebajikan mangsa lebih terjamin","Agihan bantuan lebih banyak dan pelbagai"]}]}]}]});
+
+/* ---- Moral/data/moral-melaka-set1-2026-p1.js ---- */
+'use strict';
+/* P.Moral K1 — Melaka Set 1 · Soalan Pra Percubaan SPM 2026 (Julai) */
+window.SPM.register({"meta":{"id":"moral-melaka-set1-2026-p1","subject":"Pendidikan Moral","state":"Melaka Set 1","year":2026,"paper":1,"code":"1225/1","source":"Soalan Pra Percubaan SPM 2026 — Melaka (Set 1, Julai)","answers":"skema","kind":"trial","total":9,"ai_answers":false},"questions":[
+{"n":1,"sec":"A","topic":"Warisan Budaya — Adat Resam & Generasi Muda","title":"Melupakan Adat Resam Kaum","stim":"Era modenisasi dan kemajuan teknologi telah mengubah cara hidup manusia. Walau bagaimanapun, kebelakangan ini, ramai remaja dilihat semakin melupakan adat resam dan tradisi kaum masing-masing. Ada dalam kalangan mereka yang berasa malu dan menganggap amalan seperti memakai pakaian tradisional, makan menggunakan tangan, atau menunduk hormat apabila berselisih dengan orang tua sebagai 'ketinggalan zaman' (kolot). Sebaliknya, mereka lebih selesa mengagungkan gaya hidup dan budaya Barat dalam kehidupan seharian.","marks":10,"parts":[
+{"l":"a","q":"Wajarkah remaja menganggap adat resam dan tradisi kaum sebagai sesuatu yang 'ketinggalan zaman'? Berikan alasan anda.","m":2,"a":["Tidak wajar bagi remaja menganggap adat resam sebagai sesuatu yang ketinggalan zaman.","Hal ini kerana adat resam merupakan identiti dan kebanggaan sesuatu kaum.","(Boleh juga: Adat resam ialah warisan berharga nenek moyang kita.)"]},
+{"l":"b","q":"Jelaskan perasaan anda apabila melihat warisan adat resam bangsa semakin dilupakan oleh generasi muda.","m":3,"a":["Saya berasa sangat sedih dan kecewa apabila melihat warisan adat resam bangsa semakin dilupakan.","Perasaan ini timbul kerana warisan budaya yang dijaga oleh nenek moyang kita selama ini akan hilang begitu sahaja.","Selain itu, saya juga bimbang generasi akan datang tidak lagi kenal akan asal usul keturunan mereka sendiri."]},
+{"l":"c","q":"Sebagai seorang remaja yang menghargai warisan bangsa, terangkan cara anda mengekalkan adat resam dan tradisi kaum anda supaya tidak pupus ditelan zaman.","m":3,"a":["Pertama, saya akan memakai pakaian tradisional dengan rasa bangga terutamanya pada musim perayaan.","Selain itu, saya akan belajar cara-cara memasak makanan tradisional bangsa saya daripada ibu bapa di rumah.","Akhir sekali, saya akan menggunakan media sosial seperti TikTok untuk mempromosikan keunikan budaya kaum saya kepada rakan-rakan yang lain."]},
+{"l":"d","q":"Nyatakan dua nilai universal yang patut diamalkan oleh remaja masa kini terhadap adat resam masyarakat majmuk.","m":2,"a":["Nilai hormat dan nilai rasional.","(Boleh juga: nilai harga diri / nilai bertanggungjawab)"]}
+]},
+{"n":2,"sec":"A","topic":"Pengurusan Masa — Ketidakpatuhan Masa","title":"Sikap Membuang Masa (Farid)","stim":"Rakan sekelas anda, Farid, sering datang lewat ke sekolah. Selain itu, dia juga kerap kali gagal menyiapkan kerja sekolah dan kerja kursus pada tarikh yang ditetapkan oleh guru. Apabila ditanya, Farid memberikan alasan bahawa dia terlalu leka bermain permainan video (game) di telefon pintarnya sehingga lewat malam. Akibat sikapnya yang suka membuang masa ini, prestasi akademiknya merosot teruk dan dia sering dipanggil oleh guru disiplin.","marks":10,"parts":[
+{"l":"a","q":"Berdasarkan petikan, nyatakan dua kesan buruk sikap ketidakpatuhan masa tersebut terhadap Farid.","m":2,"a":["Prestasi pelajarannya akan semakin merosot.","Dia akan dikenakan tindakan disiplin oleh pihak sekolah kerana sering datang lewat."]},
+{"l":"b","q":"Wajarkah sikap yang ditunjukkan oleh Farid sebagai seorang murid? Berikan alasan anda.","m":2,"a":["Pada pendapat saya, sikap yang ditunjukkan oleh Farid adalah tidak wajar.","Hal ini kerana masa itu emas dan perbuatan membuang masa hanya akan menyusahkan dirinya sendiri pada masa hadapan."]},
+{"l":"c","q":"Jelaskan perasaan anda apabila melihat rakan anda mensia-siakan masa mudanya dengan perkara yang tidak berfaedah.","m":3,"a":["Saya berasa sangat sedih dan kecewa melihat sikap Farid.","Perasaan ini timbul kerana dia mensia-siakan peluang remajanya untuk menuntut ilmu.","Saya juga bimbang dia akan keciciran dalam pelajaran dan sukar mendapat pekerjaan kelak."]},
+{"l":"d","q":"Sebagai rakan yang prihatin, terangkan cara-cara yang boleh anda lakukan untuk membantu Farid menguruskan masanya dengan lebih baik.","m":3,"a":["Cara saya membantu Farid ialah saya akan menasihatinya secara peribadi supaya mengurangkan masa bermain permainan video pada waktu malam.","Selain itu, saya akan membantu Farid membuat satu jadual waktu harian yang teratur.","Akhir sekali, saya akan mengajaknya mengulang kaji pelajaran bersama-sama di perpustakaan agar masanya terisi dengan aktiviti berfaedah."]}
+]},
+{"n":3,"sec":"A","topic":"Tanggungjawab Sosial — Kesukarelawanan","title":"Kurangnya Penglibatan Remaja dalam Kerja Amal","stim":"Pada masa kini, penglibatan remaja dalam aktiviti kerja amal dan bakti di dalam masyarakat dilihat semakin merosot. Kebanyakan remaja lebih gemar menghabiskan masa lapang mereka dengan aktiviti yang bersifat peribadi seperti bermain permainan video atau melayari media sosial. Mereka sering memberi alasan bahawa aktiviti kemasyarakatan adalah sesuatu yang membosankan dan membuang masa. Tanpa kesedaran tentang kepentingan berbakti, nilai perikemanusiaan dan semangat kerjasama dalam diri remaja akan semakin pudar.","marks":10,"parts":[
+{"l":"a","q":"Jelaskan dua kesan sekiranya remaja terus kurang melibatkan diri dalam aktiviti kerja amal.","m":2,"a":["Semangat kerjasama dalam diri remaja akan semakin pudar.","Remaja menjadi bersikap individualistik (mementingkan diri sendiri).","Nilai perikemanusiaan tidak dapat dipupuk dalam diri remaja. (Pilih 2)"]},
+{"l":"b","q":"Mengapakah ramai remaja pada masa kini kurang berminat untuk menyertai aktiviti kesukarelawanan?","m":2,"a":["Mereka lebih suka menghabiskan masa dengan gajet atau media sosial.","Mereka menganggap aktiviti tersebut membosankan dan membuang masa.","Kurang pendedahan dan galakan daripada ibu bapa atau pihak sekolah. (Pilih 2)"]},
+{"l":"c","q":"Jelaskan perasaan anda apabila melihat segelintir rakan sebaya anda langsung tidak mahu membantu masyarakat yang dalam kesusahan.","m":3,"a":["Emosi: Saya berasa sangat sedih / kecewa. [1m]","Alasan 1: Perasaan ini timbul kerana mereka tidak mempunyai sikap perikemanusiaan terhadap orang lain. [1m]","Alasan 2: Saya juga bimbang mereka akan membesar menjadi insan yang sombong dan tidak peduli tentang masyarakat. [1m]"]},
+{"l":"d","q":"Sebagai seorang remaja yang berhemah, cadangkan langkah-langkah yang boleh dilakukan oleh pihak sekolah untuk menarik minat murid menyertai aktiviti kerja amal.","m":3,"a":["Pihak sekolah perlu memberikan markah kokurikulum yang lebih tinggi kepada murid yang aktif dalam kerja amal.","Pihak sekolah boleh menganjurkan program khidmat masyarakat yang lebih menarik dan menyeronokkan.","Pihak sekolah perlu memberikan sijil penghargaan atau hadiah kepada murid yang menyertai aktiviti amal.","Guru boleh membawa murid menyertai lawatan sambil belajar ke rumah orang tua atau anak yatim untuk membuka mata mereka. (Pilih 3)"]}
+]},
+{"n":4,"sec":"A","topic":"Patriotisme — Keselamatan Negara","title":"Ancaman Keselamatan di Kawasan Sempadan","stim":"Sempadan negara yang luas, baik di daratan mahupun di perairan, sering kali menjadi titik panas bagi aktiviti jenayah rentas sempadan. Pencerobohan oleh pendatang asing tanpa izin (PATI), aktiviti penyeludupan barangan terlarang, serta ancaman daripada kumpulan pengganas yang cuba menyusup masuk adalah antara isu utama yang menggugat kedaulatan negara. Pihak berkuasa seperti Polis Diraja Malaysia (PDRM) dan Agensi Kawalan Sempadan Malaysia (AKSEM) sering mengadakan rondaan, namun cabaran geografi yang mencabar menjadikan tugas memantau setiap inci sempadan negara bukanlah satu tugas yang mudah.","marks":10,"parts":[
+{"l":"a","q":"Berdasarkan petikan, nyatakan dua aktiviti jenayah yang mengancam keselamatan negara di kawasan sempadan.","m":2,"a":["Pencerobohan oleh pendatang asing tanpa izin (PATI).","Aktiviti penyeludupan barangan terlarang.","Ancaman daripada kumpulan pengganas. (Pilih mana-mana dua)"]},
+{"l":"b","q":"Pada pendapat anda, mengapakah aktiviti penyeludupan di kawasan sempadan sukar dibanteras sepenuhnya? Berikan dua alasan.","m":2,"a":["Kawasan sempadan negara yang terlalu luas untuk dipantau sepenuhnya.","Kawasan geografi yang mencabar seperti hutan tebal dan laut yang luas.","Adanya bantuan daripada penduduk tempatan yang bersubahat dengan penyeludup. (Pilih mana-mana dua)"]},
+{"l":"c","q":"Jelaskan perasaan anda apabila mengetahui terdapat segelintir rakyat tempatan yang bersubahat dengan sindiket penyeludupan demi keuntungan peribadi.","m":3,"a":["Emosi: Saya berasa sangat marah / kecewa. [1m]","Alasan 1: Ini kerana tindakan mereka telah mengkhianati amanah dan sanggup menggadaikan keselamatan negara demi duit. [1m]","Alasan 2: Perbuatan mereka sangat tidak bertanggungjawab kerana memudahkan penjenayah masuk ke dalam negara kita. [1m]"]},
+{"l":"d","q":"Sebagai rakyat yang patriotik, cadangkan tindakan yang boleh anda lakukan bagi membantu pihak berkuasa membendung ancaman keselamatan di kawasan sempadan.","m":3,"a":["Saya akan segera melaporkan kepada pihak polis jika melihat orang asing yang mencurigakan di kawasan tempat tinggal saya.","Saya akan sentiasa menyokong usaha kerajaan dengan tidak menyebarkan maklumat palsu tentang keselamatan negara di media sosial.","Saya akan menyertai program kesedaran keselamatan negara atau ceramah patriotisme untuk menambah ilmu tentang ancaman semasa.","Saya akan menasihati rakan-rakan agar tidak membeli barangan seludup kerana itu menyokong aktiviti haram tersebut. (Pilih 3)"]}
+]},
+{"n":5,"sec":"A","topic":"Perikemanusiaan — Golongan Terpinggir","title":"Membantu Golongan Gelandangan dan OKU","stim":"Golongan gelandangan dan Orang Kurang Upaya (OKU) merupakan kelompok masyarakat yang sering terpinggir daripada arus perdana. Kebanyakan daripada mereka hidup dalam serba kekurangan dan sangat memerlukan bantuan serta sokongan daripada masyarakat sekeliling. Namun, segelintir masyarakat masih memandang serong dan mengabaikan kebajikan golongan ini. Sikap tidak peduli ini menyebabkan nasib mereka terus terabai.","marks":10,"parts":[
+{"l":"a","q":"Berikan dua contoh bantuan yang boleh diberikan oleh masyarakat kepada golongan gelandangan.","m":2,"a":["Menyumbang makanan dan minuman yang bersih.","Memberi pakaian terpakai yang masih elok."]},
+{"l":"b","q":"Apakah cabaran yang dihadapi oleh golongan OKU untuk menjalani kehidupan harian yang normal?","m":2,"a":["Mempunyai pergerakan yang terhad atau sukar bergerak.","Sukar untuk mendapat pekerjaan kerana dipandang rendah oleh majikan."]},
+{"l":"c","q":"Jelaskan kepentingan sikap prihatin masyarakat terhadap golongan gelandangan dan OKU.","m":3,"a":["Dapat meringankan beban hidup yang ditanggung oleh mereka.","Dapat mengelakkan golongan ini daripada berasa disisihkan oleh masyarakat."]},
+{"l":"d","q":"Jelaskan nilai universal yang patut diamalkan oleh masyarakat untuk membantu meningkatkan kualiti hidup golongan gelandangan dan OKU.","m":3,"a":[{"f":"Nilai Baik Hati bermaksud sikap peka terhadap keperluan dan kebajikan orang lain dengan memberi bantuan secara ikhlas.","h":["Masyarakat yang mengamalkan nilai ini akan sentiasa menghulurkan bantuan sokongan moral seperti melayan golongan gelandangan dan OKU dengan penuh sopan santun.","Kita akan lebih prihatin dengan menyediakan keperluan asas seperti makanan dan tempat perlindungan kepada gelandangan tanpa mengharapkan sebarang balasan.","Kesimpulan: Sikap ini sangat penting supaya golongan gelandangan dan OKU berasa dihargai, seterusnya membantu meningkatkan kualiti hidup mereka agar lebih terbela."]}]}
+]},
+{"n":6,"sec":"B","note":"Bahagian B — Jawab SATU soalan sahaja (Soalan 6 atau Soalan 7)","topic":"Perikemanusiaan — Bencana Alam","title":"Membantu Mangsa Bencana Alam","stim":"[Gambar: Orang ramai berjalan dalam banjir, membantu jiran sesama sendiri.] Bencana alam seperti banjir dan kebakaran sering kali menyebabkan mangsa kehilangan tempat tinggal dan harta benda dalam sekelip mata. Masyarakat perlu bangkit untuk menghulurkan bantuan bagi memastikan kelangsungan hidup mereka terjaga.","marks":10,"parts":[
+{"l":"a","q":"Huraikan kepentingan amalan memberi bantuan kepada mangsa bencana alam.","m":5,"a":["Membantu mangsa mendapatkan keperluan asas seperti makanan, minuman, dan pakaian dengan segera.","Dapat mengurangkan beban kewangan yang ditanggung oleh mangsa akibat kehilangan harta benda.","Membantu menenangkan emosi dan memberi sokongan moral kepada mangsa agar mereka tidak terlalu berasa sedih atau putus asa.","Dapat memupuk semangat perpaduan dan kerjasama antara masyarakat tanpa mengira kaum.","Menunjukkan sifat perikemanusiaan dan keprihatinan masyarakat terhadap kesusahan orang lain. (Pilih 5)"]},
+{"l":"b","q":"Berdasarkan nilai universal yang dipelajari, bagaimanakah anda boleh mengajak rakan-rakan untuk menyertai misi bantuan kemanusiaan tersebut?","m":5,"a":["Nilai: Nilai Bertanggungjawab / Nilai Kasih Sayang / Nilai Kerjasama. [1m]","Berkongsi maklumat tentang misi bantuan tersebut di media sosial untuk menarik minat rakan-rakan. [1m]","Mengajak rakan-rakan untuk menderma barang keperluan harian seperti makanan kering atau pakaian terpakai. [1m]","Menerangkan kepada rakan tentang kesusahan yang dihadapi mangsa supaya mereka berasa simpati. [1m]","Mendaftar sebagai sukarelawan bersama-sama dengan rakan agar kita boleh bergerak dalam kumpulan yang lebih besar. [1m]"]}
+]},
+{"n":7,"sec":"B","topic":"Tanggungjawab Kewangan — Kesederhanaan","title":"Puan Maria dan Perbelanjaan Kad Kredit Tidak Terkawal","stim":"[Gambar: Seorang perempuan tertekan di depan laptop, dikelilingi bil dan kad kredit.] Puan Maria sering menggunakan kad kredit secara tidak terkawal untuk membeli-belah barangan berjenama mewah serta barangan kelengkapan rumah secara dalam talian demi mengekalkan imejnya di media sosial. Akibatnya, beliau kini hanya mampu membuat bayaran minimum bulanan bagi kad kreditnya dan mula dikejar oleh pihak bank kerana tunggakan yang semakin meningkat.","marks":10,"parts":[
+{"l":"a","q":"Wajarkah tindakan Puan Maria? Berikan hujah anda berdasarkan nilai universal yang telah dipelajari.","m":5,"a":["Pendirian: Tidak wajar. [1m]","Nilai Universal: Nilai Kesederhanaan / Nilai Bertanggungjawab (pilih satu). [1m]","Fakta: Puan Maria berbelanja melebihi kemampuan kewangan diri sendiri. [1m]","Huraian: Beliau terlalu mementingkan imej mewah di media sosial berbanding keperluan hidup sebenar. [1m]","Kesan: Akibatnya, beliau menanggung hutang yang banyak dan mengalami tekanan perasaan apabila dikejar oleh pihak bank. [1m]"]},
+{"l":"b","q":"Sebagai rakan yang prihatin, terangkan tindakan yang boleh anda syorkan kepada Puan Maria untuk menyelesaikan masalah kewangan yang dihadapinya.","m":5,"a":[{"f":"Mencadangkan Puan Maria supaya berhenti menggunakan kad kredit untuk membeli barang yang tidak perlu.","h":["Langkah ini penting untuk mengelakkan tunggakan hutang daripada terus meningkat."]},{"f":"Menyarankan beliau berjumpa dengan pihak bank untuk berbincang mengenai penyusunan semula jadual pembayaran hutang.","h":["Ini membolehkan beliau membayar hutang secara ansuran yang lebih kecil mengikut kemampuan kewangan semasa."]},{"f":"Menyarankan beliau untuk membuat bajet bulanan yang lebih ketat dengan mendahulukan keperluan asas sebelum kehendak.","h":["Ini memastikan beliau tidak membelanjakan wang untuk perkara yang bukan keutamaan."]}]}
+]},
+{"n":8,"sec":"C","topic":"Warisan Budaya — Permainan Tradisional","title":"Mengekalkan Permainan Tradisional Masyarakat Majmuk","stim":"[Gambar: Kanak-kanak pelbagai kaum bermain permainan tradisional di luar — congkak, batu seremban.] Permainan tradisional seperti congkak, batu seremban, sepak raga, tarian naga, dan kabaddi merupakan khazanah warisan yang melambangkan keunikan identiti masyarakat majmuk di Malaysia. Namun begitu, dalam meniti arus pemodenan, permainan ini didapati semakin dipinggirkan oleh generasi muda. Lambakan teknologi dan kegilaan terhadap gajet menyebabkan ramai remaja masa kini menganggap permainan tradisional sebagai sesuatu yang membosankan dan 'ketinggalan zaman'. Sekiranya keadaan ini dibiarkan, keunikan budaya silang kaum yang menjadi ejen perpaduan di Malaysia akan lenyap ditelan zaman.","marks":20,"parts":[
+{"l":"a","q":"Jelaskan kepentingan mengekalkan permainan tradisional yang bercirikan pelbagai budaya kepada keharmonian masyarakat majmuk.","m":5,"a":["Dapat merapatkan hubungan silaturahim antara kaum di Malaysia kerana permainan tradisional biasanya dimainkan secara berkumpulan yang memerlukan interaksi sosial.","Dapat memupuk semangat perpaduan dan kerjasama yang erat apabila pemain yang berbeza latar belakang bekerjasama untuk memenangi sesuatu permainan.","Penting bagi mengekalkan identiti budaya bangsa agar keunikan masyarakat majmuk di Malaysia sentiasa dihormati.","Dapat mengelakkan konflik perkauman kerana masyarakat saling menghargai warisan budaya kaum lain. (Pilih 5m)"]},
+{"l":"b","q":"Huraikan perasaan anda apabila melihat generasi muda masa kini lebih mengagungkan gajet berbanding permainan warisan tradisi kaum mereka sendiri. Berikan alasan anda.","m":5,"a":["Saya berasa sangat sedih dan bimbang melihat situasi ini.","Perasaan ini timbul kerana gajet telah menyebabkan remaja menjadi bersikap individualistik dan kurang bergaul dengan orang sekeliling.","Saya berasa kecewa kerana warisan nenek moyang yang melambangkan identiti bangsa kita akan pupus ditelan zaman jika tidak dipertahankan oleh generasi muda.","Keadaan ini amat merisaukan kerana kekurangan interaksi fizikal silang budaya boleh menyebabkan semangat perpaduan kaum dalam kalangan generasi baru menjadi semakin longgar."]},
+{"l":"c","q":"Sebagai seorang remaja yang prihatin, terangkan tindakan yang boleh anda lakukan untuk menarik minat rakan sebaya yang berbilang kaum agar bersama-sama memelihara permainan tradisional.","m":5,"a":["Saya akan mengajak rakan-rakan berbilang kaum untuk bermain bersama-sama pada waktu petang seperti bermain galah panjang atau batu seremban.","Saya akan menggunakan media sosial untuk memuat naik video tutorial cara bermain permainan tradisional yang menarik bagi membuka mata rakan-rakan.","Saya akan mengajar teknik permainan yang betul kepada rakan yang tidak tahu supaya mereka berasa seronok untuk mencuba.","Saya boleh menjadikan set permainan tradisional yang comel sebagai hadiah hari jadi untuk rakan-rakan bagi memupuk minat mereka secara halus. (Pilih 5m)"]},
+{"l":"d","q":"Nyatakan peranan yang wajar dimainkan oleh pihak sekolah dengan sokongan agensi kerajaan bagi menyemarakkan semula permainan tradisional di peringkat sekolah.","m":5,"a":["Pihak sekolah boleh menubuhkan Kelab Permainan Tradisional sebagai salah satu aktiviti kokurikulum yang wajib di sekolah.","Pihak sekolah boleh bekerjasama dengan Jabatan Kebudayaan dan Kesenian Negara untuk menganjurkan Karnival Permainan Tradisional di peringkat sekolah.","Pihak sekolah juga boleh menyediakan fasiliti atau gelanggang khas di kawasan sekolah supaya murid-murid dapat bermain dengan selamat pada waktu rehat atau selepas sesi persekolahan. (Pilih 5m)"]}
+]},
+{"n":9,"sec":"C","topic":"Patriotisme — Produk Tempatan","title":"Mengagungkan Jenama Luar Berbanding Produk Tempatan","stim":"[Gambar: Kedai produk tempatan Malaysia sepi, kedai jenama antarabangsa penuh sesak dengan pembeli beratur panjang.] Pada masa kini, terdapat segelintir rakyat Malaysia yang mempunyai sikap terlalu mengagungkan barangan berjenama dari luar negara seperti pakaian, kasut, telefon pintar, dan juga makanan. Mereka sanggup berbelanja besar dan beratur panjang semata-mata untuk mendapatkan produk luar negara kerana menganggap ia melambangkan status yang tinggi. Sebaliknya, barangan buatan tempatan sering dipandang rendah, dianggap kurang berkualiti, dan dipinggirkan walaupun harga yang ditawarkan jauh lebih murah.","marks":20,"parts":[
+{"l":"a","q":"Jelaskan kesan negatif sekiranya masyarakat terus bersikap mengagungkan barangan jenama luar terhadap pembangunan negara kita.","m":5,"a":["Mata wang negara akan banyak mengalir ke luar negara, menyebabkan ekonomi dan pendapatan negara semakin merosot.","Lambakan barangan import akan menyebabkan pengeluar dan industri tempatan terpaksa gulung tikar atau bankrap.","Kesannya, keadaan ini akan menyebabkan peningkatan kadar pengangguran kerana ramai pekerja tempatan hilang pekerjaan.","Imej negara akan tercemar kerana rakyatnya sendiri tidak menyokong produk keluaran negara sendiri. (Pilih 5m)"]},
+{"l":"b","q":"Huraikan perasaan anda apabila melihat rakyat Malaysia terus meminggirkan produk keluaran tempatan. Berikan alasan anda.","m":5,"a":["Emosi: Sedih / Kecewa. (Wajib ada untuk markah perasaan) [1m]","Alasan 1: Produk tempatan sebenarnya sangat berkualiti tinggi dan setanding dengan jenama luar negara. [1m]","Alasan 2: Sikap rakyat ini menunjukkan mereka telah luntur semangat patriotik dan tidak cinta akan negara. [1m]","Alasan 3: Perbuatan ini menyebabkan kerugian besar kepada peniaga IKS tempatan. [1m]","Alasan 4: Kita sepatutnya bangga dan bersyukur dengan produk keluaran negara kita sendiri. [1m]"]},
+{"l":"c","q":"Berdasarkan nilai universal yang dipelajari, bagaimanakah anda boleh memainkan peranan untuk menggalakkan rakan-rakan menyokong barangan buatan Malaysia?","m":5,"a":["Nilai: Nilai Patriotisme / Nilai Bertanggungjawab / Nilai Rasional (pilih satu). [1m]","Menjadi suri teladan dengan menggunakan barangan tempatan dalam kehidupan seharian. [1m]","Mempromosikan produk tempatan di media sosial peribadi agar lebih ramai rakan yang nampak kelebihannya. [1m]","Membeli dan memberikan produk tempatan sebagai hadiah hari jadi kepada rakan-rakan. [1m]","Mengajak rakan-rakan pergi ke Ekspo atau Karnival Barangan Buatan Malaysia pada masa lapang untuk membuka mata mereka tentang kehebatan produk lokal. [1m]"]},
+{"l":"d","q":"Terangkan langkah-langkah yang patut diambil oleh pengeluar tempatan dan pihak kerajaan untuk meningkatkan keyakinan rakyat terhadap barangan keluaran tempatan.","m":5,"a":["(Pengeluar) Meningkatkan kualiti bahan dan ketahanan produk supaya tidak mudah rosak. [1m]","(Pengeluar) Menambah baik reka bentuk dan pembungkusan agar kelihatan lebih moden dan menarik minat pembeli. [1m]","(Pengeluar) Menawarkan harga yang lebih murah dan berpatutan. [1m]","(Kerajaan) Menggiatkan semula Kempen Beli Barangan Buatan Malaysia secara meluas. [1m]","(Kerajaan) Menaikkan cukai barangan import supaya rakyat beralih kepada produk lokal yang lebih berbaloi. [1m]"]}
+]}
+]});
+
+/* ---- Moral/data/moral-melaka-set2-2026-p1.js ---- */
+'use strict';
+/* P.Moral K1 — Melaka Set 2 · Percubaan SPM 2026 (Julai) */
+window.SPM.register({"meta":{"id":"moral-melaka-set2-2026-p1","subject":"Pendidikan Moral","state":"Melaka Set 2","year":2026,"paper":1,"code":"1225/1","source":"Peperiksaan Percubaan SPM 2026 — Melaka (Set 2, Julai)","answers":"skema","kind":"trial","total":9,"ai_answers":false},"questions":[
+{"n":1,"sec":"A","topic":"Keperibadian Mulia","title":"Remaja Jujur — Ammar Zainal","stim":"Artikel berita: Ammar Zainal, seorang remaja berusia 17 tahun, telah mengembalikan beg yang mengandungi wang tunai sebanyak RM5,000 kepada pemiliknya tanpa mengambil sebarang habuan. Tindakannya dipuji ramai sebagai contoh keperibadian mulia yang patut dicontohi.","marks":10,"parts":[
+{"l":"a","m":2,"q":"Nyatakan dua ciri berkeperibadian mulia berdasarkan situasi di atas.","a":["Jujur / Ikhlas","Amanah","Bertanggungjawab","Berintegriti","Amal nilai moral","Bersikap sederhana dalam pemikiran / pertuturan / perlakuan","Melakukan kebaikan tanpa mengharapkan balasan","Berusaha melakukan kebaikan"]},
+{"l":"b","m":3,"q":"Terangkan kepentingan keperibadian mulia. [Gunakan format Fakta + Huraian]","a":[{"f":"Disenangi ramai","h":["Individu yang berbudi pekerti mulia mudah diterima dan disukai oleh masyarakat sekeliling","Sifat ini juga dapat mengelakkan diri daripada dibenci atau diasingkan oleh rakan-rakan"]},{"f":"Sentiasa melakukan perkara positif","h":["Amalan murni ini mendorong seseorang untuk sentiasa berbuat baik dalam kehidupan harian","Sifat ini membantu remaja menjauhi kegiatan negatif / perbuatan yang melanggar undang-undang"]},{"f":"Menjamin kebahagiaan","h":["Kehidupan individu yang berakhlak mulia akan menjadi lebih aman, tenteram, dan gembira","Individu juga akan terhindar daripada perasaan bersalah, gelisah, atau konflik dengan orang lain"]},{"f":"Menjadi suri teladan","h":["Perbuatan baik yang ditunjukkan akan dicontohi oleh orang lain, terutamanya generasi muda","Keadaan ini dapat melahirkan lebih ramai masyarakat yang berakhlak tinggi dan prihatin"]},{"f":"Dihormati / dipandang mulia oleh orang lain","h":["Akhlak yang terpuji akan mengangkat maruah diri seseorang di mata masyarakat","Orang ramai akan menaruh kepercayaan penuh dan memberikan pandangan yang positif terhadap diri kita"]},{"f":"Mencapai matlamat hidup","h":["Disiplin diri dan nilai murni yang diamalkan membantu seseorang untuk berjaya dengan mudah","Individu yang berkeperibadian mulia lebih berfokus kepada masa depan yang cemerlang tanpa mudah terpesong"]}]},
+{"l":"c","m":3,"q":"Bagaimanakah anda mengamalkan keperibadian mulia dalam kehidupan seharian?","a":["Memulangkan barang / wang yang dijumpai kepada pemilik / pihak berkuasa / polis","Bercakap dengan sopan dan beradab ketika berkomunikasi dengan orang lain","Menyiapkan kerja sekolah yang diamanahkan mengikut masa yang ditetapkan","Membantu rakan yang dalam kesusahan tanpa mengharapkan sebarang balasan","Menghormati orang yang lebih tua seperti ibu bapa, guru, dan warga emas","Bergaul mesra dan bekerjasama dengan semua rakan tanpa membezakan bangsa atau agama","Menjaga etika di media sosial dengan tidak menyebarkan maklumat palsu atau komen negatif","Menepati masa dan hadir ke sekolah atau perjumpaan dengan awal","Mengakui kesalahan diri dengan berani dan meminta maaf apabila melakukan silap","Menjaga kebersihan kawasan persekitaran sekolah dan tempat awam secara sukarela"]},
+{"l":"d","m":2,"q":"Ramalkan kesan kepada masyarakat sekiranya sikap berkeperibadian mulia semakin pudar dalam kalangan remaja.","a":["Kes jenayah kecurian dan pecah amanah dalam masyarakat akan meningkat","Hubungan sesama ahli masyarakat menjadi semakin renggang","Masyarakat akan hilang kepercayaan antara satu sama lain","Amalan saling membantu dan tolong-menolong semakin pupus","Individu cenderung bersikap individualistik (mementingkan diri sendiri)","Tahap keselamatan penduduk di sesuatu kawasan terjejas","Nilai akhlak dan integriti dalam kalangan generasi muda terhakis","Suasana kehidupan masyarakat menjadi kurang harmoni dan tidak tenteram","Gejala sosial yang melanggar norma masyarakat berleluasa","Pandangan serong atau imej negatif masyarakat terhadap generasi muda meningkat"]}
+]},
+{"n":2,"sec":"A","topic":"Buli","title":"Kempen Anti-Buli di Sekolah","stim":"Poster kempen: 'BANTULAH HENTIKAN BULI DI SEKOLAH' — ilustrasi menunjukkan situasi buli berlaku di kawasan sekolah dan gesaan kepada semua warga sekolah untuk bersama-sama membanteras gejala buli.","marks":10,"parts":[
+{"l":"a","m":3,"q":"Nyatakan tiga faktor yang mendorong gejala buli dalam kalangan pelajar sekolah.","a":["Pengaruh rakan sebaya yang negatif","Kurang didikan agama dan nilai moral","Kurang perhatian dan kasih sayang daripada ibu bapa","Pengaruh media massa dan teknologi (paparan unsur keganasan / media sosial)","Ingin menunjuk-nunjuk kuasa atau kekuatan fizikal (perasaan ingin megah)","Masalah tekanan emosi (stres) atau masalah peribadi di rumah","Sikap mementingkan diri sendiri tanpa mengambil kira perasaan orang lain","Kurangnya pengawasan dan pemantauan daripada pihak sekolah di kawasan terpencil","Sikap benci atau prasangka buruk terhadap perbezaan individu (seperti rupa fizikal atau latar belakang)","Pernah menjadi mangsa buli pada masa lalu (dendam atau kitaran buli)"]},
+{"l":"b","m":3,"q":"Huraikan kesan gejala buli terhadap mangsa. [Gunakan format Fakta + Huraian]","a":[{"f":"Mangsa mengalami tekanan emosi dan kemurungan yang teruk","h":["Mangsa sentiasa berasa takut, resah, dan hilang keyakinan diri akibat sering diugut","Keadaan ini boleh mendorong mangsa mencederakan diri sendiri atau cuba membunuh diri"]},{"f":"Masalah kesihatan fizikal mangsa terjejas","h":["Mangsa mengalami kecederaan fizikal seperti lebam, luka, atau sakit badan akibat dipukul","Tekanan perasaan yang berpanjangan menyebabkan mangsa susah tidur malam dan hilang selera makan"]},{"f":"Pencapaian akademik mangsa merosot","h":["Mangsa sentiasa ketakutan dan hilang tumpuan semasa guru sedang mengajar di dalam kelas","Hal ini menyebabkan mangsa hilang minat ke sekolah atau kerap ponteng kelas"]},{"f":"Mangsa hilang keyakinan diri dan mengasingkan diri","h":["Mangsa berasa rendah diri, malu, serta menganggap diri mereka lemah dan tidak berguna","Mangsa menjadi pendiam, takut berkawan, dan tidak mahu bergaul dengan orang lain"]},{"f":"Mangsa mengalami trauma psikologi yang berpanjangan","h":["Kenangan pahit dibuli meninggalkan kesan mendalam dalam ingatan mangsa hingga ke peringkat dewasa","Mangsa mudah cemas, curiga dengan orang sekeliling, dan susah mempercayai orang lain"]},{"f":"Masa depan mangsa terjejas dan menjadi malap","h":["Kegagalan dalam pelajaran dan keciciran sekolah menyukarkan mangsa melanjutkan pelajaran ke peringkat tinggi","Mangsa akan menghadapi kesukaran untuk mendapatkan kerjaya yang stabil pada masa hadapan"]}]},
+{"l":"c","m":4,"q":"Cadangkan tindakan yang boleh dilakukan oleh pihak sekolah bagi membanteras gejala buli. [Gunakan format Fakta + Huraian]","a":[{"f":"Mengadakan kempen anti-buli","h":["Supaya murid tahu tentang kesan buruk perbuatan membuli"]},{"f":"Mengenakan hukuman tegas kepada pembuli","h":["Agar pelaku gerun dan tidak mengulangi kesalahan tersebut"]},{"f":"Memperkasakan Unit Bimbingan dan Kaunseling (UBK)","h":["Guru kaunseling boleh memberi khidmat nasihat kepada pembuli dan sokongan kepada mangsa"]},{"f":"Meningkatkan kawalan di tempat terpencil sekolah","h":["Guru boleh kerap meronda di kawasan sunyi seperti tandas atau tangga"]},{"f":"Bekerjasama dengan pihak berkuasa / polis / PDRM","h":["Pegawai Perhubungan Sekolah (PPS) boleh memberi ceramah pencegahan disiplin"]},{"f":"Memasang kamera litar tertutup (CCTV)","h":["Membolehkan pihak sekolah mengesan salah laku buli dengan cepat"]},{"f":"Mengaktifkan Pembimbing Rakan Sebaya (PRS)","h":["Rakan sebaya boleh membantu melaporkan kes buli secara senyap"]},{"f":"Menganjurkan aktiviti kokurikulum berunsur nilai murni","h":["Dapat memupuk sikap saling menghormati antara rakan sekolah"]}]}
+]},
+{"n":3,"sec":"A","topic":"Individu Glokal / Jati Diri","title":"Cabaran Individu Glokal — Produk Tempatan","stim":"Rencana: 'Mengejar Jenama Luar, Melupakan Identiti Sendiri: Cabaran Individu Glokal' — artikel membincangkan fenomena remaja Malaysia yang lebih gemar barangan jenama antarabangsa berbanding produk tempatan, dan implikasinya terhadap identiti dan ekonomi negara.","marks":10,"parts":[
+{"l":"a","m":2,"q":"Nyatakan dua nilai universal yang perlu ada pada seseorang individu untuk menyokong penggunaan barangan tempatan.","a":["Patriotisme","Kerajinan","Berdikari","Rasional"]},
+{"l":"b","m":2,"q":"Mengapakah ramai remaja lebih gemar menggunakan barangan antarabangsa berbanding produk tempatan?","a":["Menganggap mutu barangan antarabangsa lebih tinggi","Ingin menunjukkan status sosial yang mewah","Terpengaruh dengan iklan dan media sosial","Mengikut gaya hidup pempengaruh (influencer)","Mengikuti trend fesyen global terkini","Dipengaruhi oleh tekanan rakan sebaya","Beranggapan barangan tempatan kurang bergaya","Yakin dengan jaminan kualiti jenama luar","Kurang kesedaran jati diri dan semangat patriotisme","Mencari kepuasan diri menggayakan jenama terkenal"]},
+{"l":"c","m":3,"q":"Huraikan kesan terhadap ekonomi negara sekiranya rakyat Malaysia terus mengutamakan produk jenama luar. [Gunakan format Fakta + Huraian]","a":[{"f":"Pendapatan industri tempatan merosot","h":["Pengusaha kehilangan sumber jualan kerana rakyat pilih barangan luar","Perniagaan terpaksa ditutup dan menjejaskan punca pendapatan peniaga kecil"]},{"f":"Kadar pengangguran pekerja tempatan meningkat","h":["Kilang atau syarikat tempatan mengalami kerugian besar akibat tiada sambutan","Majikan terpaksa menghentikan pekerja atau menutup operasi perniagaan"]},{"f":"Pengaliran wang negara ke luar negara meningkat","h":["Rakyat terus membeli produk berjenama antarabangsa secara berterusan","Wang Malaysia banyak berpindah kepada syarikat asing dan merugikan negara"]},{"f":"Pertumbuhan Keluaran Dalam Negara Kasar (KDNK) merosot","h":["Sektor pembuatan dan perindustrian gagal mencatat nilai jualan tinggi","Ekonomi negara menjadi lemah akibat terlalu bergantung pada produk import"]},{"f":"Industri kraf tangan dan warisan negara terjejas","h":["Produk tradisional tidak mendapat permintaan kerana dipinggirkan generasi muda","Industri seni warisan tempatan akhirnya pupus akibat ketiadaan pembeli"]},{"f":"Peluang kerjaya golongan muda berkurangan","h":["Perniagaan tempatan yang tidak berkembang maju mengehadkan peluang pekerjaan","Belia tempatan menghadapi kesukaran untuk mendapatkan pekerjaan stabil"]}]},
+{"l":"d","m":3,"q":"Cadangkan langkah yang boleh dilakukan oleh pengusaha tempatan untuk menarik minat golongan muda membeli produk tempatan.","a":["Mengadakan promosi jualan murah atau potongan harga","Memperbaiki kualiti dan reka bentuk produk agar lebih moden","Memasarkan produk secara meluas menerusi platform media sosial","Menggunakan khidmat pempengaruh (influencer) untuk mengiklankan produk","Menyediakan reka bentuk pembungkusan yang lebih menarik dan eksklusif","Mengadakan jualan kilat secara atas talian (online)","Memberikan hadiah percuma atau cenderahati kepada pembeli","Menyediakan kemudahan perkhidmatan penghantaran terus ke rumah","Menawarkan mata ganjaran atau rebat tunai (cashback) kepada pelanggan setia","Menyertai pameran usahawan atau karnival belia di peringkat tempatan"]}
+]},
+{"n":4,"sec":"A","topic":"Pengurusan Kewangan / Menabung","title":"Strategi Bijak Pengurusan Kewangan — Menabung","stim":"Artikel: 'Menabung: Strategi Bijak Pengurusan Kewangan Masa Hadapan' — amalan menabung penting untuk perancangan kewangan; remaja yang bijak menguruskan wang sejak awal akan lebih bersedia menghadapi cabaran hidup di masa depan.","marks":10,"parts":[
+{"l":"a","m":2,"q":"Sebagai remaja, bagaimanakah anda mengamalkan tabiat menabung?","a":["Membuat perancangan perbelanjaan (bajet) harian atau mingguan","Menyimpan sekurang-kurangnya 10% daripada wang saku atau pendapatan setiap bulan","Mengutamakan barang keperluan asas berbanding kehendak mewah","Membuka akaun simpanan khas di institusi kewangan yang sah","Membawa bekal makanan dan minuman dari rumah ke sekolah","Mengumpul baki wang syiling ke dalam tabung khas","Mengelakkan diri daripada berhutang atau meminjam wang untuk perbelanjaan tidak penting","Membeli barangan mengikut kemampuan diri sendiri","Membuat catatan aliran wang keluar dan masuk setiap hari","Mengelakkan diri daripada terpedaya dengan skim cepat kaya atau perbelanjaan boros"]},
+{"l":"b","m":3,"q":"Terangkan kepentingan amalan menabung dan menyimpan wang. [Gunakan format Fakta + Huraian]","a":[{"f":"Wang simpanan boleh digunakan pada waktu kecemasan","h":["Untuk bayar kos rawatan ketika sakit atau baiki kerosakan","Mengelakkan diri daripada terpaksa meminjam duit orang lain"]},{"f":"Menjadi sumber kewangan untuk sambung belajar","h":["Boleh digunakan untuk membayar yuran pendaftaran universiti","Meringankan beban kewangan ibu bapa"]},{"f":"Mendidik diri supaya tidak bersikap boros","h":["Mengutamakan barang yang wajib berbanding barang mewah","Wang tidak dihabiskan pada perkara yang tidak berfaedah"]},{"f":"Membantu mengelakkan diri daripada terjerat dalam hutang","h":["Ada duit sendiri yang cukup tanpa perlu boros guna kad kredit","Menyelamatkan diri daripada risiko muflis"]},{"f":"Memupuk sikap berdisiplin dalam menguruskan wang","h":["Lebih pandai merancang duit keluar dan masuk setiap bulan","Menjadi lebih matang apabila membuat keputusan masa depan"]},{"f":"Menjamin kestabilan kewangan untuk masa hadapan","h":["Simpanan sejak muda menjadi asas kukuh apabila mula bekerja","Lebih tenang kerana bersedia menghadapi turun naik ekonomi"]},{"f":"Membantu mencapai matlamat atau impian hidup","h":["Wang simpanan boleh dijadikan modal membeli aset seperti rumah","Tidak perlu bergantung kepada pinjaman bank berfaedah tinggi"]},{"f":"Mengurangkan tekanan emosi dan mental","h":["Fikiran lebih tenteram kerana mempunyai simpanan tunai","Tidak perlu hidup dalam kebimbangan masalah ketiadaan wang"]}]},
+{"l":"c","m":3,"q":"Ramalkan kesan sekiranya seseorang remaja terlalu mengikut gaya hidup mewah dan tidak mempunyai sebarang tabungan.","a":["Terbeban dengan hutang yang tinggi","Mengalami tekanan emosi dan mental","Risiko diisytiharkan muflis pada usia muda","Masa depan menjadi gelap dan terjejas","Keharmonian hubungan keluarga terjejas","Terdedah kepada sindiket pinjaman tidak berlesen (Along)","Harta benda atau aset dirampas","Hilang keyakinan dan imej diri","Menjejaskan produktiviti diri","Terjerumus dalam kancah jenayah"]},
+{"l":"d","m":2,"q":"Jelaskan perasaan anda apabila berjaya menguruskan perbelanjaan dan menabung secara konsisten setiap bulan.","a":["Gembira / Bangga / Tenang / Bersyukur kerana dapat mengawal perbelanjaan harian dengan bijak tanpa berlaku pembaziran","...kerana mempunyai simpanan wang yang mencukupi untuk menghadapi masa kecemasan","...kerana kedudukan kewangan peribadi saya berada dalam keadaan yang stabil dan kukuh","...kerana berjaya melatih diri menjadi seorang remaja yang berdisiplin serta matang","...kerana tidak perlu terbeban atau terjerat dengan masalah hutang yang melampau","...kerana dapat menyediakan sumber kewangan awal untuk menyambung pelajaran ke peringkat tinggi","...kerana berjaya mengelakkan diri daripada terpengaruh dengan gaya hidup mewah atau boros","...kerana fikiran saya lebih tenteram tanpa perlu risau tentang masalah ketiadaan wang","...kerana dapat meringankan beban kewangan ibu bapa pada masa hadapan","...kerana saya berasa yakin untuk meneruskan kehidupan yang lebih terjamin dan beretika"]}
+]},
+{"n":5,"sec":"A","topic":"Integriti / Tanggungjawab Warganegara","title":"Amalan Perniagaan Tidak Berintegriti di Pasar Basah","stim":"Gambar 2: Imej menunjukkan seorang peniaga sedang meletakkan tanda harga yang berbeza untuk barang yang sama, manakala seorang lagi peniaga sedang menggunakan alat timbang yang telah diubah suai untuk mengurangkan sukatan.","marks":10,"parts":[
+{"l":"a","m":2,"q":"Sebagai seorang pengguna, apakah tindakan anda apabila berhadapan situasi di atas?","a":["Membuat aduan rasmi kepada pihak KPDN / agensi penguatkuasaan / pihak berkuasa","Memboikot premis perniagaan yang tidak jujur dan menindas pengguna","Menegur perbuatan peniaga tersebut secara berhemah di tempat kejadian","Meneliti tanda harga barangan dan memeriksa alat penimbang sebelum membuat pembayaran","Melaporkan salah laku peniaga di media sosial sebagai langkah amaran kepada masyarakat","Memilih untuk membeli barangan di kedai lain yang lebih telus dan berintegriti","Mendapatkan resit pembelian yang lengkap sebagai bukti transaksi yang sah","Menasihati peniaga supaya berniaga dengan jujur demi memelihara hak pengguna"]},
+{"l":"b","m":3,"q":"Huraikan kesan terhadap negara jika amalan perniagaan seperti dalam gambar dibiarkan berleluasa.","a":["Menjejaskan kestabilan ekonomi negara","Mencemarkan imej dan reputasi negara di mata dunia","Menjejaskan keyakinan pelabur asing untuk melabur","Menyebabkan negara kehilangan sumber pendapatan penting","Meningkatkan kadar inflasi dan kos sara hidup","Menyekat peluang pekerjaan kepada rakyat tempatan","Melahirkan masyarakat yang hilang nilai kejujuran dan integriti","Menimbulkan ketidakpuasan hati dan pergolakan sosial dalam kalangan rakyat","Menjejaskan daya saing sektor perniagaan tempatan di peringkat global","Memaksa kerajaan menanggung perbelanjaan penguatkuasaan yang tinggi"]},
+{"l":"c","m":2,"q":"Mengapakah integriti penting sebagai seorang peniaga?","a":["Mengekalkan kepercayaan dan keyakinan pelanggan terhadap perniagaan","Meningkatkan imej serta maruah diri dan perniagaan di mata masyarakat","Mengelakkan diri daripada dikenakan tindakan undang-undang atau denda","Memastikan rezeki dan keuntungan perniagaan sentiasa halal dan berkat","Mewujudkan persaingan perniagaan yang sihat dan adil dalam pasaran","Menjamin kelangsungan perniagaan dalam jangka masa yang panjang","Mengelakkan perniagaan daripada diboikot oleh orang ramai","Menjaga hak pengguna daripada ditindas atau dianiaya","Membantu menyumbang kepada kestabilan ekonomi negara yang telus","Menjadi teladan yang baik kepada peniaga lain untuk berniaga dengan jujur"]},
+{"l":"d","m":3,"q":"Sebagai warganegara, bagaimanakah anda melaksanakan tanggungjawab dengan berintegriti kepada negara?","a":["Mematuhi undang-undang dan perlembagaan negara","Membayar cukai pendapatan dengan jujur dan tepat pada masanya","Menjalankan tugas atau pekerjaan dengan amanah dan telus","Menolak sebarang amalan rasuah dan penyelewengan","Menjaga nama baik serta imej negara di persada antarabangsa","Mengundi semasa pilihan raya sebagai tanggungjawab warganegara","Memelihara kemudahan awam dan harta benda negara","Mengamalkan perpaduan serta menghormati kepelbagaian kaum","Menyokong dasar-dasar pembangunan yang diperkenalkan oleh kerajaan","Tidak menyebarkan berita palsu yang boleh menggugat keamanan negara"]}
+]},
+{"n":6,"sec":"B","topic":"Program Komuniti / Kesukarelawanan","title":"Penglibatan Remaja dalam Program Komuniti","stim":"Dialog antara Maniam dan Wei Ming: Maniam mengajak Wei Ming menyertai gotong-royong di rumah orang tua esok hari. Wei Ming pada awalnya ragu-ragu — 'adakah bantuan kita benar-benar berkesan?' — tetapi akhirnya Maniam meyakinkannya tentang kepentingan nilai empati dan tanggungjawab sosial, dan Wei Ming pun bersetuju untuk menyertai kerja amal tersebut.","marks":10,"parts":[
+{"l":"a","m":5,"q":"Selain daripada gotong royong, senaraikan lima contoh program komuniti yang boleh disertai oleh remaja.","a":["Program gotong-royong membersihkan kawasan perumahan","Kempen derma darah peringkat komuniti","Aktiviti khidmat sukarelawan di rumah orang tua","Program lawatan dan sumbangan ke rumah anak yatim","Kempen pembersihan pantai atau taman awam (beach / park cleanup)","Program kitar semula barangan terpakai bersama penduduk taman","Misi pengumpulan dan pengagihan bantuan mangsa bencana alam","Program tuisyen percuma untuk kanak-kanak kurang berkemampuan","Karnival sukaneka atau sukan rakyat perpaduan pelbagai kaum","Kempen kesedaran kesihatan dan saringan kesihatan percuma"]},
+{"l":"b","m":5,"q":"Jelaskan kepentingan penglibatan remaja dalam program komuniti. [Gunakan format Fakta + Huraian]","a":[{"f":"Memupuk nilai empati","h":["Supaya remaja lebih prihatin dan bimbang terhadap kesusahan hidup golongan yang kurang bernasib baik seperti warga emas, orang kurang upaya (OKU), dan anak yatim"]},{"f":"Membina keyakinan diri","h":["Agar remaja berani berinteraksi dan berkomunikasi dengan masyarakat daripada pelbagai lapisan tanpa rasa malu atau gentar"]},{"f":"Mengelakkan gejala sosial","h":["Kerana masa lapang remaja diisi dengan aktiviti berfaedah dan dapat menjauhkan diri daripada perbuatan negatif seperti melepak atau lumba haram"]},{"f":"Mengeratkan perpaduan kaum","h":["Kerana aktiviti gotong-royong atau program kemasyarakatan menyatukan remaja pelbagai bangsa untuk bekerjasama dan saling mengenali"]},{"f":"Melatih kemahiran kepimpinan","h":["Supaya remaja belajar cara menguruskan sesuatu program dengan teratur, berkesan, dan memikul tanggungjawab sebagai pemimpin masa depan"]},{"f":"Meningkatkan kesedaran sivik","h":["Agar remaja lebih peka terhadap kebersihan persekitaran, penjagaan alam sekitar, dan kepentingan memelihara kemudahan awam setempat"]},{"f":"Mengharumkan nama baik diri dan keluarga","h":["Kerana masyarakat akan memuji sahsiah mulia serta kerajinan remaja yang aktif berbakti dan membantu orang lain dalam kariah"]},{"f":"Memupuk semangat patriotisme","h":["Kerana penglibatan dalam kerja amal menanam rasa cinta yang mendalam terhadap tanah air, bangsa, dan kesejahteraan masyarakat tempatan"]}]}
+]},
+{"n":7,"sec":"B","topic":"Tanggungjawab Sosial / Media Sosial","title":"Penularan Berita Palsu di Media Sosial","stim":"Gambar 3: Kartun menunjukkan dua orang remaja sedang menonton video di tablet. Remaja perempuan mencadangkan: 'Wah, berita ini disahkan tidak benar! Tetapi mari kita kongsikannya dan membuat rakan-rakan mempercayainya. Pasti seronok!' Remaja lelaki pula berkata: 'Saya sudah bersedia untuk menekan Kongsi. Pengikut kita pasti akan meningkat dengan sangat banyak!' Skrin tablet menunjukkan tajuk berita palsu: 'KEPALA AYAM TERBANG DILIHAT DI PASAR RAYA'.","marks":10,"parts":[
+{"l":"a","m":5,"q":"Berdasarkan situasi berikut, tindakan remaja tersebut menularkan berita palsu adalah tidak wajar. Jelaskan. [Gunakan format Fakta + Huraian]","a":[{"f":"Maklumat tersebut tidak dipastikan kesahihannya / belum terbukti benar","h":["Perbuatan ini akan mengelirukan minda orang ramai yang membacanya"]},{"f":"Boleh mencetuskan suasana panik / ketakutan melampau","h":["Kesannya, ketenteraman dan keharmonian hidup masyarakat awam akan terganggu"]},{"f":"Penyebaran berita palsu boleh menimbulkan unsur fitnah","h":["Hal ini akan menjatuhkan maruah, imej, atau reputasi pihak yang terlibat"]},{"f":"Menyalahi undang-undang komunikasi negara","h":["Remaja tersebut boleh dikenakan tindakan / hukuman di bawah Akta Komunikasi dan Multimedia 1998"]},{"f":"Menjejaskan imej diri remaja itu sendiri","h":["Masyarakat dan rakan-rakan akan hilang kepercayaan terhadap dirinya pada masa hadapan"]},{"f":"Menggugat perpaduan kaum dan agama","h":["Penyebaran isu sensitif secara tidak tepat boleh mencetuskan pergaduhan dalam masyarakat majmuk"]},{"f":"Merosakkan hubungan silaturahim","h":["Individu mungkin bergaduh atau bermusuh dengan keluarga dan rakan-rakan akibat salah faham daripada maklumat palsu"]},{"f":"Mendorong kepada perlakuan jenayah","h":["Maklumat palsu tentang peluang pelaburan atau perniagaan mudah menarik mangsa untuk ditipu oleh scammer"]},{"f":"Membazirkan masa dan sumber tenaga","h":["Pihak berkuasa dan masyarakat terpaksa bertungkus-lumus menyiasat dan membetulkan kesilapan yang berpunca daripada berita palsu tersebut"]}]},
+{"l":"b","m":5,"q":"Penggunaan media sosial dalam kalangan remaja semakin meluas pada masa kini. Sebagai seorang remaja, senaraikan tatacara yang perlu dipatuhi apabila menggunakan sumber dan menyebarkan maklumat di internet.","a":["Menyemak kesahihan maklumat terlebih dahulu sebelum berkongsi","Merujuk maklumat daripada sumber yang rasmi atau berautoriti","Tidak menekan butang kongsi (share / forward) secara melulu","Memberikan kredit / menyatakan sumber asal maklumat yang diambil","Mengelakkan daripada menyentuh isu-isu yang sensitif (kaum, agama, politik)","Tidak mengubah suai atau memanipulasi gambar dan fakta","Membaca keseluruhan artikel, bukan hanya membaca tajuk utama (headline)","Menasihati rakan-rakan agar berhenti menyebarkan mesej berantai","Bertindak melaporkan hantaran (post) yang menyebarkan maklumat palsu","Melindungi maklumat peribadi diri sendiri dan juga orang lain"]}
+]},
+{"n":8,"sec":"C","topic":"Integriti / Tanggungjawab Moral","title":"Integriti Individu Ketika Peperiksaan — James dan David","stim":"James berada dalam dilema apabila ternampak rakan karibnya, David, meniru semasa peperiksaan. Dia tersepit antara melaporkan kesalahan tersebut yang boleh memusnahkan persahabatan mereka atau mendiamkan diri yang bermakna dia bersubahat dan menggadaikan prinsip integriti dirinya.","marks":20,"parts":[
+{"l":"a","m":5,"q":"Berdasarkan situasi tersebut, wajarkah James mendiamkan diri demi menjaga persahabatannya dengan David? Huraikan jawapan berdasarkan nilai universal yang telah anda pelajari.","a":["TIDAK WAJAR — Nilai: Kejujuran, Rasional, Bertanggungjawab, Keberanian","H: Menyembunyikan kesalahan rakan bermaksud James secara tidak langsung telah bersubahat melanggar peraturan peperiksaan","H: Jika James mendiamkan diri, David tidak akan insaf dan akan berterusan mengulangi perbuatan meniru pada masa hadapan","H: Sahabat yang sejati sepatutnya berani menegur kesilapan rakannya ke arah kebaikan, bukannya melindungi perbuatan yang salah","H: Tindakan mendiamkan diri ini akan mencemarkan integriti dan maruah diri James sendiri sebagai seorang murid","H: Sikap David yang suka mengambil jalan mudah ini boleh merosakkan masa depannya sendiri, terutamanya apabila memasuki alam pekerjaan kelak","H: Perbuatan ini sangat tidak adil terhadap murid-murid lain yang telah bertungkus-lumus dan jujur mengulang kaji pelajaran untuk lulus peperiksaan","---ATAU---","WAJAR — Nilai: Kasih Sayang, Baik Hati, Toleransi","H: James sangat menyayangi dan ingin menyelamatkan hubungan persahabatannya dengan David yang telah lama terjalin","H: James berniat baik untuk memberi peluang kedua kepada David untuk membetulkan kesilapannya tanpa perlu campur tangan guru disiplin","H: Tindakan ini dapat mengelakkan David daripada berasa terlalu tertekan, trauma, atau malu jika dia ditangkap dan dihukum secara terbuka","H: James bercadang untuk berjumpa dan menasihati David secara peribadi dari hati ke hati selepas tamat waktu peperiksaan","H: James berfikir matang bahawa setiap manusia pasti melakukan kesilapan, dan David mampu berubah dengan sokongan rakan berbanding hukuman semata-mata","H: James berazam untuk mengajak David belajar dan mengulang kaji pelajaran bersama-sama selepas ini supaya David lebih yakin dan tidak perlu meniru lagi"]},
+{"l":"b","m":5,"q":"Terangkan implikasi terhadap David sekiranya dia berterusan menjadikan amalan tidak berintegriti ini sebagai satu kebiasaan. [Gunakan format Fakta + Huraian]","a":[{"f":"Imej dan maruah diri akan tercalar","h":["David akan dipandang serong, dihina, dan dilabel sebagai seorang penipu oleh rakan-rakan serta guru-gurunya"]},{"f":"Kehilangan kepercayaan daripada orang sekeliling","h":["Segala kata-kata, janji, dan kejayaan yang dicapai oleh David pada masa hadapan tidak lagi akan dipercayai atau diyakini oleh orang lain"]},{"f":"Dikenakan tindakan disiplin yang berat","h":["David berisiko untuk digantung persekolahan atau dibuang sekolah sekiranya kegiatan penipuannya ditangkap oleh pihak pengawas peperiksaan"]},{"f":"Masa depannya menjadi gelap dan terjejas","h":["Rekod disiplin yang buruk akan menyukarkan David untuk menyambung pelajaran ke peringkat universiti atau memohon sebarang biasiswa"]},{"f":"Membawa sikap buruk tersebut ke alam pekerjaan","h":["David akan cenderung menjadi pekerja yang tidak amanah, suka mengambil jalan mudah, serta berpotensi terlibat dalam kes rasuah dan pecah amanah"]},{"f":"Hidup dalam keadaan tidak tenang / tertekan","h":["Jiwa dan emosi David akan sentiasa berada dalam ketakutan kerana bimbang rahsia penipuannya akan terbongkar pada bila-bila masa"]},{"f":"Mencemarkan nama baik dan maruah keluarga","h":["Ibu bapa David pasti akan berasa amat malu, sedih, dan kecewa dengan sikap ketidakjujuran anak mereka yang melanggar peraturan"]},{"f":"Terjerumus ke dalam kancah jenayah yang lebih besar","h":["Amalan ketidakjujuran yang dipupuk sejak sekolah ini boleh mendorong David melakukan jenayah kolar putih berskala besar demi mendapatkan kekayaan dan pangkat kelak"]}]},
+{"l":"c","m":5,"q":"Andaikan anda ialah James, jelaskan perasaan anda ketika berhadapan situasi tersebut apabila terpaksa mengutamakan amalan integriti berbanding persahabatan.","a":["PILIHAN 1 — FOKUS KEPADA KESAN PERSAHABATAN:","Saya berasa SEDIH / KECEWA kerana...","...tindakan saya ini mungkin akan memutuskan hubungan persahabatan kami","...rakan karib saya pasti akan dikenakan hukuman disiplin yang berat","...kawan baik saya sendiri sanggup bersikap tidak jujur dan menipu","...saya terpaksa membuat pilihan yang amat sukar antara kawan atau peraturan","...saya bersimpati memikirkan masa depannya jika dia digantung sekolah","...rakan saya lebih rela mengambil jalan mudah daripada berusaha gigih","...saya mungkin akan kehilangan seorang sahabat yang telah lama terjalin","---ATAU---","PILIHAN 2 — FOKUS KEPADA KEPENTINGAN INTEGRITI:","Saya berasa GEMBIRA / LEGA / BANGGA kerana...","...saya berjaya mempertahankan nilai integriti dan kejujuran dalam diri saya","...saya tidak bersubahat menyembunyikan kesalahan yang melanggar peraturan","...tindakan tegas saya ini dapat memberi pengajaran supaya dia sedar kesilapannya","...saya sebenarnya menyelamatkan masa depannya daripada terus menjadi penipu","...tindakan saya ini adalah adil kepada murid lain yang belajar bersungguh-sungguh","...hati dan emosi saya menjadi lebih tenang tanpa perlu menyimpan rahsia penipuan","...saya telah melaksanakan tanggungjawab dengan mematuhi peraturan sekolah","...saya membuktikan bahawa kebenaran mesti sentiasa diutamakan berbanding kepentingan peribadi"]},
+{"l":"d","m":5,"q":"Sebagai seorang rakan, bagaimanakah anda dapat membantu David agar tidak mengulangi kesalahan tersebut?","a":["Mengajak David mengulang kaji pelajaran bersama-sama","Menasihati David tentang kepentingan sikap jujur","Membantu David menyusun jadual waktu belajar yang terancang","Menggalakkan David berjumpa guru mata pelajaran untuk mendapatkan bimbingan","Memberikan kata-kata semangat kepada David","Mengingatkan David tentang kesan buruk meniru dalam peperiksaan","Berkongsi nota ringkas dan tips belajar dengan David","Menegur David secara peribadi jika dia berniat meniru lagi","Menasihati David supaya tidak mengambil jalan mudah dalam kehidupan","Membawa David menyertai kelas tambahan atau program bimbingan sekolah"]}
+]},
+{"n":9,"sec":"C","topic":"Perpaduan Kaum / Keharmonian Masyarakat","title":"Amalan Perpaduan di Taman Muhibah","stim":"Gambar: Kawasan perumahan Taman Muhibah didiami oleh penduduk yang terdiri daripada kaum Melayu, Cina, India dan pelbagai etnik lain. Walaupun mereka mempunyai latar belakang agama, budaya dan bahasa yang berbeza, mereka sentiasa hidup dalam keadaan aman dan harmoni.","marks":20,"parts":[
+{"l":"a","m":5,"q":"Berdasarkan situasi tersebut, nyatakan lima contoh amalan perpaduan yang boleh dilakukan oleh penduduk di taman tersebut untuk mengekalkan keharmonian.","a":["Mengadakan gotong-royong membersihkan kawasan taman","Menganjurkan rumah terbuka berbilang kaum semasa musim perayaan","Menyertai rondaan keselamatan seperti skim Rukun Tetangga (RT)","Saling bertegur sapa dan senyum apabila berselisih dengan jiran","Bertukar-tukar juadah atau makanan tradisional dengan jiran tetangga","Menziarahi jiran yang sedang sakit atau ditimpa musibah","Mengadakan Hari Keluarga atau acara sukaneka peringkat taman","Menghulurkan bantuan tenaga semasa jiran mengadakan kenduri atau majlis","Menghormati amalan peribadat atau pantang larang agama kaum lain","Tolong pantau rumah jiran apabila mereka pulang ke kampung"]},
+{"l":"b","m":5,"q":"Mengapakah amalan perpaduan sangat penting untuk terus dikekalkan dalam kalangan masyarakat Malaysia yang berbeza agama, bangsa, budaya dan bahasa? Jawapan anda hendaklah disokong dengan nilai universal yang dipelajari.","a":["Nilai universal: Toleransi, Kerjasama, Hormat-menghormati, Rasional","Mengekalkan keharmonian dan keamanan negara","Mengelakkan perselisihan faham atau pergaduhan antara kaum","Memajukan ekonomi negara dengan menarik pelabur asing","Menjamin kedaulatan dan keselamatan negara daripada ancaman luar","Meningkatkan imej negara di mata dunia / persada antarabangsa","Merapatkan hubungan silaturahim (jurang sosial) antara masyarakat pelbagai kaum","Menarik kedatangan pelancong asing untuk melihat keunikan budaya Malaysia","Meningkatkan taraf hidup rakyat menerusi pembahagian ekonomi yang adil","Mewujudkan pentadbiran negara yang lebih stabil, telus, dan dihormati","Melahirkan generasi muda yang mempunyai jati diri dan semangat patriotik yang tinggi"]},
+{"l":"c","m":5,"q":"Huraikan cabaran yang dihadapi dalam membentuk amalan perpaduan dalam kalangan masyarakat di Malaysia.","a":["Kelemahan penguasaan bahasa kebangsaan yang mewujudkan jurang komunikasi","Penyebaran berita palsu dan isu berbaur perkauman di media sosial","Sikap prejudis dan prasangka buruk terhadap agama atau budaya kaum lain","Sikap individualistik (mementingkan diri sendiri) dan sibuk dengan urusan peribadi","Pengasingan sistem pendidikan sejak kecil (kewujudan sekolah vernakular)","Pengaruh kempen dan sentimen politik yang berasaskan perkauman","Jurang ekonomi dan ketidakseimbangan taraf hidup antara kaum","Kurang penglibatan dalam aktiviti kemasyarakatan seperti gotong-royong atau Rukun Tetangga","Sikap tidak menjaga sensitiviti dan pantang larang agama kaum lain","Pengaruh budaya luar (Barat) yang menghakis jati diri dan budaya tempatan","Pengasingan petempatan atau kawasan perumahan yang terpusat mengikut kaum tertentu","Pemikiran etnosentrisme (menganggap bangsa atau budaya sendiri paling hebat)","Pemisahan bentuk muka bumi (geografi) yang menyukarkan integrasi antara Semenanjung dengan Sabah dan Sarawak","Kelunturan semangat patriotisme dan cintakan negara dalam kalangan generasi muda"]},
+{"l":"d","m":5,"q":"Sebagai seorang murid, bagaimanakah anda mengamalkan kehidupan bersatu padu bersama rakan-rakan yang berbeza agama, bangsa, dan budaya di sekolah?","a":["Makan bersama-sama rakan pelbagai kaum di kantin sekolah","Bermain dan bersukan dalam satu pasukan yang sama tanpa mengira bangsa","Bekerjasama membersihkan kelas mengikut jadual bertugas harian","Membantu rakan berlainan kaum yang lemah dalam pelajaran","Mengucapkan selamat menyambut hari perayaan kepada rakan","Saling bertegur sapa dan senyum apabila berjumpa di kawasan sekolah","Menjaga tutur kata dan tidak mengejek amalan budaya kaum lain","Berkongsi rezeki dengan bertukar-tukar bekal makanan pada waktu rehat","Menyertai unit beruniform atau kelab secara bersama-sama (contoh: Kelab Rukun Negara)","Menziarahi rakan berbilang kaum sekiranya mereka jatuh sakit","Meminjamkan alat tulis atau buku kepada rakan yang memerlukan","Menghormati rakan yang sedang berpuasa atau melakukan ibadat","Mengadakan perbincangan atau belajar secara berkumpulan dengan rakan pelbagai bangsa","Meraikan sambutan hari lahir rakan sekelas bersama-sama","Menyokong dan menonton persembahan kebudayaan rakan semasa acara sekolah"]}
+]}
+]});
+
+/* ---- Moral/data/moral-perlis-2026-p1.js ---- */
+'use strict';
+/* P.Moral K1 — Perlis · Percubaan SPM 2026 */
+window.SPM.register({"meta":{"id":"moral-perlis-2026-p1","subject":"Pendidikan Moral","state":"Perlis","year":2026,"paper":1,"code":"3755/1","source":"Percubaan SPM 2026 — Perlis","answers":"skema","kind":"trial","total":9,"ai_answers":false},"questions":[
+
+{n:1,sec:"A",topic:"Tanggungjawab Maklumat — Etika Media Sosial",title:"Situasi Amir di Media Sosial",
+stim:"Gambar menunjukkan Amir menggunakan media sosial. Beliau sering berkongsi maklumat dan bergurau senda di media sosial tanpa memikirkan kesan tindakannya terhadap orang lain.",
+marks:10,
+parts:[
+  {l:"(a)",q:"Nyatakan DUA etika yang perlu diamalkan oleh Amir dalam penggunaan media sosial.",m:2,
+   a:["Tidak menyebarkan maklumat/berita palsu","Tidak memuat naik bahan/gambar tanpa kebenaran","Berkomunikasi secara berhemah"]},
+  {l:"(b)",q:"Apakah kesan negatif akibat penggunaan media sosial yang tidak beretika?",m:4,
+   a:[{f:"Maklumat tidak sahih atau berita palsu disebarkan tanpa semakan",h:["Boleh mengelirukan masyarakat/menjejaskan reputasi seseorang/mencetuskan salah faham"]},
+      {f:"Maklumat peribadi individu didedahkan atau disalahgunakan",h:["Menyebabkan kecurian identiti/penipuan dalam talian/gangguan kepada mangsa"]},
+      {f:"Penggunaan teknologi untuk menghina/mengugut/memalukan orang lain",h:["Memberi kesan emosi seperti tekanan/kemurungan/hilang keyakinan diri kepada mangsa/menjejaskan kesejahteraan mental mereka"]},
+      {f:"Menjejaskan hubungan sosial",h:["Menyebabkan rakan berasa malu/marah/tersinggung"]},
+      {f:"Menjatuhkan imej/maruah diri",h:["Orang lain memandang rendah terhadap dirinya"]}]},
+  {l:"(c)",q:"Cadangkan langkah-langkah yang patut dilakukan oleh Amir untuk menggunakan media sosial secara bertanggungjawab.",m:4,
+   a:[{f:"Menyemak kesahihan maklumat sebelum berkongsi",h:["Merujuk sumber yang dipercayai bagi mengelakkan penyebaran berita palsu"]},
+      {f:"Menghormati privasi dan meminta kebenaran",h:["Mendapatkan persetujuan individu sebelum berkongsi gambar/video mereka di media sosial"]},
+      {f:"Menggunakan bahasa yang sopan dalam komunikasi",h:["Berkomunikasi secara berhemah/tidak menggunakan kata-kata kesat"]},
+      {f:"Memastikan setiap kandungan yang dimuat naik memberi manfaat/tidak memudaratkan",h:["Berfikir sebelum berkongsi sesuatu kandungan"]}]}
+]},
+
+{n:2,sec:"A",topic:"Semangat Patriotisme — Inovasi Pelajar Malaysia",title:"Pameran Inovasi Antarabangsa",
+stim:"Infografik menunjukkan pelajar Malaysia memenangi anugerah dalam Pameran Inovasi Antarabangsa dengan produk inovasi 'Lampu Warisan Pintar' di bawah tema 'Warisan Kita'.",
+marks:10,
+parts:[
+  {l:"(a)",q:"Nyatakan langkah-langkah yang anda boleh ambil untuk mencapai kejayaan seperti pelajar dalam gambar tersebut.",m:3,
+   a:["Menghasilkan produk tempatan berkualiti tinggi","Menyertai pertandingan/karnival inovasi antarabangsa","Meningkatkan kemahiran/ilmu pengetahuan","Mencipta kejayaan dalam pelbagai bidang"]},
+  {l:"(b)",q:"Apakah cabaran yang dihadapi oleh pelajar dalam menyertai pertandingan inovasi antarabangsa?",m:4,
+   a:[{f:"Kurang sumber kewangan/tajaan",h:["Kos tinggi untuk penyertaan dan perjalanan"]},
+      {f:"Persaingan yang sengit daripada peserta luar negara",h:["Peserta luar negara lebih berpengalaman/berkemahiran dan mempunyai fasiliti/peralatan lebih moden/lengkap"]},
+      {f:"Kurang sokongan moral",h:["Masyarakat tidak yakin dengan kemampuan murid"]},
+      {f:"Kurang infrastruktur/tempat latihan yang lengkap",h:["Keterbatasan kemudahan menjejaskan penyediaan produk"]}]},
+  {l:"(c)",q:"Sebagai kerajaan, apakah usaha yang boleh dilakukan untuk membantu pelajar menyertai pameran inovasi antarabangsa?",m:3,
+   a:[{f:"Menyediakan dana khas/biasiswa kecemerlangan",h:["Menampung kos latihan/yuran pertandingan/pembelian peralatan"]},
+      {f:"Membina pusat latihan lengkap",h:["Menyediakan kemudahan yang moden/lengkap"]},
+      {f:"Melantik jurulatih pakar",h:["Bimbingan daripada pakar yang berpengalaman luas"]},
+      {f:"Memberikan hadiah/pengiktirafan",h:["Motivasi kepada murid untuk terus berinovasi"]}]}
+]},
+
+{n:3,sec:"A",topic:"Keselamatan Negara — Kawalan Sempadan",title:"Kawalan Keselamatan Sempadan",
+stim:"Gambar menunjukkan operasi kawalan keselamatan sempadan negara melibatkan anggota tentera dan penggunaan dron untuk pemantauan.",
+marks:10,
+parts:[
+  {l:"(a)",q:"Nyatakan ancaman-ancaman keselamatan yang boleh berlaku di sempadan negara kita.",m:3,
+   a:["Kemasukan pendatang asing tanpa izin (PATI)","Aktiviti penyeludupan barang haram (contoh: dadah, senjata)","Ancaman jenayah rentas sempadan (contoh: pemerdagangan manusia/penyeludupan flora/fauna)","Ancaman keganasan/serangan bersenjata"]},
+  {l:"(b)",q:"Mengapa kawalan keselamatan sempadan perlu diperkuatkan? Berikan sebab.",m:3,
+   a:["Membantu pihak berkuasa mengesan aktiviti mencurigakan di kawasan sempadan","Mengelakkan ancaman keselamatan yang boleh menjejaskan kedaulatan negara","Memastikan keamanan dan kesejahteraan rakyat terjamin"]},
+  {l:"(c)",q:"Pada pendapat anda, adakah penggunaan dron berkesan dalam mengawal keselamatan sempadan? Berikan alasan anda.",m:4,kbat:true,
+   a:["YA — Dron dapat memantau kawasan yang sukar dicapai dengan cepat dan berkesan; Membantu mengurangkan kos dan tenaga kerja manusia; Memberi maklumat segera kepada pihak berkuasa untuk tindakan pantas","ATAU TIDAK — Teknologi boleh diganggu atau dirosakkan; Masih memerlukan sokongan manusia untuk tindakan susulan; Kos penyelenggaraan/operasi dron agak tinggi"]}
+]},
+
+{n:4,sec:"A",topic:"Semangat Bermasyarakat — Program Inap Desa",title:"Program Inap Desa",
+stim:"Gambar menunjukkan murid Tingkatan 5 bergotong-royong bersama penduduk kampung dalam Program Inap Desa.",
+marks:10,
+parts:[
+  {l:"(a)",q:"Nyatakan manfaat Program Inap Desa kepada penduduk kampung.",m:4,
+   a:[{f:"Tambah pendapatan penduduk",h:["Beli hasil kampung seperti kraftangan/kerepek; Sediakan perkhidmatan pengangkutan/jurupandu; Promosi ekopelancongan"]},
+      {f:"Peluang pekerjaan untuk belia/suri rumah",h:["Penduduk terlibat aktif dalam aktiviti pelancongan"]},
+      {f:"Hidupkan budaya/warisan",h:["Persembahan tarian/masakan kampung"]},
+      {f:"Infrastruktur kampung semakin baik",h:["Menaiktaraf jalan/kemudahan asas"]},
+      {f:"Eratkan hubungan masyarakat",h:["Saling membantu melaksanakan tugas"]},
+      {f:"Mengekalkan persekitaran/suasana desa",h:["Kesedaran menjaga alam sekitar kampung"]}]},
+  {l:"(b)",q:"Apakah perasaan anda jika mengambil bahagian dalam program seperti ini? Berikan sebab.",m:4,
+   a:["Bangga/gembira/seronok — Membantu orang lain dengan sesuatu yang bermanfaat","Menyumbang tenaga kepada masyarakat","Menjadi suri teladan kepada orang lain","Belajar mengurus tugas dengan baik","Peka terhadap keperluan masyarakat"]},
+  {l:"(c)",q:"Nyatakan cara-cara anda boleh menyumbang kepada kejayaan program tersebut.",m:2,
+   a:["Menyediakan makanan","Mengedarkan risalah program","Menjadi sukarelawan","Membuat persembahan kebudayaan","Memberi bantuan kewangan","Memberi layanan mesra/berhemah"]}
+]},
+
+{n:5,sec:"A",topic:"Keselamatan Siber — Jenayah Dalam Talian",title:"Carta Pai Jenayah Dalam Talian",
+stim:"Carta pai PDRM: Statistik Jenis Jenayah Dalam Talian Jan–Nov 2025 — Telekomunikasi 41%, E-dagang 21%, Pinjaman tidak wujud 14%, Pelaburan tidak wujud 14%, E-kewangan 9%, Love Scam 1%.",
+marks:10,
+parts:[
+  {l:"(a)",q:"Nyatakan DUA maklumat berdasarkan carta pai di atas.",m:2,
+   a:["6 jenis jenayah dalam talian direkodkan","Jenayah tertinggi ialah jenayah telekomunikasi (41%)","Jenayah terendah ialah Love Scam (1%)","Pelaburan tidak wujud ialah 14%","Pinjaman tidak wujud ialah 14%","E-dagang ialah 21%","E-kewangan ialah 9%","Perbezaan kes tertinggi dengan terendah ialah 40%"]},
+  {l:"(b)",q:"Apakah kesan sekiranya anda menjadi mangsa jenayah dalam talian?",m:4,
+   a:[{f:"Kehilangan wang",h:["Hilang wang pencen/simpanan yang telah lama dikumpul"]},
+      {f:"Tekanan emosi",h:["Masalah mental/kemurungan akibat kerugian"]},
+      {f:"Reputasi tercemar",h:["Dipandang rendah oleh masyarakat"]},
+      {f:"Tiada akses kepada duit/akaun bank",h:["Disekat oleh pihak bank/polis akibat siasatan"]}]},
+  {l:"(c)",q:"Cadangkan langkah-langkah yang boleh anda ambil untuk melindungi diri daripada menjadi mangsa jenayah dalam talian.",m:4,
+   a:[{f:"Berhati-hati dengan tawaran yang terlalu menarik",h:["Tidak terpedaya dengan iklan/mesej yang menjanjikan keuntungan besar"]},
+      {f:"Tidak mendedahkan maklumat peribadi",h:["Tidak memberikan maklumat sensitif kepada orang yang tidak dikenali"]},
+      {f:"Aktifkan ciri keselamatan digital",h:["Guna kata laluan yang kukuh/pengesahan dua faktor/cap jari/pengesanan imej"]},
+      {f:"Mendapatkan pendapat rakan/keluarga terdekat",h:["Mendapat pandangan kedua sebelum melakukan apa-apa keputusan kewangan"]}]}
+]},
+
+{n:6,sec:"B",topic:"Kesederhanaan — Mekanik Berintegriti",title:"Mekanik Viral Tidak Ambil Bayaran",
+note:"Bahagian B — Jawab SATU soalan sahaja (Soalan 6 atau Soalan 7)",
+stim:"Artikel Harian Metro (18 April 2026): Seorang mekanik menjadi viral di media sosial setelah enggan mengambil bayaran RM176 untuk membaiki motosikal seorang pelajar miskin. Tindakan mekanik tersebut mendapat pujian ramai dan dianggap sebagai contoh terbaik sikap mulia.",
+marks:10,
+parts:[
+  {l:"(a)",q:"Apakah perasaan anda sekiranya berada di tempat mekanik tersebut? Berikan sebab.",m:2,
+   a:["Gembira/Bangga — Memudahkan hidup orang lain; Memberikan impak positif kepada orang lain; Menyumbang kepada masyarakat; Merasa puas/tenang"]},
+  {l:"(b)",q:"Jika rakan anda mengalami situasi yang sama seperti motosikal rosak di tepi jalan, apakah yang akan anda lakukan untuk membantunya? Huraikan tindakan anda.",m:8,
+   a:["Cadangan jawapan (Aras 4: 7-8m; Aras 3: 5-6m; Aras 2: 3-4m; Aras 1: 1-2m):","• Memberikan panduan/nasihat","• Menolong rakan meletakkan segi tiga amaran/kon","• Menghubungi talian kecemasan","• Menelefon mekanik/waris","• Memberikan sokongan emosi","• Menemani rakan sementara menunggu bantuan tiba","• Membaiki motosikal rakan"]}
+]},
+
+{n:7,sec:"B",topic:"Individu Glokal — Sikap dan Pembangunan Negara",title:"Remaja Malaysia Terima Anugerah Antarabangsa",
+note:"Bahagian B — Jawab SATU soalan sahaja (Soalan 6 atau Soalan 7)",
+stim:"Gambar poster: 'REMAJA MALAYSIA TERIMA ANUGERAH ANTARABANGSA! TAHNIAH! MALAYSIA BOLEH!' — menunjukkan seorang remaja Malaysia menerima anugerah bergengsi di pentas global.",
+marks:10,
+parts:[
+  {l:"(a)",q:"Apakah kesan negatif jika seseorang gagal mengamalkan sikap individu glokal?",m:2,
+   a:["Kehilangan identiti budaya tempatan","Sukar bersaing di peringkat global","Menjejaskan imej negara","Pemikiran sempit","Ketinggalan dalam arus kemajuan"]},
+  {l:"(b)",q:"Sebagai individu glokal, bagaimanakah anda menyumbang kepada pembangunan negara?",m:8,
+   a:["Cadangan jawapan (Aras 4: 7-8m; Aras 3: 5-6m; Aras 2: 3-4m; Aras 1: 1-2m):","• Mengaitkan setiap tindakan dengan pembangunan negara","• Menguasai ilmu dan kemahiran global","• Mengamalkan nilai murni global","• Menyokong produk tempatan dan inovasi nasional","• Menggunakan teknologi global untuk pembangunan negara","• Tidak mengabaikan program komuniti setempat/global","• Menjadi duta kecil negara","• Memelihara identiti budaya tempatan","• Meningkatkan daya saing ekonomi"]}
+]},
+
+{n:8,sec:"C",topic:"Tanggungjawab Sivil — Pembayaran Cukai",title:"Pelepasan Cukai — Poster LHDN",
+stim:"Poster LHDN: Jenis Pelepasan Cukai — SSPN, Gaya Hidup, Sumbangan/Zakat, Insurans/Simpanan, Perbelanjaan Keluarga/Ibu Bapa, Perubatan/Kesihatan.",
+marks:20,
+parts:[
+  {l:"(a)",q:"Namakan EMPAT jenis pelepasan cukai seperti yang terdapat dalam poster di atas.",m:4,
+   a:["SSPN","Gaya hidup","Sumbangan/zakat","Insurans/simpanan","Perbelanjaan keluarga/ibu bapa","Perubatan/kesihatan"]},
+  {l:"(b)",q:"Jelaskan kepentingan membayar cukai kepada pembangunan negara.",m:8,
+   a:["Cadangan jawapan (Aras 4: 7-8m; Aras 3: 5-6m; Aras 2: 3-4m; Aras 1: 1-2m):","• Sumber pendapatan negara","• Membayar gaji kakitangan awam","• Pemberian biasiswa kepada pelajar cemerlang/kurang berkemampuan","• Menjaga kebajikan rakyat berpendapatan rendah","• Menyediakan infrastruktur/kemudahan awam","• Mentadbir/mengurus negara dengan baik","• Mengekalkan pertumbuhan ekonomi negara","• Memberikan bantuan subsidi"]},
+  {l:"(c)",q:"Huraikan kesan negatif kepada negara sekiranya rakyat tidak mematuhi tanggungjawab membayar cukai. Cadangkan nilai yang patut diamalkan oleh rakyat Malaysia.",m:8,
+   a:["Nilai: Bertanggungjawab, Kerjasama, Rasional, Kesederhanaan, Patriotisme","Cadangan jawapan (Aras 4: 7-8m; Aras 3: 5-6m; Aras 2: 3-4m; Aras 1: 1-2m):","• Dikenakan tindakan undang-undang","• Pembangunan negara terjejas","• Imej negara terjejas di mata dunia","• Golongan berkeperluan terabai","• Beban kewangan kerajaan meningkat","• Hutang negara bertambah","• Ketidakadilan sosial semakin runcing","• Menjejaskan kualiti perkhidmatan awam","• Jurang ekonomi/pendapatan semakin jauh"]}
+]},
+
+{n:9,sec:"C",topic:"Pengurusan Kewangan — Kesederhanaan Berbelanja",title:"Alvin — Jurutera Berpendapatan Tinggi Kurang Berhemat",
+stim:"Alvin seorang jurutera berpendapatan tinggi. Beliau suka berbelanja secara boros, membeli barang mewah dan berhibur tanpa memikirkan simpanan untuk masa hadapan. Kini beliau mula menghadapi masalah kewangan.",
+marks:20,
+parts:[
+  {l:"(a)",q:"Apakah akibat yang akan dialami oleh Alvin sekiranya beliau terus tidak berjimat cermat dalam pengurusan kewangan?",m:4,
+   a:[{f:"Menghadapi masalah kewangan",h:["Bebanan hutang yang tidak sepatutnya; Hutang semakin meningkat dan sukar dilangsaikan"]},
+      {f:"Nama disenaraihitam",h:["Tidak boleh ke luar negara; Hilang pendapatan akibat rekod kredit buruk"]},
+      {f:"Muflis",h:["Kehilangan aset dan harta benda akibat tidak mampu membayar hutang"]},
+      {f:"Hutang bertambah",h:["Faedah hutang terus meningkat menjejaskan kehidupan harian"]},
+      {f:"Hubungan sosial terganggu",h:["Menimbulkan konflik dengan keluarga/rakan"]}]},
+  {l:"(b)",q:"Sebagai rakan Alvin, cadangkan langkah-langkah yang boleh Alvin ambil untuk menguruskan kewangannya dengan baik.",m:8,
+   a:["Cadangan jawapan (Aras 4: 7-8m; Aras 3: 5-6m; Aras 2: 3-4m; Aras 1: 1-2m):","• Buat bajet bulanan","• Utamakan pembayaran hutang","• Amalkan gaya hidup sederhana","• Simpan sebahagian pendapatan setiap bulan","• Tingkatkan kesedaran kewangan melalui pembacaan/kursus"]},
+  {l:"(c)",q:"Sebagai ibu bapa, bagaimanakah cara anda mendidik anak-anak agar berjimat cermat dalam pengurusan kewangan? Nyatakan nilai yang perlu ada.",m:8,
+   a:["Nilai: Bertanggungjawab, Rasional, Kesederhanaan","Cadangan jawapan (Aras 4: 7-8m; Aras 3: 5-6m; Aras 2: 3-4m; Aras 1: 1-2m):","• Memberi contoh amalan menabung sejak kecil","• Menyediakan tabung khas untuk anak-anak","• Mengaitkan menabung dengan jaminan masa depan","• Mendidik melalui cerita/permainan","• Menghargai usaha anak-anak menabung/memberi ganjaran","• Menetapkan matlamat simpanan bersama anak-anak","• Memberi wang saku secara berkala dan menggalakkan simpanan"]}
+]}
+]});
+
+/* ---- Moral/data/moral-sarawak-2026-p1.js ---- */
+'use strict';
+/* P.Moral K1 — Sarawak · Percubaan SPM 2026 */
+window.SPM.register({"meta":{"id":"moral-sarawak-2026-p1","subject":"Pendidikan Moral","state":"Sarawak","year":2026,"paper":1,"code":"3755/1","source":"Percubaan SPM 2026 — Sarawak","answers":"skema","kind":"trial","total":9,"ai_answers":false},"questions":[
+{n:1,sec:"A",topic:"Tingkah Laku — Pergaulan Bebas Remaja",title:"Budaya Hedonisme dalam Kalangan Remaja",stim:"Poster bertajuk 'KENALI MAKNA BEBAS' memberi amaran tentang pergaulan bebas dalam kalangan remaja.",marks:10,parts:[
+  {l:"(a)",q:"Huraikan sebab golongan remaja lebih mudah terpengaruh dalam gejala pergaulan bebas.",m:4,a:[
+    {f:"Pengaruh rakan sebaya negatif",h:["Terikut-ikut dengan ajakan rakan."]},
+    {f:"Kurang didikan agama",h:["Tidak dapat membezakan baik buruk dalam hidup."]}
+  ]},
+  {l:"(b)",q:"Nyatakan implikasi kepada golongan remaja jika gejala pergaulan bebas ini tidak diatasi.",m:3,a:[
+    "Imej diri terjejas",
+    "Tidak dapat fokus dalam pelajaran",
+    "Masa depan terjejas",
+    "Anak luar nikah"
+  ]},
+  {l:"(c)",q:"Bagaimanakah anda dapat mengelakkan diri daripada terjebak dalam budaya hedonisme?",m:3,a:[
+    "Mengisi masa lapang dengan aktiviti berfaedah",
+    "Menimba didikan agama",
+    "Mengikut nasihat ibu bapa",
+    "Pandai pilih kawan"
+  ]}
+]},
+{n:2,sec:"A",topic:"Integriti — Plagiarisme",title:"Plagiarisme dalam Kalangan Pelajar",stim:"Infografik UKM mengenai gejala plagiarisme dalam kalangan pelajar.",marks:10,parts:[
+  {l:"(a)",q:"Nyatakan implikasi terhadap murid jika didapati melakukan plagiarisme.",m:2,a:[
+    "Dikenakan tindakan tatatertib",
+    "Kerja kursus / tugasan ditolak oleh guru",
+    "Dimarahi oleh ibu bapa"
+  ]},
+  {l:"(b)",q:"Bagaimanakah cara untuk menangani perbuatan plagiarisme di sekolah? Jelaskan.",m:4,a:[
+    {f:"Mengetatkan peraturan sekolah",h:["Murid takut untuk melakukan kesalahan."]},
+    {f:"Mengadakan kempen kesedaran",h:["Meletakkan poster anti plagiat di setiap kelas."]}
+  ]},
+  {l:"(c)",q:"Pada pandangan anda, mengapakah perbuatan plagiarisme perlu dielakkan?",m:4,a:[
+    "Menjejaskan imej diri",
+    "Tidak menghargai hasil kerja / karya orang lain",
+    "Tidak mendapat kepercayaan daripada rakan / guru",
+    "Murid semakin malas"
+  ]}
+]},
+{n:3,sec:"A",topic:"Keadilan — Penyeludupan Dadah",title:"Wanita Keldai Dadah Ditahan di Lapangan Terbang",stim:"Seramai 4 wanita keldai dadah ditahan di lapangan terbang antarabangsa di sebuah negara jiran kerana disyaki menyeludup dadah. (Sumber: Ubahsuai dari Buku Teks Pendidikan Moral Tingkatan 4)",marks:10,parts:[
+  {l:"(a)",q:"Wanita tersebut perlu diadili mengikut prinsip keadilan. Justifikasikan jawapan anda.",m:3,a:[
+    "Perbuatan tersebut salah",
+    "Tidak mengulangi kesalahan",
+    "Memberi pengajaran"
+  ]},
+  {l:"(b)",q:"Mengapakah golongan wanita sering menjadi mangsa keldai dadah?",m:3,a:[
+    "Kurang kesedaran",
+    "Mudah percaya janji manis",
+    "Masalah kewangan",
+    "Sikap tamak"
+  ]},
+  {l:"(c)",q:"Jelaskan implikasi kepada negara sekiranya wanita tersebut dibebaskan atas dasar prinsip keprihatinan.",m:4,a:[
+    {f:"Menjejaskan imej negara",h:["Negara dipandang rendah oleh negara lain."]},
+    {f:"Sindiket penyeludupan dadah meningkat",h:["Penglibatan lebih ramai individu / keldai dadah."]},
+    {f:"Hilang keyakinan pelabur asing",h:["Menjejaskan masa depan negara."]}
+  ]}
+]},
+{n:4,sec:"A",topic:"Tanggungjawab Sosial — Jenayah Siber",title:"Penipuan Dalam Talian Meningkat",stim:"Maklumat berikut adalah mengenai penipuan dalam talian yang semakin bertambah di Malaysia. Parlimen melaporkan: 'Kes penipuan dalam talian terus meningkat, catat kerugian lebih RM1.9 bilion.'",marks:10,parts:[
+  {l:"(a)",q:"Nyatakan tiga tindakan yang akan anda ambil sekiranya anda telah dihubungi scammer.",m:3,a:[
+    "Memberitahu ibu bapa",
+    "Memberitahu kaunselor",
+    "Lapor kepada polis",
+    "Minta nasihat orang dewasa"
+  ]},
+  {l:"(b)",q:"Nyatakan implikasi yang berlaku sekiranya jenayah penipuan dalam talian terus berleluasa.",m:3,a:[
+    "Mangsa mengalami tekanan perasaan",
+    "Menjejaskan kesihatan",
+    "Imej remaja terjejas",
+    "Menjejaskan pelajaran / tidak dapat fokus dalam pelajaran"
+  ]},
+  {l:"(c)",q:"Huraikan langkah-langkah kerajaan bagi membendung masalah penipuan dalam talian.",m:4,a:[
+    {f:"Menguatkuasakan undang-undang",h:["Mengenakan hukuman yang lebih berat kepada pesalah."]},
+    {f:"Mengadakan ceramah",h:["Menjemput kaunselor untuk memberi kesedaran kepada masyarakat."]}
+  ]}
+]},
+{n:5,sec:"A",topic:"Kesaksamaan — Pendatang Tanpa Izin",title:"Kebanjiran Pendatang Asing Tanpa Izin",stim:"Infografik Kementerian Dalam Negeri Malaysia: 'MALAYSIA HANTAR PULANG PENDATANG TANPA IZIN' — 5,951 tahanan di Depot Tahanan Imigresen dihantar pulang sepanjang tempoh PKP. Statistik 2020 mencatat 4,301 operasi, 68,033 pemeriksaan warganegara asing, 17,473 pendatang tanpa izin diambil tindakan undang-undang.",marks:10,parts:[
+  {l:"(a)",q:"Apakah punca kemasukan pendatang asing tanpa izin ke negara kita?",m:2,a:[
+    "Permintaan buruh asing yang tinggi",
+    "Kadar pertukaran mata wang asing yang menguntungkan"
+  ]},
+  {l:"(b)",q:"Jelaskan cabaran yang dihadapi oleh negara dalam mengekalkan hubungan antarabangsa.",m:4,a:[
+    {f:"Perbezaan ideologi",h:["Sistem pemerintahan yang berbeza."]},
+    {f:"Kepelbagaian budaya dan bahasa",h:["Komunikasi dan adat yang berbeza."]}
+  ]},
+  {l:"(c)",q:"Terangkan usaha kerajaan mengatasi masalah kebanjiran pendatang asing tanpa izin di negara kita.",m:4,a:[
+    {f:"Menguatkuasakan undang-undang laut",h:["Memastikan keselamatan terjamin."]},
+    {f:"Kerajaan menjalinkan hubungan dua hala dengan negara luar",h:["Membanteras jenayah antarabangsa."]}
+  ]}
+]},
+{n:6,sec:"B",topic:"Kesederhanaan — Pengurusan Kewangan",title:"Pengurusan Kewangan Secara Beretika",note:"Bahagian B — Jawab SATU soalan sahaja (Soalan 6 atau Soalan 7)",stim:"Infografik 'TIPS PENGURUSAN KEWANGAN UNTUK GRADUAN' (RinggitPlus) menunjukkan cara-cara memperuntukkan bajet: 35% Rumah & utiliti, 20% Makanan, 10% Pakaian & hiburan, 10% Pinjaman & perbelanjaan kereta, 10% Simpanan, 10% Pembayaran pinjaman, 5% Insurans kenderaan.",marks:10,parts:[
+  {l:"(a)",q:"Senaraikan sumber kewangan yang diperolehi secara beretika oleh rakyat Malaysia.",m:2,a:[
+    "Gaji",
+    "Insurans",
+    "Simpanan bank",
+    "Dividen",
+    "Bonus"
+  ]},
+  {l:"(b)",q:"Pada pandangan anda, bagaimanakah cara yang terbaik untuk menguruskan kewangan secara beretika?",m:8,kbat:true,a:[
+    {f:"Mengurus pendapatan dan perbelanjaan secara berhemat",h:["Perancangan kewangan yang berkesan dapat mengelakkan daripada perbelanjaan berlebihan. Membuat simpanan untuk waktu kecemasan. Contohnya, membuat senarai keperluan sebelum berbelanja. Oleh itu, hal ini akan menyebabkan individu perlu menyertai skim pelaburan yang diiktiraf."]},
+    {f:"Membuat pinjaman mengikut kemampuan",h:["Memperuntukkan wang untuk perbelanjaan dan simpanan. Membuat bayaran secara konsisten. Contohnya, melakukan pemotongan melalui akaun simpanan. Dengan ini, hal ini akan membuat pinjaman melalui agensi yang sah."]},
+    "Markah mengikut aras murid (Aras 4: 7-8m; Aras 3: 5-6m; Aras 2: 3-4m; Aras 1: 1-2m)"
+  ]}
+]},
+{n:7,sec:"B",topic:"Hak Asasi Manusia — Pemerdagangan Manusia",title:"Isu Pemerdagangan Manusia",note:"Bahagian B — Jawab SATU soalan sahaja (Soalan 6 atau Soalan 7)",stim:"Infografik 'PEMERDAGANGAN MANUSIA' menunjukkan pelbagai bentuk jenayah: penculikan kanak-kanak, pengurungan, pelacuran secara paksaan, buruh paksaan, berkahwin paksaan, perdagangan organ, penjualan bayi, paksaan kanak-kanak bersedekah, penyeludupan melalui bot.",marks:10,parts:[
+  {l:"(a)",q:"Berikan contoh pemerdagangan manusia.",m:2,a:[
+    "Penculikan kanak-kanak",
+    "Penjualan organ",
+    "Penjualan bayi",
+    "Buruh kanak-kanak"
+  ]},
+  {l:"(b)",q:"Terangkan langkah kerajaan dalam menangani isu pemerdagangan manusia.",m:8,kbat:true,a:[
+    {f:"Mengadakan kempen antipemerdagangan manusia",h:["Memberikan ceramah tentang kesan pemerdagangan manusia. Turut dipaparkan poster dan brouser. Sebagai contoh: memaparkan tayangan video tentang kesan pemerdagangan manusia. Dengan itu, pencegahan yang berterusan perlu dijalankan untuk menjamin kepentingan rakyat."]},
+    {f:"Ketatkan undang-undang",h:["Kerapkan rondaan di sempadan negara. Dikenakan hukuman yang berat. Contohnya, penjara 10 tahun. Dengan itu, hal ini dapat menyelamatkan mangsa."]},
+    "Markah mengikut aras murid (Aras 4: 7-8m; Aras 3: 5-6m; Aras 2: 3-4m; Aras 1: 1-2m)"
+  ]}
+]},
+{n:8,sec:"C",topic:"Tanggungjawab Maklumat — Berita Palsu",title:"Penyebaran Berita Palsu",stim:"Poster 'JANGAN SEBAR BERITA PALSU — JADILAH WARGANEGARA YANG BERTANGUNGJAWAB' berkaitan isu penyebaran berita palsu.",marks:20,parts:[
+  {l:"(a)",q:"Senaraikan sumber maklumat sahih yang boleh diperoleh demi mengekalkan keamanan masyarakat.",m:4,a:[
+    "Buku",
+    "Jurnal",
+    "Bahan rujukan akademik"
+  ]},
+  {l:"(b)",q:"Jelaskan kesan penyebaran berita palsu kepada masyarakat.",m:8,kbat:true,a:[
+    {f:"Menggugat perpaduan kaum",h:["Berita palsu yang menyentuh isu agama atau kaum boleh mencetuskan salah faham dan kebencian. Penyebaran berita palsu melalui media sosial yang menghina sesuatu kaum. Oleh itu, hal ini akan menyebabkan keharmonian negara terancam."]},
+    {f:"Menjejaskan nama baik individu atau organisasi",h:["Tuduhan dan fitnah tanpa bukti boleh merosakkan reputasi seseorang. Contohnya, menyebarkan gambar yang telah disunting sehingga mengaibkan seseorang. Dengan ini, hal ini akan menyebabkan mangsa mengalami tekanan emosi dan kehilangan kepercayaan masyarakat."]},
+    "Markah mengikut aras murid (Aras 4: 7-8m; Aras 3: 5-6m; Aras 2: 3-4m; Aras 1: 1-2m)"
+  ]},
+  {l:"(c)",q:"Bagaimanakah maklumat dapat disebarkan secara beretika kepada orang ramai? Jawapan anda hendaklah berdasarkan nilai-nilai universal yang telah dipelajari.",m:8,kbat:true,a:[
+    "Nilai: Rasional, Kejujuran",
+    {f:"Menyemak kesahihan maklumat sebelum berkongsi",h:["Individu perlu memastikan maklumat yang diperoleh daripada sumber yang sahih dan boleh dipercayai sebelum disebarkan. Tindakan ini dapat mengelakkan penyebaran berita palsu yang boleh menimbulkan kekeliruan dan salah faham dalam kalangan masyarakat. Contohnya, menyemak maklumat melalui portal rasmi kerajaan, Bernama dan kenyataan rasmi kementerian sebelum berkongsi di media sosial. Oleh itu, maklumat yang tepat dapat mengekalkan keamanan dan keharmonian negara."]},
+    {f:"Menyampaikan maklumat secara amanah dan tepat",h:["Individu hendaklah berkongsi maklumat yang benar tanpa mengubah atau mereka fakta. Maklumat yang tepat dapat meningkatkan kepercayaan masyarakat serta mengelakkan fitnah dan salah faham. Contohnya, tidak menyunting gambar atau video sehingga mengelirukan orang ramai. Dengan ini, masyarakat akan lebih yakin terhadap maklumat yang diterima."]},
+    "Markah mengikut aras murid (Aras 4: 7-8m; Aras 3: 5-6m; Aras 2: 3-4m; Aras 1: 1-2m)"
+  ]}
+]},
+{n:9,sec:"C",topic:"Integriti Peniaga — Harga Barang",title:"Roy dan Pemilik Pasar Raya Tidak Berintegriti",stim:"Roy bersama-sama ibunya ingin membeli barang keperluan asas memandangkan mereka bakal menyambut perayaan Hari Krismas tidak lama lagi. Malangnya, pemilik pasar raya telah menaikkan harga barangan untuk mendapatkan keuntungan semata-mata.",marks:20,parts:[
+  {l:"(a)",q:"Berdasarkan situasi tersebut, wajarkah tindakan pemilik pasar raya tersebut? Berikan justifikasi anda.",m:4,a:[
+    "Wajar: Kos operasi, gaji pekerja dan harga barang daripada pembekal juga meningkat.",
+    "Wajar: Kenaikan harga dibuat secara munasabah dan tidak mengambil kesempatan terhadap pengguna.",
+    "Tidak wajar: Pemilik pasar raya menaikkan harga semata-mata untuk mengaut keuntungan.",
+    "Tidak wajar: Berlaku pencatutan ketika musim perayaan sehingga membebankan pengguna."
+  ]},
+  {l:"(b)",q:"Pada pendapat anda, jelaskan implikasi daripada perbuatan yang tidak berintegriti oleh pemilik pasar raya tersebut kepada pembangunan ekonomi negara? Jawapan anda hendaklah berdasarkan nilai-nilai universal yang telah dipelajari.",m:8,kbat:true,a:[
+    "Nilai: Kejujuran",
+    {f:"Menjejaskan pertumbuhan ekonomi negara",h:["Perbuatan tidak berintegriti akan menjejaskan pertumbuhan ekonomi negara. Apabila pemilik pasar raya melakukan penipuan seperti menjual barang tiruan, memanipulasi timbangan, atau menaikkan harga secara tidak munasabah, pengguna akan hilang keyakinan untuk berbelanja. Misalnya, pemilik pasar raya menjual minyak masak bersubsidi pada harga lebih tinggi daripada kawalan. Oleh itu, hal ini akan menyebabkan ekonomi tidak dapat berkembang dengan pesat."]},
+    {f:"Mengurangkan kemasukan pelaburan",h:["Perbuatan tidak berintegriti mengurangkan keyakinan pelabur. Pelabur lebih cenderung melabur di negara yang mengamalkan integriti, ketelusan dan tadbir urus yang baik. Contohnya, syarikat antarabangsa membatalkan rancangan membuka pusat pengedaran kerana mendapati banyak kes penipuan perdagangan berlaku. Oleh itu, hal ini akan menyebabkan peluang pekerjaan berkurangan dan pertumbuhan ekonomi negara akan merosot."]},
+    "Markah mengikut aras murid (Aras 4: 7-8m; Aras 3: 5-6m; Aras 2: 3-4m; Aras 1: 1-2m)"
+  ]},
+  {l:"(c)",q:"Bagi mengelakkan isu kenaikan harga barang yang semakin berleluasa, cadangkan langkah yang boleh diambil oleh pihak kerajaan bagi mengatasi masalah ini.",m:8,kbat:true,a:[
+    {f:"Memperkasa penguatkuasaan undang-undang terhadap peniaga yang tidak beretika",h:["Memperketat penguatkuasaan terhadap peniaga yang menaikkan harga secara tidak munasabah. Dapat mengelakkan peniaga mengambil kesempatan untuk mengaut keuntungan berlebihan. Contohnya, pegawai penguatkuasa menjalankan pemeriksaan di pasar raya dan premis perniagaan. Dengan ini, hal ini dapat melindungi hak pengguna serta mengekang manipulasi harga."]},
+    {f:"Memberikan pendidikan kewangan dan kesedaran kepada masyarakat",h:["Meningkatkan pendidikan kewangan dalam kalangan masyarakat. Membantu rakyat merancang perbelanjaan dan mengurus kewangan secara bijak. Sebagai contoh: kempen berjimat-cermat. Oleh itu, hal ini akan menyebabkan masyarakat lebih bijak mengurus kewangan dan dapat menghadapi peningkatan kos sara hidup."]},
+    "Markah mengikut aras murid (Aras 4: 7-8m; Aras 3: 5-6m; Aras 2: 3-4m; Aras 1: 1-2m)"
+  ]}
+]}
+]});
+
+/* ---- Moral/data/moral-selangor-set1-2026-p1.js ---- */
+'use strict';
+/* P.Moral K1 — Selangor Set 1 · Percubaan SPM 2026 */
+window.SPM.register({"meta":{"id":"moral-selangor-set1-2026-p1","subject":"Pendidikan Moral","state":"Selangor","set":1,"year":2026,"paper":1,"code":"3755/1","source":"Percubaan SPM 2026 — Selangor Set 1","answers":"skema","kind":"trial","total":9,"ai_answers":false},"questions":[
+{n:1,sec:"A",topic:"Keadilan — Pengawas Sekolah dan Adik Ponteng",title:"Dilema Aizat sebagai Pengawas",stim:"Aizat merupakan pengawas sekolah. Suatu hari semasa bertugas, Aizat mendapati adiknya, Ain sedang ponteng kelas. Aizat berdepan dengan dilema sama ada hendak menegur atau tidak menegur adiknya itu.",marks:10,parts:[
+  {l:"(a)",q:"Berdasarkan situasi di atas, cadangkan tindakan yang sepatutnya dilakukan oleh Aizat berdasarkan prinsip keadilan.",m:2,a:["Menegur kesalahan adik","Mengarahkan adik balik ke kelas","Tidak pilih kasih semasa bertugas","Melaporkan kepada guru disiplin"],kbat:false},
+  {l:"(b)",q:"Apakah kesan yang berlaku sekiranya Aizat tidak bertindak terhadap adiknya berdasarkan prinsip keprihatinan?",m:4,a:[{f:"Adik terus melakukan kesalahan",h:["Adik merasakan perbuatannya tidak salah"]},{f:"Menjejaskan masa depan adik",h:["Ponteng kelas menyebabkan pelajaran merosot"]},{f:"Membentuk sikap tidak berdisiplin",h:["Melanggar peraturan sekolah"]},{f:"Menjejaskan kepercayaan orang lain terhadap pengawas",h:["Tidak adil menjalankan tugas"]},{f:"Imej diri terjejas",h:["Dipandang rendah"]}],kbat:true},
+  {l:"(c)",q:"Jelaskan kepentingan mematuhi peraturan sekolah.",m:4,a:[{f:"Menjadi murid yang berdisiplin",h:["Tidak terlibat dengan kes disiplin"]},{f:"Menjamin keselamatan dan keharmonian warga sekolah",h:["Dapat belajar dalam suasana aman dan damai"]},{f:"Melancarkan proses pengajaran dan pembelajaran",h:["Guru dan murid dapat fokus untuk mengajar dan belajar"]},{f:"Membentuk sahsiah dan akhlak yang mulia",h:["Menjadi contoh kepada rakan lain"]},{f:"Menjaga imej dan maruah diri",h:["Mengelakkan diri daripada tindakan disiplin"]}],kbat:false}
+]},
+{n:2,sec:"A",topic:"Integriti — Sikap dan Peribadi Individu",title:"Kepentingan Integriti",stim:"[Gambar papan tanda dengan tulisan 'INTEGRITI']",marks:10,parts:[
+  {l:"(a)",q:"Nyatakan kepentingan mengamalkan integriti dalam kehidupan individu.",m:2,a:["Dipercayai dan diyakini oleh orang lain","Membentuk sahsiah diri yang baik","Mengelakkan diri daripada terlibat dengan salah laku","Meningkatkan imej dan maruah diri","Menjamin keadilan dalam kehidupan"],kbat:false},
+  {l:"(b)",q:"Apakah implikasi sekiranya individu tidak berintegriti?",m:4,a:[{f:"Menjejaskan maruah dan imej diri",h:["Dipandang rendah dan serong oleh orang lain"]},{f:"Hilang kepercayaan orang terhadap diri",h:["Sukar dipercayai dalam semua perkara"]},{f:"Mudah terlibat dalam masalah disiplin dan undang-undang",h:["Perbuatan seperti menipu dan rasuah"]},{f:"Menjejaskan hubungan dengan orang lain",h:["Orang sekeliling akan menjauhkan diri"]},{f:"Menjejaskan masa depan",h:["Peluang dalam pelajaran dan kerjaya terjejas kerana mempunyai rekod buruk"]}],kbat:true},
+  {l:"(c)",q:"Cadangkan cara-cara untuk memupuk nilai integriti dalam diri individu.",m:4,a:[{f:"Mengamalkan keperibadian mulia dan bersikap baik",h:["Melakukan perbuatan baik, menolong dan membantu orang lain"]},{f:"Bersikap amanah dalam perbuatan",h:["Sentiasa bercakap benar dan tidak menipu"]},{f:"Bersedia mengakui kesalahan dan kesilapan",h:["Tidak takut mengakui kesalahannya dan bersedia untuk berubah"]},{f:"Mematuhi peraturan dan undang-undang",h:["Tidak melakukan perbuatan yang salah"]}],kbat:true}
+]},
+{n:3,sec:"A",topic:"Hak Asasi Manusia — Dokumen Pengenalan Diri",title:"Kanak-kanak Tanpa Dokumen Pengenalan Diri",stim:"[Keratan akhbar Utusan Malaysia melaporkan tentang kanak-kanak yang tidak mempunyai dokumen pengenalan diri yang sah di Malaysia]",marks:10,parts:[
+  {l:"(a)",q:"Berikan contoh dokumen pengenalan diri yang sah.",m:2,a:["Kad pengenalan diri (MyKad / MyKid)","Sijil Kelahiran / surat beranak","Pasport","Dokumen / Sijil kewarganegaraan","Kad Pengenalan Tentera / Polis"],kbat:false},
+  {l:"(b)",q:"Jelaskan kepentingan mempunyai dokumen pengenalan diri yang sah.",m:4,a:[{f:"Sebagai identiti diri",h:["Membuktikan seseorang itu adalah warganegara"]},{f:"Memudahkan segala urusan",h:["Urusan seperti pendaftaran sekolah dan kemudahan hospital"]},{f:"Jaminan keselamatan",h:["Maklumat diri tidak boleh ditiru dan mengelakkan penyamaran"]},{f:"Mengelakkan masalah perundangan",h:["Risiko dikenakan tindakan undang-undang jika tiada dokumen"]},{f:"Meningkatkan keyakinan diri",h:["Seseorang diiktiraf secara rasmi sebagai warganegara"]}],kbat:false},
+  {l:"(c)",q:"Huraikan risiko yang terpaksa dihadapi oleh kanak-kanak yang tidak mempunyai dokumen pengenalan diri.",m:4,a:[{f:"Kesukaran mendapat pendidikan",h:["Berisiko tercicir daripada sistem pendidikan"]},{f:"Akses terhad kepada perkhidmatan kesihatan",h:["Kesukaran mendapatkan rawatan di hospital kerajaan"]},{f:"Tiada perlindungan undang-undang yang jelas",h:["Mudah terdedah kepada eksploitasi"]},{f:"Masalah kewarganegaraan",h:["Terhalang untuk pendaftaran identiti"]},{f:"Sukar mendapatkan pekerjaan rasmi",h:["Kesan psikologi dan sosial — sukar bergaul kerana status yang tidak jelas"]}],kbat:true}
+]},
+{n:4,sec:"A",topic:"Tanggungjawab Maklumat — Media Sosial dan Maklumat Palsu",title:"Poster Kempen Semak Maklumat sebenarnya.my",stim:"[Poster kempen sebenarnya.my — platform kerajaan untuk mengesahkan maklumat palsu yang beredar di media sosial]",marks:10,parts:[
+  {l:"(a)",q:"Nyatakan sumber-sumber maklumat yang sahih.",m:2,a:["Laporan penyelidikan (jurnal / artikel / tesis)","Ensiklopedia","Surat edaran kerajaan / surat pekeliling","Kitab / buku ilmiah / buku teks","Laman sesawang yang diiktiraf","Individu / pihak berautoriti"],kbat:false},
+  {l:"(b)",q:"Huraikan kesan-kesan menyebarkan maklumat tanpa semakan kepada masyarakat.",m:4,a:["Menimbulkan kekeliruan dan salah faham dalam masyarakat","Menjejaskan reputasi, imej dan maruah individu yang terlibat","Mencetuskan panik dalam masyarakat","Boleh dikenakan tindakan undang-undang","Menjejaskan keharmonian masyarakat","Orang akan hilang kepercayaan","Menyebabkan orang membuat keputusan berdasarkan maklumat yang tidak tepat","Dipandang rendah oleh orang lain","Boleh menimbulkan ketakutan dan kegusaran","Hukuman denda atau penjara boleh dikenakan","Menimbulkan konflik, pergaduhan dan perpecahan","Sukar untuk diterima dalam masyarakat"],kbat:true},
+  {l:"(c)",q:"Nyatakan bentuk-bentuk penyalahgunaan teknologi maklumat.",m:4,a:[{f:"Menyentuh isu-isu sensitif",h:["Boleh menggugat perpaduan kaum"]},{f:"Menggodam dan menyebar maklumat sulit",h:["Menceroboh maklumat sulit dan peribadi orang lain"]},{f:"Memfitnah dan memburuk-burukkan orang lain",h:["Menularkan kata-kata fitnah dan kata-kata negatif terhadap orang lain"]},{f:"Penyelewengan data dan maklumat",h:["Membocorkan maklumat individu lain atau syarikat"]}],kbat:true}
+]},
+{n:5,sec:"A",topic:"Kerjasama Antara Negara — Masalah Jerebu",title:"Jerebu di Kuala Lumpur 2025",stim:"[Gambar jerebu tebal di Kuala Lumpur 2025. Jerebu berpunca daripada kebakaran hutan di Sumatera, Indonesia yang melanda kawasan berdekatan sempadan Malaysia]",marks:10,parts:[
+  {l:"(a)",q:"Nyatakan akibat jerebu kepada kesihatan manusia.",m:2,a:["Masalah pernafasan / asma","Kegatalan pada mata / hidung / tekak","Risiko penyakit jantung / paru-paru","Sakit kepala","Keletihan"],kbat:false},
+  {l:"(b)",q:"Cadangkan usaha-usaha untuk menyelesaikan masalah jerebu antara negara.",m:4,a:[{f:"Penguatkuasaan undang-undang yang tegas",h:["Hukuman tegas kepada orang yang melakukan pembakaran terbuka"]},{f:"Membuat perjanjian dengan negara serantau",h:["Usaha sama dalam aktiviti dan program kesedaran"]},{f:"Perkongsian teknologi dan maklumat",h:["Penggunaan satelit dan sistem pemantauan bagi mengesan titik panas dengan cepat"]},{f:"Bantuan kewangan sekiranya memerlukan",h:["Kos menguruskan jerebu adalah tinggi"]},{f:"Bantuan kepakaran",h:["Menghantar pakar untuk mencari jalan penyelesaian"]},{f:"Penyertaan dalam pertubuhan antarabangsa",h:["Mendapat bantuan daripada negara anggota"]}],kbat:true},
+  {l:"(c)",q:"Jelaskan kepentingan kerjasama antara negara dalam menangani masalah jerebu.",m:4,a:[{f:"Menjamin kesejahteraan sejagat",h:["Menjamin keamanan, keharmonian dan keselamatan dunia"]},{f:"Menyelesaikan masalah dengan lebih berkesan",h:["Masalah dapat diatasi bersama dan mendapat bantuan"]},{f:"Meningkatkan usaha sama dalam pelbagai bidang",h:["Memajukan negara dalam pelbagai bidang"]},{f:"Mengukuhkan hubungan diplomatik",h:["Mengeratkan hubungan politik"]},{f:"Mewujudkan kesepakatan antarabangsa",h:["Menandatangani pelbagai perjanjian untuk kepentingan bersama"]},{f:"Menggalakkan perkongsian teknologi dan maklumat",h:["Kepakaran dan ilmu dalam sesuatu bidang dapat dikongsikan"]}],kbat:false}
+]},
+{n:6,sec:"B",topic:"Norma Masyarakat — Budaya Pemakanan",title:"Budaya Makan Lewat Malam",stim:"[Gambar situasi masyarakat yang keluar makan di restoran pada waktu lewat malam — budaya 'food hunting' yang semakin popular di Malaysia]",marks:10,note:"Bahagian B — Jawab SATU soalan sahaja (Soalan 6 atau Soalan 7)",parts:[
+  {l:"(a)",q:"Apakah yang dimaksudkan dengan norma masyarakat?",m:2,a:["Perilaku / tindakan","Yang diterima sebagai amalan","Dalam sesuatu kelompok / komuniti / budaya"],kbat:false},
+  {l:"(b)",q:"Wajarkah budaya makan lewat malam diamalkan dalam masyarakat kita? Berikan penjelasan anda.",m:8,a:["Aras 4 (7-8m): pengetahuan dan pemahaman konsep moral sangat jelas, 2 fakta sangat jelas dan tepat, huraian sangat terperinci, contoh sangat sesuai, pengolahan sangat menarik, kematangan penulisan","Aras 3 (5-6m): pengetahuan dan pemahaman konsep moral jelas, 1 fakta jelas dan tepat, huraian terperinci, contoh sesuai, olahan ayat menarik","Aras 2 (3-4m): pengetahuan dan pemahaman konsep moral jelas, 1 fakta tepat, huraian kurang relevan, contoh kurang sesuai, olahan ayat sederhana","Aras 1 (1-2m): pengetahuan terhad, fakta terhad, tiada huraian, jawapan mudah dan terlalu umum","--- WAJAR ---","Mengikuti amalan makanan yang tular (viral) di media sosial","Budaya 'food hunting'","Pengaruh media sosial","Menarik perhatian ramai untuk mencuba sendiri","Aktiviti santai berborak dan interaksi sosial","Meluangkan masa bersama","Mengeratkan hubungan","Mendapat kepuasan menikmati makanan popular","--- TIDAK WAJAR ---","Menjejaskan kesihatan","Mengganggu masalah pencernaan","Meningkatkan masalah obesiti / berat badan","Meningkatkan kes penyakit","Contoh yang tidak baik kepada anak-anak","Generasi muda menjadikan budaya biasa","Gaya pemakanan tidak sihat"],kbat:true}
+]},
+{n:7,sec:"B",topic:"Pengurusan Kewangan Beretika — AKPK",title:"Poster AKPK: Perancangan Kewangan Bijak",stim:"[Poster AKPK (Agensi Kaunseling dan Pengurusan Kredit) tentang kepentingan perancangan kewangan yang bijak dan beretika]",marks:10,note:"Bahagian B — Jawab SATU soalan sahaja (Soalan 6 atau Soalan 7)",parts:[
+  {l:"(a)",q:"Nyatakan sumber-sumber kewangan yang diperoleh secara beretika.",m:2,a:["Saham yang diiktiraf","Sewa","Upah","Bonus","Dividen","Pelaburan hartanah","Simpanan bank","Insurans","Gaji"],kbat:false},
+  {l:"(b)",q:"Cadangkan cara-cara untuk menguruskan kewangan secara beretika.",m:8,a:["Aras 4 (7-8m): pengetahuan dan pemahaman konsep moral sangat jelas, 2 fakta sangat jelas dan tepat, huraian sangat terperinci, contoh sangat sesuai, pengolahan sangat menarik, kematangan penulisan","Aras 3 (5-6m): pengetahuan dan pemahaman konsep moral jelas, 1 fakta jelas dan tepat, huraian terperinci, contoh sesuai, olahan ayat menarik","Aras 2 (3-4m): pengetahuan dan pemahaman konsep moral jelas, 1 fakta tepat, huraian kurang relevan, contoh kurang sesuai, olahan ayat sederhana","Aras 1 (1-2m): pengetahuan terhad, fakta terhad, tiada huraian, jawapan mudah dan terlalu umum","Membuat simpanan sewaktu kecemasan","Melindungi pendapatan dan simpanan dengan insurans","Membuat bayaran pinjaman secara konsisten","Merancang kewangan untuk simpanan hari tua","Membuat tabungan daripada lebihan pendapatan atau simpanan bank","Mengurus perbelanjaan secara berhemat, tidak boros dan berjimat","Menyertai skim pelaburan yang diiktiraf","Membuat pinjaman mengikut kemampuan","Memiliki aset tetap","Memperuntukkan wang untuk membayar cukai"],kbat:true}
+]},
+{n:8,sec:"C",topic:"Tanggungjawab Warganegara — Pendatang Tanpa Izin (PATI)",title:"Operasi Tangkap Pendatang Tanpa Izin",stim:"[Gambar kapal yang membawa pendatang tanpa izin (PATI) dan operasi penguatkuasaan oleh pihak berkuasa di sempadan Malaysia]",marks:20,parts:[
+  {l:"(a)",q:"Huraikan faktor-faktor yang mendorong kemasukan pendatang tanpa izin (PATI) ke Malaysia.",m:4,a:[{f:"Peluang pekerjaan yang banyak",h:["Pasaran buruh Malaysia memerlukan tenaga kerja"]},{f:"Gaji lebih tinggi berbanding negara asal",h:["Tarikan ekonomi yang lebih baik di Malaysia"]},{f:"Kemiskinan di negara asal",h:["Tiada peluang pekerjaan yang mencukupi di negara asal"]},{f:"Kedudukan Malaysia yang strategik",h:["Malaysia mudah dicapai dari negara jiran"]},{f:"Permintaan daripada majikan tempatan",h:["Majikan sanggup menggaji PATI kerana kos yang rendah"]},{f:"Sindiket penyeludupan manusia",h:["Sindiket mengambil kesempatan untuk mengaut keuntungan"]},{f:"Sempadan laut yang luas",h:["Sukar untuk dipantau sepenuhnya oleh pihak berkuasa"]}],kbat:true},
+  {l:"(b)",q:"Jelaskan kesan-kesan kemasukan pendatang tanpa izin (PATI) ke negara kita.",m:8,a:["Aras 4 (7-8m): pengetahuan dan pemahaman konsep moral sangat jelas, 2 fakta sangat jelas dan tepat, huraian sangat terperinci, contoh sangat sesuai, pengolahan sangat menarik, kematangan penulisan","Aras 3 (5-6m): pengetahuan dan pemahaman konsep moral jelas, 1 fakta jelas dan tepat, huraian terperinci, contoh sesuai, olahan ayat menarik","Aras 2 (3-4m): pengetahuan dan pemahaman konsep moral jelas, 1 fakta tepat, huraian kurang relevan, contoh kurang sesuai, olahan ayat sederhana","Aras 1 (1-2m): pengetahuan terhad, fakta terhad, tiada huraian, jawapan mudah dan terlalu umum","Menjejaskan keselamatan negara","Persaingan peluang pekerjaan dengan rakyat tempatan","Menimbulkan isu sosial dalam masyarakat","Risiko penularan penyakit berjangkit","Menjejaskan hubungan diplomatik dengan negara jiran","Pihak berkuasa sukar mengenal pasti latar belakang mereka","Peningkatan kadar jenayah","Aktiviti penyeludupan, pemerdagangan manusia dan pemalsuan dokumen","Gaji rendah boleh menekan struktur pasaran buruh","Ketirisan hasil cukai kerana mereka bekerja secara tidak sah","Penempatan setinggan bertambah","Berlaku kesesakan dan tekanan terhadap kemudahan awam","Perbezaan budaya boleh menimbulkan salah faham"],kbat:true},
+  {l:"(c)",q:"Cadangkan langkah-langkah yang boleh diambil oleh kerajaan untuk mengatasi masalah pendatang tanpa izin (PATI). Sertakan nilai universal yang berkaitan.",m:8,a:["Aras 4 (7-8m): 2 nilai universal, 2 fakta sangat jelas, huraian sangat terperinci, contoh sesuai, kematangan penulisan","Aras 3 (5-6m): 1 nilai universal, 1 fakta jelas, huraian terperinci, contoh sesuai","Aras 2 (3-4m): tiada nilai universal, 1 fakta tepat, huraian kurang relevan, olahan ayat sederhana","Aras 1 (1-2m): pengetahuan terhad, fakta terhad, tiada huraian","Nilai universal: Bertanggungjawab / Rasional / Kerjasama","Mengetatkan kawalan di sempadan","Meningkatkan kawalan di pintu masuk darat, laut dan udara","Menggunakan teknologi moden seperti sistem biometrik dan pengawasan digital","Rondaan berkala perlu dipertingkatkan","Penguatkuasaan undang-undang diperketatkan","Hukuman lebih tegas terhadap sindiket penyeludupan manusia","Tindakan terhadap majikan yang menggaji PATI","Usaha sama dua hala dan serantau dengan negara jiran","Perjanjian persefahaman (MoU) tentang pengambilan pekerja asing secara sah","Program pemutihan dan pengampunan terkawal","Melaksanakan program pendaftaran dan pemutihan bagi PATI yang layak","Mengurangkan kebergantungan kepada pekerja asing","Meningkatkan kesedaran masyarakat melalui kempen kesedaran"],kbat:true}
+]},
+{n:9,sec:"C",topic:"Perpaduan Kaum — Nilai Kerohanian",title:"Amina Menunaikan Solat — Rakan-rakan Menghormati",stim:"Amina sedang menunaikan solat di bilik rehat sekolah. Rakan-rakannya yang berbangsa Cina dan India menghormati Amina dengan menjaga ketenangan dan tidak mengganggu semasa dia menunaikan solat.",marks:20,parts:[
+  {l:"(a)",q:"Apakah pengajaran yang boleh diambil daripada situasi di atas?",m:4,a:["Bertolak ansur antara satu sama lain","Menghargai kepelbagaian dan perbezaan kaum serta agama","Bersikap adil dan saksama","Mengutamakan perpaduan","Bertimbang rasa","Berkomunikasi secara positif"],kbat:false},
+  {l:"(b)",q:"Huraikan cabaran-cabaran yang dihadapi dalam memupuk perpaduan kaum di Malaysia.",m:8,a:["Aras 4 (7-8m): pengetahuan dan pemahaman konsep moral sangat jelas, 2 fakta sangat jelas dan tepat, huraian sangat terperinci, contoh sangat sesuai, pengolahan sangat menarik, kematangan penulisan","Aras 3 (5-6m): pengetahuan dan pemahaman konsep moral jelas, 1 fakta jelas dan tepat, huraian terperinci, contoh sesuai, olahan ayat menarik","Aras 2 (3-4m): pengetahuan dan pemahaman konsep moral jelas, 1 fakta tepat, huraian kurang relevan, contoh kurang sesuai, olahan ayat sederhana","Aras 1 (1-2m): pengetahuan terhad, fakta terhad, tiada huraian, jawapan mudah dan terlalu umum","Penyebaran maklumat palsu dan negatif","Isu perkauman sentiasa diungkit","Penguasaan bahasa kebangsaan yang lemah","Kurang peka terhadap kepentingan penguasaan bahasa kebangsaan","Menimbulkan masalah komunikasi","Prejudis terhadap kaum lain","Kurang sikap bertolak ansur terutama melibatkan isu-isu agama, kaum dan bahasa ibunda","Kurang pemahaman terhadap agama dan kepercayaan kaum lain","Tidak sensitif terhadap amalan dan ritual kaum lain"],kbat:true},
+  {l:"(c)",q:"Jelaskan kepentingan mengamalkan nilai kerohanian dalam kehidupan. Sertakan nilai universal yang berkaitan.",m:8,a:["Aras 4 (7-8m): 2 nilai universal, 2 fakta sangat jelas, huraian sangat terperinci, contoh sesuai, kematangan penulisan","Aras 3 (5-6m): 1 nilai universal, 1 fakta jelas, huraian terperinci, contoh sesuai","Aras 2 (3-4m): tiada nilai universal, 1 fakta tepat, huraian kurang relevan, olahan ayat sederhana","Aras 1 (1-2m): pengetahuan terhad, fakta terhad, tiada huraian","Nilai universal: Kepercayaan kepada Tuhan / Baik hati / Bertanggungjawab / Hormat / Rasional / Hemah tinggi / Toleransi","Membentuk insan yang berkeperibadian mulia","Dipandang tinggi dalam masyarakat","Mengelakkan individu daripada melakukan perkara yang dilarang dan negatif","Hidup dalam suasana yang harmoni, aman dan damai","Melahirkan individu yang berfikiran positif","Dapat membuat keputusan yang wajar","Menjadi suri teladan, inspirasi dan contoh","Melahirkan individu yang berdisiplin","Mematuhi peraturan dan undang-undang"],kbat:true}
+]}
+]});
+
+</script>
+
+<script>
+/* =========================================================================
+   SPM 2026 Trial Drill — engine (P1 MCQ + P2 Structured)
+   ========================================================================= */
+window.__SPM_START = function(){
+'use strict';
+function imgDim(s){var d=window.__IMGDIM&&window.__IMGDIM[s];return d?' width="'+d[0]+'" height="'+d[1]+'"':'';}
+
+/* ---------- tracker (fire-and-forget, never blocks UI) ---------- */
+const TRACK_URL = 'https://track.vircle.tech/hit';
+function track(e, extra){
+  try {
+    fetch(TRACK_URL, {
+      method:'POST', keepalive:true,
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(Object.assign({e}, extra||{}))
+    }).catch(()=>{});
+  } catch(_){}
+}
+track('visit');
+
+/* ---------- helpers ---------- */
+const $  = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+const LTR = 'ABCDE';
+const app = $('#app');
+let LANG = 'en';
+
+/* field may be a plain string or {bm,en} */
+function T(v){
+  if(v==null) return '';
+  if(typeof v === 'string') return v;
+  return v[LANG] || v.en || v.bm || '';
+}
+/* Render text: pipe-tables, bullet lists, newlines → HTML */
+function mdT(v){
+  let s = T(v);
+  if(!s) return s;
+  s = s.replace(/((?:[^\n]*\|[^\n]*(?:\n|$)){2,})/g, block => {
+    const rows = block.split('\n').map(r=>r.trim()).filter(Boolean);
+    if(rows.length < 2) return block;
+    const toRow = (r, tag) =>
+      '<tr>'+r.split('|').map(c=>`<${tag}>${c.trim()}</${tag}>`).join('')+'</tr>';
+    const [h,...body] = rows;
+    return '<table><thead>'+toRow(h,'th')+'</thead><tbody>'+body.map(r=>toRow(r,'td')).join('')+'</tbody></table>';
+  });
+  s = s.replace(/((?:[ \t]*•[^\n]*(?:\n|$))+)/g, block => {
+    const items = block.split('\n')
+      .map(l=>l.replace(/^[ \t]*•\s*/,'').trim()).filter(Boolean)
+      .map(l=>'<li>'+l+'</li>').join('');
+    return '<ul class="qlist">'+items+'</ul>';
+  });
+  s = s.replace(/\n/g,'<br>');
+  return s;
+}
+function pad(n){ n=n|0; return n<10 ? '0'+n : ''+n; }
+function mmss(s){ s=Math.max(0,s|0); return pad(s/60)+':'+pad(s%60); }
+function toast(msg){
+  const t=$('#toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2200);
+}
+function shuffle(a){ for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];} return a; }
+function attr(s){ return String(s).replace(/"/g,'&quot;'); }
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function nl(s){ return esc(s||'').replace(/\n/g,'<br>'); }
+
+function stimFmt(raw){
+  if(!raw) return '';
+  let s = esc(raw);
+  // [Kotak: A; B; C; D] → CSS grid of boxes
+  s = s.replace(/\[Kotak:\s*([^\]]+)\]/gi, (_, items)=>{
+    const cells = items.split(';').map(c=>c.trim()).filter(Boolean);
+    const cols = cells.length<=3 ? cells.length : 2;
+    return '<div class="kotak-grid" style="grid-template-columns:repeat('+cols+',1fr)">'
+      +cells.map(c=>'<div class="kotak-cell">'+c+'</div>').join('')+'</div>';
+  });
+  s = s.replace(/\[Kotak\]/gi,'<div class="stim-ph">[Rajah — rujuk kertas asal]</div>');
+  // [Jadual...] → table callout
+  s = s.replace(/\[Jadual(?:\s+[^\]:]*)?\]/gi,'<div class="stim-block"><span class="stim-lbl">JADUAL</span> rujuk kertas asal</div>');
+  s = s.replace(/\[Jadual:\s*([^\]]+)\]/gi,(_,d)=>'<div class="stim-block"><span class="stim-lbl">JADUAL</span> '+d+'</div>');
+  // [Rajah...: ...] → diagram description
+  s = s.replace(/\[Rajah[^:\]]*:\s*([^\]]+)\]/gi,(_,d)=>
+    '<div class="stim-block"><span class="stim-lbl">RAJAH</span> '+d.replace(/->/g,'→')+'</div>');
+  // [Carta...: ...] → chart description
+  s = s.replace(/\[Carta[^:\]]*:\s*([^\]]+)\]/gi,(_,d)=>
+    '<div class="stim-block"><span class="stim-lbl">CARTA</span> '+d+'</div>');
+  // [Label N(x): text] → labelled callout (Petikan, Maklumat, Poster, Pantun, etc.)
+  s = s.replace(/\[([A-Za-z][^:\]]{0,30}):\s*([^\]]+)\]/g,(_,lbl,txt)=>
+    '<div class="stim-block"><span class="stim-lbl">'+lbl+'</span> '+txt+'</div>');
+  return s.replace(/\n/g,'<br>');
+}
+
+/* ---------- persistent store ---------- */
+const KEY='spm2026.v1';
+const DB={
+  d:{ settings:{theme:'dark',lang:'en'}, progress:{}, history:[] },
+  load(){ try{ const r=JSON.parse(localStorage.getItem(KEY)); if(r) this.d=Object.assign(this.d,r); }catch(e){} },
+  save(){ try{ localStorage.setItem(KEY,JSON.stringify(this.d)); }catch(e){} },
+  q(uid){ return this.d.progress[uid] || (this.d.progress[uid]={seen:0,right:0,wrong:0,box:0,last:0,lastOk:null}); },
+  record(uid,ok){
+    const p=this.q(uid); p.seen++; p.last=Date.now(); p.lastOk=ok;
+    if(ok){ p.right++; p.box=Math.min(5,p.box+1); } else { p.wrong++; p.box=0; }
+  }
+};
+DB.load();
+LANG = DB.d.settings.lang || 'en';
+
+/* what a finished drill records besides the score: which papers it drew from and how many questions were actually answered */
+function sessionInfo(items,att){
+  return { packs:[...new Set(items.map(q=>q.packId))].slice(0,12), nq:items.length, att:att };
+}
+
+/* ---------- topic taxonomy ---------- */
+const TOPICS = {
+  Physics: {
+    MEASURE:          {form:'F4', en:'Measurement',              bm:'Pengukuran'},
+    MOTION:           {form:'F4', en:'Force & Motion',           bm:'Daya & Gerakan'},
+    GRAVITATION:      {form:'F4', en:'Gravitation',              bm:'Graviti'},
+    HEAT:             {form:'F4', en:'Heat',                     bm:'Haba'},
+    WAVES:            {form:'F4', en:'Waves',                    bm:'Gelombang'},
+    LIGHT:            {form:'F4', en:'Light & Optics',           bm:'Cahaya & Optik'},
+    PRESSURE:         {form:'F5', en:'Pressure',                 bm:'Tekanan'},
+    ELECTRICITY:      {form:'F5', en:'Electricity',              bm:'Elektrik'},
+    ELECTROMAGNETISM: {form:'F5', en:'Electromagnetism',         bm:'Elektromagnetisme'},
+    ELECTRONICS:      {form:'F5', en:'Electronics',              bm:'Elektronik'},
+    NUCLEAR:          {form:'F5', en:'Nuclear Physics',          bm:'Fizik Nuklear'},
+    QUANTUM:          {form:'F5', en:'Quantum Physics',          bm:'Fizik Kuantum'},
+  },
+  Biology: {
+    /* KSSM chapters (Trial 2025 packs onward) */
+    INTRO:      {form:'F4', en:'Introduction to Biology & Lab Rules',  bm:'Pengenalan Biologi & Peraturan Makmal'},
+    CELL:       {form:'F4', en:'Cell Biology & Organisation',          bm:'Biologi Sel & Organisasi Sel'},
+    MEMBRANE:   {form:'F4', en:'Movement across Plasma Membrane',      bm:'Pergerakan Bahan merentasi Membran Plasma'},
+    CHEMCOMP:   {form:'F4', en:'Chemical Composition in a Cell',       bm:'Komposisi Kimia dalam Sel'},
+    ENZYME:     {form:'F4', en:'Metabolism & Enzymes',                 bm:'Metabolisme & Enzim'},
+    DIVISION:   {form:'F4', en:'Cell Division',                        bm:'Pembahagian Sel'},
+    CELLRESP:   {form:'F4', en:'Cellular Respiration',                 bm:'Respirasi Sel'},
+    GASEX:      {form:'F4', en:'Respiratory Systems',                  bm:'Sistem Respirasi'},
+    DIGEST:     {form:'F4', en:'Nutrition & Human Digestive System',   bm:'Nutrisi & Sistem Pencernaan Manusia'},
+    CIRC:       {form:'F4', en:'Transport in Humans & Animals',        bm:'Pengangkutan dalam Manusia & Haiwan'},
+    COORD:      {form:'F4', en:'Coordination & Response',              bm:'Koordinasi & Gerak Balas'},
+    HOMEO:      {form:'F4', en:'Homeostasis & Urinary System',         bm:'Homeostasis & Sistem Urinari'},
+    SUPPORT:    {form:'F4', en:'Support & Movement',                   bm:'Sokongan & Pergerakan'},
+    REPRO:      {form:'F4', en:'Reproduction, Development & Growth',   bm:'Pembiakan, Perkembangan & Pertumbuhan'},
+    PLANTORG:   {form:'F5', en:'Plant Tissues & Growth',               bm:'Organisasi Tisu Tumbuhan & Pertumbuhan'},
+    LEAF:       {form:'F5', en:'Leaf Structure & Photosynthesis',      bm:'Struktur & Fungsi Daun'},
+    PLANTNUT:   {form:'F5', en:'Nutrition in Plants',                  bm:'Nutrisi dalam Tumbuhan'},
+    PLANTTRANS: {form:'F5', en:'Transport in Plants',                  bm:'Pengangkutan dalam Tumbuhan'},
+    PLANTRESP:  {form:'F5', en:'Response in Plants',                   bm:'Gerak Balas dalam Tumbuhan'},
+    PLANTREPRO: {form:'F5', en:'Reproduction in Flowering Plants',     bm:'Pembiakan Seks Tumbuhan Berbunga'},
+    ADAPT:      {form:'F5', en:'Plant Adaptations',                    bm:'Penyesuaian Tumbuhan'},
+    BIODIV:     {form:'F5', en:'Biodiversity',                         bm:'Biodiversiti'},
+    ECOSYS:     {form:'F5', en:'Ecosystem',                            bm:'Ekosistem'},
+    ENVIRO:     {form:'F5', en:'Environmental Sustainability',         bm:'Kelestarian Alam Sekitar'},
+    INHERIT:    {form:'F5', en:'Inheritance',                          bm:'Pewarisan'},
+    GENTECH:    {form:'F5', en:'Genetic Technology',                   bm:'Teknologi Genetik'},
+    /* legacy codes still used by the Trial 2026 packs (remap pending) */
+    CELLBIOLOGY:  {form:'F4', en:'Cell Biology',             bm:'Biologi Sel'},
+    NUTRITION:    {form:'F4', en:'Nutrition',                bm:'Nutrisi'},
+    RESPIRATION:  {form:'F4', en:'Respiration',              bm:'Respirasi'},
+    TRANSPORT:    {form:'F4', en:'Transportation',           bm:'Pengangkutan'},
+    IMMUNE:       {form:'F4', en:'Immunity',                 bm:'Imuniti'},
+    REPRODUCTION: {form:'F4', en:'Reproduction',            bm:'Pembiakan'},
+    GENETICS:     {form:'F5', en:'Genetics & Heredity',      bm:'Genetik & Keturunan'},
+    VARIATION:    {form:'F5', en:'Variation',                bm:'Variasi'},
+    EVOLUTION:    {form:'F5', en:'Evolution',                bm:'Evolusi'},
+    ECOLOGY:      {form:'F5', en:'Ecology & Biodiversity',   bm:'Ekologi & Biodiversiti'},
+    BIOTECHNOLOGY:{form:'F5', en:'Biotechnology',           bm:'Bioteknologi'},
+  },
+  Chemistry: {
+    INTRO:    {form:'F4', en:'Introduction to Chemistry',           bm:'Pengenalan kepada Kimia'},
+    ATOM:     {form:'F4', en:'Matter & Atomic Structure',           bm:'Jirim & Struktur Atom'},
+    MOLE:     {form:'F4', en:'Chemical Formulae & Equations',       bm:'Formula & Persamaan Kimia'},
+    PTABLE:   {form:'F4', en:'Periodic Table of Elements',          bm:'Jadual Berkala Unsur'},
+    BOND:     {form:'F4', en:'Chemical Bonds',                      bm:'Ikatan Kimia'},
+    ACID:     {form:'F4', en:'Acids, Bases & Salts',                bm:'Asid, Bes & Garam'},
+    RATE:     {form:'F4', en:'Rate of Reaction',                    bm:'Kadar Tindak Balas'},
+    INDUSTRY: {form:'F4', en:'Manufactured Substances in Industry', bm:'Bahan Buatan dalam Industri'},
+    REDOX:    {form:'F5', en:'Redox Equilibrium',                   bm:'Keseimbangan Redoks'},
+    CARBON:   {form:'F5', en:'Carbon Compounds',                    bm:'Sebatian Karbon'},
+    THERMO:   {form:'F5', en:'Thermochemistry',                     bm:'Termokimia'},
+    POLYMER:  {form:'F5', en:'Polymer',                             bm:'Polimer'},
+    CONSUMER: {form:'F5', en:'Consumer & Industrial Chemistry',     bm:'Kimia Pengguna & Industri'}
+  },
+  Sejarah: {
+    PRASEJARAH:  {form:'F4', bm:'Kehidupan Zaman Prasejarah'},
+    TAMADUN:     {form:'F4', bm:'Tamadun Awal di Asia Tenggara'},
+    ALAM_MELAYU: {form:'F4', bm:'Kerajaan-Kerajaan Alam Melayu'},
+    KUASA_BARAT: {form:'F4', bm:'Kedatangan Barat dan Perluasan Kuasa'},
+    NASIONALISME:{form:'F4', bm:'Nasionalisme di Malaysia'},
+    MERDEKA:     {form:'F5', bm:'Malaysia Mencapai Kemerdekaan'},
+    PEMBINAAN:   {form:'F5', bm:'Pembinaan Negara dan Bangsa Malaysia'},
+    PEMERINTAHAN:{form:'F5', bm:'Sistem Pemerintahan dan Pentadbiran'},
+    PEMBANGUNAN: {form:'F5', bm:'Pembangunan dan Kemajuan Negara'},
+    GLOBALISASI: {form:'F5', bm:'Malaysia dalam Era Globalisasi'}
+  },
+  'Modern Maths': {
+    QUADRATIC:      {form:'F4', en:'Quadratic Functions & Equations', bm:'Fungsi & Persamaan Kuadratik'},
+    NUMBER_BASES:   {form:'F4', en:'Number Bases',                    bm:'Asas Nombor'},
+    LOGIC:          {form:'F4', en:'Mathematical Logic',              bm:'Logik Matematik'},
+    SETS:           {form:'F4', en:'Sets',                            bm:'Set'},
+    GRAPH_THEORY:   {form:'F4', en:'Graph Theory & Networks',         bm:'Teori Graf & Rangkaian'},
+    INEQUALITIES:   {form:'F4', en:'Linear Inequalities',             bm:'Ketaksamaan Linear'},
+    MOTION:         {form:'F4', en:'Graphs of Motion',                bm:'Graf Gerak Laju'},
+    STATISTICS:     {form:'F4', en:'Statistics: Dispersion',          bm:'Statistik: Sukatan Serakan'},
+    PROBABILITY:    {form:'F4', en:'Probability',                     bm:'Kebarangkalian'},
+    CONSUMER:       {form:'F4', en:'Consumer Mathematics',            bm:'Matematik Pengguna'},
+    VARIATION:      {form:'F5', en:'Variation',                       bm:'Ubahan'},
+    MATRICES:       {form:'F5', en:'Matrices',                        bm:'Matriks'},
+    CONSUMER_ADV:   {form:'F5', en:'Insurance, Tax & Investment',     bm:'Insurans, Percukaian & Pelaburan'},
+    TRANSFORMATIONS:{form:'F5', en:'Transformations',                 bm:'Jelmaan'},
+    TRIG:           {form:'F5', en:'Trigonometry',                    bm:'Trigonometri'},
+    STATS_GROUPED:  {form:'F5', en:'Statistics: Grouped Data',        bm:'Statistik: Data Berkumpul'},
+    MODELLING:      {form:'F5', en:'Mathematical Modelling',          bm:'Pemodelan Matematik'},
+    SPHERE:         {form:'F5', en:'Earth as a Sphere',               bm:'Bumi sebagai Sfera'},
+    PLANS_ELEVATIONS:{form:'F5', en:'Plans & Elevations',             bm:'Pelan & Dongakan'},
+    NUMBER:         {form:'F4', en:'Numbers & Significant Figures',   bm:'Nombor & Angka Bererti'},
+    STANDARD_FORM:  {form:'F4', en:'Standard Form',                   bm:'Bentuk Piawai'},
+    INDICES:        {form:'F4', en:'Indices',                         bm:'Indeks'},
+    SEQUENCES:      {form:'F4', en:'Number Patterns & Sequences',     bm:'Jujukan & Pola Nombor'},
+    ALGEBRA:        {form:'F4', en:'Algebra',                         bm:'Algebra'},
+    GEOMETRY:       {form:'F4', en:'Geometry & Coordinates',          bm:'Geometri & Koordinat'},
+    STATS:          {form:'F4', en:'Statistics',                      bm:'Statistik'}
+  }
+};
+function topicInfo(subject,code){
+  const t=(TOPICS[subject]||{})[code];
+  return t ? {name:T(t), form:t.form} : {name:code||'UNTAGGED', form:''};
+}
+
+/* ---------- flatten packs into one bank ---------- */
+const BANK=[];
+(window.SPM.packs||[]).forEach(pack=>{
+  const m=pack.meta||{};
+  (pack.questions||[]).forEach((q,i)=>{
+    const isPaper2 = m.paper===2 || (q.parts && q.parts.length>0);
+    const ti=topicInfo(m.subject,q.topic);
+    BANK.push({
+      uid: (m.id||'pack')+'#'+(q.n!=null?q.n:i+1),
+      packId:m.id, subject:m.subject||'?', state:m.state||'?', year:m.year||'',
+      paper:m.paper||1, kind:m.kind||'trial', ans:m.answers||'skema',
+      type: isPaper2 ? 'structured' : 'mcq',
+      n: q.n!=null?q.n:i+1,
+      form: q.form || ti.form || '?',
+      topic: q.topic || '', topicRaw: q.topicName || null,
+      // P2 fields (Sejarah-compatible naming)
+      sec: q.sec || q.section || 'A',
+      title: q.title || '',
+      stim: q.stim || '', stimHtml: q.stimHtml || null, bm: q.bm || null,
+      marks: (q.parts||[]).reduce((t,p)=>t+(+p.m||0),0) || q.marks || 0,
+      parts: q.parts || [],
+      note: q.note || '',
+      // P1 fields
+      q:q.q, img:q.img, alt:q.alt, stmts:q.stmts||[],
+      o:q.o||[], a:q.a, w:q.w
+    });
+  });
+});
+$('#bankTag').textContent = 'BANK '+BANK.length;
+
+const HAS_EN = new Set(BANK.filter(q=>q.q&&typeof q.q==='object'&&q.q.en).map(q=>q.subject));
+function updateLangBtn(){
+  const bilingual = !F.subject || HAS_EN.has(F.subject);
+  const b=document.getElementById('btnLang');
+  if(b) b.style.display = bilingual ? '' : 'none';
+}
+function tname(q){ return q.topicRaw ? T(q.topicRaw) : topicInfo(q.subject,q.topic).name; }
+
+/* ---------- filters ---------- */
+const F={ subject:null, states:new Set(), forms:new Set(), topics:new Set(), years:new Set(),
+          mode:'practice', count:'all', shuffle:true, source:'all', paper:1 };
+
+function subjects(){ return [...new Set(BANK.map(q=>q.subject))].sort(); }
+function pool(ignore){
+  return BANK.filter(q=>{
+    if(F.subject && q.subject!==F.subject) return false;
+    if(q.paper !== F.paper) return false;
+    if(ignore!=='states' && F.states.size && !F.states.has(q.state)) return false;
+    if(ignore!=='forms'  && F.forms.size  && !F.forms.has(q.form))   return false;
+    if(ignore!=='topics' && F.topics.size && !F.topics.has(q.topic)) return false;
+    if(ignore!=='years'  && F.years.size  && !F.years.has(q.year))   return false;
+    const p=DB.d.progress[q.uid];
+    if(F.source==='wrong'  && !(p && p.lastOk===false)) return false;
+    if(F.source==='unseen' &&  (p && p.seen))           return false;
+    if(F.source==='weak'   && !(p && p.box<3))          return false;
+    return true;
+  });
+}
+
+/* =========================================================================
+   SETUP
+   ========================================================================= */
+function renderSetup(){
+  S=null;
+  if(!BANK.length) return renderEmpty();
+  if(!F.subject) F.subject = subjects()[0];
+  const SUBJ_SLUG={'Sejarah':'sejarah','Biology':'biologi','Chemistry':'kimia','Modern Maths':'matematik','Physics':'fizik'};
+  const bs=$('#breadSubj');
+  if(bs){ bs.textContent=String(F.subject).toUpperCase(); const sl=SUBJ_SLUG[F.subject]; bs.href=sl?'https://saspm.vircle.tech/'+sl+'.html':'https://saspm.vircle.tech/'; }
+
+  // If current paper not available for subject, reset to P1
+  const subjectHasP2 = BANK.some(q=>q.subject===F.subject && q.paper===2);
+  if(!subjectHasP2 && F.paper===2) F.paper=1;
+
+  const p = pool();
+  const chip=(on,label,count,dataAttr)=>{
+    const isForecast=/forecast/i.test(label);
+    return '<button class="chip'+(on?' on':'')+(isForecast?' forecast':'')+'" '+dataAttr+'>'+label+(count!=null?'<span class="n">'+count+'</span>':'')+'</button>';
+  };
+  const keyOf={states:'state',forms:'form',topics:'topic',years:'year'};
+  const countIn=(g,v)=>pool(g).filter(q=>String(q[keyOf[g]])===String(v)).length;
+
+  const inSub = BANK.filter(q=>q.subject===F.subject && q.paper===F.paper);
+  const stateList=[...new Set(inSub.map(q=>q.state))].sort();
+  const yearList =[...new Set(inSub.map(q=>q.year))].sort();
+  const topicList=[...new Set(inSub.map(q=>q.topic))].filter(Boolean)
+    .sort((a,b)=>{const A=topicInfo(F.subject,a),B=topicInfo(F.subject,b);
+                  return (A.form+A.name).localeCompare(B.form+B.name);});
+
+  const p1count = BANK.filter(q=>q.subject===F.subject&&q.paper===1).length;
+  const p2count = BANK.filter(q=>q.subject===F.subject&&q.paper===2).length;
+  const isP2 = F.paper===2;
+
+  app.innerHTML =
+   '<p class="kick">'+String(F.subject).toUpperCase()+' &middot; KERTAS 1 &amp; 2 &middot; TRIAL 2026 DAN SPM SEBENAR</p>'+
+   '<p class="sub">'+(isP2
+     ? '<em>Paper 2 structured practice.</em> Each question shows the full scenario. Reveal model answers one sub-part at a time, then mark yourself honestly.'
+     : '<em>Drill every state, one question at a time.</em> Pick what to practise. Every answer is scored, explained and remembered &mdash; so the app can push the questions you keep missing straight back at you.')+'</p>'+
+
+   '<div class="card" style="margin-top:26px">'+
+
+    (subjects().length>1 ?
+     '<div class="sec"><div class="lab">SUBJECT</div><div class="chips" data-g="subject">'+
+       subjects().map(s=>chip(F.subject===s,s,BANK.filter(q=>q.subject===s).length,'data-v="'+attr(s)+'"')).join('')+
+     '</div></div>' : '')+
+
+    // Paper selector — always visible; K2 disabled if no P2 data loaded yet
+    '<div class="sec"><div class="lab">PAPER</div><div class="chips" data-g="paper">'+
+      chip(F.paper===1,'KERTAS 1 &middot; OBJEKTIF',p1count,'data-v="1"')+
+      (subjectHasP2||p2count>0
+        ? chip(F.paper===2,'KERTAS 2 &middot; BERSTRUKTUR',p2count,'data-v="2"')
+        : '<button class="chip" disabled style="opacity:.38;cursor:not-allowed">KERTAS 2 &middot; BERSTRUKTUR <span class="n" style="color:var(--dim)">SOON</span></button>')+
+    '</div></div>'+
+
+    '<div class="sec"><div class="lab">STATE / PAPER <i data-clear="states">clear</i></div><div class="chips" data-g="states">'+
+      stateList.map(s=>chip(F.states.has(s),s,countIn('states',s),'data-v="'+attr(s)+'"')).join('')+
+    '</div></div>'+
+
+    (yearList.length>1 ?
+    '<div class="sec"><div class="lab">YEAR <i data-clear="years">clear</i></div><div class="chips" data-g="years">'+
+      yearList.map(y=>chip(F.years.has(y),y,countIn('years',y),'data-v="'+attr(y)+'"')).join('')+
+    '</div></div>' : '')+
+
+    '<div class="sec"><div class="lab">FORM <i data-clear="forms">clear</i></div><div class="chips" data-g="forms">'+
+      ['F4','F5'].map(f=>chip(F.forms.has(f),f==='F4'?'FORM 4':'FORM 5',countIn('forms',f),'data-v="'+f+'"')).join('')+
+    '</div></div>'+
+
+    '<div class="sec"><div class="lab">TOPIC <i data-clear="topics">clear</i></div><div class="chips" data-g="topics">'+
+      topicList.map(t=>{const ti=topicInfo(F.subject,t);
+        return chip(F.topics.has(t),(ti.form?ti.form+' &middot; ':'')+ti.name,countIn('topics',t),'data-v="'+attr(t)+'"');}).join('')+
+    '</div></div>'+
+
+    '<div class="sec"><div class="grid2">'+
+      '<div><div class="lab">WHICH QUESTIONS</div><div class="chips" data-g="source">'+
+        [['all','EVERYTHING'],['unseen','NEVER SEEN'],['wrong','GOT IT WRONG'],['weak','NOT MASTERED']]
+          .map(([v,l])=>chip(F.source===v,l,null,'data-v="'+v+'"')).join('')+
+      '</div></div>'+
+      '<div><div class="lab">HOW MANY</div><div class="chips" data-g="count">'+
+        ['10','20','40','50','all'].map(v=>chip(String(F.count)===v,v==='all'?'ALL':v,null,'data-v="'+v+'"')).join('')+
+      '</div></div>'+
+      (!isP2 ?
+      '<div><div class="lab">MODE</div><div class="chips" data-g="mode">'+
+        [['practice','PRACTICE &middot; instant huraian'],['exam','EXAM &middot; timed, no help']]
+          .map(([v,l])=>chip(F.mode===v,l,null,'data-v="'+v+'"')).join('')+
+      '</div></div>' : '')+
+      '<div><div class="lab">ORDER</div><div class="chips" data-g="shuffle">'+
+        [['1','SHUFFLE'],['0','PAPER ORDER']].map(([v,l])=>chip(String(F.shuffle?1:0)===v,l,null,'data-v="'+v+'"')).join('')+
+      '</div></div>'+
+    '</div></div>'+
+
+    '<div class="startrow">'+
+      '<div class="count"><b>'+p.length+'</b>'+(isP2?'questions':'questions match')+'</div>'+
+      '<button class="cta" id="go"'+(p.length?'':' disabled')+'>'+(isP2?'PRACTISE KERTAS 2':'START DRILL')+' &rarr;</button>'+
+    '</div>'+
+   '</div>';
+
+  $$('.chips',app).forEach(box=>{
+    const g=box.dataset.g;
+    box.addEventListener('click',e=>{
+      const b=e.target.closest('.chip'); if(!b) return;
+      const v=b.dataset.v;
+      if(g==='subject'){ F.subject=v; F.states.clear(); F.forms.clear(); F.topics.clear(); F.years.clear(); F.paper=1; }
+      else if(g==='paper'){ F.paper=+v; F.states.clear(); F.topics.clear(); F.years.clear(); }
+      else if(g==='mode')    F.mode=v;
+      else if(g==='count')   F.count=v;
+      else if(g==='source')  F.source=v;
+      else if(g==='shuffle') F.shuffle=(v==='1');
+      else { const set=F[g], key=(g==='years'&&v!==''&&!isNaN(v))?+v:v; set.has(key)?set.delete(key):set.add(key); }
+      renderSetup();
+    });
+  });
+  $$('[data-clear]',app).forEach(el=>el.addEventListener('click',()=>{ F[el.dataset.clear].clear(); renderSetup(); }));
+  const go=$('#go'); if(go) go.addEventListener('click',()=>startSession());
+  updateLangBtn();
+}
+
+function renderEmpty(){
+  app.innerHTML =
+   '<p class="kick">NO QUESTIONS LOADED YET</p>'+
+   '<h1>The engine is ready. <em>The bank is empty.</em></h1>'+
+   '<div class="card" style="margin-top:26px"><div class="empty">'+
+     '<p>Drop a pack file into <code>data/</code>, then list it in <code>data/manifest.js</code>.</p>'+
+     '<p style="margin-top:14px">Copy <code>data/_TEMPLATE.js</code> to start, or read <code>README.md</code> for the field list.</p>'+
+   '</div></div>';
+}
+
+/* =========================================================================
+   SESSION
+   ========================================================================= */
+let S=null, timerId=null;
+
+function leaveDrill(then){
+  if(timerId) clearInterval(timerId);
+  S=null;
+  then();
+}
+
+function startSession(list){
+  let items = list ? list.slice() : pool();
+  if(F.shuffle) shuffle(items);
+  else items.sort((a,b)=> a.packId===b.packId ? a.n-b.n : String(a.packId).localeCompare(String(b.packId)));
+  if(!list && F.count!=='all') items = items.slice(0, Math.min(+F.count, items.length));
+  if(!items.length){ toast('NOTHING MATCHES THAT FILTER'); return; }
+
+  const isP2 = items[0].type === 'structured';
+  S={ items, idx:0, picks:{}, flags:new Set(), mode: isP2 ? 'p2' : F.mode,
+      startedAt:Date.now(), limit: (!isP2 && F.mode==='exam') ? items.length*75 : 0, done:false,
+      open:{}, marks:{}, lang:'en' };
+  if(timerId) clearInterval(timerId);
+  if(S.limit) timerId=setInterval(tick,1000);
+
+  if(isP2) renderP2Quiz();
+  else renderQuiz();
+  window.scrollTo({top:0});
+}
+
+function tick(){
+  if(!S||S.done) return;
+  const left = S.limit - ((Date.now()-S.startedAt)/1000|0);
+  const el=$('#clock');
+  if(el){ el.textContent=mmss(left); el.classList.toggle('warn',left<300); }
+  if(left<=0){ clearInterval(timerId); toast('TIME UP'); finish(); }
+}
+
+/* =========================================================================
+   P1 MCQ QUIZ
+   ========================================================================= */
+function renderQuiz(){
+  const q=S.items[S.idx];
+  const picked=S.picks[q.uid], answered=picked!=null;
+  const reveal = answered && S.mode==='practice';
+  const left = S.limit ? S.limit-((Date.now()-S.startedAt)/1000|0) : 0;
+  const score = S.items.filter(x=>S.picks[x.uid]===x.a).length;
+
+  app.innerHTML =
+   '<div class="card">'+
+     '<div class="top">'+
+       '<div class="ctr-row">'+
+         '<span>SOALAN '+(S.idx+1)+' / '+S.items.length+'</span>'+
+         '<span class="r">'+
+           (S.mode==='exam'
+             ? '<span>ANSWERED <b>'+Object.keys(S.picks).length+'</b></span><span id="clock">'+mmss(left)+'</span>'
+             : '<span>SCORE <b>'+score+'</b></span>')+
+           '<button class="ghost" id="btnGrid" style="padding:5px 11px">GRID</button>'+
+         '</span>'+
+       '</div>'+
+       '<div class="pbar"><i style="width:'+(S.idx/S.items.length*100)+'%"></i></div>'+
+     '</div>'+
+
+     '<div class="qbody">'+
+       '<div class="meta">'+
+         '<span class="tag am">'+q.form+'</span>'+
+         '<span class="tag vi">'+tname(q)+'</span>'+
+         '<span class="tag">'+q.state+(q.year?' '+q.year:'')+' &middot; Q'+q.n+'</span>'+
+       '</div>'+
+       (q.stmts&&q.stmts.length ? '<div class="stmt"><div class="stmt-lbl">PERNYATAAN &middot; STATEMENT</div>'+q.stmts.map(s=>'<div class="stmt-item">'+mdT(s)+'</div>').join('')+'</div>' : '')+
+       '<div class="qq">'+mdT(q.q)+'</div>'+
+       (q.img?'<img class="qimg" loading="lazy" decoding="async"'+imgDim(q.img)+' src="'+attr(q.img)+'" alt="'+attr(T(q.alt)||'figure')+'">':'')+
+       (q.alt&&!q.img?'<p class="alt">'+T(q.alt)+'</p>':'')+
+       '<div class="opts">'+
+         q.o.map((o,i)=>{
+           let cls='opt';
+           if(reveal){ cls += i===q.a ? ' right' : (i===picked ? ' wrong' : ' dim'); }
+           else if(picked===i) cls+=' pick';
+           return '<button class="'+cls+'" data-i="'+i+'"'+(reveal?' disabled':'')+
+                  '><span class="k">'+LTR[i]+'</span><span>'+T(o)+'</span></button>';
+         }).join('')+
+       '</div>'+
+       (reveal ? (T(q.w) ? '<div class="why"><b>HURAIAN'+(q.q&&q.q.en?' &middot; WHY':'')+'</b>'+mdT(q.w)+'</div>'
+                         : '<div class="why none">No explanation stored for this question yet.</div>') : '')+
+       '<div class="nav">'+
+         '<button class="btn mutebtn" id="prev"'+(S.idx?'':' disabled')+'>&larr; BACK</button>'+
+         '<button class="btn flag'+(S.flags.has(q.uid)?' on':'')+'" id="flag">&#9873; FLAG</button>'+
+         '<button class="btn mutebtn" id="exit">&#10005; EXIT</button>'+
+         '<span class="sp"></span>'+
+         (S.mode==='exam'
+           ? '<button class="btn mutebtn" id="quit">SUBMIT PAPER</button><button class="btn" id="next">'+(S.idx<S.items.length-1?'NEXT &rarr;':'FINISH &rarr;')+'</button>'
+           : (answered ? '<button class="btn" id="next">'+(S.idx<S.items.length-1?'NEXT &rarr;':'SEE MY REPORT &rarr;')+'</button>'
+                       : '<button class="btn mutebtn" id="skip">SKIP</button>'))+
+       '</div>'+
+       '<p class="hint">KEYS: A&ndash;'+LTR[Math.max(0,q.o.length-1)]+' OR 1&ndash;'+q.o.length+' TO ANSWER &middot; ENTER = NEXT &middot; F = FLAG &middot; G = GRID &middot; ESC = EXIT</p>'+
+     '</div>'+
+
+     '<div class="navg" id="grid"><div class="cells">'+
+       S.items.map((x,i)=>{
+         let c='cell'+(i===S.idx?' cur':'');
+         const p=S.picks[x.uid];
+         if(p!=null) c += S.mode==='practice' ? (p===x.a?' ok':' no') : ' done';
+         if(S.flags.has(x.uid)) c+=' flag';
+         return '<button class="'+c+'" data-j="'+i+'">'+(i+1)+'</button>';
+       }).join('')+
+     '</div></div>'+
+   '</div>';
+
+  $$('.opt',app).forEach(b=>b.addEventListener('click',()=>choose(+b.dataset.i)));
+  const on=(id,fn)=>{const e=$('#'+id); if(e) e.addEventListener('click',fn);};
+  on('next',go1); on('skip',go1);
+  on('prev',()=>{ S.idx--; renderQuiz(); });
+  on('flag',()=>{ S.flags.has(q.uid)?S.flags.delete(q.uid):S.flags.add(q.uid); renderQuiz(); });
+  on('quit',()=>{ if(confirm('Submit the paper now?')) finish(); });
+  on('exit',()=>leaveDrill(renderSetup));
+  on('btnGrid',()=>$('#grid').classList.toggle('show'));
+  $$('.cell',app).forEach(b=>b.addEventListener('click',()=>{ S.idx=+b.dataset.j; renderQuiz(); }));
+  renderMath();
+}
+
+function choose(i){
+  const q=S.items[S.idx];
+  if(S.mode==='practice' && S.picks[q.uid]!=null) return;
+  S.picks[q.uid]=i;
+  if(S.mode==='practice'){
+    DB.record(q.uid, i===q.a); DB.save();
+    track('answer',{subject:F.subject, pack:q.pack, correct:i===q.a?1:0});
+  }
+  renderQuiz();
+}
+function go1(){ if(S.idx<S.items.length-1){ S.idx++; renderQuiz(); } else finish(); }
+
+/* =========================================================================
+   P2 STRUCTURED QUIZ  (Sejarah-compatible: per-part DAPAT/BELUM marks)
+   ========================================================================= */
+
+function pts2(arr){
+  if(!arr||!arr.length) return '';
+  return '<ol class="pts">'+arr.map(s=>{
+    if(typeof s==='string') return '<li>'+esc(s)+'</li>';
+    // structured object: {f: "Feature heading", h: ["hint1","hint2",...]}
+    const feat = s.f ? '<b>'+esc(s.f)+'</b>' : '';
+    const hints = (s.h||[]).map(h=>'<li>'+esc(h)+'</li>').join('');
+    return '<li>'+feat+(hints?'<ul class="pts-sub">'+hints+'</ul>':'')+'</li>';
+  }).join('')+'</ol>';
+}
+
+function L(en, bm){ return (LANG==='bm' && bm) ? bm : (en||''); }
+
+function renderP2Quiz(){
+  const q=S.items[S.idx];
+  const got=q.parts.reduce((t,p)=>t+(S.marks[q.uid+p.l]===true?(+p.m||0):0),0);
+  const allMarked=q.parts.every(p=>S.marks[q.uid+p.l]!=null);
+
+  const partHTML=p=>{
+    const id=q.uid+p.l, open=S.open[id], mk=S.marks[id];
+    const bp=q.bm&&q.bm.parts ? q.bm.parts.find(x=>x.l===p.l) : null;
+    return '<div class="part'+(mk===true?' ok':mk===false?' no':'')+'">'+
+      '<div class="pq">'+
+        '<span class="pl">('+esc(p.l)+')</span>'+
+        '<span>'+mdT(L(p.q, bp&&bp.q))+'</span>'+
+        '<span class="pm">'+p.m+'m'+(p.kbat?' &middot; KBAT':'')+'</span>'+
+      '</div>'+
+      (p.img?'<img class="qimg" src="'+attr(p.img)+'" alt="Rajah">':'')+
+      (open ?
+        '<div class="pa">'+pts2(LANG==='bm'&&bp&&bp.a&&bp.a.length ? bp.a : p.a)+'</div>'+
+        '<div class="selfm"><span>DID YOU GET IT?</span>'+
+          '<button class="btn sm'+(mk===true?' on':'')+'" data-mk="1" data-id="'+attr(id)+'">&#10003; DAPAT</button>'+
+          '<button class="btn sm bad'+(mk===false?' on':'')+'" data-mk="0" data-id="'+attr(id)+'">&#10007; BELUM</button>'+
+        '</div>'
+      : '<button class="btn mutebtn reveal" data-open="'+attr(id)+'">TUNJUK JAWAPAN &darr;</button>')+
+    '</div>';
+  };
+
+  app.innerHTML=
+   '<div class="card">'+
+    '<div class="top"><div class="ctr-row"><span>SOALAN '+(S.idx+1)+' / '+S.items.length+'</span>'+
+      '<span class="r">'+
+        (q.bm ? '<button class="ghost" id="btnLangP2" style="padding:4px 8px;font-size:.72rem">'+(LANG==='bm'?'BM ✓':'EN/BM')+'</button>' : '')+
+        '<span>SEKSYEN <b>'+q.sec+'</b></span><span>THIS Q <b>'+got+'/'+q.marks+'</b>m</span>'+
+      '</span></div>'+
+      '<div class="pbar"><i style="width:'+(S.idx/S.items.length*100)+'%"></i></div></div>'+
+    '<div class="qbody">'+
+      '<div class="meta">'+
+        '<span class="tag am">'+q.form+'</span>'+
+        '<span class="tag vi">'+tname(q)+'</span>'+
+        '<span class="tag">'+esc(q.state)+(q.year?' '+q.year:'')+' &middot; Q'+q.n+'</span>'+
+        '<span class="tag am">SEK '+q.sec+' &middot; '+q.marks+'m</span>'+
+        (q.ans==='cadangan'?'<span class="tag" style="border-color:var(--badR);color:var(--badR)">CADANGAN</span>':'')+
+      '</div>'+
+      (q.title?'<div class="qq">'+esc(L(q.title, q.bm&&q.bm.title))+'</div>':
+               (q.q?'<div class="qq">'+mdT(q.q)+'</div>':''))+
+      (q.img?'<img class="qimg" loading="lazy" decoding="async"'+imgDim(q.img)+' src="'+attr(q.img)+'" alt="'+attr(T(q.alt)||'Rajah')+'">':'')+
+      (q.alt&&!q.img?'<p class="alt">'+T(q.alt)+'</p>':'')+
+      (LANG==='bm'&&q.bm&&q.bm.stim?'<div class="stim">'+stimFmt(q.bm.stim)+'</div>':
+       q.stim?'<div class="stim">'+stimFmt(T(q.stim))+'</div>':'')+
+      (q.stimHtml?'<div class="stim">'+q.stimHtml+'</div>':'')+
+      q.parts.map(partHTML).join('')+
+      (q.note?'<p class="alt">Nota: '+esc(L(q.note, q.bm&&q.bm.note))+'</p>':'')+
+      '<div class="nav">'+
+        '<button class="btn mutebtn" id="prev"'+(S.idx?'':' disabled')+'>&larr; BACK</button>'+
+        '<button class="btn mutebtn" id="openall">REVEAL ALL</button>'+
+        '<button class="btn mutebtn" id="exit">&#10005; EXIT</button>'+
+        '<span class="sp"></span>'+
+        '<button class="btn" id="next">'+(S.idx<S.items.length-1?(allMarked?'NEXT &rarr;':'SKIP &rarr;'):'SEE REPORT &rarr;')+'</button>'+
+      '</div>'+
+      '<p class="hint">SPACE = REVEAL NEXT &middot; 1 = DAPAT &middot; 0 = BELUM &middot; ENTER = NEXT &middot; ESC = EXIT</p>'+
+    '</div></div>';
+
+  $$('[data-open]',app).forEach(b=>b.addEventListener('click',()=>{S.open[b.dataset.open]=1; renderP2Quiz();}));
+  $$('[data-mk]',app).forEach(b=>b.addEventListener('click',()=>mark2(b.dataset.id,b.dataset.mk==='1')));
+  const on=(id,fn)=>{const e=$('#'+id); if(e) e.addEventListener('click',fn);};
+  on('prev',()=>{S.idx--; renderP2Quiz();});
+  on('next',go2);
+  on('exit',()=>leaveDrill(renderSetup));
+  on('openall',()=>{q.parts.forEach(p=>S.open[q.uid+p.l]=1); renderP2Quiz();});
+  on('btnLangP2',()=>{LANG=LANG==='bm'?'en':'bm'; DB.d.settings.lang=LANG; DB.save(); renderP2Quiz();});
+  renderMath();
+  window.scrollTo({top:0});
+}
+
+function mark2(id,ok){ S.marks[id]=ok; DB.record(id,ok); DB.save(); renderP2Quiz(); }
+function go2(){ if(S.idx<S.items.length-1){S.idx++; renderP2Quiz(); window.scrollTo({top:0});} else finishP2(); }
+
+/* =========================================================================
+   P2 SUMMARY  (marks-based, aligned with Sejarah K2)
+   ========================================================================= */
+function finishP2(){
+  if(timerId) clearInterval(timerId);
+  S.done=true;
+  let got=0, tot=0;
+  const byTopic=new Map();
+  const missed=[];
+  S.items.forEach(q=>{
+    let g=0, t=0;
+    q.parts.forEach(p=>{
+      const mk=S.marks[q.uid+p.l];
+      if(mk==null) return;
+      t+=(+p.m||0); if(mk) g+=(+p.m||0);
+    });
+    got+=g; tot+=t;
+    if(t){
+      const r=byTopic.get(q.topic)||{name:tname(q),ok:0,tot:0};
+      r.ok+=g; r.tot+=t; byTopic.set(q.topic,r);
+    }
+    if(q.parts.some(p=>S.marks[q.uid+p.l]===false)) missed.push(q);
+  });
+
+  DB.d.history.push(Object.assign({at:Date.now(),mode:'p2',score:got,total:tot||1,subject:F.subject},
+    sessionInfo(S.items,S.items.filter(q=>q.parts.some(p=>S.marks[q.uid+p.l]!=null)).length)));
+  if(DB.d.history.length>400) DB.d.history=DB.d.history.slice(-400);
+  DB.save();
+
+  const pct=tot?got/tot:0;
+  const msg = pct>=.9 ? 'Excellent — cemerlang dalam kertas berstruktur!'
+            : pct>=.7 ? 'Bagus! Ulang kaji mata yang salah dan cuba semula.'
+            : pct>=.5 ? 'Boleh tahan. Fokus pada topik lemah di bawah.'
+            : tot===0  ? 'Tiada bahagian ditanda — tandakan DAPAT/BELUM pada setiap bahagian.'
+            : 'Perlu latihan lagi — baca skema jawapan dengan teliti dan cuba lagi.';
+
+  const rows=[...byTopic.values()].sort((a,b)=>a.ok/a.tot-b.ok/b.tot)
+    .map(r=>[r.name,r.ok,r.tot]);
+
+  app.innerHTML=
+   '<div class="card">'+
+    '<div class="res">'+
+      '<div class="score">'+got+'<span>/'+tot+'</span></div>'+
+      '<div class="pc">MARKS SELF-ASSESSED &middot; KERTAS 2</div>'+
+      '<p class="msg">'+msg+'</p>'+
+    '</div>'+
+    (rows.length?
+      '<div class="sec" style="border-top:1px solid var(--line)"><div class="lab">BY TOPIC &mdash; weakest first (marks)</div>'+
+        bars(rows)+'</div>':'')+
+    '<div class="startrow">'+
+      (missed.length?'<button class="cta" id="redo">RETAKE '+missed.length+' MISSED &rarr;</button>':'')+
+      '<button class="btn mutebtn" id="again">&#8634; SAME FILTERS AGAIN</button>'+
+      '<button class="btn mutebtn" id="home">&larr; TUKAR PILIHAN</button>'+
+    '</div>'+
+   '</div>';
+
+  const on=(id,fn)=>{const e=$('#'+id); if(e) e.addEventListener('click',fn);};
+  on('redo',()=>startSession(missed));
+  on('again',()=>startSession());
+  on('home',renderSetup);
+  window.scrollTo({top:0});
+}
+
+/* =========================================================================
+   P1 REPORT
+   ========================================================================= */
+function finish(){
+  if(timerId) clearInterval(timerId);
+  S.done=true;
+  if(S.mode==='exam'){
+    S.items.forEach(q=>{
+      const p=S.picks[q.uid];
+      if(p!=null){
+        DB.record(q.uid,p===q.a);
+        track('answer',{subject:F.subject, pack:q.pack, correct:p===q.a?1:0});
+      }
+    });
+  }
+  const score=S.items.filter(q=>S.picks[q.uid]===q.a).length;
+  DB.d.history.push(Object.assign({at:Date.now(),mode:S.mode,score,total:S.items.length,subject:F.subject},
+    sessionInfo(S.items,S.items.filter(q=>S.picks[q.uid]!=null).length)));
+  if(DB.d.history.length>400) DB.d.history=DB.d.history.slice(-400);
+  DB.save();
+  renderReport(score);
+}
+
+function bars(rows){
+  return rows.map(([label,ok,tot])=>{
+    const pc = tot?Math.round(ok/tot*100):0;
+    const cls = pc>=75?'':pc>=50?'mid':'low';
+    return '<div class="brow"><span>'+label+'</span>'+
+           '<span class="tr"><span class="fl '+cls+'" style="width:'+pc+'%"></span></span>'+
+           '<span class="v">'+ok+'/'+tot+' &middot; '+pc+'%</span></div>';
+  }).join('');
+}
+
+function renderReport(score){
+  const tot=S.items.length, pct=score/tot;
+  const msg = pct===1  ? 'Perfect. Pick a harder state next.'
+            : pct>=.85 ? 'Strong. Read the huraian for the misses and move on.'
+            : pct>=.7  ? 'Good pass. The red topics below are tomorrow\'s revision.'
+            : pct>=.5  ? 'Halfway. Re-drill the weakest topic alone before mixing states again.'
+                       : 'Rough round — that is data, not a verdict. Read every huraian below slowly, then retake just the mistakes.';
+
+  const group=(keyFn,nameFn)=>{
+    const m=new Map();
+    S.items.forEach(q=>{ const k=keyFn(q); const r=m.get(k)||{ok:0,tot:0,name:nameFn(q)};
+                         r.tot++; if(S.picks[q.uid]===q.a) r.ok++; m.set(k,r); });
+    return [...m.values()].sort((a,b)=>a.ok/a.tot-b.ok/b.tot).map(r=>[r.name,r.ok,r.tot]);
+  };
+  const wrong = S.items.filter(q=>S.picks[q.uid]!==q.a);
+
+  app.innerHTML =
+   '<div class="card">'+
+     '<div class="res">'+
+       '<div class="score">'+score+'<span>/'+tot+'</span></div>'+
+       '<div class="pc">'+Math.round(pct*100)+'% &middot; '+(S.mode==='exam'?'EXAM':'PRACTICE')+'</div>'+
+       '<p class="msg">'+msg+'</p>'+
+     '</div>'+
+     '<div class="sec" style="border-top:1px solid var(--line)"><div class="lab">BY TOPIC &mdash; weakest first</div>'+
+        bars(group(q=>q.topic,tname))+'</div>'+
+     '<div class="sec"><div class="lab">BY FORM</div>'+bars(group(q=>q.form,q=>q.form==='F4'?'FORM 4':'FORM 5'))+'</div>'+
+     '<div class="sec"><div class="lab">BY STATE</div>'+bars(group(q=>q.state+q.year,q=>q.state+(q.year?' '+q.year:'')))+'</div>'+
+
+     (wrong.length ?
+     '<div class="rev"><div class="lab">REVIEW &mdash; '+wrong.length+' TO FIX</div>'+
+       wrong.map(q=>{
+         const p=S.picks[q.uid];
+         return '<div class="rq">'+
+           '<div class="h"><span>'+q.state+(q.year?' '+q.year:'')+' &middot; Q'+q.n+'</span>'+
+             '<span>'+q.form+' &middot; '+tname(q)+'</span>'+
+             (p==null?'<b>NOT ANSWERED</b>':'<b>WRONG</b>')+'</div>'+
+           '<div class="t">'+T(q.q)+'</div>'+
+           (q.img?'<img class="qimg" loading="lazy" decoding="async"'+imgDim(q.img)+' src="'+attr(q.img)+'" alt="figure">':'')+
+           '<div class="ans">'+(p!=null?'YOU: <s>'+LTR[p]+' &middot; '+T(q.o[p])+'</s><br>':'')+
+             'ANSWER: <em>'+LTR[q.a]+' &middot; '+T(q.o[q.a])+'</em></div>'+
+           (T(q.w)?'<div class="w">'+T(q.w)+'</div>':'')+
+         '</div>';
+       }).join('')+
+     '</div>' : '')+
+
+     '<div class="startrow">'+
+       (wrong.length?'<button class="cta" id="redo">RETAKE THE '+wrong.length+' I MISSED &rarr;</button>':'')+
+       '<button class="btn mutebtn" id="again">&#8634; SAME FILTERS AGAIN</button>'+
+       '<button class="btn mutebtn" id="home">&larr; CHANGE FILTERS</button>'+
+     '</div>'+
+   '</div>';
+
+  const on=(id,fn)=>{const e=$('#'+id); if(e) e.addEventListener('click',fn);};
+  on('redo',()=>startSession(wrong));
+  on('again',()=>startSession());
+  on('home',renderSetup);
+  window.scrollTo({top:0});
+}
+
+/* =========================================================================
+   STATS
+   ========================================================================= */
+function histPapers(h){
+  if(!h.packs||!h.packs.length) return '';
+  const lbl=id=>{ const q=BANK.find(x=>x.packId===id); return q ? (q.kind==='actual'?q.year:q.state+' '+q.year)+' K'+q.paper : id; };
+  const l=h.packs.map(lbl);
+  return '<br><small>'+(l.length>2?l.slice(0,2).join(', ')+' +'+(l.length-2):l.join(', '))+'</small>';
+}
+function renderStats(){
+  S=null;
+  const seen=BANK.filter(q=>DB.d.progress[q.uid]&&DB.d.progress[q.uid].seen);
+  const mastered=seen.filter(q=>DB.d.progress[q.uid].box>=3);
+  const hist=DB.d.history.slice(-12).reverse();
+
+  const byTopic=new Map();
+  seen.forEach(q=>{ const p=DB.d.progress[q.uid];
+    const r=byTopic.get(q.topic)||{name:tname(q),ok:0,tot:0};
+    r.ok+=p.right; r.tot+=p.right+p.wrong; byTopic.set(q.topic,r); });
+  const rows=[...byTopic.values()].filter(r=>r.tot).sort((a,b)=>a.ok/a.tot-b.ok/b.tot).map(r=>[r.name,r.ok,r.tot]);
+
+  app.innerHTML =
+   '<p class="kick">CUMULATIVE &middot; SAVED ON THIS DEVICE</p>'+
+   '<h1>What you actually <em>know</em> so far</h1>'+
+   '<div class="card" style="margin-top:24px">'+
+     '<div class="sec"><div class="grid2">'+
+       '<div class="count"><b>'+seen.length+'</b>of '+BANK.length+' questions attempted</div>'+
+       '<div class="count"><b>'+mastered.length+'</b>mastered (3 in a row)</div>'+
+       '<div class="count"><b>'+DB.d.history.length+'</b>drills completed</div>'+
+     '</div></div>'+
+     (rows.length?'<div class="sec"><div class="lab">ACCURACY BY TOPIC &mdash; weakest first</div>'+bars(rows)+'</div>'
+                 :'<div class="empty">No attempts recorded yet. Run a drill first.</div>')+
+     (hist.length?'<div class="sec"><div class="lab">RECENT DRILLS</div>'+
+        hist.map(h=>'<div class="brow"><span>'+new Date(h.at).toLocaleDateString()+histPapers(h)+'</span>'+
+          '<span class="tr"><span class="fl '+(h.score/h.total>=.75?'':h.score/h.total>=.5?'mid':'low')+
+          '" style="width:'+Math.round(h.score/h.total*100)+'%"></span></span>'+
+          '<span class="v">'+h.score+'/'+h.total+(h.mode==='p2'?' P2':'')+(h.att!=null?'<br><small>'+h.att+'/'+h.nq+' tried</small>':'')+'</span></div>').join('')+'</div>':'')+
+     '<div class="startrow">'+
+       '<button class="btn mutebtn" id="home">&larr; BACK</button>'+
+       '<button class="btn mutebtn" id="exp">EXPORT PROGRESS</button>'+
+       '<button class="btn mutebtn" id="wipe" style="border-color:var(--badR);color:var(--badR)">RESET ALL</button>'+
+     '</div>'+
+   '</div>';
+
+  $('#home').addEventListener('click',renderSetup);
+  $('#exp').addEventListener('click',()=>{
+    const blob=new Blob([JSON.stringify(DB.d,null,2)],{type:'application/json'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='spm2026-progress.json'; a.click(); toast('EXPORTED');
+  });
+  $('#wipe').addEventListener('click',()=>{
+    if(confirm('Erase all saved progress on this device?')){ DB.d.progress={}; DB.d.history=[]; DB.save(); renderStats(); }
+  });
+}
+
+/* =========================================================================
+   MATH / CHROME
+   ========================================================================= */
+window.__renderMath=renderMath;
+function renderMath(){
+  if(window.__katexReady && window.renderMathInElement){
+    renderMathInElement(app,{
+      delimiters:[
+        {left:'$$',right:'$$',display:true},
+        {left:'\\[',right:'\\]',display:true},
+        {left:'$',right:'$',display:false},
+        {left:'\\(',right:'\\)',display:false}
+      ],
+      throwOnError:false
+    });
+  }
+}
+
+function setTheme(t){ document.documentElement.dataset.theme=t; DB.d.settings.theme=t; DB.save(); }
+setTheme(DB.d.settings.theme||'dark');
+
+$('#btnTheme').addEventListener('click',()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'));
+$('#btnHome').addEventListener('click',()=>leaveDrill(renderSetup));
+$('#btnStats').addEventListener('click',()=>leaveDrill(renderStats));
+$('#btnLang').addEventListener('click',()=>{
+  LANG = LANG==='en' ? 'bm' : 'en';
+  DB.d.settings.lang=LANG; DB.save(); toast(LANG==='bm'?'BAHASA MELAYU':'ENGLISH');
+  if(S && !S.done){
+    if(S.mode==='p2') renderP2Quiz(); else renderQuiz();
+  } else renderSetup();
+});
+
+document.addEventListener('keydown',e=>{
+  if(!S||S.done||e.metaKey||e.ctrlKey||e.altKey) return;
+  if(S.mode==='p2'){
+    // P2 keyboard: SPACE=reveal next, 1=DAPAT, 0=BELUM, ENTER=next, ESC=exit
+    const q=S.items[S.idx];
+    const nextClosed=q.parts.find(p=>!S.open[q.uid+p.l]);
+    const lastOpenUnmarked=q.parts.find(p=>S.open[q.uid+p.l]&&S.marks[q.uid+p.l]==null);
+    if(e.key===' '){ e.preventDefault(); if(nextClosed){S.open[q.uid+nextClosed.l]=1; renderP2Quiz();} }
+    else if(e.key==='1'&&lastOpenUnmarked){ mark2(q.uid+lastOpenUnmarked.l,true); }
+    else if(e.key==='0'&&lastOpenUnmarked){ mark2(q.uid+lastOpenUnmarked.l,false); }
+    else if(e.key==='Enter'){ e.preventDefault(); go2(); }
+    else if(e.key==='Escape'){ leaveDrill(renderSetup); }
+    else if(e.key==='ArrowRight'){ e.preventDefault(); go2(); }
+    else if(e.key==='ArrowLeft'&&S.idx){ e.preventDefault(); S.idx--; renderP2Quiz(); }
+    return;
+  }
+  // P1 keyboard
+  const q=S.items[S.idx], k=e.key.toUpperCase();
+  const li=LTR.indexOf(k), ni='12345'.indexOf(k);
+  if(li>-1&&li<q.o.length){ e.preventDefault(); choose(li); }
+  else if(ni>-1&&ni<q.o.length){ e.preventDefault(); choose(ni); }
+  else if(e.key==='Enter'){ e.preventDefault(); go1(); }
+  else if(k==='F'){ S.flags.has(q.uid)?S.flags.delete(q.uid):S.flags.add(q.uid); renderQuiz(); }
+  else if(k==='G'){ const g=$('#grid'); if(g) g.classList.toggle('show'); }
+  else if(e.key==='Escape'){ leaveDrill(renderSetup); }
+  else if(e.key==='ArrowRight'){ go1(); }
+  else if(e.key==='ArrowLeft'&&S.idx){ S.idx--; renderQuiz(); }
+});
+
+renderSetup();
+};
+</script>
+
+<script>window.__SPM_START();</script>
+</body>
+</html>
