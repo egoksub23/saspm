@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SPM 2026 Pendidikan Moral Prediction</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* === Tokens — single light theme by request (no dark variant) === */
+  :root {
+    --bg: #f3f7fa;
+    --surface: #ffffff;
+    --surface2: #f6fafc;
+    --border: #d5e0e8;
+    --fg: #102029;
+    --fg2: #46596a;
+    --fg3: #6c7d8c;
+    --bio: #15803d;
+    --bio-dim: #bbf7d0;
+    --bio-bg: #f0fdf4;
+    --sej: #b45309;
+    --sej-dim: #f5cf9f;
+    --sej-bg: #fff7ed;
+    --high: #c81e1e;
+    --med: #b45309;
+    --low: #94a3b8;
+    --accent: #b45309;
+    --accent-dim: #fdeedd;
+    color-scheme: light;
+  }
+
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px));
+    padding-block: 32px;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 960px;
+    margin-inline: auto;
+  }
+
+  /* Header */
+  .report-header {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .report-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--fg3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .report-meta span { color: var(--accent); }
+  .report-title {
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 600;
+    color: var(--fg);
+    margin: 0 0 8px;
+    text-wrap: balance;
+    line-height: 1.2;
+  }
+  .report-subtitle {
+    color: var(--fg2);
+    font-size: 15px;
+    margin: 0;
+  }
+  .paper-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 16px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    border: 1px solid;
+  }
+  .badge.bio { background: var(--bio-bg); color: var(--bio); border-color: var(--bio-dim); }
+  .badge.sej { background: var(--sej-bg); color: var(--sej); border-color: var(--sej-dim); }
+  .badge.trial { opacity: 0.8; }
+
+  /* Nav tabs */
+  .subject-nav {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tab-btn {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--fg2);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: -1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .tab-btn:hover { color: var(--fg); }
+  .tab-btn.active-bio { color: var(--bio); border-bottom-color: var(--bio); }
+  .tab-btn.active-sej { color: var(--sej); border-bottom-color: var(--sej); }
+
+  /* Section cards */
+  .section {
+    margin-bottom: 32px;
+  }
+  .section-label {
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg3);
+    margin-bottom: 12px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-body { padding: 18px; }
+
+  /* Topic frequency table */
+  .freq-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .freq-table th {
+    text-align: left;
+    padding: 8px 10px;
+    color: var(--fg3);
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+  }
+  .freq-table th.right, .freq-table td.right { text-align: right; }
+  .freq-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .freq-table tr:last-child td { border-bottom: none; }
+  .freq-table tr:hover td { background: var(--surface2); }
+
+  .bar-cell { width: 120px; }
+  .freq-bar {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border);
+    overflow: hidden;
+  }
+  .freq-bar-fill { height: 100%; border-radius: 3px; }
+  .bio-fill { background: var(--bio); }
+  .sej-fill { background: var(--sej); }
+
+  .overlap-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+  }
+  .dot-both { background: var(--high); }
+  .dot-one { background: var(--border); }
+
+  /* Prediction cards */
+  .predictions-grid {
+    display: grid;
+    gap: 12px;
+  }
+  .pred-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 16px;
+    align-items: start;
+  }
+  .pred-card.cert {
+    border-left: 3px solid var(--high);
+  }
+  .pred-card.high {
+    border-left: 3px solid var(--med);
+  }
+  .pred-card.mod {
+    border-left: 3px solid var(--low);
+  }
+  .pred-title {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--fg);
+    margin: 0 0 4px;
+  }
+  .pred-detail {
+    font-size: 12px;
+    color: var(--fg2);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .pred-sources {
+    font-size: 11px;
+    color: var(--fg3);
+    font-family: 'IBM Plex Mono', monospace;
+    margin-top: 6px;
+    grid-column: 1 / -1;
+  }
+  .conf-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .conf-cert { background: rgba(239,68,68,0.15); color: var(--high); }
+  .conf-high { background: rgba(245,158,11,0.15); color: var(--med); }
+  .conf-mod  { background: rgba(100,116,139,0.18); color: var(--fg2); }
+
+  /* Pattern highlight box */
+  .highlight-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 12px;
+    color: var(--fg2);
+    margin-bottom: 10px;
+  }
+  .highlight-box strong { color: var(--fg); }
+
+  /* Tab panels */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Summary banner */
+  .summary-banner {
+    background: var(--accent-dim);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    font-size: 13px;
+    color: var(--fg);
+    line-height: 1.6;
+  }
+
+  /* Overlap matrix */
+  .overlap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+  }
+  .overlap-item {
+    background: var(--bio-bg);
+    border: 1px solid var(--bio-dim);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  .overlap-item .oi-topic {
+    font-weight: 600;
+    color: var(--bio);
+    margin-bottom: 2px;
+  }
+  .overlap-item .oi-detail { color: var(--fg2); font-size: 11px; }
+  .overlap-item.sej-ov {
+    background: var(--sej-bg);
+    border-color: var(--sej-dim);
+  }
+  .overlap-item.sej-ov .oi-topic { color: var(--sej); }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    body { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+    .pred-card { grid-template-columns: 1fr; }
+    .subject-nav { overflow-x: auto; }
+    .tab-btn { padding: 10px 14px; white-space: nowrap; }
+    .freq-table .bar-cell { display: none; }
+  }
+
+  .tbl-wrap { overflow-x: auto; }
+  .freq-table .num { font-family: 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+  .freq-table .hot { color: var(--sej); font-weight: 600; }
+  .freq-table .lo { color: var(--high); font-weight: 600; }
+  .freq-table tr.base td { color: var(--fg2); font-style: italic; }
+  .freq-table tr.hi td:first-child { color: var(--sej); }
+  .freq-table.slots td, .freq-table.slots th { white-space: nowrap; font-size: 12px; }
+  .freq-table.slots td:last-child { white-space: normal; min-width: 180px; color: var(--fg2); }
+  .freq-table.slots td.k { color: var(--sej); font-weight: 600; }
+  .freq-table.slots td:not(:first-child):not(:last-child) { font-family: 'IBM Plex Mono', monospace; }
+  .note { font-size: 12.5px; color: var(--fg2); margin: 10px 2px 0; max-width: 72ch; }
+  .method ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--fg2); font-size: 13px; }
+  .method b { color: var(--fg); }
+  .caveat { font-size: 12px; color: var(--fg3); margin: 16px 0 0; }
+  .conf-cert { white-space: nowrap; }
+
+  /* 2025 check tab */
+  .stat-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 28px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; min-width: 0; }
+  .stat .v { font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600; color: var(--sej); font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .stat .v small { font-size: 14px; color: var(--fg3); font-weight: 400; }
+  .stat .l { font-size: 12px; color: var(--fg2); margin-top: 6px; line-height: 1.45; }
+  .freq-table.match td { vertical-align: top; }
+  .freq-table.match td:first-child { white-space: nowrap; font-family: 'IBM Plex Mono', monospace; color: var(--sej); font-weight: 600; }
+  .freq-table.match td.ev { color: var(--fg2); font-size: 12.5px; min-width: 220px; }
+  .slot-yes { color: var(--bio); font-weight: 600; white-space: nowrap; }
+  .slot-no { color: var(--fg3); white-space: nowrap; }
+  .chg { display: inline-flex; align-items: center; gap: 4px; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; border: 1px solid; }
+  .chg.up { color: var(--bio); border-color: var(--bio-dim); background: var(--bio-bg); }
+  .chg.down { color: var(--high); border-color: var(--high); background: transparent; }
+  .chg.same { color: var(--fg3); border-color: var(--border); background: transparent; }
+  .chg.fix { color: var(--accent); border-color: var(--accent); background: transparent; }
+  .pill-stack { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+  .change-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .change-list li { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; font-size: 13px; color: var(--fg2); }
+  .change-list li b { color: var(--fg); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .two-col > * { min-width: 0; }
+  .plain-list { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--fg2); font-size: 12.5px; }
+  .plain-list b { color: var(--fg); }
+  .tab-btn.active-method { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (max-width: 640px) {
+    .stat-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .two-col { grid-template-columns: 1fr; }
+  }
+  
+  .freq-table.slots td { white-space: normal; min-width: 110px; }
+  .freq-table.slots td:not(:first-child):not(:last-child) { font-family: inherit; }
+  .freq-table.slots td:last-child { color: var(--fg); }
+
+  .method ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--fg2); font-size: 13px; }
+  .freq-table .up { color: var(--sej); font-size: 11px; } .freq-table .down { color: var(--high); font-size: 11px; }
+  .freq-table small { color: var(--fg2); font-weight: 400; }
+  .freq-table.issues td.refs { white-space: normal; min-width: 260px; font-size: 12px; color: var(--fg2); }
+  .units-list details { border-bottom: 1px solid var(--border); padding: 6px 0; }
+  .units-list summary { cursor: pointer; font-size: 13px; font-weight: 500; }
+  .units-list .cnt { font-family: 'IBM Plex Mono', monospace; color: var(--sej); margin-left: 6px; }
+  .units-list ul { margin: 6px 0 4px; padding-left: 18px; font-size: 12.5px; color: var(--fg2); display: grid; gap: 3px; }
+  .units-list .sec { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--sej); margin: 0 4px; }
+</style>
+<nav style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;padding:10px 16px;background:#122460;font:600 14px/1.4 system-ui,-apple-system,'Segoe UI',sans-serif"><a href="/" style="color:#fff;text-decoration:none">← SPM 2026 Accelerator</a><a href="/moral.html" style="color:#fff;text-decoration:none;margin-left:auto">Drill Pendidikan Moral →</a></nav>
+<div class="report-header">
+  <div class="report-meta">SPM 2026 · <span>Pendidikan Moral 1225</span> · Generated 13 Nov 2026</div>
+  <h1 class="report-title">SPM 2026 Pendidikan Moral Prediction Report</h1>
+  <p class="report-subtitle">Trends and similarities across 17 state trial papers from 2025 and 2026, 153 questions tagged by KSSM unit, issue and question type. Trials only: there are no past SPM papers in this set.</p>
+  <div class="paper-badges"><span class="badge sej trial">10 trials 2025</span><span class="badge sej trial">7 trials 2026</span><span class="badge sej">153 questions</span><span class="badge sej">24 KSSM units</span></div>
+</div>
+<nav class="subject-nav" role="tablist">
+  <button class="tab-btn active-sej" role="tab" data-panel="focus" onclick="switchTab('focus')">Focus 2026</button>
+  <button class="tab-btn" role="tab" data-panel="units" onclick="switchTab('units')">Units</button>
+  <button class="tab-btn" role="tab" data-panel="issues" onclick="switchTab('issues')">Issues</button>
+  <button class="tab-btn" role="tab" data-panel="paper" onclick="switchTab('paper')">Paper &amp; marks</button>
+  <button class="tab-btn" role="tab" data-panel="method" onclick="switchTab('method')">Methodology</button>
+</nav>
+
+<div id="panel-focus" class="tab-panel active">
+  <div class="summary-banner" style="background: var(--sej-bg); border-color: var(--sej);">
+    <strong>Short answer:</strong> With no past SPM papers in this set, the guide is what the 17 state trials agree on. Two themes are in almost every paper: <b>money management</b> (13 of 17, and all 7 trials of 2026) and <b>information and digital ethics</b>, mainly fake news and online scams (13 of 17). The 2026 trials then lean on <b>national security and sovereignty</b> (6 of 7, up from 5 of 10 in 2025) and <b>personal integrity</b>: cheating, plagiarism, honest traders. Caring topics (family, the elderly, children, disasters) drop from 9 of 10 trials in 2025 to 3 of 7 in 2026. Every one of the 24 Form 4 and Form 5 units was set at least once, so nothing can be skipped.
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="v">7<small>/7</small></div><div class="l">trials of 2026 with a money question: spending, saving, debt or credit cards (2025: 6/10)</div></div>
+    <div class="stat"><div class="v">13<small>/17</small></div><div class="l">papers with fake news, online scams or ICT ethics. Fake news alone: 9</div></div>
+    <div class="stat"><div class="v">24<small>/24</small></div><div class="l">KSSM units set at least once. Nine questions a paper, so each paper samples about a third of the syllabus</div></div>
+    <div class="stat"><div class="v">27<small>/56</small></div><div class="l">Section C 8-mark parts that require answers "berdasarkan nilai universal": name the values</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Themes the trials agree on</div>
+    <div class="predictions-grid">
+      <div class="pred-card cert"><div><p class="pred-title">Money management: spending wisely, saving, debt and bankruptcy</p><p class="pred-detail">In 13 of 17 papers and every trial of 2026, from Form 4 Unit 10 (Pengurusan Perbelanjaan) and Form 5 Unit 10 (Pengurusan Kewangan). The angles repeat: an overspending character (Aminah, Alvin, Puan Maria's credit cards), "20,000 muflis a year", saving through SSPN or a savings habit, and agencies such as AKPK. It was a 20-mark Section C question in 4 papers. Know causes of overspending, effects of debt, ways to manage money, and the role of SSPN and AKPK.</p></div><span class="conf-pill conf-cert">Very strong</span><div class="pred-sources">Kelantan '25 Q8 (C) · Kelantan '26 Q2 · Labuan '25 Q2 · Melaka '25 Q8 (C) · Melaka 1 '26 Q7 · Melaka 2 '26 Q4 · Pahang '26 Q6 · Pahang 3 '25 Q8 (C) · Perlis '26 Q9 (C) · Sarawak '25 Q3 · +4 more</div></div>
+      <div class="pred-card cert"><div><p class="pred-title">Information ethics: fake news, verifying sources, online scams</p><p class="pred-detail">13 of 17 papers, mostly as Section A or B. Fake news is the single most set issue after national icons (9 papers): why people share, effects on unity, how to check (sebenarnya.my, official portals) and sources that can be trusted. Online scams are rising (2 papers in 2025, 2 in 2026, with PDRM statistics). Kelantan 2026 Q1 reuses Terengganu 2025 Q5 word for word.</p></div><span class="conf-pill conf-cert">Very strong</span><div class="pred-sources">Kedah '25 Q6 · Kelantan '25 Q1 · Kelantan '26 Q1 · Melaka '25 Q7 · Melaka 2 '26 Q7 · Pahang '26 Q1 · Pahang 3 '25 Q7 · Perak '25 Q5 · Perak '25 Q7 · Perlis '26 Q1 · +6 more</div></div>
+      <div class="pred-card high"><div><p class="pred-title">National security and sovereignty: borders, PATI, Rukun Negara, the Constitutional Monarchy</p><p class="pred-detail">6 of 7 trials of 2026 (2025: 5 of 10), the clearest rise between the two years. Border control and smuggling, illegal immigrants and refugees, the role of the Yang di-Pertuan Agong, and what citizens can do to defend sovereignty. Kelantan and Selangor 1 made it a 20-mark Section C question in 2026.</p></div><span class="conf-pill conf-high">Strong</span><div class="pred-sources">Kedah '25 Q5 · Kedah '25 Q9 (C) · Kelantan '26 Q3 · Kelantan '26 Q8 (C) · Melaka 1 '26 Q4 · Pahang '26 Q4 · Perak '25 Q1 · Perlis '25 Q4 · Perlis '25 Q5 · Perlis '26 Q3 · +4 more</div></div>
+      <div class="pred-card high"><div><p class="pred-title">Integrity, now personal: exam cheating, plagiarism, honest traders, tax</p><p class="pred-detail">12 of 17 papers. In 2025 integrity meant corruption and organisations (the anti-corruption plan, EAIC, bribery). The 2026 examples are closer to the student: a treasurer tempted by club funds, cheating in an exam, plagiarism, returning RM5,000, traders who mislabel prices, a mechanic who refuses payment, honest tax relief claims (Pahang and Perlis).</p></div><span class="conf-pill conf-high">Strong</span><div class="pred-sources">Kedah '25 Q7 · Kelantan '25 Q7 · Kelantan '26 Q7 · Melaka 2 '26 Q1 · Melaka 2 '26 Q5 · Melaka 2 '26 Q8 (C) · Pahang '26 Q3 · Pahang 3 '25 Q6 · Perak '25 Q9 (C) · Perlis '25 Q3 · +6 more</div></div>
+      <div class="pred-card high"><div><p class="pred-title">Glokal individuals and national icons; buying local</p><p class="pred-detail">13 of 17 papers, and 4 times as Section C. Athletes (Lee Zii Jia, Azizul Hasni Awang, the Paralympic team), young inventors and robotics champions, Michelle Yeoh, student exchanges, and choosing Malaysian products over foreign brands. Typical asks: qualities of a glokal individual, how to make Malaysia known, challenges of representing the country.</p></div><span class="conf-pill conf-high">Strong</span><div class="pred-sources">Kedah '25 Q8 (C) · Kelantan '25 Q3 · Kelantan '26 Q5 · Labuan '25 Q5 · Melaka '25 Q9 (C) · Melaka 1 '26 Q9 (C) · Melaka 2 '26 Q3 · Pahang '26 Q7 · Pahang 3 '25 Q3 · Perak '25 Q4 · +5 more</div></div>
+      <div class="pred-card high"><div><p class="pred-title">Community programmes and volunteering</p><p class="pred-detail">8 of 17 papers, steady in both years (4 and 4). Gotong-royong, Program Inap Desa, charity work, teenagers who prefer online games to community work. Kelantan set it as Section C in both 2025 and 2026.</p></div><span class="conf-pill conf-high">Strong</span><div class="pred-sources">Kedah '25 Q4 · Kelantan '25 Q9 (C) · Kelantan '26 Q9 (C) · Melaka '25 Q4 · Melaka 1 '26 Q3 · Melaka 2 '26 Q6 · Perlis '26 Q4 · Sabah '25 Q7</div></div>
+      <div class="pred-card mod"><div><p class="pred-title">International relations: ASEAN, the UN, cooperation with other countries</p><p class="pred-detail">5 of 10 trials of 2025 set it, driven by Malaysia's 2025 ASEAN chairmanship, but only 2 of 7 in 2026. It stays a common Section C topic (3 times). Expect at least a Section A part on Malaysia's role in ASEAN, the UN or humanitarian missions.</p></div><span class="conf-pill conf-mod">Watch</span><div class="pred-sources">Kelantan '25 Q5 · Kelantan '26 Q4 · Kelantan '26 Q6 · Labuan '25 Q9 (C) · Melaka '25 Q5 · Pahang '26 Q9 (C) · Pahang 3 '25 Q9 (C) · Sabah '25 Q5</div></div>
+      <div class="pred-card mod"><div><p class="pred-title">Units the trials hardly touch</p><p class="pred-detail">Form 5 Unit 3 Kerohanian (1 paper), Unit 11 Malaysia Unggul di Mata Dunia (1), Unit 9 Kerjasama Masyarakat Global (2) and Form 4 Unit 7 Berperikemanusiaan (3). Family integrity (Form 4 Unit 6) was in 5 trials of 2025 and none of 2026. A topic the trials skip is not one SPM will skip: read these units once.</p></div><span class="conf-pill conf-mod">Watch</span><div class="pred-sources">Perlis '25 Q8 (Kerohanian) · Kelantan '25 Q3 (KLIA) · Selangor 1 '26 Q5 (haze) · Kelantan '26 Q4</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">2025 to 2026: what the trials moved towards</div>
+    <div class="card"><div class="tbl-wrap"><table class="freq-table"><thead><tr><th>Theme</th><th class="right">2025 trials (10)</th><th class="right">2026 trials (7)</th><th></th></tr></thead><tbody>
+      <tr><td>Money management</td><td class="right num">6 <small>(60%)</small></td><td class="right num">7 <small>(100%)</small></td><td><span class="up">▲</span></td></tr><tr><td>Information and digital ethics</td><td class="right num">7 <small>(70%)</small></td><td class="right num">6 <small>(86%)</small></td><td></td></tr><tr><td>National security and sovereignty</td><td class="right num">5 <small>(50%)</small></td><td class="right num">6 <small>(86%)</small></td><td><span class="up">▲</span></td></tr><tr><td>Integrity (personal, traders, organisations, tax)</td><td class="right num">6 <small>(60%)</small></td><td class="right num">6 <small>(86%)</small></td><td><span class="up">▲</span></td></tr><tr><td>Glokal individuals and local products</td><td class="right num">8 <small>(80%)</small></td><td class="right num">5 <small>(71%)</small></td><td></td></tr><tr><td>International relations (ASEAN, UN)</td><td class="right num">5 <small>(50%)</small></td><td class="right num">2 <small>(29%)</small></td><td></td></tr><tr><td>Unity, culture and religion</td><td class="right num">6 <small>(60%)</small></td><td class="right num">3 <small>(43%)</small></td><td></td></tr><tr><td>Caring: family, elderly, children, disasters, animals</td><td class="right num">9 <small>(90%)</small></td><td class="right num">3 <small>(43%)</small></td><td><span class="down">▼</span></td></tr>
+    </tbody></table></div></div>
+    <p class="note">Share of papers with at least one question on the theme. ▲ / ▼ mark a change of a quarter of the papers or more. Seven 2026 trials is a small sample, so read the arrows as tendencies.</p>
+  </div>
+</div>
+<div id="panel-units" class="tab-panel">
+  <div class="summary-banner" style="background: var(--sej-bg); border-color: var(--sej);">
+    <strong>Form 4 and Form 5 mirror each other.</strong> Each Form 5 unit takes its Form 4 partner from Malaysia to the world: social norms become global norms, individual integrity becomes organisational integrity, unity becomes global cooperation, spending becomes financial management. Trial questions often mix a pair, so revise them together. Marks are close to even: Form 4 900, Form 5 970 across all papers.
+  </div>
+  <div class="two-col section"><div><div class="section-label">Form 4 units</div><div class="card"><div class="tbl-wrap"><table class="freq-table"><thead><tr><th>Unit</th><th>Form 4</th><th class="right">Papers /17</th><th class="right">'25 /10</th><th class="right">'26 /7</th><th class="right">In C</th></tr></thead><tbody><tr><td class="num">1</td><td>Norma Masyarakat</td><td class="right num">4</td><td class="right num">3</td><td class="right num">1 </td><td class="right num"></td></tr><tr><td class="num">2</td><td>Peribadi Mulia</td><td class="right num">7</td><td class="right num">5</td><td class="right num">2 </td><td class="right num"></td></tr><tr><td class="num">3</td><td>Keadilan &amp; Keprihatinan</td><td class="right num hot">10</td><td class="right num">5</td><td class="right num">5 </td><td class="right num">2</td></tr><tr><td class="num">4</td><td>TMK Secara Beretika</td><td class="right num hot">8</td><td class="right num">4</td><td class="right num">4 </td><td class="right num"></td></tr><tr><td class="num">5</td><td>Integriti Individu</td><td class="right num">4</td><td class="right num">0</td><td class="right num">4 <span class="up">▲</span></td><td class="right num">1</td></tr><tr><td class="num">6</td><td>Keluarga Berintegriti</td><td class="right num">5</td><td class="right num">5</td><td class="right num">0 <span class="down">▼</span></td><td class="right num"></td></tr><tr><td class="num">7</td><td>Berperikemanusiaan (Masyarakat)</td><td class="right num">3</td><td class="right num">2</td><td class="right num">1 </td><td class="right num"></td></tr><tr><td class="num">8</td><td>Hak &amp; Tanggungjawab Warganegara</td><td class="right num">6</td><td class="right num">5</td><td class="right num">1 <span class="down">▼</span></td><td class="right num">1</td></tr><tr><td class="num">9</td><td>Perpaduan Masyarakat</td><td class="right num">7</td><td class="right num">5</td><td class="right num">2 </td><td class="right num">3</td></tr><tr><td class="num">10</td><td>Pengurusan Perbelanjaan Beretika</td><td class="right num">4</td><td class="right num">3</td><td class="right num">1 </td><td class="right num">1</td></tr><tr><td class="num">11</td><td>Keunikan Rakyat Malaysia</td><td class="right num">5</td><td class="right num">4</td><td class="right num">1 <span class="down">▼</span></td><td class="right num">3</td></tr><tr><td class="num">12</td><td>Kedaulatan Negara</td><td class="right num hot">9</td><td class="right num">3</td><td class="right num">6 <span class="up">▲</span></td><td class="right num">3</td></tr></tbody></table></div></div></div><div><div class="section-label">Form 5 units</div><div class="card"><div class="tbl-wrap"><table class="freq-table"><thead><tr><th>Unit</th><th>Form 5</th><th class="right">Papers /17</th><th class="right">'25 /10</th><th class="right">'26 /7</th><th class="right">In C</th></tr></thead><tbody><tr><td class="num">1</td><td>Norma Masyarakat Global</td><td class="right num">6</td><td class="right num">4</td><td class="right num">2 </td><td class="right num">2</td></tr><tr><td class="num">2</td><td>Jati Diri &amp; Individu Glokal</td><td class="right num hot">12</td><td class="right num">7</td><td class="right num">5 </td><td class="right num">4</td></tr><tr><td class="num">3</td><td>Kerohanian</td><td class="right num lo">1</td><td class="right num">1</td><td class="right num">0 </td><td class="right num">1</td></tr><tr><td class="num">4</td><td>Sumber &amp; Penyebaran Maklumat</td><td class="right num hot">8</td><td class="right num">5</td><td class="right num">3 </td><td class="right num">1</td></tr><tr><td class="num">5</td><td>Integriti Organisasi</td><td class="right num">6</td><td class="right num">3</td><td class="right num">3 </td><td class="right num">2</td></tr><tr><td class="num">6</td><td>Pembangunan Negara Berintegriti</td><td class="right num">5</td><td class="right num">3</td><td class="right num">2 </td><td class="right num">1</td></tr><tr><td class="num">7</td><td>Berperikemanusiaan Global</td><td class="right num">4</td><td class="right num">1</td><td class="right num">3 <span class="up">▲</span></td><td class="right num"></td></tr><tr><td class="num">8</td><td>Peneraju Komuniti</td><td class="right num hot">8</td><td class="right num">4</td><td class="right num">4 </td><td class="right num">2</td></tr><tr><td class="num">9</td><td>Kerjasama Masyarakat Global</td><td class="right num lo">2</td><td class="right num">0</td><td class="right num">2 <span class="up">▲</span></td><td class="right num"></td></tr><tr><td class="num">10</td><td>Pengurusan Kewangan Beretika</td><td class="right num hot">10</td><td class="right num">4</td><td class="right num">6 <span class="up">▲</span></td><td class="right num">3</td></tr><tr><td class="num">11</td><td>Malaysia Unggul di Mata Dunia</td><td class="right num lo">1</td><td class="right num">1</td><td class="right num">0 </td><td class="right num"></td></tr><tr><td class="num">12</td><td>Hubungan Antarabangsa</td><td class="right num hot">8</td><td class="right num">6</td><td class="right num">2 <span class="down">▼</span></td><td class="right num">4</td></tr></tbody></table></div></div></div></div>
+  <p class="note">Each question was tagged to the one unit it tests most. Papers: how many of the 17 papers have at least one question on the unit. In C: how many of those were 20-mark Section C questions.</p>
+  <div class="section">
+    <div class="section-label">Where each question number draws from</div>
+    <div class="card"><div class="tbl-wrap"><table class="freq-table"><thead><tr><th>Question</th><th class="right">Q1</th><th class="right">Q2</th><th class="right">Q3</th><th class="right">Q4</th><th class="right">Q5</th><th class="right">Q6</th><th class="right">Q7</th><th class="right">Q8</th><th class="right">Q9</th></tr></thead><tbody>
+      <tr><td>Section</td><td class="right">A</td><td class="right">A</td><td class="right">A</td><td class="right">A</td><td class="right">A</td><td class="right">B</td><td class="right">B</td><td class="right">C</td><td class="right">C</td></tr>
+      <tr><td>Form 4 unit</td><td class="right num hot">12</td><td class="right num hot">13</td><td class="right num">9</td><td class="right num">9</td><td class="right num">7</td><td class="right num">7</td><td class="right num">5</td><td class="right num">9</td><td class="right num">5</td></tr>
+      <tr><td>Form 5 unit</td><td class="right num">5</td><td class="right num">4</td><td class="right num">8</td><td class="right num">8</td><td class="right num">10</td><td class="right num">10</td><td class="right num hot">12</td><td class="right num">8</td><td class="right num hot">12</td></tr>
+    </tbody></table></div></div>
+    <p class="note">The early Section A questions are mostly Form 4 (Q1 and Q2: 25 of 34). Q7, the second Section B question, and Q9, the last Section C question, are mostly Form 5 (12 and 12 of 17).</p>
+  </div>
+  <div class="section"><div class="section-label">Every question by unit</div><div class="card"><div class="card-body units-list"><details><summary>F4 U1 Norma Masyarakat <span class="cnt">4</span></summary><ul><li><b>Labuan '25 Q6</b> <span class="sec">B</span> Perubahan norma masyarakat semasa di meja makan</li><li><b>Perak '25 Q3</b> <span class="sec">A</span> Notis Larangan Merokok dan Rokok Elektronik</li><li><b>Perlis '25 Q1</b> <span class="sec">A</span> Kod Etika Berpakaian</li><li><b>Selangor 1 '26 Q6</b> <span class="sec">B</span> Budaya Makan Lewat Malam</li></ul></details><details><summary>F4 U2 Peribadi Mulia <span class="cnt">7</span></summary><ul><li><b>Kedah '25 Q1</b> <span class="sec">A</span> Alex membantu OKU</li><li><b>Kelantan '25 Q4</b> <span class="sec">A</span> Keperibadian Mulia dalam Diri Individu</li><li><b>Melaka '25 Q1</b> <span class="sec">A</span> Ketidakpatuhan masa oleh Argon</li><li><b>Melaka 1 '26 Q2</b> <span class="sec">A</span> Farid Leka Bermain Permainan Video</li><li><b>Melaka 2 '26 Q1</b> <span class="sec">A</span> Remaja Jujur Pulangkan Wang RM5,000</li><li><b>Sarawak '25 Q7</b> <span class="sec">B</span> Keperibadian mulia</li><li><b>Terengganu '25 Q3</b> <span class="sec">A</span> Ciri dan kepentingan individu berkeperibadian mulia</li></ul></details><details><summary>F4 U3 Keadilan &amp; Keprihatinan <span class="cnt">11</span></summary><ul><li><b>Kedah '25 Q2</b> <span class="sec">A</span> Joni pemandu &amp; polis trafik</li><li><b>Melaka 1 '26 Q5</b> <span class="sec">A</span> Golongan Gelandangan dan Orang Kurang Upaya (OKU)</li><li><b>Melaka 2 '26 Q2</b> <span class="sec">A</span> Buli di Sekolah</li><li><b>Pahang '26 Q8</b> <span class="sec">C</span> Dilema Mangsa Buli</li><li><b>Pahang 3 '25 Q2</b> <span class="sec">A</span> Kempen Furever Friends &amp; kebajikan haiwan</li><li><b>Perak '25 Q2</b> <span class="sec">A</span> Poster Hentikan Buli</li><li><b>Perlis '25 Q2</b> <span class="sec">A</span> Kes Rogol — Prinsip Keadilan</li><li><b>Sarawak '25 Q2</b> <span class="sec">A</span> Keldai Dadah</li><li><b>Sarawak '25 Q8</b> <span class="sec">C</span> Kes buli di sekolah</li><li><b>Sarawak '26 Q3</b> <span class="sec">A</span> Wanita Keldai Dadah Ditahan di Lapangan Terbang</li><li><b>Selangor 1 '26 Q1</b> <span class="sec">A</span> Dilema Aizat sebagai Pengawas</li></ul></details><details><summary>F4 U4 TMK Secara Beretika <span class="cnt">9</span></summary><ul><li><b>Kedah '25 Q6</b> <span class="sec">B</span> DELIMA dan ChatGPT dalam pendidikan</li><li><b>Kelantan '26 Q1</b> <span class="sec">A</span> Penyalahgunaan Media Sosial</li><li><b>Pahang '26 Q1</b> <span class="sec">A</span> Murid Menggunakan TMK Semasa PdPR</li><li><b>Pahang 3 '25 Q7</b> <span class="sec">B</span> Hari Keselamatan Internet — warganet celik siber</li><li><b>Perlis '26 Q1</b> <span class="sec">A</span> Situasi Amir di Media Sosial</li><li><b>Perlis '26 Q5</b> <span class="sec">A</span> Carta Pai Jenayah Dalam Talian</li><li><b>Sarawak '25 Q5</b> <span class="sec">A</span> Penipuan atas talian</li><li><b>Sarawak '26 Q4</b> <span class="sec">A</span> Penipuan Dalam Talian Meningkat</li><li><b>Terengganu '25 Q5</b> <span class="sec">A</span> Etika penggunaan media sosial dalam kalangan remaja</li></ul></details><details><summary>F4 U5 Integriti Individu <span class="cnt">4</span></summary><ul><li><b>Kelantan '26 Q7</b> <span class="sec">B</span> Dilema Lalissa — Integriti Individu</li><li><b>Melaka 2 '26 Q8</b> <span class="sec">C</span> Integriti Ketika Peperiksaan — Dilema James</li><li><b>Sarawak '26 Q2</b> <span class="sec">A</span> Plagiarisme dalam Kalangan Pelajar</li><li><b>Selangor 1 '26 Q2</b> <span class="sec">A</span> Kepentingan Integriti</li></ul></details><details><summary>F4 U6 Keluarga Berintegriti <span class="cnt">5</span></summary><ul><li><b>Kedah '25 Q3</b> <span class="sec">A</span> Bantuan BWE &amp; pengabaian warga emas</li><li><b>Kelantan '25 Q2</b> <span class="sec">A</span> Rizal dan Adik yang Sakit</li><li><b>Pahang 3 '25 Q4</b> <span class="sec">A</span> Dilema tanggungjawab anak &amp; tawaran pekerjaan</li><li><b>Sabah '25 Q6</b> <span class="sec">B</span> Amalan Integriti Keluarga</li><li><b>Terengganu '25 Q7</b> <span class="sec">B</span> Pemupukan integriti dalam keluarga dan organisasi</li></ul></details><details><summary>F4 U7 Berperikemanusiaan (Masyarakat) <span class="cnt">3</span></summary><ul><li><b>Melaka 1 '26 Q6</b> <span class="sec">B</span> Bencana Alam — Mangsa Banjir</li><li><b>Sabah '25 Q3</b> <span class="sec">A</span> Kempen Derma Organ</li><li><b>Sarawak '25 Q4</b> <span class="sec">A</span> Bencana alam</li></ul></details><details><summary>F4 U8 Hak &amp; Tanggungjawab Warganegara <span class="cnt">7</span></summary><ul><li><b>Labuan '25 Q7</b> <span class="sec">B</span> Mencegah penderaan kanak-kanak</li><li><b>Melaka '25 Q2</b> <span class="sec">A</span> Isu penderaan kanak-kanak</li><li><b>Melaka '25 Q3</b> <span class="sec">A</span> Remaja tempatan tanpa dokumen pengenalan diri</li><li><b>Pahang 3 '25 Q5</b> <span class="sec">A</span> Dokumen pengenalan diri &amp; implikasi MyKad palsu</li><li><b>Perlis '25 Q5</b> <span class="sec">A</span> Hak dan Tanggungjawab Warganegara</li><li><b>Sabah '25 Q9</b> <span class="sec">C</span> Hentikan Gejala Vandalisme</li><li><b>Selangor 1 '26 Q3</b> <span class="sec">A</span> Kanak-kanak Tanpa Dokumen Pengenalan Diri</li></ul></details><details><summary>F4 U9 Perpaduan Masyarakat <span class="cnt">7</span></summary><ul><li><b>Labuan '25 Q1</b> <span class="sec">A</span> Perpaduan masyarakat pelbagai kaum di Malaysia</li><li><b>Melaka '25 Q6</b> <span class="sec">B</span> Perpaduan mengekalkan keharmonian</li><li><b>Melaka 2 '26 Q9</b> <span class="sec">C</span> Perpaduan Masyarakat di Taman Muhibah</li><li><b>Perak '25 Q6</b> <span class="sec">B</span> Kementerian Perpaduan Negara &amp; JPNIN</li><li><b>Sabah '25 Q8</b> <span class="sec">C</span> Malaysia Madani — Jiwa Merdeka</li><li><b>Selangor 1 '26 Q9</b> <span class="sec">C</span> Amina Menunaikan Solat — Rakan-rakan Menghormati</li><li><b>Terengganu '25 Q1</b> <span class="sec">A</span> Kepentingan dan cabaran perpaduan masyarakat majmuk</li></ul></details><details><summary>F4 U10 Pengurusan Perbelanjaan Beretika <span class="cnt">4</span></summary><ul><li><b>Kelantan '26 Q2</b> <span class="sec">A</span> Individu yang Boros Berbelanja</li><li><b>Labuan '25 Q2</b> <span class="sec">A</span> Isu muflis dan pengurusan perbelanjaan beretika</li><li><b>Melaka '25 Q8</b> <span class="sec">C</span> Pengurusan perbelanjaan secara beretika</li><li><b>Sarawak '25 Q3</b> <span class="sec">A</span> Sikap boros</li></ul></details><details><summary>F4 U11 Keunikan Rakyat Malaysia <span class="cnt">6</span></summary><ul><li><b>Labuan '25 Q4</b> <span class="sec">A</span> Mempertahankan dan mempromosikan makanan tradisional Malaysia</li><li><b>Melaka 1 '26 Q1</b> <span class="sec">A</span> Remaja Melupakan Adat Resam Kaum</li><li><b>Melaka 1 '26 Q8</b> <span class="sec">C</span> Kepentingan Mengekalkan Permainan Tradisional</li><li><b>Perak '25 Q8</b> <span class="sec">C</span> Kepelbagaian Makanan Malaysia</li><li><b>Perlis '25 Q9</b> <span class="sec">C</span> Kepelbagaian Budaya di Malaysia</li><li><b>Terengganu '25 Q4</b> <span class="sec">A</span> Kepentingan dan cara mengekalkan keunikan rakyat Malaysia</li></ul></details><details><summary>F4 U12 Kedaulatan Negara <span class="cnt">9</span></summary><ul><li><b>Kelantan '26 Q8</b> <span class="sec">C</span> Mempertahankan Kedaulatan Negara</li><li><b>Melaka 1 '26 Q4</b> <span class="sec">A</span> Ancaman Keselamatan di Kawasan Sempadan</li><li><b>Pahang '26 Q4</b> <span class="sec">A</span> Sistem Demokrasi Berparlimen Raja Berperlembagaan</li><li><b>Perak '25 Q1</b> <span class="sec">A</span> Poster Rukun Negara</li><li><b>Perlis '26 Q3</b> <span class="sec">A</span> Kawalan Keselamatan Sempadan</li><li><b>Sabah '25 Q4</b> <span class="sec">A</span> Rukun Negara</li><li><b>Sarawak '26 Q5</b> <span class="sec">A</span> Kebanjiran Pendatang Asing Tanpa Izin</li><li><b>Selangor 1 '26 Q8</b> <span class="sec">C</span> Operasi Tangkap Pendatang Tanpa Izin</li><li><b>Terengganu '25 Q9</b> <span class="sec">C</span> Kepentingan dan kesan pengabaian tanggungjawab mempertahankan kedaulatan negara</li></ul></details><details><summary>F5 U1 Norma Masyarakat Global <span class="cnt">7</span></summary><ul><li><b>Kelantan '25 Q6</b> <span class="sec">B</span> Norma Masyarakat Global Menangani COVID-19</li><li><b>Labuan '25 Q3</b> <span class="sec">A</span> Remaja dan norma masyarakat global</li><li><b>Labuan '25 Q8</b> <span class="sec">C</span> Budaya hedonisme dalam kalangan remaja</li><li><b>Pahang '26 Q2</b> <span class="sec">A</span> Poster Hari Kitar Semula Global</li><li><b>Pahang 3 '25 Q1</b> <span class="sec">A</span> Pesta Songkran &amp; norma masyarakat global</li><li><b>Sarawak '26 Q1</b> <span class="sec">A</span> Budaya Hedonisme dalam Kalangan Remaja</li><li><b>Terengganu '25 Q8</b> <span class="sec">C</span> Kepentingan dan kesan pengabaian norma masyarakat global</li></ul></details><details><summary>F5 U2 Jati Diri &amp; Individu Glokal <span class="cnt">14</span></summary><ul><li><b>Kedah '25 Q8</b> <span class="sec">C</span> Dilema Jason — sukan vs peperiksaan</li><li><b>Kelantan '26 Q5</b> <span class="sec">A</span> Atlet Paralimpik Negara</li><li><b>Labuan '25 Q5</b> <span class="sec">A</span> Mengharumkan nama negara di persada dunia</li><li><b>Melaka '25 Q9</b> <span class="sec">C</span> Dilema James — program pertukaran pelajar antarabangsa</li><li><b>Melaka 1 '26 Q9</b> <span class="sec">C</span> Sikap Rakyat Mengagungkan Barangan Luar Negara</li><li><b>Melaka 2 '26 Q3</b> <span class="sec">A</span> Individu Glokal — Produk Tempatan vs Jenama Luar</li><li><b>Pahang '26 Q7</b> <span class="sec">B</span> Program Pertukaran Pelajar</li><li><b>Pahang 3 '25 Q3</b> <span class="sec">A</span> Pelajar Malaysia di luar negara &amp; pengaruh budaya asing</li><li><b>Perak '25 Q4</b> <span class="sec">A</span> Murid Orang Asli Juara Robotik Antarabangsa</li><li><b>Perlis '26 Q2</b> <span class="sec">A</span> Pameran Inovasi Antarabangsa</li><li><b>Perlis '26 Q7</b> <span class="sec">B</span> Remaja Malaysia Terima Anugerah Antarabangsa</li><li><b>Sabah '25 Q1</b> <span class="sec">A</span> Barangan Tempatan</li><li><b>Sarawak '25 Q1</b> <span class="sec">A</span> Kejayaan Lee Zii Jia</li><li><b>Sarawak '25 Q9</b> <span class="sec">C</span> Michelle Yeoh — individu glokal</li></ul></details><details><summary>F5 U3 Kerohanian <span class="cnt">1</span></summary><ul><li><b>Perlis '25 Q8</b> <span class="sec">C</span> Kerohanian Pelbagai Agama</li></ul></details><details><summary>F5 U4 Sumber &amp; Penyebaran Maklumat <span class="cnt">9</span></summary><ul><li><b>Kelantan '25 Q1</b> <span class="sec">A</span> Berita Palsu di Media Sosial</li><li><b>Melaka '25 Q7</b> <span class="sec">B</span> Penularan berita palsu di media sosial</li><li><b>Melaka 2 '26 Q7</b> <span class="sec">B</span> Penularan Berita Palsu di Media Sosial</li><li><b>Perak '25 Q5</b> <span class="sec">A</span> Penularan Berita Palsu yang Semakin Berleluasa</li><li><b>Perak '25 Q7</b> <span class="sec">B</span> Sumber Maklumat yang Sahih</li><li><b>Perlis '25 Q7</b> <span class="sec">B</span> Teknologi Hijau — Stesen Pengecas Kenderaan Elektrik</li><li><b>Sabah '25 Q2</b> <span class="sec">A</span> Ekopelancongan Malaysia</li><li><b>Sarawak '26 Q8</b> <span class="sec">C</span> Penyebaran Berita Palsu</li><li><b>Selangor 1 '26 Q4</b> <span class="sec">A</span> Poster Kempen Semak Maklumat sebenarnya.my</li></ul></details><details><summary>F5 U5 Integriti Organisasi <span class="cnt">6</span></summary><ul><li><b>Kedah '25 Q7</b> <span class="sec">B</span> Robert suap projek pembinaan</li><li><b>Melaka 2 '26 Q5</b> <span class="sec">A</span> Integriti Peniaga di Pasar Basah</li><li><b>Perak '25 Q9</b> <span class="sec">C</span> Majikan Disiasat — Kediaman Pekerja Daif, Kotor, Berbahaya</li><li><b>Perlis '25 Q3</b> <span class="sec">A</span> Integriti dalam Organisasi</li><li><b>Perlis '26 Q6</b> <span class="sec">B</span> Mekanik Viral Tidak Ambil Bayaran</li><li><b>Sarawak '26 Q9</b> <span class="sec">C</span> Roy dan Pemilik Pasar Raya Tidak Berintegriti</li></ul></details><details><summary>F5 U6 Pembangunan Negara Berintegriti <span class="cnt">5</span></summary><ul><li><b>Kelantan '25 Q7</b> <span class="sec">B</span> Pelan Antirasuah Nasional 2019-2023</li><li><b>Pahang '26 Q3</b> <span class="sec">A</span> Monolog Jason — Tuntutan Pelepasan Cukai Palsu</li><li><b>Pahang 3 '25 Q6</b> <span class="sec">B</span> EAIC — integriti demi pembangunan negara</li><li><b>Perlis '26 Q8</b> <span class="sec">C</span> Pelepasan Cukai — Poster LHDN</li><li><b>Terengganu '25 Q6</b> <span class="sec">B</span> Kepentingan integriti individu dalam pembangunan negara</li></ul></details><details><summary>F5 U7 Berperikemanusiaan Global <span class="cnt">5</span></summary><ul><li><b>Kelantan '26 Q3</b> <span class="sec">A</span> Isu Pelarian</li><li><b>Pahang '26 Q5</b> <span class="sec">A</span> Keratan Akhbar Krisis Kebuluran di Negara Berperang</li><li><b>Perlis '25 Q4</b> <span class="sec">A</span> Kedaulatan Negara — Isu Pelarian</li><li><b>Perlis '25 Q6</b> <span class="sec">B</span> Misi Bantuan Kemanusiaan Malaysia-Myanmar</li><li><b>Sarawak '26 Q7</b> <span class="sec">B</span> Isu Pemerdagangan Manusia</li></ul></details><details><summary>F5 U8 Peneraju Komuniti <span class="cnt">8</span></summary><ul><li><b>Kedah '25 Q4</b> <span class="sec">A</span> Program Bakti Siswa</li><li><b>Kelantan '25 Q9</b> <span class="sec">C</span> Remaja dan Program Komuniti</li><li><b>Kelantan '26 Q9</b> <span class="sec">C</span> Program Komuniti dan Kesejahteraan Bersama</li><li><b>Melaka '25 Q4</b> <span class="sec">A</span> Penyertaan remaja dalam program komuniti</li><li><b>Melaka 1 '26 Q3</b> <span class="sec">A</span> Remaja Kurang Melibatkan Diri dalam Kerja Amal</li><li><b>Melaka 2 '26 Q6</b> <span class="sec">B</span> Penglibatan Remaja dalam Program Komuniti</li><li><b>Perlis '26 Q4</b> <span class="sec">A</span> Program Inap Desa</li><li><b>Sabah '25 Q7</b> <span class="sec">B</span> Gotong-royong Komuniti</li></ul></details><details><summary>F5 U9 Kerjasama Masyarakat Global <span class="cnt">2</span></summary><ul><li><b>Kelantan '26 Q4</b> <span class="sec">A</span> Revolusi Pembuatan Kereta</li><li><b>Selangor 1 '26 Q5</b> <span class="sec">A</span> Jerebu di Kuala Lumpur 2025</li></ul></details><details><summary>F5 U10 Pengurusan Kewangan Beretika <span class="cnt">10</span></summary><ul><li><b>Kelantan '25 Q8</b> <span class="sec">C</span> Suzan dan Masalah Muflis</li><li><b>Melaka 1 '26 Q7</b> <span class="sec">B</span> Puan Maria dan Masalah Kad Kredit</li><li><b>Melaka 2 '26 Q4</b> <span class="sec">A</span> Menabung — Strategi Bijak Pengurusan Kewangan</li><li><b>Pahang '26 Q6</b> <span class="sec">B</span> Skim Simpanan Pendidikan Nasional (SSPN)</li><li><b>Pahang 3 '25 Q8</b> <span class="sec">C</span> Amalan menabung — langkah awal membentuk masa hadapan</li><li><b>Perlis '26 Q9</b> <span class="sec">C</span> Alvin — Jurutera Berpendapatan Tinggi Kurang Berhemat</li><li><b>Sarawak '25 Q6</b> <span class="sec">B</span> Muflis di kalangan masyarakat</li><li><b>Sarawak '26 Q6</b> <span class="sec">B</span> Pengurusan Kewangan Secara Beretika</li><li><b>Selangor 1 '26 Q7</b> <span class="sec">B</span> Poster AKPK: Perancangan Kewangan Bijak</li><li><b>Terengganu '25 Q2</b> <span class="sec">A</span> Kepentingan sumber kewangan yang beretika</li></ul></details><details><summary>F5 U11 Malaysia Unggul di Mata Dunia <span class="cnt">1</span></summary><ul><li><b>Kelantan '25 Q3</b> <span class="sec">A</span> KLIA — Kejayaan Malaysia di Persada Dunia</li></ul></details><details><summary>F5 U12 Hubungan Antarabangsa <span class="cnt">9</span></summary><ul><li><b>Kedah '25 Q5</b> <span class="sec">A</span> MoU pekerja asing</li><li><b>Kedah '25 Q9</b> <span class="sec">C</span> Kawalan sempadan Malaysia-Thailand</li><li><b>Kelantan '25 Q5</b> <span class="sec">A</span> Malaysia dan Pertubuhan Antarabangsa</li><li><b>Kelantan '26 Q6</b> <span class="sec">B</span> Kerjasama Malaysia dengan PBB</li><li><b>Labuan '25 Q9</b> <span class="sec">C</span> Penglibatan Malaysia dengan negara luar</li><li><b>Melaka '25 Q5</b> <span class="sec">A</span> Malaysia Pengerusi ASEAN 2025</li><li><b>Pahang '26 Q9</b> <span class="sec">C</span> Malaysia Menerajui ASEAN 2025</li><li><b>Pahang 3 '25 Q9</b> <span class="sec">C</span> Kerjasama Malaysia dengan negara luar</li><li><b>Sabah '25 Q5</b> <span class="sec">A</span> Hubungan Diplomatik Malaysia</li></ul></details></div></div></div>
+</div>
+<div id="panel-issues" class="tab-panel">
+  <div class="summary-banner" style="background: var(--sej-bg); border-color: var(--sej);">
+    <strong>The trials keep returning to the same real-world issues.</strong> Setters build each question on a news cutting, poster or short story, and many reach for the same ones: fake news, online scams, overspending, bankruptcy, bullying, illegal immigrants, national athletes, ASEAN. Practise these as "stimulus to answer": feelings, stand, causes, effects, actions.
+  </div>
+  <div class="section">
+    <div class="section-label">Issues by number of papers</div>
+    <div class="card"><div class="tbl-wrap"><table class="freq-table issues"><thead><tr><th>Issue</th><th class="right">Papers</th><th class="right">'25</th><th class="right">'26</th><th>Where</th></tr></thead><tbody><tr><td>Wira negara &amp; individu glokal</td><td class="right num hot">10</td><td class="right num">7</td><td class="right num">3 <span class="down">▼</span></td><td class="refs">Kedah '25 Q8 (C) · Kelantan '25 Q3 · Kelantan '26 Q5 · Labuan '25 Q5 · Melaka '25 Q9 (C) · Pahang '26 Q7 · Pahang 3 '25 Q3 · Perak '25 Q4 · Perlis '26 Q2 · Perlis '26 Q7 · Sarawak '25 Q1 · Sarawak '25 Q9 (C)</td></tr><tr><td>Berita palsu &amp; etika media sosial</td><td class="right num hot">9</td><td class="right num">4</td><td class="right num">5 <span class="up">▲</span></td><td class="refs">Kelantan '25 Q1 · Kelantan '26 Q1 · Melaka '25 Q7 · Melaka 2 '26 Q7 · Perak '25 Q5 · Perak '25 Q7 · Perlis '26 Q1 · Sarawak '26 Q8 (C) · Selangor 1 '26 Q4 · Terengganu '25 Q5</td></tr><tr><td>Program komuniti &amp; kesukarelawanan</td><td class="right num hot">8</td><td class="right num">4</td><td class="right num">4 </td><td class="refs">Kedah '25 Q4 · Kelantan '25 Q9 (C) · Kelantan '26 Q9 (C) · Melaka '25 Q4 · Melaka 1 '26 Q3 · Melaka 2 '26 Q6 · Perlis '26 Q4 · Sabah '25 Q7</td></tr><tr><td>PBB, ASEAN &amp; hubungan luar</td><td class="right num hot">7</td><td class="right num">5</td><td class="right num">2 </td><td class="refs">Kelantan '25 Q5 · Kelantan '26 Q4 · Kelantan '26 Q6 · Labuan '25 Q9 (C) · Melaka '25 Q5 · Pahang '26 Q9 (C) · Pahang 3 '25 Q9 (C) · Sabah '25 Q5</td></tr><tr><td>Boros &amp; perbelanjaan beretika</td><td class="right num hot">7</td><td class="right num">3</td><td class="right num">4 <span class="up">▲</span></td><td class="refs">Kelantan '26 Q2 · Melaka '25 Q8 (C) · Perlis '26 Q9 (C) · Sarawak '25 Q3 · Sarawak '26 Q6 · Selangor 1 '26 Q7 · Terengganu '25 Q2</td></tr><tr><td>Rasuah &amp; integriti organisasi</td><td class="right num hot">6</td><td class="right num">6</td><td class="right num">0 <span class="down">▼</span></td><td class="refs">Kedah '25 Q7 · Kelantan '25 Q7 · Pahang 3 '25 Q6 · Perak '25 Q9 (C) · Perlis '25 Q3 · Terengganu '25 Q6</td></tr><tr><td>Perpaduan kaum</td><td class="right num hot">6</td><td class="right num">5</td><td class="right num">1 <span class="down">▼</span></td><td class="refs">Labuan '25 Q1 · Melaka '25 Q6 · Melaka 2 '26 Q9 (C) · Perak '25 Q6 · Sabah '25 Q8 (C) · Terengganu '25 Q1</td></tr><tr><td>Norma global &amp; hedonisme</td><td class="right num">5</td><td class="right num">4</td><td class="right num">1 <span class="down">▼</span></td><td class="refs">Kelantan '25 Q6 · Labuan '25 Q3 · Labuan '25 Q8 (C) · Pahang 3 '25 Q1 · Sarawak '26 Q1 · Terengganu '25 Q8 (C)</td></tr><tr><td>Warisan budaya &amp; keunikan rakyat</td><td class="right num">5</td><td class="right num">4</td><td class="right num">1 <span class="down">▼</span></td><td class="refs">Labuan '25 Q4 · Melaka 1 '26 Q1 · Melaka 1 '26 Q8 (C) · Perak '25 Q8 (C) · Perlis '25 Q9 (C) · Terengganu '25 Q4</td></tr><tr><td>Peribadi mulia</td><td class="right num">5</td><td class="right num">4</td><td class="right num">1 <span class="down">▼</span></td><td class="refs">Kedah '25 Q1 · Kelantan '25 Q4 · Melaka 1 '26 Q5 · Sarawak '25 Q7 · Terengganu '25 Q3</td></tr><tr><td>Keluarga &amp; warga emas</td><td class="right num">5</td><td class="right num">5</td><td class="right num">0 <span class="down">▼</span></td><td class="refs">Kedah '25 Q3 · Kelantan '25 Q2 · Pahang 3 '25 Q4 · Sabah '25 Q6 · Terengganu '25 Q7</td></tr><tr><td>PATI, pelarian &amp; pekerja asing</td><td class="right num">5</td><td class="right num">2</td><td class="right num">3 </td><td class="refs">Kedah '25 Q5 · Kelantan '26 Q3 · Perlis '25 Q4 · Sarawak '26 Q5 · Selangor 1 '26 Q8 (C)</td></tr><tr><td>Bencana, perang &amp; bantuan kemanusiaan</td><td class="right num">5</td><td class="right num">3</td><td class="right num">2 </td><td class="refs">Melaka 1 '26 Q6 · Pahang '26 Q5 · Perlis '25 Q6 · Sabah '25 Q3 · Sarawak '25 Q4</td></tr><tr><td>Integriti individu (jujur, meniru, amanah)</td><td class="right num">4</td><td class="right num">0</td><td class="right num">4 <span class="up">▲</span></td><td class="refs">Kelantan '26 Q7 · Melaka 2 '26 Q1 · Melaka 2 '26 Q8 (C) · Sarawak '26 Q2 · Selangor 1 '26 Q2</td></tr><tr><td>Kanak-kanak: penderaan &amp; dokumen diri</td><td class="right num">4</td><td class="right num">3</td><td class="right num">1 </td><td class="refs">Labuan '25 Q7 · Melaka '25 Q2 · Melaka '25 Q3 · Pahang 3 '25 Q5 · Selangor 1 '26 Q3</td></tr><tr><td>Muflis, hutang &amp; kad kredit</td><td class="right num">4</td><td class="right num">3</td><td class="right num">1 </td><td class="refs">Kelantan '25 Q8 (C) · Labuan '25 Q2 · Melaka 1 '26 Q7 · Sarawak '25 Q6</td></tr><tr><td>Norma masyarakat setempat</td><td class="right num">4</td><td class="right num">3</td><td class="right num">1 </td><td class="refs">Labuan '25 Q6 · Perak '25 Q3 · Perlis '25 Q1 · Selangor 1 '26 Q6</td></tr><tr><td>Buli di sekolah</td><td class="right num">4</td><td class="right num">2</td><td class="right num">2 </td><td class="refs">Melaka 2 '26 Q2 · Pahang '26 Q8 (C) · Perak '25 Q2 · Sarawak '25 Q8 (C)</td></tr><tr><td>Alam sekitar</td><td class="right num">4</td><td class="right num">2</td><td class="right num">2 </td><td class="refs">Pahang '26 Q2 · Perlis '25 Q7 · Sabah '25 Q2 · Selangor 1 '26 Q5</td></tr><tr><td>Rukun Negara &amp; Raja Berperlembagaan</td><td class="right num">4</td><td class="right num">3</td><td class="right num">1 </td><td class="refs">Pahang '26 Q4 · Perak '25 Q1 · Perlis '25 Q5 · Sabah '25 Q4</td></tr><tr><td>Penipuan &amp; keselamatan siber</td><td class="right num">4</td><td class="right num">2</td><td class="right num">2 </td><td class="refs">Pahang 3 '25 Q7 · Perlis '26 Q5 · Sarawak '25 Q5 · Sarawak '26 Q4</td></tr><tr><td>Keadilan &amp; undang-undang</td><td class="right num">3</td><td class="right num">2</td><td class="right num">1 </td><td class="refs">Kedah '25 Q2 · Perlis '25 Q2 · Selangor 1 '26 Q1</td></tr><tr><td>Sempadan &amp; keselamatan negara</td><td class="right num">3</td><td class="right num">1</td><td class="right num">2 </td><td class="refs">Kedah '25 Q9 (C) · Melaka 1 '26 Q4 · Perlis '26 Q3</td></tr><tr><td>Barangan tempatan</td><td class="right num">3</td><td class="right num">1</td><td class="right num">2 </td><td class="refs">Melaka 1 '26 Q9 (C) · Melaka 2 '26 Q3 · Sabah '25 Q1</td></tr><tr><td>Menabung &amp; SSPN</td><td class="right num">3</td><td class="right num">1</td><td class="right num">2 </td><td class="refs">Melaka 2 '26 Q4 · Pahang '26 Q6 · Pahang 3 '25 Q8 (C)</td></tr><tr><td>Integriti peniaga</td><td class="right num">3</td><td class="right num">0</td><td class="right num">3 <span class="up">▲</span></td><td class="refs">Melaka 2 '26 Q5 · Perlis '26 Q6 · Sarawak '26 Q9 (C)</td></tr><tr><td>TMK dalam pembelajaran</td><td class="right num">2</td><td class="right num">1</td><td class="right num">1 </td><td class="refs">Kedah '25 Q6 · Pahang '26 Q1</td></tr><tr><td>Kedaulatan negara</td><td class="right num">2</td><td class="right num">1</td><td class="right num">1 </td><td class="refs">Kelantan '26 Q8 (C) · Terengganu '25 Q9 (C)</td></tr><tr><td>Disiplin &amp; pengurusan masa</td><td class="right num">2</td><td class="right num">1</td><td class="right num">1 </td><td class="refs">Melaka '25 Q1 · Melaka 1 '26 Q2</td></tr><tr><td>Cukai</td><td class="right num">2</td><td class="right num">0</td><td class="right num">2 <span class="up">▲</span></td><td class="refs">Pahang '26 Q3 · Perlis '26 Q8 (C)</td></tr><tr><td>Kerohanian &amp; hormat agama</td><td class="right num">2</td><td class="right num">1</td><td class="right num">1 </td><td class="refs">Perlis '25 Q8 (C) · Selangor 1 '26 Q9 (C)</td></tr><tr><td>Keldai dadah</td><td class="right num">2</td><td class="right num">1</td><td class="right num">1 </td><td class="refs">Sarawak '25 Q2 · Sarawak '26 Q3</td></tr><tr><td>Kebajikan haiwan</td><td class="right num">1</td><td class="right num">1</td><td class="right num">0 </td><td class="refs">Pahang 3 '25 Q2</td></tr><tr><td>Vandalisme</td><td class="right num">1</td><td class="right num">1</td><td class="right num">0 </td><td class="refs">Sabah '25 Q9 (C)</td></tr><tr><td>Pemerdagangan manusia</td><td class="right num">1</td><td class="right num">0</td><td class="right num">1 </td><td class="refs">Sarawak '26 Q7</td></tr></tbody></table></div></div>
+    <p class="note">(C) marks a 20-mark Section C question.</p>
+  </div>
+  <div class="section">
+    <div class="section-label">Similarities between papers</div>
+    <div class="card"><div class="card-body"><ul class="plain-list">
+      <li><b>Copied stimulus.</b> Kelantan 2026 Q1 uses the same social-media monologue as Terengganu 2025 Q5 ("Oh, ramai yang berkongsi tentang mesej ini!"), with different parts.</li>
+      <li><b>States echo their own previous paper.</b> Sarawak 2026 repeats drug mules, online scams and overspending from Sarawak 2025. Melaka repeats a pupil late for school because of gaming (Argon in 2025, Farid in 2026), community programmes, fake news and unity. Kelantan repeats fake news, glokal individuals, the UN and community programmes. Pahang repeats saving, Malaysian students abroad and ASEAN.</li>
+      <li><b>Shared news hooks.</b> "20,000 declared bankrupt every year" (Labuan and Sarawak 2025), Malaysia as ASEAN chair (Melaka 2025, Pahang 2026), illegal immigrant deportations (Sarawak and Selangor 1 2026), LHDN tax relief (Pahang and Perlis 2026), drug mules at foreign airports (Sarawak 2025 and 2026), refugees on boats (Perlis 2025, Kelantan 2026).</li>
+      <li><b>Same dilemma shapes.</b> A character torn between duty and loyalty: a prefect who catches a sibling skipping school, a student who sees a friend cheat, a bullying victim deciding whether to report, a son choosing between a job abroad and his parents, an athlete choosing between a tournament and exams.</li>
+    </ul></div></div>
+  </div>
+</div>
+<div id="panel-paper" class="tab-panel">
+  <div class="summary-banner" style="background: var(--sej-bg); border-color: var(--sej);">
+    <strong>Every trial follows one layout.</strong> Section A: five 10-mark questions, usually split 2 + 4 + 4 or 3 + 3 + 4. Section B: two 10-mark questions, usually split 2 + 8. Section C: two 20-mark questions, usually split 4 + 8 + 8. The marks go to explaining, not naming: the largest share asks for actions, ways and roles, then effects and importance.
+  </div>
+  <div class="section">
+    <div class="section-label">What the parts ask, in marks</div>
+    <div class="card"><div class="tbl-wrap"><table class="freq-table"><thead><tr><th>Part asks for</th><th class="right">Section A</th><th class="right">Section B</th><th class="right">Section C</th><th class="right">All</th></tr></thead><tbody><tr><td>Feelings (perasaan)</td><td class="right num">48</td><td class="right num">2</td><td class="right num">25</td><td class="right num">75 <small>(4%)</small></td></tr><tr><td>Stance + justify (wajar, setuju, justifikasi)</td><td class="right num">39</td><td class="right num">48</td><td class="right num">80</td><td class="right num">167 <small>(9%)</small></td></tr><tr><td>Effects / implications (kesan, implikasi)</td><td class="right num">145</td><td class="right num">44</td><td class="right num">128</td><td class="right num">317 <small>(17%)</small></td></tr><tr><td>Causes (punca, mengapa, faktor)</td><td class="right num">82</td><td class="right num">4</td><td class="right num">25</td><td class="right num">111 <small>(6%)</small></td></tr><tr><td>Importance / benefits (kepentingan)</td><td class="right num">119</td><td class="right num">92</td><td class="right num">97</td><td class="right num">308 <small>(16%)</small></td></tr><tr><td>Actions, ways, roles (cadangkan, langkah, cara, peranan)</td><td class="right num">224</td><td class="right num">105</td><td class="right num">184</td><td class="right num">513 <small>(27%)</small></td></tr><tr><td>Characteristics, meaning, examples (ciri, maksud, contoh)</td><td class="right num">70</td><td class="right num">29</td><td class="right num">69</td><td class="right num">168 <small>(9%)</small></td></tr><tr><td>Other</td><td class="right num">123</td><td class="right num">16</td><td class="right num">72</td><td class="right num">211 <small>(11%)</small></td></tr></tbody></table></div></div>
+    <p class="note">Each part was sorted by its wording (for example "kesan", "punca", "cadangkan", "wajarkah"). "Other" is mostly challenges (cabaran), lists and open "jelaskan" parts.</p>
+  </div>
+  <div class="section">
+    <div class="section-label">How the skema awards marks</div>
+    <div class="card"><div class="card-body"><ul class="plain-list">
+      <li><b>2 and 3 marks:</b> one mark per point. The skema lists more points than needed and accepts any reasonable one ("terima mana-mana jawapan munasabah").</li>
+      <li><b>4 marks:</b> usually two points, each a <i>fakta</i> (F) plus a <i>huraian</i> (H) that explains it. Write the explanation, not just the fact.</li>
+      <li><b>8 marks:</b> four F + H points. 19 of the 84 8-mark parts are marked by level instead (Aras 1–4, 7–8 marks for Aras 4). A strong point gives the fact, explains it, adds an example and ends with its result.</li>
+      <li><b>Section C:</b> 27 of the 56 8-mark parts, in 31 of the 34 Section C questions, say "berdasarkan nilai universal": name the value (for example Rasional, Bertanggungjawab, Kejujuran, Hormat, Kerjasama, Patriotisme) and tie each point to it.</li>
+      <li><b>Openers:</b> "Apakah perasaan anda" wants a feeling plus the reason. "Wajarkah ... Justifikasikan" wants a clear stand first ("Wajar" / "Tidak wajar"), then reasons.</li>
+    </ul></div></div>
+  </div>
+  <div class="section">
+    <div class="section-label">All 34 Section C questions</div>
+    <div class="card"><div class="tbl-wrap"><table class="freq-table"><thead><tr><th>Paper</th><th>Unit</th><th>Topic</th></tr></thead><tbody><tr><td class="num">Kedah '25 Q8</td><td>F5 U2 Jati Diri &amp; Individu Glokal</td><td>Dilema Jason — sukan vs peperiksaan</td></tr><tr><td class="num">Kedah '25 Q9</td><td>F5 U12 Hubungan Antarabangsa</td><td>Kawalan sempadan Malaysia-Thailand</td></tr><tr><td class="num">Kelantan '25 Q8</td><td>F5 U10 Pengurusan Kewangan Beretika</td><td>Suzan dan Masalah Muflis</td></tr><tr><td class="num">Kelantan '25 Q9</td><td>F5 U8 Peneraju Komuniti</td><td>Remaja dan Program Komuniti</td></tr><tr><td class="num">Kelantan '26 Q8</td><td>F4 U12 Kedaulatan Negara</td><td>Mempertahankan Kedaulatan Negara</td></tr><tr><td class="num">Kelantan '26 Q9</td><td>F5 U8 Peneraju Komuniti</td><td>Program Komuniti dan Kesejahteraan Bersama</td></tr><tr><td class="num">Labuan '25 Q8</td><td>F5 U1 Norma Masyarakat Global</td><td>Budaya hedonisme dalam kalangan remaja</td></tr><tr><td class="num">Labuan '25 Q9</td><td>F5 U12 Hubungan Antarabangsa</td><td>Penglibatan Malaysia dengan negara luar</td></tr><tr><td class="num">Melaka '25 Q8</td><td>F4 U10 Pengurusan Perbelanjaan Beretika</td><td>Pengurusan perbelanjaan secara beretika</td></tr><tr><td class="num">Melaka '25 Q9</td><td>F5 U2 Jati Diri &amp; Individu Glokal</td><td>Dilema James — program pertukaran pelajar antarabangsa</td></tr><tr><td class="num">Melaka 1 '26 Q8</td><td>F4 U11 Keunikan Rakyat Malaysia</td><td>Kepentingan Mengekalkan Permainan Tradisional</td></tr><tr><td class="num">Melaka 1 '26 Q9</td><td>F5 U2 Jati Diri &amp; Individu Glokal</td><td>Sikap Rakyat Mengagungkan Barangan Luar Negara</td></tr><tr><td class="num">Melaka 2 '26 Q8</td><td>F4 U5 Integriti Individu</td><td>Integriti Ketika Peperiksaan — Dilema James</td></tr><tr><td class="num">Melaka 2 '26 Q9</td><td>F4 U9 Perpaduan Masyarakat</td><td>Perpaduan Masyarakat di Taman Muhibah</td></tr><tr><td class="num">Pahang '26 Q8</td><td>F4 U3 Keadilan &amp; Keprihatinan</td><td>Dilema Mangsa Buli</td></tr><tr><td class="num">Pahang '26 Q9</td><td>F5 U12 Hubungan Antarabangsa</td><td>Malaysia Menerajui ASEAN 2025</td></tr><tr><td class="num">Pahang 3 '25 Q8</td><td>F5 U10 Pengurusan Kewangan Beretika</td><td>Amalan menabung — langkah awal membentuk masa hadapan</td></tr><tr><td class="num">Pahang 3 '25 Q9</td><td>F5 U12 Hubungan Antarabangsa</td><td>Kerjasama Malaysia dengan negara luar</td></tr><tr><td class="num">Perak '25 Q8</td><td>F4 U11 Keunikan Rakyat Malaysia</td><td>Kepelbagaian Makanan Malaysia</td></tr><tr><td class="num">Perak '25 Q9</td><td>F5 U5 Integriti Organisasi</td><td>Majikan Disiasat — Kediaman Pekerja Daif, Kotor, Berbahaya</td></tr><tr><td class="num">Perlis '25 Q8</td><td>F5 U3 Kerohanian</td><td>Kerohanian Pelbagai Agama</td></tr><tr><td class="num">Perlis '25 Q9</td><td>F4 U11 Keunikan Rakyat Malaysia</td><td>Kepelbagaian Budaya di Malaysia</td></tr><tr><td class="num">Perlis '26 Q8</td><td>F5 U6 Pembangunan Negara Berintegriti</td><td>Pelepasan Cukai — Poster LHDN</td></tr><tr><td class="num">Perlis '26 Q9</td><td>F5 U10 Pengurusan Kewangan Beretika</td><td>Alvin — Jurutera Berpendapatan Tinggi Kurang Berhemat</td></tr><tr><td class="num">Sabah '25 Q8</td><td>F4 U9 Perpaduan Masyarakat</td><td>Malaysia Madani — Jiwa Merdeka</td></tr><tr><td class="num">Sabah '25 Q9</td><td>F4 U8 Hak &amp; Tanggungjawab Warganegara</td><td>Hentikan Gejala Vandalisme</td></tr><tr><td class="num">Sarawak '25 Q8</td><td>F4 U3 Keadilan &amp; Keprihatinan</td><td>Kes buli di sekolah</td></tr><tr><td class="num">Sarawak '25 Q9</td><td>F5 U2 Jati Diri &amp; Individu Glokal</td><td>Michelle Yeoh — individu glokal</td></tr><tr><td class="num">Sarawak '26 Q8</td><td>F5 U4 Sumber &amp; Penyebaran Maklumat</td><td>Penyebaran Berita Palsu</td></tr><tr><td class="num">Sarawak '26 Q9</td><td>F5 U5 Integriti Organisasi</td><td>Roy dan Pemilik Pasar Raya Tidak Berintegriti</td></tr><tr><td class="num">Selangor 1 '26 Q8</td><td>F4 U12 Kedaulatan Negara</td><td>Operasi Tangkap Pendatang Tanpa Izin</td></tr><tr><td class="num">Selangor 1 '26 Q9</td><td>F4 U9 Perpaduan Masyarakat</td><td>Amina Menunaikan Solat — Rakan-rakan Menghormati</td></tr><tr><td class="num">Terengganu '25 Q8</td><td>F5 U1 Norma Masyarakat Global</td><td>Kepentingan dan kesan pengabaian norma masyarakat global</td></tr><tr><td class="num">Terengganu '25 Q9</td><td>F4 U12 Kedaulatan Negara</td><td>Kepentingan dan kesan pengabaian tanggungjawab mempertahankan kedaulatan negara</td></tr></tbody></table></div></div>
+  </div>
+</div>
+<div id="panel-method" class="tab-panel method">
+  <div class="section"><div class="section-label">How this report was built</div><div class="card"><div class="card-body"><ol>
+    <li><b>Sources.</b> 17 state trial papers of Pendidikan Moral (1225/1) from the drill: 10 from 2025 (Kedah, Kelantan, Labuan, Melaka, Pahang, Perak, Perlis, Sabah, Sarawak, Terengganu) and 7 from 2026 (Kelantan, Melaka 1 and 2, Pahang, Perlis, Sarawak, Selangor 1), 153 questions with their official skema.</li>
+    <li><b>One paper counted once.</b> The drill holds the Pahang 2026 paper three times (also as Pahang Set 1 and Set 2 "2025"; the questions are identical and one news cutting is dated April 2026). It is counted once here.</li>
+    <li><b>Tagging.</b> Each question was tagged by hand to the KSSM unit it tests most (12 Form 4 and 12 Form 5 units) and to a real-world issue. Each part was sorted by what it asks (feelings, stance, causes, effects, importance, actions, characteristics) from its wording.</li>
+    <li><b>Trends.</b> A theme's strength is the number of papers that set it. 2025 and 2026 are compared as shares of papers, since there are 10 and 7.</li>
+  </ol>
+  <p class="caveat">These are trial papers only. There are no actual SPM Pendidikan Moral papers in this set to check the trials against, and trial setters copy each other, so a popular issue is not certain to come. Use this to decide where extra practice goes, and still cover all 24 units.</p></div></div></div>
+</div>
+<script>
+function switchTab(id){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id==='panel-'+id));
+document.querySelectorAll('.tab-btn').forEach(b=>{const on=b.dataset.panel===id;b.classList.toggle('active-sej',on);b.setAttribute('aria-selected',on)});
+try{localStorage.setItem('moral2026-tab',id)}catch(e){}}
+(function(){let t=null;try{t=localStorage.getItem('moral2026-tab')}catch(e){}if(t&&document.getElementById('panel-'+t))switchTab(t)})();
+</script>
