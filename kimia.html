@@ -14883,7 +14883,7 @@ function renderSetup(){
 
     // Paper selector — always visible; K2 disabled if no P2 data loaded yet
     '<div class="sec"><div class="lab">PAPER</div><div class="chips" data-g="paper">'+
-      chip(F.paper===1,'KERTAS 1 &middot; OBJEKTIF',p1count,'data-v="1"')+
+      chip(F.paper===1,'KERTAS 1 &middot; '+(F.subject==='Pendidikan Moral'||F.subject==='Sejarah'?'BERSTRUKTUR':'OBJEKTIF'),p1count,'data-v="1"')+
       (subjectHasP2||p2count>0
         ? chip(F.paper===2,'KERTAS 2 &middot; BERSTRUKTUR',p2count,'data-v="2"')
         : '<button class="chip" disabled style="opacity:.38;cursor:not-allowed">KERTAS 2 &middot; BERSTRUKTUR <span class="n" style="color:var(--dim)">SOON</span></button>')+
