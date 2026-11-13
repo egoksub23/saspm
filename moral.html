@@ -1954,332 +1954,224 @@ window.SPM.register({
 });
 
 /* ---- Moral/data/moral-sarawak-2025-p1.js ---- */
+'use strict';
+/* P.Moral K1 — Sarawak (SMK Bandar Bintangor) · Percubaan SPM 2025 */
 window.SPM.register({
   meta: {
-    id: "moral-sarawak-2025-p1",
-    subject: "moral",
-    state: "Sarawak",
+    id: 'moral-sarawak-2025-p1',
+    subject: 'Pendidikan Moral',
+    state: 'Sarawak',
     year: 2025,
     paper: 1,
-    code: "1225/1",
-    source: "Percubaan SPM 2025 — Sarawak (SMK Bandar Bintangor)",
-    answers: "skema",
-    kind: "trial",
-    total: 100,
-    ai_answers: false
+    title: 'Percubaan SPM 2025 — Sarawak (SMK Bandar Bintangor)'
   },
   questions: [
-    {
-      n: 1, sec: "A",
-      topic: "Semangat patriotisme",
-      title: "Kejayaan atlet badminton negara, Lee Zii Jia",
-      stim: "Lee Zii Jia berjaya merangkul kemenangan sebagai Juara Kejohanan Badminton All England 2021, menewaskan Viktor Axelsen dari Denmark dengan tiga permainan 30-29, 20-22 dan 21-9. Kejayaan di Birmigham itu ternyata membanggakan rakyat Malaysia dan diraikan dengan penuh kegembiraan.",
-      marks: 10,
-      parts: [
-        {
-          l: "a", q: "Nyatakan dua nama atlet lain yang mengharumkan nama negara.", m: 2,
-          a: ["Datuk Lee Chong Wei", "Datuk Nicol Ann David", "Datuk Pandelela Rinong"]
-        },
-        {
-          l: "b", q: "Jelaskan dua faktor kejayaan atlet Malaysia.", m: 2,
-          a: [
-            {f: "Atlet negara mempunyai usaha yang berterusan dan berdisiplin dalam menjalani latihan berstruktur.", h: ["Atlet negara mempunyai sikap tidak berputus asa dalam menjalani latihan tanpa bergantung sepenuh dengan jurulatih."]},
-            {f: "Kerajaan menyediakan kemudahan yang lengkap untuk menjalani latihan.", h: ["Atlet Malaysia dibimbing oleh jurulatih yang berpengalaman / profesional."]}
-          ]
-        },
-        {
-          l: "c", q: "Huraikan dua nilai yang diamalkan oleh atlet negara.", m: 4,
-          a: [
-            {f: "Nilai kerajinan", h: ["Atlet negara mempunyai usaha yang berterusan dengan semangat dedikasi menjalani latihan berstruktur."]},
-            {f: "Nilai rasional", h: ["Atlet negara boleh berfikir kesan baik sekiranya berlatih dengan bersungguh-sungguh untuk mengharumkan nama baik negara."]},
-            {f: "Nilai berdikari", h: ["Atlet negara mempunyai kebolehan dan kesanggupan menjalani latihan tanpa bergantung sepenuh dengan jurulatih."]}
-          ]
-        },
-        {
-          l: "d", q: "Faiz dapat 10A+ dalam SPM dan merupakan pemain badminton negara. Dia mendapat tawaran dalam bidang perubatan dan sukan di universiti terkemuka luar negara, lalu memilih tawaran sukan kerana pengaruh Lee Zii Jia. Patutkah Faiz membuat pilihan tersebut? Beri alasan anda.", m: 2,
-          a: [
-            "Patut — Masa depan yang cerah dan terjamin kerana menceburi bidang kesukaan Faiz. Faiz boleh mempelajari pelbagai kemahiran / teknik dan menimba ilmu pengetahuan yang mendalam dalam bidang yang diceburi. Faiz boleh menjadi jurulatih selepas tamat pengajian dan mendidik generasi muda dalam bidang sukan.",
-            "--- ATAU ---",
-            "Tidak patut — Faiz patut menerima tawaran dalam bidang perubatan kerana dapat menjamin masa depan yang cerah. Selain itu, Faiz dapat menjalankan penyelidikan dan kajian untuk menyelamatkan lagi banyak nyawa."
-          ]
-        }
+    /* ── BAHAGIAN A ── */
+    { n: 1, sec: 'A', topic: 'Semangat Patriotisme dan Kesetiaan', title: 'Atlet Mengharumkan Nama Negara',
+      stim: 'Gambar menunjukkan Lee Zii Jia, pemain nombor satu negara yang berjaya merangkul kemenangan sebagai juara Kejohanan Badminton All England 2021 di Birmingham, menewaskan Viktor Axelsen dari Denmark dengan tiga permainan 30-29, 20-22 dan 21-9.',
+      marks: 10, parts: [
+        { l:'a', m:2, q:'Nyatakan dua nama atlet lain yang mengharumkan nama negara.',
+          a:['Datuk Lee Chong Wei','Datuk Nicol Ann David','Datuk Pandelela Rinong'] },
+        { l:'b', m:2, q:'Jelaskan dua faktor kejayaan atlet Malaysia.',
+          a:['Atlet negara mempunyai usaha yang berterusan dan berdisiplin dalam menjalani latihan berstruktur.',
+             'Atlet negara mempunyai sikap tidak berputus asa dalam menjalani latihan tanpa bergantung sepenuh dengan jurulatih.',
+             'Kerajaan menyediakan kemudahan yang lengkap untuk menjalani latihan.',
+             'Atlet Malaysia dibimbing oleh jurulatih yang berpengalaman/professional.'] },
+        { l:'c', m:4, q:'Huraikan dua nilai yang diamalkan oleh atlet negara.',
+          a:[
+            {f:'Atlet negara mengamalkan nilai kerajinan.', h:'Atlet negara mempunyai usaha yang berterusan dengan semangat dedikasi menjalani latihan berstruktur.'},
+            {f:'Atlet negara mengamalkan nilai rasional.', h:'Atlet negara boleh berfikir kesan baik sekiranya berlatih dengan bersungguh-sungguh untuk mengharumkan nama baik negara.'},
+            {f:'Atlet negara mengamalkan nilai berdikari.', h:'Atlet negara mempunyai kebolehan dan kesanggupan menjalani latihan tanpa bergantung sepenuh dengan jurulatih.'}
+          ] },
+        { l:'d', m:2, q:'Faiz dapat 10A+ dalam peperiksaan SPM dan merupakan pemain badminton negara. Dia mendapat tawaran dalam bidang perubatan dan sukan di universiti terkemuka luar negara. Dia pilih tawaran sukan kerana pengaruh Lee Zii Jia. Patutkah Faiz membuat pilihan tersebut? Beri alasan anda.',
+          a:['Patut — Masa depan yang cerah dan terjamin kerana menceburi bidang kesukaan Faiz. Faiz boleh mempelajari pelbagai kemahiran/teknik dan menimba ilmu pengetahuan yang mendalam dalam bidang yang diceburi. Faiz boleh menjadi jurulatih selepas tamat pengajian dan mendidik generasi muda dalam bidang sukan.',
+             'Tidak patut — Faiz patut menerima tawaran dalam bidang perubatan kerana dapat menjamin masa depan yang cerah. Selain itu, Faiz dapat menjalankan penyelidikan dan kajian untuk menyelamatkan lebih banyak nyawa.'] }
       ]
     },
-    {
-      n: 2, sec: "A",
-      topic: "Keadilan / Keprihatinan",
-      title: "Keldai dadah — wanita ditahan di lapangan terbang antarabangsa",
-      stim: "Seorang wanita rakyat Malaysia telah ditahan di lapangan terbang antarabangsa di sebuah negara jiran kerana disyaki menyeludup dadah. Menurut wanita tersebut, dia ke negara itu kerana dijanjikan pekerjaan dengan gaji yang lumayan. Ketika bertolak ke sana, dia diberikan sebuah beg untuk dihantar kepada seorang pekerja di tempat dia akan bekerja.",
-      marks: 10,
-      parts: [
-        {
-          l: "a", q: "Pada pendapat anda, bagaimanakah wanita tersebut diadili mengikut prinsip keadilan atau prinsip keprihatinan? (Pilih satu)", m: 2,
-          a: [
-            "Prinsip keadilan: Pada pendapat saya, wanita itu perlu diadili mengikut prinsip keadilan. Ini kerana penyelupan dadah merupakan tindakan yang menyalahi undang-undang. Wanita tersebut tidak boleh terlepas daripada tindakan undang-undang dan patut dikenakan dengan hukuman yang sewajarnya / setimpalnya.",
-            "--- ATAU ---",
-            "Prinsip keprihatinan: Pada pendapat saya, wanita itu perlu diadili mengikut prinsip keprihatinan. Pihak berkuasa patut memahami perasaan seorang wanita yang menjadi mangsa kerana ditipu oleh individu yang tidak bertanggungjawab. Pihak berkuasa sepatutnya prihatin dengan situasi wanita tersebut dan dapat memberikan pertimbangan yang sewajarnya."
-          ]
-        },
-        {
-          l: "b", q: "Bincangkan dua kesan sekiranya wanita tersebut dibebaskan atas dasar prinsip keprihatinan.", m: 2,
-          a: [
-            {f: "Jenayah dadah akan semakin berleluasa.", h: ["Ketenteraman awam terjejas sekiranya wanita tersebut dibebaskan."]},
-            {f: "Semakin banyak wanita yang akan menjadi mangsa individu yang tidak bertanggungjawab.", h: ["Masyarakat hidup dalam ketakutan / tidak harmoni / aman damai. Masyarakat akan bimbang dengan keselamatan mereka."]}
-          ]
-        },
-        {
-          l: "c", q: "Jelaskan amalan nilai universal yang patut dipratikan supaya anda tidak terlibat dalam situasi ini.", m: 4,
-          a: [
-            {f: "Nilai bertanggungjawab", h: ["Saya perlu melaksanakan dan memikul kewajipan sebagai seorang insan yang bermoral supaya tidak terlibat atau tersubahat dengan jenayah dadah."]},
-            {f: "Nilai rasional", h: ["Saya boleh berfikir kesan buruk apabila menerima tawaran yang besar supaya tidak mudah ditipu."]}
-          ]
-        },
-        {
-          l: "d", q: "Bagaimanakah anda boleh mengelakkan diri daripada menjadi mangsa penipuan seperti kes ini?", m: 2,
-          a: [
-            "Saya perlu sentiasa berhati-hati apabila berurusan dengan individu yang tidak dikenali.",
-            "Saya perlu berbincang dengan anggota keluarga sebelum membuat apa-apa keputusan.",
-            "Saya perlu sentiasa peka dengan kumpulan yang cuba menipu orang ramai.",
-            "Saya perlu menolak tawaran tersebut dengan baik."
-          ]
-        }
+
+    { n: 2, sec: 'A', topic: 'Keadilan dan Keprihatinan', title: 'Keldai Dadah Ditahan',
+      stim: 'Keratan akhbar menunjukkan seorang wanita rakyat Malaysia telah ditahan di lapangan terbang antarabangsa di sebuah negara jiran kerana disyaki menyeludup dadah. Menurut wanita tersebut, dia ke negara itu kerana dijanjikan pekerjaan dengan gaji lumayan. Ketika bertolak ke sana, dia diberikan sebuah beg untuk dihantar kepada seorang pekerja di tempat dia akan bekerja.',
+      marks: 10, parts: [
+        { l:'a', m:2, q:'Pada pendapat anda, bagaimanakah wanita tersebut diadili mengikut prinsip keadilan atau prinsip keprihatian? (pilih 1)',
+          a:['Prinsip keadilan — Penyelupan dadah merupakan tindakan yang menyalahi undang-undang. Wanita tersebut tidak boleh terlepas daripada tindakan undang-undang dan patut dikenakan hukuman yang sewajarnya/setimpalnya.',
+             'Prinsip keprihatinan — Pihak berkuasa patut memahami perasaan seorang wanita yang menjadi mangsa kerana ditipu oleh individu yang tidak bertanggungjawab. Pihak berkuasa sepatutnya prihatin dengan situasi wanita tersebut dan memberikan pertimbangan yang sewajarnya.'] },
+        { l:'b', m:2, q:'Bincangkan dua kesan sekiranya wanita tersebut dibebaskan atas dasar prinsip keprihatian.',
+          a:['Jenayah dadah akan semakin berleluasa.',
+             'Ketenteraman awam terjejas sekiranya wanita tersebut dibebaskan.',
+             'Semakin banyak wanita yang akan menjadi mangsa individu yang tidak bertanggungjawab.',
+             'Masyarakat hidup dalam ketakutan/tidak harmoni/aman damai.',
+             'Masyarakat akan bimbang dengan keselamatan mereka.'] },
+        { l:'c', m:4, q:'Jelaskan amalan nilai universal yang patut dipratikan supaya anda tidak terlibat dalam situasi ini.',
+          a:[
+            {f:'Saya patut mengamalkan nilai bertanggungjawab.', h:'Saya perlu melaksanakan dan memikul kewajipan sebagai seorang insan yang bermoral supaya tidak terlibat atau tersubahat dengan jenayah dadah.'},
+            {f:'Saya patut mengamalkan nilai rasional.', h:'Saya boleh berfikir kesan buruk apabila menerima tawaran yang besar supaya tidak mudah ditipu.'}
+          ] },
+        { l:'d', m:2, q:'Bagaimanakah anda boleh mengelakkan diri daripada menjadi mangsa penipuan seperti kes ini?',
+          a:['Saya perlu sentiasa berhati-hati apabila berurusan dengan individu yang tidak dikenali.',
+             'Saya perlu berbincang dengan anggota keluarga sebelum membuat apa-apa keputusan.',
+             'Saya perlu sentiasa peka dengan kumpulan yang cuba menipu orang ramai.',
+             'Saya perlu menolak tawaran tersebut dengan baik.'] }
       ]
     },
-    {
-      n: 3, sec: "A",
-      topic: "Pengurusan kewangan / Hemah tinggi",
-      title: "Sikap wanita yang boros dalam berbelanja",
-      stim: "Gambar A menunjukkan seorang wanita boros berbelanja. Gambar B menunjukkan wanita yang sama menyesal kerana bersikap boros.",
-      marks: 10,
-      parts: [
-        {
-          l: "a", q: "Jelaskan perasaan anda apabila melihat gambar di atas.", m: 2,
-          a: ["Sedih / marah. Ini kerana tidak dapat menguruskan kewangan dengan berhemah dan beretika. Tindakan ini menyebabkan pembaziran berlaku. Wanita tersebut tidak mempunyai simpanan untuk waktu kecemasan."]
-        },
-        {
-          l: "b", q: "Jelaskan dua kepentingan pengurusan kewangan secara beretika bagi mengelakkan berlakunya perkara seperti gambar B.", m: 4,
-          a: [
-            {f: "Pengurusan kewangan secara beretika membolehkan kita menyimpan duit / menabung.", h: ["Kita boleh menggunakan duit ini semasa kecemasan atau ketika kesempitan hidup."]},
-            {f: "Pengurusan kewangan boleh meningkatkan simpanan agar pulangan dividen bertambah.", h: ["Pengurusan kewangan beretika dapat menjamin masa depan yang sejahtera dan bahagia."]},
-            {f: "Pengurusan kewangan beretika boleh mengelakkan berhutang dengan pemiutang.", h: ["Dapat hidup harmoni dan bahagia."]},
-            {f: "Dapat menyertai pelaburan yang sah.", h: ["Boleh dapat pulangan yang banyak untuk meningkatkan kualiti hidup."]}
-          ]
-        },
-        {
-          l: "c", q: "Ramalkan dua kesan jangka panjang sekiranya gambar A diamalkan dalam kehidupan harian.", m: 2,
-          a: [
-            "Pengurusan kewangan diri dan keluarga akan menjadi kucar-kacir.",
-            "Akan mengalami tekanan fizikal dan mental akibat kekurangan wang perbelanjaan.",
-            "Tidak mempunyai simpanan untuk kegunaan semasa kecemasan.",
-            "Akan berhutang dengan pemiutang.",
-            "Akan mengalami muflis.",
-            "Keselamatan keluarga akan terjejas / terancam."
-          ]
-        },
-        {
-          l: "d", q: "Cerakinkan pengajaran yang boleh diperoleh daripada kedua-dua gambar.", m: 2,
-          a: [
-            "Kita perlu merancang kewangan sebagai panduan untuk berbelanja dan membuat pelaburan yang sah.",
-            "Kita perlu mempunyai tabung dan simpanan untuk kegunaan pada masa akan datang.",
-            "Kita perlu berhemah semasa berbelanja dan berjimat-cermat."
-          ]
-        }
+
+    { n: 3, sec: 'A', topic: 'Tanggungjawab Terhadap Diri', title: 'Pengurusan Kewangan Secara Beretika',
+      stim: 'Gambar A menunjukkan seorang wanita yang boros berbelanja. Gambar B menunjukkan wanita yang sama menyesal kerana bersikap boros.',
+      marks: 10, parts: [
+        { l:'a', m:2, q:'Jelaskan perasaan anda apabila melihat gambar di atas.',
+          a:['Sedih/marah kerana tidak dapat menguruskan kewangan dengan berhemah dan beretika.',
+             'Tindakan ini menyebabkan pembaziran berlaku.',
+             'Wanita tersebut tidak mempunyai simpanan untuk waktu kecemasan.'] },
+        { l:'b', m:4, q:'Jelaskan dua kepentingan pengurusan kewangan secara beretika bagi mengelakkan berlakunya perkara seperti gambar B.',
+          a:[
+            {f:'Pengurusan kewangan secara beretika membolehkan kita menyimpan duit/menabung.', h:'Kita boleh menggunakan duit ini semasa kecemasan atau ketika kesempitan hidup. Pengurusan kewangan beretika dapat menjamin masa depan yang sejahtera dan bahagia.'},
+            {f:'Pengurusan kewangan boleh meningkatkan simpanan agar pulangan dividen bertambah.', h:'Kita boleh menyertai pelaburan yang sah dan mendapat pulangan yang banyak untuk meningkatkan kualiti hidup.'},
+            {f:'Pengurusan kewangan beretika boleh mengelakkan berhutang dengan pemiutang.', h:'Kita dapat hidup harmoni dan bahagia serta bebas daripada beban hutang yang membelenggu.'}
+          ] },
+        { l:'c', m:2, q:'Ramalkan dua kesan jangka panjang sekiranya gambar A diamalkan dalam kehidupan harian.',
+          a:['Pengurusan kewangan diri dan keluarga wanita tersebut akan menjadi kucar-kacir.',
+             'Wanita tersebut akan mengalami tekanan fizikal dan mental akibat kekurangan wang perbelanjaan.',
+             'Wanita tersebut tidak mempunyai simpanan untuk kegunaan semasa kecemasan.',
+             'Wanita tersebut akan berhutang dengan pemiutang.',
+             'Wanita tersebut akan mengalami muflis.',
+             'Keselamatan keluarga wanita tersebut akan terjejas/terancam.'] },
+        { l:'d', m:2, q:'Cerakinkan pengajaran yang boleh diperoleh daripada kedua-dua gambar.',
+          a:['Kita perlu merancang kewangan sebagai panduan untuk berbelanja dan membuat pelaburan yang sah.',
+             'Kita perlu mempunyai tabung dan simpanan untuk kegunaan pada masa akan datang.',
+             'Kita perlu berhemah semasa berbelanja dan berjimat-cermat.'] }
       ]
     },
-    {
-      n: 4, sec: "A",
-      topic: "Berperikemanusiaan",
-      title: "Bencana alam — banjir kilat dan gempa bumi",
-      stim: "Gambar menunjukkan dua situasi bencana alam yang melanda kawasan penempatan penduduk: banjir kilat dan gempa bumi. Mangsa-mangsa memerlukan bantuan segera.",
-      marks: 10,
-      parts: [
-        {
-          l: "a", q: "Senaraikan sikap berperikemanusiaan yang perlu diamalkan dalam situasi di atas.", m: 2,
-          a: [
-            "Mengamalkan sikap empati dan simpati dengan nasib mangsa bencana alam.",
-            "Membantu sedaya upaya mengikut kemampuan masing-masing.",
-            "Akur dan pasrah dengan ketentuan Tuhan dan aktiviti alam."
-          ]
-        },
-        {
-          l: "b", q: "Ramalkan kesan pengabaian sikap berperikemanusiaan terhadap mangsa.", m: 2,
-          a: [
-            "Hak dan kebajikan mangsa bencana tidak terbela.",
-            "Mangsa bencana akan mengalami tekanan fizikal dan mental.",
-            "Mangsa bencana akan mengalami masalah kebuluran dan kesihatan kerana tiada bekalan makanan dan minuman.",
-            "Nasib mangsa semakin teruk sekiranya mengabaikan sikap berperikemanusiaan."
-          ]
-        },
-        {
-          l: "c", q: "Terangkan kebaikan mengamalkan sikap berperikemanusiaan dalam kehidupan harian.", m: 4,
-          a: [
-            {f: "Kita akan mempunyai sikap menyayangi antara satu sama lain.", h: ["Hubungan masyarakat kian kukuh / mengeratkan hubungan baik antara satu sama lain."]},
-            {f: "Imej negara meningkat kerana rakyatnya yang bersatu padu dan berperikemanusiaan.", h: ["Keharmonian hidup masyarakat dapat terjamin dan aman damai."]}
-          ]
-        },
-        {
-          l: "d", q: "Jelaskan perasaan anda sekiranya berjaya mengamalkan sikap berperikemanusiaan demi kesejahteraan global.", m: 2,
-          a: [
-            "Saya berasa bangga, gembira, bersyukur dan terharu. Ini kerana saya dapat membantu golongan yang memerlukan dan ditimpa bencana. Saya juga dapat berbakti kepada masyarakat dan negara. Saya akan menunjukkan teladan yang baik kepada masyarakat global dan dapat meringankan beban mangsa bencana alam."
-          ]
-        }
+
+    { n: 4, sec: 'A', topic: 'Berperikemanusiaan', title: 'Sikap Berperikemanusiaan dalam Bencana Alam',
+      stim: 'Gambar menunjukkan dua situasi bencana alam: banjir kilat dan gempa bumi yang melanda kawasan penduduk.',
+      marks: 10, parts: [
+        { l:'a', m:2, q:'Senaraikan sikap berperikemanusiaan yang perlu diamalkan dalam situasi di atas.',
+          a:['Kita perlu mengamalkan sikap empati dan simpati dengan nasib mangsa bencana alam tersebut.',
+             'Kita perlu membantu sedaya upaya mengikut kemampuan masing-masing.',
+             'Kita perlu akur dan pasrah dengan ketentuan Tuhan dan aktiviti alam.'] },
+        { l:'b', m:2, q:'Ramalkan kesan pengabaian sikap berperikemanusiaan terhadap mangsa.',
+          a:['Hak dan kebajikan mangsa bencana tidak terbela.',
+             'Mangsa bencana akan mengalami tekanan fizikal dan mental.',
+             'Mangsa bencana akan mengalami masalah kebuluran dan kesihatan kerana tiada bekalan makanan dan minuman.',
+             'Nasib mangsa bencana tidak akan dipertimbangkan sekiranya sikap berperikemanusiaan diabaikan.'] },
+        { l:'c', m:4, q:'Terangkan kebaikan mengamalkan sikap berperikemanusiaan dalam kehidupan harian.',
+          a:[
+            {f:'Kita akan mempunyai sikap menyayangi antara satu sama lain.', h:'Hubungan masyarakat kian kukuh dan mengeratkan hubungan baik antara satu sama lain. Imej negara meningkat kerana rakyatnya yang bersatu padu dan berperikemanusiaan.'},
+            {f:'Keharmonian hidup masyarakat dapat terjamin dan aman damai.', h:'Masyarakat yang saling membantu dapat mengeratkan perpaduan dan meningkatkan kestabilan negara.'}
+          ] },
+        { l:'d', m:2, q:'Jelaskan perasaan anda sekiranya berjaya mengamalkan sikap berperikemanusiaan demi kesejahteraan global.',
+          a:['Saya berasa bangga, gembira, bersyukur dan terharu.',
+             'Ini kerana saya dapat membantu golongan yang memerlukan dan ditimpa bencana.',
+             'Saya juga dapat berbakti kepada masyarakat dan negara.',
+             'Saya akan menunjukkan teladan yang baik kepada masyarakat global.',
+             'Dapat meringankan beban mangsa bencana alam.'] }
       ]
     },
-    {
-      n: 5, sec: "A",
-      topic: "Penggunaan TMK secara beretika",
-      title: "Penipuan atas talian melalui iklan barangan dalam talian",
-      stim: "Gambar menunjukkan lima langkah penipuan atas talian: (1) Suspek mengiklankan barangan secara dalam talian → (2) Mangsa tertarik dengan barangan dan harga yang ditawarkan → (3) Mangsa menghubungi suspek → (4) Mangsa membuat pembayaran ke akaun bank yang diarahkan oleh suspek → (5) Mangsa gagal menghubungi suspek setelah barangan yang dijanjikan tidak sampai selepas membuat pembayaran.",
-      marks: 10,
-      parts: [
-        {
-          l: "1", q: "Bincangkan tindakan yang patut dilakukan sekiranya anda menjadi mangsa dalam situasi atas.", m: 2,
-          a: [
-            "Saya akan membuat laporan polis.",
-            "Saya perlu mengumpul bukti, terutamanya transaksi yang berlaku.",
-            "Saya juga perlu memaklumkan perkara yang berlaku dan berbincang dengan anggota keluarga terdekat.",
-            "Saya juga perlu memaklumkan kepada pihak bank agar memberhentikan sebarang transaksi akaun lain yang melibatkan aktiviti tersebut."
-          ]
-        },
-        {
-          l: "2", q: "Ramalkan kesan lain yang berlaku sekiranya anda mengabaikan penggunaan teknologi maklumat dan komunikasi secara beretika.", m: 4,
-          a: [
-            "Mengancam keselamatan terhadap diri, keluarga dan harta benda.",
-            "Akan kehilangan keyakinan diri dan menyebabkan kemurungan.",
-            "Menyebabkan kebocoran maklumat diri dan terdedah pada manipulasi maklumat.",
-            "Akan kehilangan sumber kewangan.",
-            "Akan mengalami risiko data peribadi digodam oleh pihak tertentu."
-          ]
-        },
-        {
-          l: "3", q: "Bagaimanakah amalan nilai universal mampu meningkatkan kesedaran anda dalam menangani isu di atas.", m: 4,
-          a: [
-            "Amalan nilai membolehkan saya menggunakan kemudahan TMK dengan mematuhi peraturan dan undang-undang.",
-            "Dengan ada nilai universal, saya sentiasa memikirkan kesan baik dan kesan buruk bagi setiap tindakan yang diambil ketika menggunakan kemudahan TMK.",
-            "Saya juga mempunyai kebebasan menggunakan TMK dengan batasan tertentu.",
-            "Selain itu, saya juga tidak keterlaluan dalam penggunaan TMK."
-          ]
-        }
+
+    { n: 5, sec: 'A', topic: 'Penggunaan Teknologi Maklumat dan Komunikasi Secara Beretika', title: 'Penipuan Atas Talian',
+      stim: 'Rajah menunjukkan lima langkah penipuan atas talian: (1) Suspek mengiklankan barang secara dalam talian. (2) Mangsa tertarik dengan barang dan harga yang ditawarkan. (3) Mangsa menghubungi suspek. (4) Mangsa membuat pembayaran ke akaun bank yang diarahkan oleh suspek. (5) Mangsa gagal menghubungi suspek setelah barang yang dijanjikan tidak sampai selepas pembayaran.',
+      marks: 10, parts: [
+        { l:'a', m:2, q:'Bincangkan tindakan yang patut dilakukan sekiranya anda menjadi mangsa dalam situasi atas.',
+          a:['Saya akan membuat laporan polis.',
+             'Saya perlu mengumpul bukti, terutamanya transaksi yang berlaku.',
+             'Saya juga perlu memaklumkan perkara yang berlaku dan berbincang dengan anggota keluarga terdekat.',
+             'Saya juga perlu memaklumkan kepada pihak bank agar memberhentikan sebarang transaksi akaun lain yang melibatkan aktiviti tersebut.'] },
+        { l:'b', m:4, q:'Ramalkan kesan lain yang berlaku sekiranya anda mengabaikan penggunaan teknologi maklumat dan komunikasi secara beretika.',
+          a:['Boleh mengancam keselamatan terhadap diri, keluarga dan harta benda.',
+             'Saya juga akan kehilangan keyakinan diri dan menyebabkan kemurungan.',
+             'Penggunaan teknologi maklumat dan komunikasi dengan tidak beretika menyebabkan kebocoran maklumat diri dan terdedah pada manipulasi maklumat.',
+             'Saya juga akan kehilangan sumber kewangan.',
+             'Saya juga akan mengalami risiko data peribadi digodam oleh pihak tertentu.'] },
+        { l:'c', m:4, q:'Bagaimanakah amalan nilai universal mampu meningkatkan kesedaran anda dalam menangani isu penipuan atas talian?',
+          a:['Amalan nilai membolehkan saya menggunakan kemudahan teknologi maklumat dan komunikasi dengan mematuhi peraturan dan undang-undang.',
+             'Dengan ada nilai universal membolehkan sentiasa memikirkan kesan baik dan kesan buruk bagi setiap tindakan yang diambil ketika menggunakan kemudahan teknologi maklumat dan komunikasi.',
+             'Saya juga mempunyai kebebasan menggunakan teknologi maklumat dan komunikasi dengan batasan tertentu.',
+             'Selain itu, saya juga tidak keterlaluan dalam penggunaan teknologi maklumat dan komunikasi.'] }
       ]
     },
-    {
-      n: 6, sec: "B",
-      note: "Bahagian B — Jawab SATU soalan sahaja (Soalan 6 atau Soalan 7)",
-      topic: "Pengurusan kewangan beretika",
-      title: "Isu muflis dalam kalangan masyarakat — 20,000 muflis setiap tahun",
-      stim: "Artikel berita: 'Perkiraan Sukarela Selesai Beban Kewangan — 20,000 muflis setiap tahun'. Statistik terkini menunjukkan kira-kira 20,000 individu di Malaysia disytiharkan muflis setiap tahun berpunca daripada pelbagai faktor. Purata umur individu yang disytiharkan muflis adalah sekitar 45 tahun. AKPK merunding dengan pemiutang dan agensi bantu kurangkan kes bankrap.",
-      marks: 10,
-      parts: [
-        {
-          l: "a", q: "Jelaskan kenapa isu muflis berlaku dalam kalangan masyarakat?", m: 2,
-          a: [
-            "Masyarakat tidak menguruskan perbelanjaan mengikut keutamaan.",
-            "Masyarakat suka membuat pembelian tanpa perancangan yang teliti.",
-            "Masyarakat mengamalkan tabiat perbelanjaan dengan menggunakan kad kredit.",
-            "Sikap masyarakat suka mementingkan gaya dan status tanpa mengira kemampuan yang dimiliki."
-          ]
-        },
-        {
-          l: "b", q: "Bagaimanakah anda mengamalkan pengurusan perbelanjaan secara beretika dalam kehidupan seharian?", m: 8,
-          a: [
-            {f: "Melengkapkan diri dengan ilmu perbelanjaan secara beretika.", h: ["Dapat membuat perancangan dengan teliti sebelum perbelanjaan dilakukan.", "Dengan ini, dapat mendisplinkan diri ketika berbelanja.", "Contohnya, tidak membeli barangan yang tidak perlu hanya semata-mata memenuhi kehendak sendiri.", "Akhirnya, dapat menguruskan perbelanjaan dengan baik dan berhemah."]},
-            {f: "Membeli barangan secara tunai atau kad debit dan mengelakkan menggunakan kad kredit.", h: ["Dapat membuat pembelian secara tunai atau kad debit mengikut kemampuan diri.", "Dengan ini, dapat mengelakkan diri berhutang dengan pemiutang.", "Contohnya, hanya membeli barang yang disenaraikan sahaja dan tidak mudah terpengaruh dengan jualan murah.", "Akhirnya, keharmonian hidup terjamin / kita bebas daripada hutang."]},
-            {f: "Mempunyai kesedaran dan membuat pembelian mengikut kemampuan berbanding kehendak.", h: ["Merancang pembelian mengikut keutamaan / mengutamakan keperluan daripada kehendak berdasarkan kemampuan.", "Dengan ini, dapat mengelakkan masalah kewangan pada masa hadapan.", "Akhirnya, tidak akan mengalami tekanan fizikal dan mental dalam kehidupan seharian."]}
-          ]
-        }
+
+    /* ── BAHAGIAN B ── */
+    { n: 6, sec: 'B', topic: 'Tanggungjawab Terhadap Diri', title: 'Isu Muflis dalam Kalangan Masyarakat',
+      note: 'Bahagian B — Jawab SATU soalan sahaja (Soalan 6 atau Soalan 7)',
+      stim: 'Keratan akhbar bertajuk "20,000 Muflis Setiap Tahun" melaporkan statistik Malaysia mengisytiharkan muflis setiap tahun berpunca daripada pelbagai faktor, termasuk tabiat berbelanja mewah, sikap bergantung kepada kad kredit, dan kegagalan menguruskan kewangan dengan baik.',
+      marks: 10, parts: [
+        { l:'a', m:2, q:'Jelaskan kenapa isu muflis berlaku dalam kalangan masyarakat?',
+          a:['Muflis berlaku kerana tidak menguruskan perbelanjaan mengikut keutamaan.',
+             'Masyarakat suka membuat pembelian tanpa perancangan yang teliti.',
+             'Masyarakat mengamalkan tabiat perbelanjaan dengan menggunakan kad kredit.',
+             'Sikap masyarakat suka mementingkan gaya dan status tanpa mengira kemampuan yang dimiliki.'] },
+        { l:'b', m:8, q:'Bagaimanakah anda mengamalkan pengurusan perbelanjaan secara beretika bagi mengelakkan isu muflis?',
+          a:[
+            {f:'Kita perlu melengkapkan diri dengan ilmu perbelanjaan dengan etika.', h:'Kita dapat membuat perancangan dengan teliti sebelum perbelanjaan dilakukan. Dengan ini, kita dapat mendisplinkan diri ketika berbelanja. Contohnya, kita tidak membeli barangan yang tidak perlu hanya semata-mata memenuhi kehendak sendiri. Akhirnya, kita menguruskan perbelanjaan dengan baik dan berhemah.'},
+            {f:'Kita seharusnya membeli barangan secara tunai atau kad debit dan mengelakkan menggunakan kad kredit.', h:'Kita perlu membuat pembelian secara tunai atau kad debit mengikut kemampuan diri. Dengan ini, kita dapat mengelakkan diri berhutang dengan pemiutang. Contohnya, kita hanya membeli barang yang disenaraikan sahaja dan tidak mudah terpengaruh dengan jualan murah. Akhirnya, keharmonian hidup terjamin dan kita bebas daripada hutang.'},
+            {f:'Kita perlu mempunyai kesedaran dan membuat pembelian mengikut kemampuan berbanding kehendak.', h:'Kita perlu merancang pembelian mengikut keutamaan, mengutamakan keperluan daripada kehendak berdasarkan kemampuan. Dengan ini, kita dapat mengelakkan masalah kewangan pada masa hadapan. Akhirnya, kita tidak akan mengalami tekanan fizikal dan mental dalam kehidupan seharian.'}
+          ] }
       ]
     },
-    {
-      n: 7, sec: "B",
-      topic: "Keperibadian mulia",
-      title: "Mengamalkan keperibadian mulia — berusaha bersungguh-sungguh untuk melakukan kebaikan",
-      stim: "Gambar menunjukkan anggota polis dan orang awam membantu seorang wanita pengguna kerusi roda menyeberang jalan — contoh individu yang berusaha bersungguh-sungguh untuk melakukan kebaikan.",
-      marks: 10,
-      parts: [
-        {
-          l: "a", q: "Selain maklumat yang diberikan, nyatakan ciri individu yang berkeperibadian mulia.", m: 2,
-          a: [
-            "Mempunyai sikap sederhana dalam pemikiran, pertuturan dan perlakuan.",
-            "Amanah dalam tindakan.",
-            "Berpegang teguh pada nilai moral.",
-            "Ikhlas dan jujur dalam tindakan.",
-            "Sabar dan tenang ketika menghadapi kesukaran dalam kehidupan."
-          ]
-        },
-        {
-          l: "b", q: "Terangkan manfaat berkeperibadian mulia bagi seseorang individu.", m: 8,
-          a: [
-            {f: "Individu yang berkeperibadian mulia akan disegani oleh orang lain.", h: ["Ini kerana individu tersebut sentiasa melakukan kebaikan dalam kehidupan seharian.", "Contohnya menderma wang atau makanan / minuman kepada mangsa bencana alam.", "Dengan ini, individu berkenaan dapat meringankan beban / mempermudahkan kehidupan orang lain."]},
-            {f: "Individu berkeperibadian mulia dapat memupuk masyarakat penyayang.", h: ["Ini kerana individu tersebut mempunyai sikap prihatin dan suka menolong orang yang memerlukan pertolongan.", "Contohnya, individu tersebut memberi makanan kepada golongan gelandangan.", "Dengan ini, nasib golongan gelandangan tidak akan terabai."]},
-            {f: "Individu yang berkeperibadian mulia juga menjadi suri teladan / role model kepada orang lain.", h: ["Ini kerana individu tersebut menunjukkan sikap amanah dalam melakukan sesuatu kerja.", "Contohnya, individu tersebut bekerja bersungguh-sungguh tanpa menerima rasuah.", "Dengan ini, individu tersebut dapat menyumbang kepada pembangunan negara."]}
-          ]
-        }
+
+    { n: 7, sec: 'B', topic: 'Keperibadian Mulia', title: 'Manfaat Berkeperibadian Mulia',
+      note: 'Bahagian B — Jawab SATU soalan sahaja (Soalan 6 atau Soalan 7)',
+      stim: 'Gambar menunjukkan anggota polis dan individu yang membantu pengguna kerusi roda melintas jalan raya sebagai contoh amalan keperibadian mulia, antaranya berusaha bersungguh-sungguh untuk melakukan kebaikan.',
+      marks: 10, parts: [
+        { l:'a', m:2, q:'Selain maklumat yang diberikan, nyatakan ciri individu yang berkeperibadian mulia.',
+          a:['Individu yang berkeperibadian mulia mempunyai sikap sederhana dalam pemikiran, pertuturan dan perlakuan.',
+             'Amanah dalam tindakan.',
+             'Berpegang teguh pada nilai moral.',
+             'Ikhlas dan jujur dalam tindakan.',
+             'Sabar dan tenang ketika menghadapi kesukaran dalam kehidupan.'] },
+        { l:'b', m:8, q:'Terangkan manfaat berkeperibadian mulia bagi seseorang individu.',
+          a:[
+            {f:'Antara manfaat individu yang berkeperibadian mulia ialah disegani oleh orang lain.', h:'Ini kerana individu tersebut sentiasa melakukan kebaikan dalam kehidupan seharian. Contohnya, menderma wang atau makan minum kepada mangsa bencana alam. Dengan ini, individu berkenaan dapat meringankan beban dan mempermudahkan kehidupan orang lain.'},
+            {f:'Individu berkeperibadian mulia juga dapat memupuk masyarakat penyayang.', h:'Ini kerana individu tersebut mempunyai sikap prihatin dan suka menolong orang yang memerlukan pertolongan. Individu tersebut memberi makanan kepada golongan gelandangan. Dengan ini, nasib golongan gelandangan tidak akan terabai.'},
+            {f:'Selain itu, individu yang berkeperibadian mulia juga menjadi suri teladan/role model kepada orang lain.', h:'Ini kerana individu tersebut menunjukkan sikap amanah dalam melakukan sesuatu kerja. Contohnya, individu tersebut bekerja bersungguh-sungguh tanpa menerima rasuah. Dengan ini, individu tersebut dapat menyumbang kepada pembangunan negara.'}
+          ] }
       ]
     },
-    {
-      n: 8, sec: "C",
-      topic: "Kesopanan dan kesusilaan / Buli",
-      title: "Kes buli yang berlaku dalam kalangan pelajar di sekolah",
-      stim: "Gambar menunjukkan kes buli yang berlaku di sekolah — pelajar dipukul dan dianiaya oleh rakan sebaya dalam persekitaran sekolah.",
-      marks: 20,
-      parts: [
-        {
-          l: "a", q: "Wajarkah kes buli berlaku di sekolah? Jelaskan.", m: 4,
-          a: [
-            "Tidak wajar. (Keputusan) Ini kerana membuli boleh menyebabkan kecederaan dan kematian mangsa buli berlaku. Kes buli di sekolah juga mencemarkaan imej sekolah. Mangsa akan mengalami trauma dan rasa takut ke sekolah. Kesihatan pelajar juga terjejas kerana mengalami kemurungan, kebimbingan melampuan dan mengalami tekanan perasaan dan mental. Mangsa buli kehilangan keyakinan diri dan merendahkan diri menyebabkan prestasi akademik merosot.",
-            "--- ATAU ---",
-            "Nyatakan perasaan (sedih / marah / kecewa) dan jelaskan: kerana membuli boleh menyebabkan kecederaan dan kematian, mencemarkaan imej sekolah, mangsa mengalami trauma, tekanan perasaan dan mental, serta prestasi akademik merosot."
-          ]
-        },
-        {
-          l: "b", q: "Huraikan langkah yang boleh diambil oleh pihak sekolah untuk membendung kes buli di sekolah.", m: 8,
-          a: [
-            {f: "Pihak sekolah boleh mengadakan kempen kesedaran anti buli di sekolah.", h: ["Pihak sekolah boleh menjemput pihak polis untuk memberi ceramah anti buli.", "Murid-murid sekolah akan dapat kesedaran tentang bahaya buli.", "Contohnya, pihak polis boleh menayang video tentang kes buli kepada murid-murid.", "Akhirnya, murid-murid akan menjauhi sikap buli dan boleh fikir kesan buruk kepada mangsa buli."]},
-            {f: "Pihak sekolah boleh menguatkuasakan peraturan sekolah.", h: ["Pihak sekolah boleh mengenakan hukuman yang lebih berat setimpal dengan kesalahannya.", "Hal ini demikian kerana murid-murid akan berasa takut untuk melakukan buli di sekolah.", "Contohnya, pihak sekolah boleh menjalankan hukuman di hadapan murid-murid supaya pelajar menjauhi diri daripada sikap buli.", "Akhirnya, murid akan akur dan mematuhi peraturan sekolah."]},
-            {f: "Pihak sekolah boleh memberi didikan agama / moral kepada murid-murid.", h: ["Murid-murid diberi didikan ajaran agama melalui mata pelajaran Pendidikan Moral dan Pendidikan Islam atau kelas kerohanian supaya tidak mengasari orang lain.", "Murid-murid akan memahami dan mengetahui bahawa membuli adalah perbuatan yang salah.", "Contohnya, murid-murid dapat mengamalkan sikap keperibadian yang mulia dalam setiap tindakan.", "Akhirnya murid-murid dapat membezakan perbuatan yang baik dan buruk dalam kehidupan."]}
-          ]
-        },
-        {
-          l: "c", q: "Jelaskan kesan membuli kepada mangsa buli di sekolah.", m: 8,
-          a: [
-            {f: "Kesihatan mental mangsa akan terjejas.", h: ["Hal ini sedemikian kerana mangsa buli berasa rendah diri, cemas, dan tidak yakin dengan diri sendiri.", "Dengan ini, perasaan takut yang berpanjangan pada mangsa buli ini menyebabkan mangsa sukar untuk berfungsi dengan baik dalam kehidupan seharian.", "Contohnya, mangsa buli mungkin akan bertindak yang lebih buruk seperti cubaan membunuh diri."]},
-            {f: "Membuli juga memberi kesan kepada prestasi akademik mangsa.", h: ["Hal ini kerana mangsa yang sering dibuli di sekolah akan kehilangan tumpuan dalam pelajaran dan berasa tidak selesa berada di persekitaran sekolah.", "Mangsa buli mempunyai perasaan takut dan malu untuk berhadapan dengan pembuli menyebabkan mangsa hilang minat untuk belajar, dan ini menjejaskan pencapaian akademik mereka.", "Contohnya, mangsa buli akan ponteng sekolah atau tidak hadir ke sekolah kerana takut dengan pembuli.", "Kesimpulannya, mangsa buli berani menyelesaikan masalah buli supaya dapat fokus dalam pelajaran untuk masa depan."]},
-            {f: "Mangsa buli akan mengalami masalah dalam hubungan sosial.", h: ["Hal ini sedemikian kerana mangsa buli berasa sukar untuk mempercayai orang lain dan sentiasa berada dalam keadaan waspada.", "Dengan ini, mangsa buli akan mengasingkan diri dan mengelak daripada bergaul dengan orang lain kerana takut diejek atau dihina.", "Contohnya, mangsa buli tidak mahu berinteraksi dan membina hubungan yang sihat dengan orang lain."]}
-          ]
-        }
+
+    /* ── BAHAGIAN C ── */
+    { n: 8, sec: 'C', topic: 'Hak Asasi Manusia dan Keadilan', title: 'Kes Buli di Sekolah',
+      stim: 'Gambar menunjukkan kes buli yang berlaku dalam kalangan pelajar di sekolah.',
+      marks: 20, parts: [
+        { l:'a', m:4, q:'Wajarkah kes buli berlaku di sekolah? Jelaskan.',
+          a:['Tidak wajar kes buli berlaku di sekolah.',
+             'Ini kerana membuli boleh menyebabkan kecederaan dan kematian mangsa buli berlaku.',
+             'Kes buli di sekolah juga mencemarkan imej sekolah.',
+             'Mangsa akan mengalami trauma dan rasa takut ke sekolah.',
+             'Kesihatan pelajar terjejas kerana mengalami kemurungan, kebimbangan melampau dan tekanan perasaan dan mental.',
+             'Mangsa buli kehilangan keyakinan diri dan merendahkan diri menyebabkan prestasi akademik merosot.'] },
+        { l:'b', m:8, q:'Huraikan langkah yang boleh diambil oleh pihak sekolah untuk membendung kes buli di sekolah.',
+          a:[
+            {f:'Pihak sekolah boleh mengadakan kempen kesedaran anti buli di sekolah.', h:'Dengan ini, pihak sekolah boleh menjemput pihak polis untuk memberi ceramah anti buli. Dalam konteks ini, murid-murid sekolah akan dapat kesedaran tentang bahaya buli. Contohnya, pihak polis boleh menayang video tentang kes buli kepada murid-murid. Akhirnya, murid-murid akan menjauhi sikap buli dan boleh fikir kesan buruk kepada mangsa buli.'},
+            {f:'Pihak sekolah boleh menguatkuasakan peraturan sekolah.', h:'Dengan ini, pihak sekolah boleh mengenakan hukuman gantung sekolah atau hukuman yang lebih berat setimpal dengan kesalahannya. Hal ini demikian kerana murid-murid akan dapat rasa takut untuk melakukan buli di sekolah. Contohnya, pihak sekolah boleh menjalankan hukuman di hadapan murid-murid supaya pelajar menjauhi diri daripada sikap buli. Akhirnya, murid akan akur dan mematuhi peraturan sekolah.'},
+            {f:'Pihak sekolah boleh memberi didikan agama/moral kepada murid-murid.', h:'Dengan ini, murid-murid diberi didikan ajaran agama melalui mata pelajaran Pendidikan Moral dan Pendidikan Islam atau kelas kerohanian supaya tidak mengasari orang lain. Dalam konteks ini, murid-murid akan memahami dan mengetahui bahawa membuli adalah perbuatan yang salah. Contohnya, murid-murid dapat mengamalkan sikap keperibadian yang mulia dalam setiap tindakan. Akhirnya, murid-murid dapat membezakan perbuatan yang baik dan buruk dalam kehidupan.'}
+          ] },
+        { l:'c', m:8, q:'Jelaskan kesan membuli kepada mangsa buli di sekolah.',
+          a:[
+            {f:'Kesihatan mental mangsa akan terjejas.', h:'Hal ini sedemikian kerana mangsa buli berasa rendah diri, cemas, dan tidak yakin dengan diri sendiri. Dengan ini, perasaan takut yang berpanjangan pada mangsa buli ini menyebabkan mangsa sukar untuk berfungsi dengan baik dalam kehidupan seharian. Contohnya, mangsa buli mungkin akan bertindak yang lebih buruk seperti cubaan membunuh diri.'},
+            {f:'Membuli juga memberi kesan kepada prestasi akademik mangsa.', h:'Hal ini kerana mangsa yang sering dibuli di sekolah akan kehilangan tumpuan dalam pelajaran dan berasa tidak selesa berada di persekitaran sekolah. Mangsa buli mempunyai perasaan takut dan malu untuk berhadapan dengan pembuli menyebabkan mangsa hilang minat untuk belajar, dan ini menjejaskan pencapaian akademik mereka. Contohnya, mangsa buli akan ponteng sekolah atau tidak hadir ke sekolah kerana takut dengan pembuli.'},
+            {f:'Mangsa buli akan mengalami masalah dalam hubungan sosial.', h:'Hal ini sedemikian kerana mangsa buli berasa sukar untuk mempercayai orang lain dan sentiasa berada dalam keadaan waspada. Dengan ini, mangsa buli akan mengasingkan diri dan mengelak daripada bergaul dengan orang lain kerana takut diejek atau dihina. Contohnya, mangsa buli tidak mahu berinteraksi dan membina hubungan yang sihat dengan orang lain.'}
+          ] }
       ]
     },
-    {
-      n: 9, sec: "C",
-      topic: "Semangat patriotisme / Individu glokal",
-      title: "Kejayaan pelakon kelahiran Malaysia, Tan Sri Michelle Yeoh di Hollywood",
-      stim: "Pelakon kelahiran Malaysia yang mencipta nama di Hollywood, Tan Sri Michelle Yeoh telah mengharumkan nama negara apabila berjaya dinobatkan sebagai pelakon wanita terbaik, di Anugerah Academy atau Oscar di Los Angeles, Amerika Syarikat baru-baru ini. Kejayaan beliau membuktikan bahawa rakyat Malaysia mampu bersaing di peringkat global.",
-      marks: 20,
-      parts: [
-        {
-          l: "a", q: "Selain maklumat di atas, berikan empat contoh kejayaan Malaysia di persada dunia.", m: 4,
-          a: [
-            "Malaysia menjadi tuan rumah Sukan Komanwel pada tahun 1998.",
-            "Nicol Ann David adalah juara dunia dalam sukan skuasy.",
-            "Malaysia mempunyai lapangan kapal terbang bertaraf dunia iaitu Kuala Lumpur International Airport.",
-            "Menara berkembar Petronas (KLCC) merupakan antara bangunan tertinggi di dunia.",
-            "Datuk Lee Chong Wei adalah pemain No. 1 dunia dalam sukan badminton."
-          ]
-        },
-        {
-          l: "b", q: "Berdasarkan maklumat di atas, huraikan kepentingan menjadi individu glokal. Jawapan anda hendaklah berdasarkan nilai universal yang dipelajari.", m: 8,
-          a: [
-            {f: "Kepentingan menjadi individu glokal ialah dapat meningkatkan imej negara di persada dunia. (Nilai: rasional & patriotisme)", h: ["Ini kerana individu glokal mampu bersaing di peringkat global.", "Contohnya, Datuk Lee Chong Wei berjaya memenangi pingat perak di Sukan Olimpik pada tahun 2008, 2012 dan 2016.", "Dengan ini, pemain Malaysia akan disegani di peringkat antarabangsa."]},
-            {f: "Kepentingan menjadi individu glokal ialah membentuk warganegara yang cintakan negara.", h: ["Ini kerana individu glokal mempunyai jati diri yang kukuh.", "Contohnya, Datuk Nicol Ann David mempromosikan Malaysia di seluruh negara walaupun telah bersara.", "Dengan ini, beliau menjadi suri teladan kepada generasi muda di negara kita."]}
-          ]
-        },
-        {
-          l: "c", q: "Terangkan implikasi jika seseorang itu tidak bersikap glokal.", m: 8,
-          a: [
-            {f: "Individu yang tidak bersikap glokal mudah terpengaruh dengan budaya luar.", h: ["Ini kerana tidak mempunyai jati diri yang kukuh.", "Contohnya, generasi muda akan terikut-ikut dengan budaya k-pop.", "Kesannya, amalan tradisi dalam masyarakat akan terjejas."]},
-            {f: "Individu yang tidak bersikap glokal sukar untuk bersaing dan berkomunikasi dengan dunia luar.", h: ["Ini kerana mereka tidak menguasai ilmu pengetahuan dan kemahiran yang sepatutunya.", "Contohnya, individu tidak fasih dalam Bahasa Inggeris yang sangat penting di peringkat global.", "Kesannya, individu tersebut sukar untuk mencari pekerjaan di luar negara."]}
-          ]
-        }
+
+    { n: 9, sec: 'C', topic: 'Individu Glokal', title: 'Kepentingan Menjadi Individu Glokal',
+      stim: 'Pernyataan berikut menunjukkan kejayaan pelakon kelahiran Malaysia, Tan Sri Michelle Yeoh: "Pelakon kelahiran Malaysia yang mencipta nama di Hollywood, Tan Sri Michelle Yeoh telah mengharumkan nama negara apabila berjaya dinobatkan sebagai pelakon wanita terbaik, di Anugerah Academy atau Oscar di Los Angeles, Amerika Syarikat baru-baru ini. Kejayaan beliau membuktikan bahawa rakyat Malaysia mampu bersaing di peringkat global."',
+      marks: 20, parts: [
+        { l:'a', m:4, q:'Selain maklumat di atas, berikan empat contoh kejayaan Malaysia di persada dunia.',
+          a:['Malaysia menjadi tuan rumah sukan komanwel pada tahun 1998.',
+             'Nicol Ann David adalah juara dunia dalam sukan skuasy.',
+             'Malaysia mempunyai lapangan kapal terbang bertaraf dunia iaitu Kuala Lumpur International Airport.',
+             'Menara berkembar Petronas (KLCC) merupakan antara bangunan tertinggi di dunia.',
+             'Datuk Lee Chong Wei adalah pemain No 1 dunia dalam sukan badminton.'] },
+        { l:'b', m:8, q:'Berdasarkan maklumat di atas, huraikan kepentingan menjadi individu glokal. Jawapan anda hendaklah berdasarkan nilai universal yang dipelajari.',
+          a:[
+            {f:'Kepentingan menjadi individu glokal ialah dapat meningkatkan imej negara di persada dunia.', h:'Ini kerana individu glokal mampu bersaing di peringkat global. Contohnya, Datuk Lee Chong Wei berjaya memenangi pingat perak di sukan Olimpik pada tahun 2008, 2012 dan 2016. Dengan ini, pemain Malaysia akan disegani di peringkat antarabangsa.'},
+            {f:'Kepentingan menjadi individu glokal ialah membentuk warganegara yang cintakan negara.', h:'Ini kerana individu glokal mempunyai jati diri yang kukuh. Contohnya, Datuk Nicol Ann David mempromosikan Malaysia di seluruh negara walaupun telah bersara. Dengan ini, beliau menjadi suri teladan kepada generasi muda di negara kita.'}
+          ] },
+        { l:'c', m:8, q:'Terangkan implikasi jika seseorang itu tidak bersikap glokal.',
+          a:[
+            {f:'Individu yang tidak bersikap glokal mudah terpengaruh dengan budaya luar.', h:'Ini kerana tidak mempunyai jati diri yang kukuh. Contohnya, generasi muda akan terikut-ikut dengan budaya k-pop. Kesannya, amalan tradisi dalam masyarakat akan terjejas.'},
+            {f:'Individu yang tidak bersikap glokal sukar untuk bersaing dan berkomunikasi dengan dunia luar.', h:'Ini kerana mereka tidak menguasai ilmu pengetahuan dan kemahiran yang sepatutnya. Contohnya, individu yang tidak bersikap glokal tidak fasih dalam Bahasa Inggeris yang sangat penting di peringkat global. Kesannya, individu tersebut sukar untuk mencari pekerjaan di luar negara.'}
+          ] }
       ]
     }
   ]
@@ -2382,6 +2274,189 @@ window.SPM.register({"meta":{"id":"moral-melaka-2025-p1","subject":"Pendidikan M
 {"l":"c","q":"Huraikan cabaran yang mungkin dihadapi oleh pelajar semasa menyertai program pertukaran pelajar.","m":8,"a":[{"f":"Perbezaan bahasa dan komunikasi","h":["Sukar memahami arahan dan berkomunikasi dengan jelas dalam bahasa asing.","Boleh menyebabkan kekeliruan dan salah faham dalam perbualan harian.","Pelajar mungkin berasa malu atau takut untuk bertutur dalam bahasa bukan ibunda."]},{"f":"Perbezaan budaya dan cara hidup","h":["Menghadapi kejutan budaya apabila berdepan norma yang berbeza.","Pelajar mungkin tidak biasa dengan makanan, pakaian atau rutin negara tuan rumah.","Rasa kekok atau sukar menyesuaikan diri dengan persekitaran baru."]},{"f":"Rindu kepada keluarga dan tanah air","h":["Perpisahan dalam tempoh lama boleh menyebabkan rasa sedih dan sunyi.","Menjejaskan emosi dan tumpuan dalam pembelajaran.","Pelajar kurang semangat kerana tiada sokongan keluarga secara fizikal."]},{"f":"Perbezaan sistem pendidikan dan pembelajaran","h":["Pelajar mungkin keliru dengan struktur jadual dan kaedah pengajaran.","Sukar mengikuti mata pelajaran tertentu yang lebih kompleks.","Menjejaskan prestasi akademik jika tidak segera menyesuaikan diri."]},{"f":"Keterbatasan makanan halal atau keperluan agama","h":["Sukar mendapatkan makanan halal di sesetengah negara.","Kekangan untuk menunaikan ibadah dalam persekitaran baharu.","Boleh menjejaskan keselesaan dan ketenangan diri."]},{"f":"Perbelanjaan tinggi sepanjang program","h":["Kos sara hidup di negara maju boleh membebankan pelajar.","Tidak semua aktiviti ditanggung oleh penganjur program.","Pelajar perlu bijak mengurus wang untuk bertahan sepanjang tempoh program."]},{"f":"Tekanan untuk menyesuaikan diri dalam kalangan rakan baharu","h":["Pelajar rasa terasing jika tiada sokongan sosial yang baik.","Sukar membina persahabatan kerana latar belakang yang berbeza.","Boleh menyebabkan rasa rendah diri atau tidak yakin."]},{"f":"Isu diskriminasi atau stereotaip budaya","h":["Berdepan dengan prejudis terhadap asal usul atau agama.","Mungkin dilayan secara tidak adil atau dipinggirkan.","Memberi tekanan emosi jika tidak ditangani dengan bijak."]}],"kbat":false}
 ]}
 ]});
+
+/* ---- Moral/data/moral-pahang-2025-p1.js ---- */
+'use strict';
+/* P.Moral K1 — Pahang · Percubaan SPM 2025 (MPSM Pahang, Ogos) */
+window.SPM.register({
+  meta:{id:'moral-pahang-2025-p1',subj:'moral',negeri:'Pahang',tahun:2025,kertas:1,set:'',sumber:'Percubaan SPM 2025 — MPSM Pahang'},
+  questions:[
+    {n:1,sec:'A',topic:'Norma Masyarakat Global',title:'Pesta Songkran dan Norma Masyarakat Global',marks:10,
+     stim:'Rakyat Malaysia paling ramai kunjungi Pesta Songkran — Pelancong Malaysia adalah yang paling ramai melawat Thailand semasa perayaan Songkran. Namun, terdapat juga sambutan Songkran di beberapa tempat di Malaysia, terutamanya di kawasan yang mempunyai komuniti Siam yang besar, seperti Kelantan, Kedah, dan Pulau Pinang. Perayaan ini biasanya disambut dengan penuh kegembiraan termasuklah acara percikan air yang popular. (Sumber: Kosmo 18 April 2025)',
+     parts:[
+       {l:'a',q:'Nyatakan norma masyarakat global yang diamalkan oleh pelancong ketika sambutan perayaan tersebut.',m:3,
+        a:['Menyantuni masyarakat global','Mengutamakan jati diri','Menerima/mengurus kepelbagaian adat/tradisi','Menjaga kebersihan','Mematuhi peraturan dan undang-undang']},
+       {l:'b',q:'Huraikan kebaikan amalan norma masyarakat global.',m:3,
+        a:[
+          {f:'Peningkatan taraf ekonomi global',h:['Menggalakkan/merangsang penglibatan ekonomi masyarakat global']},
+          {f:'Tahap komunikasi antara masyarakat global meningkat',h:['Mewujudkan perpaduan masyarakat global']},
+          {f:'Membentuk tingkah laku masyarakat global yang berperikemanusiaan',h:['Mengukuhkan persefahaman budaya masyarakat global']},
+        ]},
+       {l:'c',q:'Pengabaian norma masyarakat global sememangnya memberi kesan kepada dunia. Jelaskan.',m:4,
+        a:[
+          {f:'Peningkatan jenayah dalam masyarakat global',h:['Ancaman terhadap keselamatan antarabangsa/menggugat keselamatan negara/dunia menjadi kurang selamat']},
+          {f:'Interaksi sosial masyarakat terjejas',h:['Keharmonian masyarakat global tergugat']},
+          {f:'Menjejaskan industri pelancongan',h:['Pembangunan pertumbuhan ekonomi global terbantut']},
+        ]},
+     ]
+    },
+    {n:2,sec:'A',topic:'Kasih Sayang / Keadilan',title:'Kempen Furever Friends dan Kebajikan Haiwan',marks:10,
+     stim:'Poster berkaitan "Kempen Furever Friends" untuk meningkatkan kesedaran terhadap kebajikan haiwan. Jom sertai kempen ini, bertindak, dan nikmati vibe fluffy dan comel yang akan buat hati anda cair! (Sumber: www.bharian.com.my)',
+     parts:[
+       {l:'a',q:'Apakah perasaan anda sekiranya penderaan haiwan masih berleluasa?',m:2,
+        a:[
+          {f:'Sedih/Kecewa/Marah',h:['Mengorbankan nyawa haiwan','Perbuatan yang ditegah oleh agama/tidak bermoral','Perbuatan yang kejam/zalim/tidak berperikemanusiaan']},
+        ]},
+       {l:'b',q:"Bagaimanakah pihak sekolah dapat melaksanakan 'Kempen Furever Friends' dalam kalangan murid?",m:4,
+        a:[
+          {f:'Pertandingan kreatif',h:['Melukis poster/mencipta sajak']},
+          {f:'Pameran',h:['Bina sudut maklumat dengan poster/gambar/infografik/bahan bacaan']},
+          {f:'Kelab Alam Sekitar',h:['Ceramah kesedaran']},
+          {f:'Lawatan sambil belajar ke zoo negara',h:['Memupuk sikap berperikemanusiaan']},
+        ]},
+       {l:'c',q:'Lelaki dipenjara dua tahun kerana menganiaya kucing (Mahkamah Sesyen Selayang, Sumber: sinarharian.com.my). Jelaskan kepentingan menjatuhkan hukuman berdasarkan prinsip keadilan.',m:4,
+        a:[
+          {f:'Hukuman yang setimpal',h:['Yakin terhadap sistem perundangan negara']},
+          {f:'Pengajaran kepada orang lain',h:['Berasa insaf/tidak mengulangi kesalahan']},
+          {f:'Melindungi haiwan yang didera',h:['Menghargai nyawa haiwan/makhluk Tuhan']},
+        ]},
+     ]
+    },
+    {n:3,sec:'A',topic:'Individu Glokal',title:'Pelajar Malaysia Melanjutkan Pelajaran di Luar Negara',marks:10,
+     stim:'Gambar sekumpulan pelajar Malaysia yang melanjutkan pelajaran di luar negara, menunjukkan keakraban mereka dengan budaya Korea (Annyeonghaseyo, Oppa, Gamsahaamnida).',
+     parts:[
+       {l:'a',q:'Nyatakan ciri individu glokal.',m:2,
+        a:['Berdaya saing','Jaringan dan jalinan glokal yang baik','Jati diri kukuh','Kemahiran teknologi maklumat']},
+       {l:'b',q:'Jelaskan kesan penularan pengaruh budaya luar terhadap remaja.',m:4,
+        a:[
+          {f:'Imej diri terjejas',h:['Dipandang serong oleh masyarakat']},
+          {f:'Hilang jati diri',h:['Budaya dan tradisi keluarga tergugat']},
+          {f:'Mudah terpengaruh dengan budaya luar',h:['Terjebak dengan gejala sosial']},
+        ]},
+       {l:'c',q:'Huraikan langkah mengatasi penularan budaya tersebut.',m:4,
+        a:[
+          {f:'Mengetatkan undang-undang',h:['Menapis dan menyekat budaya yang tidak sihat']},
+          {f:'Kempen kesedaran',h:['Mengekalkan identiti budaya mereka']},
+          {f:'Pendidikan di sekolah',h:['Memupuk perasaan cinta akan negara']},
+        ]},
+     ]
+    },
+    {n:4,sec:'A',topic:'Kasih Sayang dalam Keluarga',title:'Tanggungjawab Ahli Keluarga dan Dilema Kasih Sayang',marks:10,
+     stim:'[Situasi: Ahmad, seorang anak sulung, mendapat tawaran kerja lumayan di luar negara. Namun bapanya yang semakin uzur memerlukan penjagaan rapi. Rakan-rakan menggalakkannya menerima tawaran tersebut — halaman soalan tidak diekstrak dari PDF]',
+     parts:[
+       {l:'a',q:'Nyatakan tanggungjawab ahli keluarga.',m:2,
+        a:['Mengukuhkan pegangan agama/moral','Menjaga kerahsiaan keluarga','Melaksanakan tugas/kewajipan','Menunjukkan teladan yang baik','Memupuk hubungan yang baik dalam keluarga','Mendidik anak-anak']},
+       {l:'b',q:'Huraikan cara-cara mengekalkan kasih sayang dalam keluarga.',m:4,
+        a:[
+          {f:'Memberi penghargaan kepada anggota keluarga',h:['Meraikan hari istimewa']},
+          {f:'Memberi layanan adil',h:['Bersabar dengan kerenah keluarga']},
+          {f:'Mempunyai kemahiran keibubapaan yang baik',h:['Menjadi suri teladan']},
+        ]},
+       {l:'c',q:'Cadangkan pilihan yang sepatutnya diambil oleh Ahmad dan berikan justifikasi.',m:4,
+        kbat:true,
+        a:[
+          'Pilih SATU daripada dua pilihan ini — keduanya diterima:',
+          {f:'[Pilihan 1] Menolak tawaran',h:['Menjaga bapa','Membalas jasa bapa','Memikul tugas/peranan seorang anak']},
+          {f:'[Pilihan 2] Menerima tawaran',h:['Mengupah jururawat/penjaga profesional','Membawa bapa bersama ke luar negara','Boleh mendapatkan rawatan di luar negara']},
+        ]},
+     ]
+    },
+    {n:5,sec:'A',topic:'Kesetiaan kepada Negara',title:'Dokumen Kebangsaan dan Mykad Palsu',marks:10,
+     stim:'[Situasi/maklumat berkaitan dokumen kebangsaan rakyat Malaysia dan isu penggunaan Mykad palsu — halaman soalan tidak diekstrak dari PDF]',
+     parts:[
+       {l:'a',q:'Nyatakan dokumen kebangsaan rakyat Malaysia.',m:2,
+        a:['Sijil kelahiran/Surat beranak','Pasport Malaysia','Mykid','Lesen memandu','Kad tentera/polis']},
+       {l:'b',q:'Huraikan kepentingan memiliki dokumen kebangsaan.',m:4,
+        a:[
+          {f:'Pengiktirafan identiti diri',h:['Bukti sebagai warganegara']},
+          {f:'Hak mengundi',h:['Untuk mendaftar sebagai pengundi']},
+          {f:'Akses kepada perkhidmatan kerajaan',h:['Mendapatkan rawatan di hospital kerajaan/mendaftar sekolah/memohon bantuan kebajikan/sambung belajar']},
+        ]},
+       {l:'c',q:'Huraikan implikasi kepada negara sekiranya penggunaan Mykad palsu tidak dibendung.',m:4,
+        a:[
+          {f:'Peningkatan jenayah',h:['Ancaman keselamatan negara']},
+          {f:'Bantuan dan subsidi disalah guna oleh bukan warganegara',h:['Pembaziran sumber kerajaan']},
+          {f:'Perselisihan faham',h:['Menimbulkan rasa tidak puas hati']},
+          {f:'Imej negara terjejas',h:['Dipandang rendah']},
+        ]},
+     ]
+    },
+    {n:6,sec:'B',topic:'Integriti',title:'Suruhanjaya Integriti Agensi Penguatkuasaan (EAIC)',marks:10,
+     stim:'Logo Suruhanjaya Integriti Agensi Penguatkuasaan (EAIC). (Sumber: https://www.facebook.com/eaicofficial/)',
+     parts:[
+       {l:'a',q:'Nyatakan dua contoh integriti demi pembangunan negara.',m:2,
+        a:['Merealisasikan dasar antirasuah','Menjaga kerahsiaan dan maklumat sulit negara','Menjanakan pendapatan negara mengikut undang-undang','Tiada pengecualian dalam penguatkuasaan','Mematuhi etika organisasi']},
+       {l:'b',q:'Ramalkan implikasi sekiranya tiada pemantauan Suruhanjaya Integriti Agensi Penguatkuasaan terhadap negara.',m:8,
+        a:[
+          {f:'Kegiatan rasuah berleluasa',h:['Kehilangan kepercayaan rakyat','Penyalahgunaan kuasa']},
+          {f:'Pembangunan dan ekonomi terjejas',h:['Pembaziran wang negara','Projek pembangunan tertangguh']},
+          {f:'Wujud jurang ekonomi',h:['Ketidakadilan pengagihan sumber ekonomi','Pelabur asing hilang kepercayaan','Kemajuan negara merosot']},
+          {f:'Imej negara terjejas',h:['Dipandang rendah','Pergolakan politik']},
+          {f:'Kadar jenayah meningkat',h:['Keselamatan tergugat','Negara menjadi huru-hara']},
+        ]},
+     ]
+    },
+    {n:7,sec:'B',topic:'Tanggungjawab Diri dan Orang Lain',title:'Hari Keselamatan Internet 2025 — Warganet Celik Siber',marks:10,
+     stim:'Poster Hari Keselamatan Internet 2025 — "JADILAH WARGANET CELIK SIBER" (11 Februari 2025). (Sumber: BERNAMA)',
+     parts:[
+       {l:'a',q:'Nyatakan dua cara warganet dapat mengurangkan risiko ancaman siber.',m:2,
+        a:['Elakkan memuat turun sebarang bahan terlarang/tanpa keizinin','Tukar kata laluan secara berkala','Jangan klik pautan yang mencurigakan','Elak/hadkan perkongsian maklumat peribadi','Gunakan perisian keselamatan yang terkini']},
+       {l:'b',q:'Bincangkan impak pengabaian etika penggunaan Teknologi Maklumat dan Komunikasi oleh generasi muda.',m:8,
+        a:[
+          {f:'Ketidaktepatan maklumat',h:['Mengelirukan orang lain','Menimbulkan fitnah','Mengaibkan orang lain']},
+          {f:'Terdedah kepada bahan berunsur negatif',h:['Akses mudah kepada laman sesawang yang tidak bermoral/pornografi','Mempengaruhi pemikiran/tingkah laku','Mendorong perlakuan yang tidak diingini','Peningkatan gejala sosial']},
+          {f:'Ketagihan penggunaan',h:['Pembaziran masa','Mengganggu tugas harian','Menjejaskan masa berkualiti bersama keluarga/rakan','Produktiviti pembelajaran/pekerjaan merosot']},
+        ]},
+     ]
+    },
+    {n:8,sec:'C',topic:'Tanggungjawab / Kesederhanaan',title:'Amalan Menabung Rakyat Malaysia',marks:20,
+     stim:'Poster "Amalan Menabung — Langkah Awal Rakyat Malaysia Untuk Membentuk Masa Hadapan". (Sumber: Internet)',
+     parts:[
+       {l:'a',q:'Senaraikan kepentingan amalan menabung bagi seorang murid.',m:4,
+        a:['Melatih disiplin diri','Mengelakkan sikap boros/mengelakkan pembaziran','Berjimat cermat dalam berbelanja','Mempunyai wang semasa kecemasan','Membina asas pengurusan kewangan sejak kecil','Keperluan untuk melanjutkan pelajaran','Mengelakkan sikap materialistik']},
+       {l:'b',q:'Bagaimanakah generasi muda mempraktikkan amalan menabung?',m:8,
+        a:[
+          {f:'Menyimpan wang dalam akaun simpanan',h:['Mengasingkan wang simpanan daripada wang belanja harian','Mengawal perbelanjaan dengan lebih berhemat','Tidak menggunakan wang simpanan sesuka hati']},
+          {f:'Menggunakan aplikasi kewangan/e-dompet',h:["Menyimpan wang lebihan belanja ke dalam aplikasi seperti MAE dan Touch 'n Go",'Menggunakan fungsi tabung digital/savings goal','Menetapkan jumlah sasaran simpanan','Menjejak simpanan dari semasa ke semasa']},
+          {f:'Menabung secara konsisten',h:['Menetapkan jadual/amaun simpanan yang tetap setiap bulan']},
+        ]},
+       {l:'c',q:'Generasi muda perlu dididik untuk menguruskan kewangan secara beretika. Berikan justifikasi anda berdasarkan nilai-nilai universal yang dipelajari.',m:8,
+        kbat:true,
+        a:[
+          'Nilai universal: Rasional / Bertanggungjawab / Kesederhanaan / Berdikari (nyatakan nilai berkaitan)',
+          {f:'Ibu bapa',h:['Menjadi suri teladan','Mendidik tentang simpanan/bajet keluarga','Mengajar anak membezakan keperluan dengan kehendak']},
+          {f:'Sekolah',h:['Mendidik melalui pendidikan formal','Menyelitkan pengurusan kewangan dalam silibus mata pelajaran','Mengadakan aktiviti kokurikulum/Hari Keusahawanan','Program usaha sama dengan agensi kerajaan/bukan kerajaan','Lawatan ke bank negara']},
+          {f:'Media massa',h:['Menyiarkan rancangan televisyen/video berinformasi','Menyebarkan maklumat kewangan melalui media massa/sosial','Menapis kandungan yang mendorong gaya hidup mewah']},
+          {f:'Agensi kerajaan',h:['Membangunkan platform digital/aplikasi pengurusan kewangan harian','Mengadakan ceramah/kempen kesedaran','Memberi panduan tentang pengurusan kewangan','Usaha sama dengan agensi kewangan/bank']},
+        ]},
+     ]
+    },
+    {n:9,sec:'C',topic:'Hubungan Antarabangsa',title:'Kerjasama Malaysia Dengan Negara Luar',marks:20,
+     stim:'Gambar berkaitan hubungan Malaysia dengan negara luar — "Kerjasama Malaysia Dengan Negara Luar — Hubungan Ini Perlu Diwujudkan Bagi Mewujudkan Kestabilan Serantau". (Sumber: Internet)',
+     parts:[
+       {l:'a',q:'Jelaskan bentuk kerjasama hubungan dua hala antara Malaysia dengan negara luar.',m:4,
+        a:['Hubungan diplomatik antara negara','Mengadakan lawatan rasmi/kerja','Hubungan perdagangan pada peringkat global','Pelaburan asing','Bantuan kemanusiaan','Kelestarian alam sekitar','Memelihara hak asasi manusia','Perkongsian teknologi/kepakaran']},
+       {l:'b',q:'Pada pendapat anda, mengapakah Malaysia perlu menjalinkan kerjasama dengan negara lain dalam bidang sains dan teknologi? Justifikasi jawapan anda berdasarkan nilai universal yang dipelajari.',m:8,
+        kbat:true,
+        a:[
+          'Nilai universal: Bertanggungjawab / Hormat / Rasional / Kerjasama / Keberanian',
+          {f:'Meningkatkan kemajuan sains dan teknologi negara',h:['Dapat berkongsi sumber dan kepakaran melalui pertukaran teknologi','Mempercepatkan pembangunan industri berteknologi tinggi','Usaha sama dalam bidang bioteknologi/AI/teknologi hijau','Kolaboratif dalam teknologi automotif/robotik meningkatkan keupayaan Malaysia']},
+          {f:'Memajukan ekonomi dunia',h:['Mampu menarik pelabur asing','Membawa pakar/teknologi asal ke dalam negara','Syarikat tempatan mendapat manfaat daripada pemindahan teknologi','Menyediakan peluang pekerjaan kepada rakyat']},
+          {f:'Melahirkan tenaga pakar bertaraf global',h:['Melalui pertukaran pelajar/pensyarah/penyelidik','Boleh mempelajari teknologi canggih/menguasai kepakaran baharu daripada negara maju','Dapat melatih rakyat menjadi saintis/pakar teknologi bertaraf antarabangsa']},
+          {f:'Menangani cabaran global secara bersama',h:['Isu perubahan iklim, wabak penyakit dan keselamatan siber memerlukan usaha sama saintifik antara negara','Usaha sama dalam pembangunan vaksin COVID-19']},
+          {f:'Meningkatkan daya saing negara',h:['Dapat menghasilkan inovasi baharu','Menambah nilai kepada produk tempatan','Produk berasaskan kelapa sawit dipertingkatkan dengan teknologi Jerman']},
+        ]},
+       {l:'c',q:'Huraikan cabaran yang perlu ditempuhi oleh Malaysia dalam mengekalkan hubungan antarabangsa.',m:8,
+        a:[
+          {f:'Perbezaan ideologi',h:['Mewujudkan jurang persefahaman','Menyukarkan rundingan bersama','Menimbulkan salah faham','Merenggangkan hubungan']},
+          {f:'Kejatuhan nilai mata wang Malaysia',h:['Kos import meningkat','Menjejaskan perniagaan','Kurang kemampuan bersaing di pasaran antarabangsa']},
+          {f:'Kepelbagaian budaya/bahasa',h:['Cabaran dalam komunikasi','Masyarakat kurang prihatin dengan budaya asing','Menyebabkan prasangka buruk/prejudis','Mencetuskan ketegangan/perselisihan']},
+          {f:'Perbezaan agama dan kepercayaan',h:['Provokasi kepada amalan agama','Menghalang pengekalan hubungan diplomat','Menjejaskan perpaduan negara']},
+        ]},
+     ]
+    },
+  ]
+});
 
 /* ---- Moral/data/moral-pahang-set2-2025-p1.js ---- */
 'use strict';
