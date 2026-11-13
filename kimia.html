@@ -14901,7 +14901,7 @@ function renderSetup(){
       ['F4','F5'].map(f=>chip(F.forms.has(f),f==='F4'?'FORM 4':'FORM 5',countIn('forms',f),'data-v="'+f+'"')).join('')+
     '</div></div>'+
 
-    '<div class="sec"><div class="lab">TOPIC <i data-clear="topics">clear</i></div><div class="chips" data-g="topics">'+
+    '<div class="sec"><div class="lab">SUB TOPICS <i data-clear="topics">clear</i></div><div class="chips" data-g="topics">'+
       topicList.map(t=>{const ti=topicInfo(F.subject,t);
         return chip(F.topics.has(t),(ti.form?ti.form+' &middot; ':'')+ti.name,countIn('topics',t),'data-v="'+attr(t)+'"');}).join('')+
     '</div></div>'+
