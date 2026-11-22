@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SPM 2026 Matematik Prediction</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* === Tokens — single light theme by request (no dark variant) === */
+  :root {
+    --bg: #f3f7fa;
+    --surface: #ffffff;
+    --surface2: #f6fafc;
+    --border: #d5e0e8;
+    --fg: #102029;
+    --fg2: #46596a;
+    --fg3: #6c7d8c;
+    --bio: #15803d;
+    --bio-dim: #bbf7d0;
+    --bio-bg: #f0fdf4;
+    --sej: #be185d;
+    --sej-dim: #f9c6de;
+    --sej-bg: #fdf2f8;
+    --high: #c81e1e;
+    --med: #b45309;
+    --low: #94a3b8;
+    --accent: #be185d;
+    --accent-dim: #fce7f3;
+    color-scheme: light;
+  }
+
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px));
+    padding-block: 32px;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 960px;
+    margin-inline: auto;
+  }
+
+  /* Header */
+  .report-header {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .report-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--fg3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .report-meta span { color: var(--accent); }
+  .report-title {
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 600;
+    color: var(--fg);
+    margin: 0 0 8px;
+    text-wrap: balance;
+    line-height: 1.2;
+  }
+  .report-subtitle {
+    color: var(--fg2);
+    font-size: 15px;
+    margin: 0;
+  }
+  .paper-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 16px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    border: 1px solid;
+  }
+  .badge.bio { background: var(--bio-bg); color: var(--bio); border-color: var(--bio-dim); }
+  .badge.sej { background: var(--sej-bg); color: var(--sej); border-color: var(--sej-dim); }
+  .badge.trial { opacity: 0.8; }
+
+  /* Nav tabs */
+  .subject-nav {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tab-btn {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--fg2);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: -1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .tab-btn:hover { color: var(--fg); }
+  .tab-btn.active-bio { color: var(--bio); border-bottom-color: var(--bio); }
+  .tab-btn.active-sej { color: var(--sej); border-bottom-color: var(--sej); }
+
+  /* Section cards */
+  .section {
+    margin-bottom: 32px;
+  }
+  .section-label {
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg3);
+    margin-bottom: 12px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-body { padding: 18px; }
+
+  /* Topic frequency table */
+  .freq-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .freq-table th {
+    text-align: left;
+    padding: 8px 10px;
+    color: var(--fg3);
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+  }
+  .freq-table th.right, .freq-table td.right { text-align: right; }
+  .freq-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .freq-table tr:last-child td { border-bottom: none; }
+  .freq-table tr:hover td { background: var(--surface2); }
+
+  .bar-cell { width: 120px; }
+  .freq-bar {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border);
+    overflow: hidden;
+  }
+  .freq-bar-fill { height: 100%; border-radius: 3px; }
+  .bio-fill { background: var(--bio); }
+  .sej-fill { background: var(--sej); }
+
+  .overlap-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+  }
+  .dot-both { background: var(--high); }
+  .dot-one { background: var(--border); }
+
+  /* Prediction cards */
+  .predictions-grid {
+    display: grid;
+    gap: 12px;
+  }
+  .pred-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 16px;
+    align-items: start;
+  }
+  .pred-card.cert {
+    border-left: 3px solid var(--high);
+  }
+  .pred-card.high {
+    border-left: 3px solid var(--med);
+  }
+  .pred-card.mod {
+    border-left: 3px solid var(--low);
+  }
+  .pred-title {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--fg);
+    margin: 0 0 4px;
+  }
+  .pred-detail {
+    font-size: 12px;
+    color: var(--fg2);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .pred-sources {
+    font-size: 11px;
+    color: var(--fg3);
+    font-family: 'IBM Plex Mono', monospace;
+    margin-top: 6px;
+    grid-column: 1 / -1;
+  }
+  .conf-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .conf-cert { background: rgba(239,68,68,0.15); color: var(--high); }
+  .conf-high { background: rgba(245,158,11,0.15); color: var(--med); }
+  .conf-mod  { background: rgba(100,116,139,0.18); color: var(--fg2); }
+
+  /* Pattern highlight box */
+  .highlight-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 12px;
+    color: var(--fg2);
+    margin-bottom: 10px;
+  }
+  .highlight-box strong { color: var(--fg); }
+
+  /* Tab panels */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Summary banner */
+  .summary-banner {
+    background: var(--accent-dim);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    font-size: 13px;
+    color: var(--fg);
+    line-height: 1.6;
+  }
+
+  /* Overlap matrix */
+  .overlap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+  }
+  .overlap-item {
+    background: var(--bio-bg);
+    border: 1px solid var(--bio-dim);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  .overlap-item .oi-topic {
+    font-weight: 600;
+    color: var(--bio);
+    margin-bottom: 2px;
+  }
+  .overlap-item .oi-detail { color: var(--fg2); font-size: 11px; }
+  .overlap-item.sej-ov {
+    background: var(--sej-bg);
+    border-color: var(--sej-dim);
+  }
+  .overlap-item.sej-ov .oi-topic { color: var(--sej); }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    body { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+    .pred-card { grid-template-columns: 1fr; }
+    .subject-nav { overflow-x: auto; }
+    .tab-btn { padding: 10px 14px; white-space: nowrap; }
+    .freq-table .bar-cell { display: none; }
+  }
+
+  .tbl-wrap { overflow-x: auto; }
+  .freq-table .num { font-family: 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+  .freq-table .hot { color: var(--sej); font-weight: 600; }
+  .freq-table .lo { color: var(--high); font-weight: 600; }
+  .freq-table tr.base td { color: var(--fg2); font-style: italic; }
+  .freq-table tr.hi td:first-child { color: var(--sej); }
+  .freq-table.slots td, .freq-table.slots th { white-space: nowrap; font-size: 12px; }
+  .freq-table.slots td:last-child { white-space: normal; min-width: 180px; color: var(--fg2); }
+  .freq-table.slots td.k { color: var(--sej); font-weight: 600; }
+  .freq-table.slots td:not(:first-child):not(:last-child) { font-family: 'IBM Plex Mono', monospace; }
+  .note { font-size: 12.5px; color: var(--fg2); margin: 10px 2px 0; max-width: 72ch; }
+  .method ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--fg2); font-size: 13px; }
+  .method b { color: var(--fg); }
+  .caveat { font-size: 12px; color: var(--fg3); margin: 16px 0 0; }
+  .conf-cert { white-space: nowrap; }
+
+  /* 2025 check tab */
+  .stat-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 28px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; min-width: 0; }
+  .stat .v { font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600; color: var(--sej); font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .stat .v small { font-size: 14px; color: var(--fg3); font-weight: 400; }
+  .stat .l { font-size: 12px; color: var(--fg2); margin-top: 6px; line-height: 1.45; }
+  .freq-table.match td { vertical-align: top; }
+  .freq-table.match td:first-child { white-space: nowrap; font-family: 'IBM Plex Mono', monospace; color: var(--sej); font-weight: 600; }
+  .freq-table.match td.ev { color: var(--fg2); font-size: 12.5px; min-width: 220px; }
+  .slot-yes { color: var(--bio); font-weight: 600; white-space: nowrap; }
+  .slot-no { color: var(--fg3); white-space: nowrap; }
+  .chg { display: inline-flex; align-items: center; gap: 4px; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; border: 1px solid; }
+  .chg.up { color: var(--bio); border-color: var(--bio-dim); background: var(--bio-bg); }
+  .chg.down { color: var(--high); border-color: var(--high); background: transparent; }
+  .chg.same { color: var(--fg3); border-color: var(--border); background: transparent; }
+  .chg.fix { color: var(--accent); border-color: var(--accent); background: transparent; }
+  .pill-stack { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+  .change-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .change-list li { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; font-size: 13px; color: var(--fg2); }
+  .change-list li b { color: var(--fg); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .two-col > * { min-width: 0; }
+  .plain-list { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--fg2); font-size: 12.5px; }
+  .plain-list b { color: var(--fg); }
+  .tab-btn.active-method { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (max-width: 640px) {
+    .stat-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .two-col { grid-template-columns: 1fr; }
+  }
+  
+  .freq-table.slots td { white-space: normal; min-width: 110px; }
+  .freq-table.slots td:not(:first-child):not(:last-child) { font-family: inherit; }
+  .freq-table.slots td:last-child { color: var(--fg); }
+
+  .method ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--fg2); font-size: 13px; }
+  .freq-table.slots td { white-space: normal; min-width: 150px; font-size: 12px; color: var(--fg2); vertical-align: top; }
+  .freq-table.slots td b { color: var(--fg); font-weight: 600; }
+  .freq-table .dim { color: var(--fg2); opacity: .55; }
+</style>
+<nav style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;padding:10px 16px;background:#122460;font:600 14px/1.4 system-ui,-apple-system,'Segoe UI',sans-serif"><a href="/" style="color:#fff;text-decoration:none">← SPM 2026 Accelerator</a><a href="/matematik.html" style="color:#fff;text-decoration:none;margin-left:auto">Drill Matematik →</a></nav>
+<div class="report-header">
+  <div class="report-meta">SPM 2026 · <span>Matematik 1449</span> · Generated 22 Nov 2026</div>
+  <h1 class="report-title">SPM 2026 Matematik Prediction Report</h1>
+  <p class="report-subtitle">The real SPM papers in the drill (Kertas 1: 2023, 2024, Ulangan 2024; Kertas 2: 2022–2025 and Ulangan 2024) tagged question by question and compared with 26 Kertas 1 and 11 Kertas 2 state trials from 2025 and 2026.</p>
+  <div class="paper-badges"><span class="badge sej">K1 SPM 2023 · 2024 · U2024</span><span class="badge sej">K2 SPM 2022–2025 · U2024</span><span class="badge sej trial">9 K1 + 10 K2 trials 2025</span><span class="badge sej trial">17 K1 + 1 K2 trials 2026</span></div>
+</div>
+<nav class="subject-nav" role="tablist">
+  <button class="tab-btn active-sej" role="tab" data-panel="focus" onclick="switchTab('focus')">Focus 2026</button>
+  <button class="tab-btn" role="tab" data-panel="k1" onclick="switchTab('k1')">Kertas 1</button>
+  <button class="tab-btn" role="tab" data-panel="k2" onclick="switchTab('k2')">Kertas 2</button>
+  <button class="tab-btn" role="tab" data-panel="method" onclick="switchTab('method')">Methodology</button>
+</nav>
+
+<div id="panel-focus" class="tab-panel active">
+  <div class="summary-banner" style="background: var(--sej-bg); border-color: var(--sej);">
+    <strong>Short answer:</strong> Kertas 2 works from a fixed menu. Four question types came in all five real papers (2022, 2023, 2024, Ulangan 2024, 2025): <b>linear programming</b>, <b>matrices to solve simultaneous equations</b>, <b>logic statements</b> and a <b>financial plan or cash flow</b>, and every Section B has a statistics question. Section B also seems to run on a two-year cycle: 2022 and 2024 share Venn diagrams, linear programming and income tax, while 2023 and 2025 share networks, matrices, financial planning and frequency graphs. If that holds, Section B in 2026 looks like 2024. Kertas 1 re-asks old ideas: 19 of SPM 2024's 40 questions repeated an idea from SPM 2023. The trials spend time on things the real Kertas 1 has not set, such as plans and elevations (10 of 17 trials of 2026, never in a real paper).
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="v">4<small>/4</small></div><div class="l">question types in every real Kertas 2 from 2022 to 2025: linear programming, inverse matrix, logic, financial plan</div></div>
+    <div class="stat"><div class="v">19<small>/40</small></div><div class="l">SPM 2024 Kertas 1 questions on an idea already set in SPM 2023 (Ulangan 2024: 16 on 2023 or 2024 ideas)</div></div>
+    <div class="stat"><div class="v">25<small>/40</small></div><div class="l">SPM 2024 Kertas 1 questions from Form 4 and 5 chapters (2023: 27; trials of 2026: 23 on average)</div></div>
+    <div class="stat"><div class="v">11–13</div><div class="l">real Kertas 1 questions a paper that turn on reading a graph, chart or diagram. Trials of 2026: about 10</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Kertas 2 — what is most likely</div>
+    <div class="predictions-grid">
+      <div class="pred-card cert"><div><p class="pred-title">Linear programming: write the inequalities, shade the region, read the best value</p><p class="pred-detail">In all five real papers, as a full Section B question in 2022 and 2024 (Q14 both years) and inside Section C in Ulangan 2024 and 2025. 8 of 10 trials of 2025 and MRSM 2026 set it. Practise turning a word problem into inequalities, drawing the lines and reading the maximum or minimum.</p></div><span class="conf-pill conf-cert">Very high</span><div class="pred-sources">SPM 2022 Q14 · 2023 Q8 · 2024 Q14 · SPMU 2024 Q17 · 2025 Q16–17 · MRSM 2026 Q15</div></div>
+      <div class="pred-card cert"><div><p class="pred-title">Matrices: solve two equations with the inverse matrix</p><p class="pred-detail">All five real papers, usually in Section B or C with a price-and-quantity story (2023 Q15, 2025 Q13, both Section C questions of 2024). Know the determinant, the inverse, and how to write the answer in context.</p></div><span class="conf-pill conf-cert">Very high</span><div class="pred-sources">SPM 2022 Q8 · 2023 Q15 · 2024 Q16, Q17 · SPMU 2024 Q11 · 2025 Q13</div></div>
+      <div class="pred-card cert"><div><p class="pred-title">Logic: statements, implications, converse and contrapositive, deduction and induction</p><p class="pred-detail">A Section A question in all five real papers, always in the first four questions. 9 of 10 trials of 2025 set it.</p></div><span class="conf-pill conf-cert">Very high</span><div class="pred-sources">SPM 2022 Q3 · 2023 Q4 · 2024 Q1 · SPMU 2024 Q1 · 2025 Q4</div></div>
+      <div class="pred-card cert"><div><p class="pred-title">Financial plan and cash flow: income, expenses, surplus, savings goal</p><p class="pred-detail">All five real papers. A full Section B question in 2023 (Q11) and 2025 (Q14), and a Section C part in Ulangan 2024. Expect a cash flow table, a surplus or deficit, and whether a SMART goal is reachable.</p></div><span class="conf-pill conf-cert">Very high</span><div class="pred-sources">SPM 2022 Q4 · 2023 Q11 · 2024 Q7 · SPMU 2024 Q16 · 2025 Q14</div></div>
+      <div class="pred-card high"><div><p class="pred-title">A Section B statistics question: box plot and standard deviation, or ogive and quartiles</p><p class="pred-detail">Every real Section B has one: grouped data (frequency polygon, histogram or ogive) in 2022, 2023 and 2025, a box plot with mean and spread in 2024 and Ulangan 2024. Be ready for both kinds and for comparing two sets of data.</p></div><span class="conf-pill conf-high">High</span><div class="pred-sources">SPM 2022 Q13 · 2023 Q12 · 2024 Q12 · SPMU 2024 Q13 · 2025 Q12</div></div>
+      <div class="pred-card high"><div><p class="pred-title">Income tax and Venn diagrams back in Section B</p><p class="pred-detail">Both were full Section B questions in 2022 and 2024 (Venn Q12 and Q13, income tax Q15 both years) and only Section A items (or one part of a Section C question) in 2023 and 2025. If the two-year cycle holds, 2026 brings them back to Section B: chargeable income, reliefs, rebate and joint assessment; three-set Venn diagrams from survey data.</p></div><span class="conf-pill conf-high">High</span><div class="pred-sources">Income tax: SPM 2022 Q15 · 2024 Q15 · 2023 Q10 · 2025 Q6 · Venn: 2022 Q12 · 2024 Q13 · 2025 Q5</div></div>
+      <div class="pred-card high"><div><p class="pred-title">Speed–time graph: acceleration and distance from the area</p><p class="pred-detail">In 2022, 2023, 2024 and Ulangan 2024, then missing from SPM 2025, which set a distance–time question instead. MRSM 2026 Q17 has it. A good candidate to return.</p></div><span class="conf-pill conf-high">High</span><div class="pred-sources">SPM 2022 Q17 · 2023 Q6 · 2024 Q9 · SPMU 2024 Q15 · MRSM 2026 Q17</div></div>
+      <div class="pred-card mod"><div><p class="pred-title">Transformations, sine graphs, insurance compensation, probability trees</p><p class="pred-detail">Each was in three or four of the five real papers. Combined transformations and tessellation (2024 Q11, 2025 Q15, MRSM 2026 Q12), sine and cosine graphs (2022, 2023, 2024, 2025), insurance with a deductible and co-insurance (2022–2024, then motor premiums in Ulangan 2024 and 2025), probability trees (Ulangan 2024, 2025, MRSM 2026).</p></div><span class="conf-pill conf-mod">Medium</span><div class="pred-sources">SPM 2024 Q11 · 2025 Q15 · 2023 Q14 · 2024 Q4 · SPMU 2024 Q9 · 2025 Q10</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Kertas 1 — what is most likely</div>
+    <div class="predictions-grid">
+      <div class="pred-card cert"><div><p class="pred-title">Variation, trigonometric graphs, motion graphs</p><p class="pred-detail">The three most reliable Kertas 1 chapters. Variation: 2, 3, 1 questions in SPM 2023, 2024 and Ulangan 2024, with joint and inverse variation set in both 2023 and 2024. Graphs of sine, cosine and tangent (identify the graph, find a, b or c, the maximum or minimum) in all three papers. Distance–time and speed–time graphs: 2 questions in every paper.</p></div><span class="conf-pill conf-cert">Very high</span><div class="pred-sources">Joint variation in 12 of 17 trials of 2026 · trig graphs in 12 · distance–time graphs in 11</div></div>
+      <div class="pred-card cert"><div><p class="pred-title">Form 4 chapters that come every year: number bases, sets, networks, dispersion</p><p class="pred-detail">Number bases (2, 2, 1), operations on sets (2, 2, 1), networks (1, 1, 1) and ungrouped dispersion (1, 1, 2) in every paper. Typical items: convert between bases through base 10, shade a combined set on a Venn diagram, degree of a vertex and number of edges, range or interquartile range.</p></div><span class="conf-pill conf-cert">Very high</span><div class="pred-sources">SPM 2023, 2024, SPMU 2024</div></div>
+      <div class="pred-card high"><div><p class="pred-title">Matrices and transformations, at the basic level</p><p class="pred-detail">Matrices (2, 2, 1): order of a matrix, an element by position, addition and scalar multiplication. The real Kertas 1 has not yet asked for a matrix product, although 8 of 17 trials of 2026 do. Transformations (2, 2, 2): combined transformations and enlargement on a grid.</p></div><span class="conf-pill conf-high">High</span><div class="pred-sources">SPM 2023, 2024, SPMU 2024</div></div>
+      <div class="pred-card high"><div><p class="pred-title">Consumer maths: insurance terms, motor premiums, property assessment tax</p><p class="pred-detail">Insurance (1, 2, 1): types of insurance, coverage, motor premium with NCD. Tax (2, 1, 0): property assessment tax in both 2023 and 2024.</p></div><span class="conf-pill conf-high">High</span><div class="pred-sources">SPM 2023, 2024, SPMU 2024</div></div>
+      <div class="pred-card mod"><div><p class="pred-title">Form 1–3 basics that the trials under-practise</p><p class="pred-detail">About 15 of SPM 2024's 40 questions come from Forms 1–3. Several ideas the real papers set, some of them twice, appear in two or fewer trials of 2026: writing an inequality from a phrase ("at least", "not more than"), solving a linear equation with fractions, the perimeter of a composite shape with Pythagoras, the effect on the mean of changing a value, probability from a two-way table.</p></div><span class="conf-pill conf-mod">Medium</span><div class="pred-sources">SPM 2024 and SPMU 2024 · see the Kertas 1 tab</div></div>
+    </div>
+  </div>
+</div>
+<div id="panel-k1" class="tab-panel">
+  <div class="summary-banner" style="background: var(--sej-bg); border-color: var(--sej);">
+    <strong>Kertas 1 is broad, Form 4–5 heavy, and re-asks.</strong> 40 questions spread over 30 of the 53 chapters of Forms 1–5 (SPM 2024). The two main papers put 27 and 25 questions on Form 4 and 5 chapters; the Ulangan paper only 17. About half of each paper repeats an idea from an earlier real paper, so the older papers are the best practice.
+  </div>
+  <div class="section">
+    <div class="section-label">Questions per chapter: real SPM papers and the trials</div>
+    <div class="card"><div class="tbl-wrap"><table class="freq-table"><thead><tr><th>Chapter</th><th class="right">SPM 2023</th><th class="right">SPM 2024</th><th class="right">SPMU 2024</th><th class="right">Trials '25 avg</th><th class="right">Trials '26 avg</th></tr></thead><tbody><tr class="base"><td>Form 1</td><td class="right num">4</td><td class="right num">5</td><td class="right num">4</td><td class="right num">5.1</td><td class="right num">3.1</td></tr><tr><td>1.1 Rational numbers</td><td class="right num">1</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0.1</td><td class="right num">0.1</td></tr><tr><td>1.2 Factors and multiples</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0.0</td><td class="right num">0.2</td></tr><tr><td>1.3 Squares, square roots, cubes, cube roots</td><td class="right num">0</td><td class="right num">1</td><td class="right num">0</td><td class="right num">0.3</td><td class="right num">0.1</td></tr><tr><td>1.4 Ratios, rates and proportions</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0.7</td><td class="right num">0.4</td></tr><tr><td>1.5 Algebraic expressions</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0.4</td><td class="right num">0.2</td></tr><tr><td>1.6 Linear equations</td><td class="right num">0</td><td class="right num">1</td><td class="right num">1</td><td class="right num">0.3</td><td class="right num">0.2</td></tr><tr><td>1.7 Linear inequalities in one variable</td><td class="right num hot">2</td><td class="right num">1</td><td class="right num hot">2</td><td class="right num">0.8</td><td class="right num">0.8</td></tr><tr><td>1.8 Lines and angles</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0.4</td><td class="right num">0.2</td></tr><tr><td>1.9 Basic polygons</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0.1</td><td class="right num">0.1</td></tr><tr><td>1.10 Perimeter and area</td><td class="right num">0</td><td class="right num">0</td><td class="right num">1</td><td class="right num">0.3</td><td class="right num">0.1</td></tr><tr><td>1.11 Introduction to sets</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0.3</td><td class="right num">0.2</td></tr><tr><td>1.12 Data handling</td><td class="right num">0</td><td class="right num">1</td><td class="right num">0</td><td class="right num">0.7</td><td class="right num">0.3</td></tr><tr><td>1.13 Pythagoras' theorem</td><td class="right num">1</td><td class="right num">1</td><td class="right num">0</td><td class="right num">0.6</td><td class="right num">0.3</td></tr><tr class="base"><td>Form 2</td><td class="right num">6</td><td class="right num">8</td><td class="right num">11</td><td class="right num">8.8</td><td class="right num">7.0</td></tr><tr><td>2.1 Patterns and sequences</td><td class="right num">1</td><td class="right num">1</td><td class="right num">1</td><td class="right num">0.9</td><td class="right num">0.8</td></tr><tr><td>2.2 Factorisation and algebraic fractions</td><td class="right num">0</td><td class="right num">1</td><td class="right num hot">2</td><td class="right num">1.2</td><td class="right num">1.0</td></tr><tr><td>2.3 Algebraic formulae</td><td class="right num">1</td><td class="right num">0</td><td class="right num">1</td><td class="right num">0.8</td><td class="right num">0.7</td></tr><tr><td>2.4 Polygons</td><td class="right num">1</td><td class="right num">1</td><td class="right num">1</td><td class="right num">0.4</td><td class="right num">0.7</td></tr><tr><td>2.5 Circles</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0.1</td><td class="right num">0.2</td></tr><tr><td>2.6 Three-dimensional geometrical shapes</td><td class="right num">0</td><td class="right num">1</td><td class="right num">0</td><td class="right num">0.6</td><td class="right num">0.7</td></tr><tr><td>2.7 Coordinates</td><td class="right num">0</td><td class="right num">1</td><td class="right num">0</td><td class="right num">0.6</td><td class="right num">0.3</td></tr><tr><td>2.8 Graphs of functions</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0.6</td><td class="right num">0.3</td></tr><tr><td>2.9 Speed and acceleration</td><td class="right num">1</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0.0</td><td class="right num">0.1</td></tr><tr><td>2.10 Gradient of a straight line</td><td class="right num">0</td><td class="right num">0</td><td class="right num">1</td><td class="right num">0.4</td><td class="right num">0.1</td></tr><tr><td>2.11 Isometric transformations</td><td class="right num">0</td><td class="right num">0</td><td class="right num">1</td><td class="right num">0.9</td><td class="right num">0.5</td></tr><tr><td>2.12 Measures of central tendency</td><td class="right num hot">2</td><td class="right num hot">2</td><td class="right num">1</td><td class="right num">1.0</td><td class="right num">0.9</td></tr><tr><td>2.13 Simple probability</td><td class="right num">0</td><td class="right num">1</td><td class="right num hot">3</td><td class="right num">1.3</td><td class="right num">0.9</td></tr><tr class="base"><td>Form 3</td><td class="right num">3</td><td class="right num">2</td><td class="right num">8</td><td class="right num">6.2</td><td class="right num">6.6</td></tr><tr><td>3.1 Indices</td><td class="right num">0</td><td class="right num">1</td><td class="right num">1</td><td class="right num">1.1</td><td class="right num">1.1</td></tr><tr><td>3.2 Standard form</td><td class="right num">1</td><td class="right num">0</td><td class="right num hot">3</td><td class="right num">1.3</td><td class="right num">1.1</td></tr><tr><td>3.3 Consumer mathematics: savings, investments, credit and debt</td><td class="right num">1</td><td class="right num">0</td><td class="right num">1</td><td class="right num">0.4</td><td class="right num">0.9</td></tr><tr><td>3.4 Scale drawings</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0.2</td><td class="right num lo">0.5</td></tr><tr><td>3.5 Trigonometric ratios</td><td class="right num">0</td><td class="right num">0</td><td class="right num hot">2</td><td class="right num">0.7</td><td class="right num">0.6</td></tr><tr><td>3.6 Angles and tangents of circles</td><td class="right num">1</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0.7</td><td class="right num">0.8</td></tr><tr><td>3.7 Plans and elevations</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0</td><td class="right num">0.4</td><td class="right num lo">0.6</td></tr><tr><td>3.8 Loci in two dimensions</td><td class="right num">0</td><td class="right num">1</td><td class="right num">0</td><td class="right num">0.6</td><td class="right num">0.4</td></tr><tr><td>3.9 Straight lines</td><td class="right num">0</td><td class="right num">0</td><td class="right num">1</td><td class="right num">0.8</td><td class="right num">0.7</td></tr><tr class="base"><td>Form 4</td><td class="right num">14</td><td class="right num">12</td><td class="right num">10</td><td class="right num">10.9</td><td class="right num">12.6</td></tr><tr><td>4.1 Quadratic functions and equations in one variable</td><td class="right num">1</td><td class="right num">1</td><td class="right num">0</td><td class="right num">0.8</td><td class="right num">1.4</td></tr><tr><td>4.2 Number bases</td><td class="right num hot">2</td><td class="right num hot">2</td><td class="right num">1</td><td class="right num">1.4</td><td class="right num">1.5</td></tr><tr><td>4.3 Logical reasoning</td><td class="right num hot">2</td><td class="right num">1</td><td class="right num">0</td><td class="right num">1.2</td><td class="right num">1.2</td></tr><tr><td>4.4 Operations on sets</td><td class="right num hot">2</td><td class="right num hot">2</td><td class="right num">1</td><td class="right num">1.4</td><td class="right num">1.5</td></tr><tr><td>4.5 Networks in graph theory</td><td class="right num">1</td><td class="right num">1</td><td class="right num">1</td><td class="right num">1.3</td><td class="right num">1.4</td></tr><tr><td>4.6 Linear inequalities in two variables</td><td class="right num">1</td><td class="right num">0</td><td class="right num">1</td><td class="right num">0.6</td><td class="right num">0.9</td></tr><tr><td>4.7 Graphs of motion</td><td class="right num hot">2</td><td class="right num hot">2</td><td class="right num hot">2</td><td class="right num">1.2</td><td class="right num">1.5</td></tr><tr><td>4.8 Measures of dispersion for ungrouped data</td><td class="right num">1</td><td class="right num">1</td><td class="right num hot">2</td><td class="right num">1.1</td><td class="right num">1.4</td></tr><tr><td>4.9 Probability of combined events</td><td class="right num hot">2</td><td class="right num">1</td><td class="right num">0</td><td class="right num">0.6</td><td class="right num">0.9</td></tr><tr><td>4.10 Consumer mathematics: financial management</td><td class="right num">0</td><td class="right num">1</td><td class="right num hot">2</td><td class="right num">1.2</td><td class="right num">1.1</td></tr><tr class="base"><td>Form 5</td><td class="right num">13</td><td class="right num">13</td><td class="right num">7</td><td class="right num">8.9</td><td class="right num">10.6</td></tr><tr><td>5.1 Variation</td><td class="right num hot">2</td><td class="right num hot">3</td><td class="right num">1</td><td class="right num">1.8</td><td class="right num">1.9</td></tr><tr><td>5.2 Matrices</td><td class="right num hot">2</td><td class="right num hot">2</td><td class="right num">1</td><td class="right num">1.8</td><td class="right num">2.1</td></tr><tr><td>5.3 Consumer mathematics: insurance</td><td class="right num">1</td><td class="right num hot">2</td><td class="right num">1</td><td class="right num">1.2</td><td class="right num">1.2</td></tr><tr><td>5.4 Consumer mathematics: taxation</td><td class="right num hot">2</td><td class="right num">1</td><td class="right num">0</td><td class="right num">1.1</td><td class="right num">1.3</td></tr><tr><td>5.5 Congruency, enlargement and combined transformations</td><td class="right num hot">2</td><td class="right num hot">2</td><td class="right num hot">2</td><td class="right num">0.8</td><td class="right num">1.5</td></tr><tr><td>5.6 Ratios and graphs of trigonometric functions</td><td class="right num hot">2</td><td class="right num hot">2</td><td class="right num">1</td><td class="right num">1.3</td><td class="right num">1.5</td></tr><tr><td>5.7 Measures of dispersion for grouped data</td><td class="right num hot">2</td><td class="right num">1</td><td class="right num">0</td><td class="right num">0.8</td><td class="right num">0.9</td></tr><tr><td>5.8 Mathematical modelling</td><td class="right num">0</td><td class="right num">0</td><td class="right num">1</td><td class="right num">0.1</td><td class="right num">0.2</td></tr></tbody></table></div></div>
+    <p class="note">Highlighted: 2 or more questions in a real paper. Red: never in a real Kertas 1 here, but set in many trials of 2026. The SPM 2022 and SPM 2025 Kertas 1 papers are not in the drill, so three real papers is the whole Kertas 1 record.</p>
+  </div>
+  <div class="section">
+    <div class="section-label">Ideas set in two or more real papers</div>
+    <div class="card"><div class="tbl-wrap"><table class="freq-table"><thead><tr><th>Idea</th><th>Ch.</th><th>Real papers</th><th class="right">Trials '26 /17</th></tr></thead><tbody><tr><td>Trigonometric graphs: identify graph or find a, b, c / maximum / minimum from graph</td><td class="num">5.6</td><td>SPM 2023 Q28, SPM 2024 Q28, SPMU 2024 Q28</td><td class="right num">12</td></tr><tr><td>Speed from gradient, average speed and total distance from a distance-time graph</td><td class="num">4.7</td><td>SPM 2023 Q17, SPM 2024 Q15, SPMU 2024 Q38</td><td class="right num">11</td></tr><tr><td>Angles with regular pentagon/hexagon interior angles</td><td class="num">2.4</td><td>SPM 2023 Q23, SPM 2024 Q22, SPMU 2024 Q18</td><td class="right num">6</td></tr><tr><td>Enlargement on a grid: find centre, scale factor or image</td><td class="num">5.5</td><td>SPM 2023 Q25, SPM 2024 Q24, SPMU 2024 Q5</td><td class="right num">5</td></tr><tr><td>Median of ungrouped data / frequency table / dot plot</td><td class="num">2.12</td><td>SPM 2023 Q35, SPM 2024 Q35, SPMU 2024 Q15</td><td class="right num">4</td></tr><tr><td>Joint variation: form equation or find unknown (direct and inverse combined)</td><td class="num">5.1</td><td>SPM 2023 Q19, SPM 2024 Q19</td><td class="right num">12</td></tr><tr><td>Inverse variation: form equation or find unknown</td><td class="num">5.1</td><td>SPM 2023 Q18, SPM 2024 Q18</td><td class="right num">10</td></tr><tr><td>State order of a matrix / identify matrix element by position</td><td class="num">5.2</td><td>SPM 2023 Q20, SPMU 2024 Q39</td><td class="right num">9</td></tr><tr><td>Combined transformations: find image, object or describe on grid</td><td class="num">5.5</td><td>SPM 2023 Q26, SPM 2024 Q26</td><td class="right num">9</td></tr><tr><td>Simplify products/quotients of terms using index laws (positive/negative/fractional)</td><td class="num">3.1</td><td>SPM 2024 Q3, SPMU 2024 Q9</td><td class="right num">8</td></tr><tr><td>Add, subtract and scalar multiply matrices</td><td class="num">5.2</td><td>SPM 2023 Q21, SPM 2024 Q20, SPM 2024 Q21</td><td class="right num">8</td></tr><tr><td>Property assessment tax: calculate payable, rate or rental</td><td class="num">5.4</td><td>SPM 2023 Q8, SPM 2024 Q7</td><td class="right num">8</td></tr><tr><td>Form direct variation equation / find unknown (incl. square, cube, root, table)</td><td class="num">5.1</td><td>SPM 2024 Q17, SPMU 2024 Q20</td><td class="right num">8</td></tr><tr><td>Ogive, box plot and histogram: read quartiles/IQR, match graphs, distribution shape</td><td class="num">5.7</td><td>SPM 2023 Q40, SPM 2024 Q40</td><td class="right num">7</td></tr><tr><td>Identify a quadratic graph/function from its equation, intercepts or shape (sketch matching)</td><td class="num">4.1</td><td>SPM 2023 Q13, SPM 2024 Q13</td><td class="right num">6</td></tr><tr><td>Convert between bases (via base 10), including in money/average contexts</td><td class="num">4.2</td><td>SPM 2023 Q6, SPM 2024 Q2</td><td class="right num">6</td></tr><tr><td>Degree of a vertex, sum of degrees and number of edges (loops, multiple edges)</td><td class="num">4.5</td><td>SPM 2023 Q33, SPM 2024 Q33</td><td class="right num">6</td></tr><tr><td>Unit circle: coordinates, cos/sin/tan of angle or point</td><td class="num">5.6</td><td>SPM 2023 Q27, SPM 2024 Q27</td><td class="right num">6</td></tr><tr><td>Insurance: types, coverage and terminology</td><td class="num">5.3</td><td>SPM 2024 Q8, SPMU 2024 Q21</td><td class="right num">5</td></tr><tr><td>Form and solve an inequality for min/max quantity in context</td><td class="num">1.7</td><td>SPM 2023 Q14, SPMU 2024 Q19</td><td class="right num">4</td></tr><tr><td>Loan or hire-purchase instalment, flat rate, balance and repayment period (simple interest)</td><td class="num">3.3</td><td>SPM 2023 Q4, SPMU 2024 Q24</td><td class="right num">4</td></tr><tr><td>Implication: antecedent, converse, inverse and contrapositive</td><td class="num">4.3</td><td>SPM 2023 Q30, SPM 2024 Q29</td><td class="right num">4</td></tr><tr><td>Insurance: motor premium from tariff table with NCD</td><td class="num">5.3</td><td>SPM 2023 Q9, SPM 2024 Q9</td><td class="right num">4</td></tr><tr><td>Add/subtract algebraic fractions into a single fraction</td><td class="num">2.2</td><td>SPM 2024 Q11, SPMU 2024 Q10</td><td class="right num">3</td></tr><tr><td>Set notation or Venn diagram shading for combined set operations</td><td class="num">4.4</td><td>SPM 2023 Q31, SPMU 2024 Q16</td><td class="right num">3</td></tr><tr><td>Interpret segments of a distance-time or speed-time graph (stationary, uniform speed)</td><td class="num">4.7</td><td>SPM 2023 Q16, SPMU 2024 Q7</td><td class="right num">3</td></tr><tr><td>Write an inequality from a phrase or situation (at least, not more than)</td><td class="num">1.7</td><td>SPM 2024 Q14, SPMU 2024 Q36</td><td class="right num">2</td></tr><tr><td>Pythagoras theorem: find perimeter of composite shape</td><td class="num">1.13</td><td>SPM 2023 Q22, SPM 2024 Q25</td><td class="right num">2</td></tr><tr><td>Solve linear equation with fractions and brackets</td><td class="num">1.6</td><td>SPM 2024 Q10, SPMU 2024 Q14</td><td class="right num">1</td></tr></tbody></table></div></div>
+  </div>
+  <div class="two-col section">
+    <div>
+      <div class="section-label">Set in a real paper, rare in the trials of 2026</div>
+      <div class="card"><div class="tbl-wrap"><table class="freq-table"><thead><tr><th>Idea</th><th>Real</th><th class="right">Trials '26</th></tr></thead><tbody><tr><td>Solve linear equation with fractions and brackets</td><td>SPM 2024 Q10, SPMU 2024 Q14</td><td class="right num">1</td></tr><tr><td>Write an inequality from a phrase or situation (at least, not more than)</td><td>SPM 2024 Q14, SPMU 2024 Q36</td><td class="right num">2</td></tr><tr><td>Pythagoras theorem: find perimeter of composite shape</td><td>SPM 2023 Q22, SPM 2024 Q25</td><td class="right num">2</td></tr><tr><td>Percentage discount within a budget: maximum quantity</td><td>SPM 2023 Q2</td><td class="right num">0</td></tr><tr><td>Cube root then surface area of cube</td><td>SPM 2024 Q5</td><td class="right num">1</td></tr><tr><td>Area/perimeter of shaded region or from given area</td><td>SPMU 2024 Q6</td><td class="right num">1</td></tr><tr><td>Bar chart / dot plot interpretation</td><td>SPM 2024 Q37</td><td class="right num">1</td></tr><tr><td>Identify an arithmetic sequence / common difference</td><td>SPM 2023 Q1</td><td class="right num">2</td></tr><tr><td>Substitute values into a formula / form a formula</td><td>SPM 2023 Q11</td><td class="right num">2</td></tr><tr><td>Speed and average speed: time, distance calculations</td><td>SPM 2023 Q12</td><td class="right num">1</td></tr><tr><td>Gradient of a straight line from two points / graph</td><td>SPMU 2024 Q4</td><td class="right num">1</td></tr><tr><td>Reflection: image of a point or shape</td><td>SPMU 2024 Q37</td><td class="right num">2</td></tr><tr><td>Effect on mean of adding/removing/changing values</td><td>SPM 2024 Q34</td><td class="right num">2</td></tr><tr><td>Probability after adding/changing items; fraction-based</td><td>SPM 2024 Q36</td><td class="right num">2</td></tr><tr><td>Probability from two-way table or Venn diagram</td><td>SPMU 2024 Q12</td><td class="right num">2</td></tr><tr><td>List sample space</td><td>SPMU 2024 Q33</td><td class="right num">0</td></tr><tr><td>Write a number in standard form (convert, state p and q)</td><td>SPMU 2024 Q1</td><td class="right num">1</td></tr><tr><td>Express sums or expressions of powers of a base as a number in that base</td><td>SPM 2023 Q5</td><td class="right num">1</td></tr><tr><td>Directed graph: in-degree and out-degree</td><td>SPMU 2024 Q35</td><td class="right num">1</td></tr><tr><td>Find unknown income or variable expense from cash flow</td><td>SPMU 2024 Q22</td><td class="right num">1</td></tr></tbody></table></div></div>
+      <p class="note">A student who only drills the trials will meet these rarely.</p>
+    </div>
+    <div>
+      <div class="section-label">Trial favourites never set in a real Kertas 1</div>
+      <div class="card"><div class="tbl-wrap"><table class="freq-table"><thead><tr><th>Idea</th><th>Ch.</th><th class="right">Trials '26 /17</th></tr></thead><tbody><tr><td>Identify orthogonal projection views (plan, elevation) or the solid from them</td><td class="num">3.7</td><td class="right num">10</td></tr><tr><td>Deductive argument: premise, conclusion, validity and soundness</td><td class="num">4.3</td><td class="right num">9</td></tr><tr><td>Insurance: co-insurance and deductible calculations (medical, fire, property)</td><td class="num">5.3</td><td class="right num">9</td></tr><tr><td>Matrix multiplication (compute product or find unknown from product)</td><td class="num">5.2</td><td class="right num">8</td></tr><tr><td>Area of image under enlargement using area scale factor</td><td class="num">5.5</td><td class="right num">8</td></tr><tr><td>Convert between actual and drawing lengths using a scale (incl. perimeter of enlarged drawing)</td><td class="num">3.4</td><td class="right num">7</td></tr><tr><td>Exterior angle of regular polygon: find sides or name polygon</td><td class="num">2.4</td><td class="right num">6</td></tr><tr><td>Solve for unknown index / index equation (common base, equate powers)</td><td class="num">3.1</td><td class="right num">6</td></tr><tr><td>Form and solve a quadratic equation from a geometric or word situation, or solve after simplifying</td><td class="num">4.1</td><td class="right num">6</td></tr><tr><td>Shortest/cheapest path in a weighted network</td><td class="num">4.5</td><td class="right num">6</td></tr><tr><td>Determinant and inverse of a 2x2 matrix</td><td class="num">5.2</td><td class="right num">6</td></tr><tr><td>Income tax: chargeable income, reliefs, zakat and tax payable</td><td class="num">5.4</td><td class="right num">6</td></tr></tbody></table></div></div>
+      <p class="note">These are still on the syllabus, and several (matrix multiplication, co-insurance, income tax) come up in Kertas 2. They are just not proven Kertas 1 items.</p>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-label">What kind of question</div>
+    <div class="card"><div class="tbl-wrap"><table class="freq-table"><thead><tr><th>Type</th><th class="right">SPM 2023</th><th class="right">SPM 2024</th><th class="right">SPMU 2024</th><th class="right">Trials '25</th><th class="right">Trials '26</th></tr></thead><tbody>
+      <tr><td>Read a graph, chart or diagram</td><td class="right num">13</td><td class="right num">11</td><td class="right num">11</td><td class="right num">7.4</td><td class="right num">9.6</td></tr><tr><td>Real-life application (word problem)</td><td class="right num">9</td><td class="right num">12</td><td class="right num">9</td><td class="right num">6.3</td><td class="right num">8.4</td></tr><tr><td>Multi-step calculation</td><td class="right num">11</td><td class="right num">15</td><td class="right num">10</td><td class="right num">16.4</td><td class="right num">13.5</td></tr><tr><td>Recall or one step</td><td class="right num">7</td><td class="right num">2</td><td class="right num">10</td><td class="right num">9.7</td><td class="right num">8.5</td></tr>
+    </tbody></table></div></div>
+    <p class="note">The real papers set more graph and diagram questions and more word problems than the trials, and fewer plain calculations.</p>
+  </div>
+</div>
+<div id="panel-k2" class="tab-panel">
+  <div class="summary-banner" style="background: var(--sej-bg); border-color: var(--sej);">
+    <strong>Kertas 2: ten short Section A questions, five Section B questions of 8–10 marks, and two 15-mark Section C questions (answer one).</strong> The same 30 or so question types fill every paper. What changes is which ones get a full Section B question. 2022 and 2024 share three of their five Section B topics, and 2023 and 2025 share four.
+  </div>
+  <div class="section">
+    <div class="section-label">Section B, year by year</div>
+    <div class="card"><div class="tbl-wrap"><table class="freq-table slots"><thead><tr><th>2022</th><th>2024</th><th>2023</th><th>2025</th><th>SPMU 2024</th></tr></thead><tbody>
+      <tr><td>Straight lines<br>Operations on sets<br>Measures of dispersion for grouped data<br>Linear inequalities in two variables<br>Consumer mathematics: taxation</td><td>Congruency, enlargement and combined transformations<br>Measures of dispersion for ungrouped data<br>Operations on sets<br>Linear inequalities in two variables<br>Consumer mathematics: taxation</td><td>Consumer mathematics: financial management<br>Measures of dispersion for grouped data<br>Networks in graph theory<br>Ratios and graphs of trigonometric functions<br>Matrices</td><td>Networks in graph theory<br>Measures of dispersion for grouped data<br>Matrices<br>Consumer mathematics: financial management<br>Congruency, enlargement and combined transformations</td><td>Matrices<br>Consumer mathematics: savings, investments, credit and debt<br>Measures of dispersion for ungrouped data<br>Consumer mathematics: insurance<br>Graphs of motion</td></tr>
+    </tbody></table></div></div>
+    <p class="note">Shared by 2022 and 2024: Venn diagrams, linear programming, income tax, and a statistics question. Shared by 2023 and 2025: financial planning, frequency graphs of grouped data, networks, matrices. MRSM 2026 Section B (Venn, transformations, investment, probability tree, linear programming) follows the even-year pattern more closely. Four years is a short record, so treat the cycle as a lead, not a rule.</p>
+  </div>
+  <div class="section">
+    <div class="section-label">Question types in the real papers</div>
+    <div class="card"><div class="tbl-wrap"><table class="freq-table"><thead><tr><th>Question type</th><th>2022</th><th>2023</th><th>2024</th><th>SPMU 2024</th><th>2025</th><th class="right">Trials '25 /10</th></tr></thead><tbody><tr><td>Statements, implications, converse/inverse/contrapositive, induction and deduction</td><td class="num hot">Q3</td><td class="num hot">Q4</td><td class="num hot">Q1</td><td class="num hot">Q1</td><td class="num hot">Q4</td><td class="right num">9</td></tr><tr><td>Linear programming: write inequalities, draw and shade feasible region, read optimum</td><td class="num hot">Q14</td><td class="num hot">Q8</td><td class="num hot">Q14</td><td class="num hot">Q17</td><td class="num hot">Q16 Q17</td><td class="right num">8</td></tr><tr><td>Personal financial planning: cash flow, income, expenses and savings goal</td><td class="num hot">Q4</td><td class="num hot">Q11</td><td class="num hot">Q7</td><td class="num hot">Q5</td><td class="num hot">Q14</td><td class="right num">8</td></tr><tr><td>Simultaneous equations by inverse matrix (prices and quantities)</td><td class="num hot">Q8</td><td class="num hot">Q15</td><td class="num hot">Q16</td><td class="num hot">Q11</td><td class="num hot">Q13</td><td class="right num">8</td></tr><tr><td>Sine and cosine graphs: amplitude, period, equation, sketch</td><td class="num hot">Q10</td><td class="num hot">Q14</td><td class="num hot">Q10</td><td class="num dim">·</td><td class="num hot">Q9</td><td class="right num">7</td></tr><tr><td>Income tax: chargeable income, tax payable, rebate and PCB</td><td class="num hot">Q15</td><td class="num hot">Q10</td><td class="num hot">Q15</td><td class="num dim">·</td><td class="num hot">Q6</td><td class="right num">6</td></tr><tr><td>Speed-time graph: acceleration and distance from area</td><td class="num hot">Q17</td><td class="num hot">Q6</td><td class="num hot">Q9</td><td class="num hot">Q15</td><td class="num dim">·</td><td class="right num">4</td></tr><tr><td>Venn diagram: read, shade and describe regions with set notation</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q13</td><td class="num hot">Q2</td><td class="num hot">Q5</td><td class="right num">7</td></tr><tr><td>Describe and draw transformations: translation, reflection, rotation, enlargement; congruence</td><td class="num hot">Q9</td><td class="num hot">Q9</td><td class="num hot">Q11</td><td class="num dim">·</td><td class="num dim">·</td><td class="right num">7</td></tr><tr><td>Form and solve quadratic equation from a word problem</td><td class="num hot">Q7</td><td class="num dim">·</td><td class="num hot">Q5</td><td class="num hot">Q16</td><td class="num dim">·</td><td class="right num">5</td></tr><tr><td>Insurance compensation with deductible and co-insurance</td><td class="num hot">Q6</td><td class="num hot">Q7</td><td class="num hot">Q4</td><td class="num dim">·</td><td class="num dim">·</td><td class="right num">2</td></tr><tr><td>Trigonometry and angle of elevation in right-angled triangles and solids</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q3</td><td class="num hot">Q7</td><td class="num hot">Q3</td><td class="right num">1</td></tr><tr><td>Motor and other insurance premium from tariff or rate table with NCD</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q14</td><td class="num hot">Q7</td><td class="right num">8</td></tr><tr><td>Cumulative frequency table, ogive and percentiles/quartiles</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q10</td><td class="num hot">Q12</td><td class="right num">7</td></tr><tr><td>Distance-time graph: reading, stops and average speed</td><td class="num hot">Q16</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q8</td><td class="right num">6</td></tr><tr><td>Mean, mode, median and quartiles from ungrouped data displays</td><td class="num hot">Q2</td><td class="num hot">Q1</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="right num">4</td></tr><tr><td>Weighted graph: shortest route and minimum spanning tree</td><td class="num dim">·</td><td class="num hot">Q13</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q11</td><td class="right num">4</td></tr><tr><td>Quadratic function graph: table, sketch, roots, axis and turning point</td><td class="num dim">·</td><td class="num hot">Q2</td><td class="num hot">Q2</td><td class="num dim">·</td><td class="num dim">·</td><td class="right num">4</td></tr><tr><td>Equation of straight line: gradient, parallel lines, intercepts, intersection</td><td class="num hot">Q11</td><td class="num hot">Q3</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="right num">4</td></tr><tr><td>Probability: tree diagrams, sample space and combined events</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q9</td><td class="num hot">Q10</td><td class="right num">4</td></tr><tr><td>Direct, inverse and joint variation</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q17</td><td class="num hot">Q6</td><td class="num dim">·</td><td class="right num">3</td></tr><tr><td>Frequency polygon and histogram from grouped data</td><td class="num dim">·</td><td class="num hot">Q12</td><td class="num hot">Q8</td><td class="num dim">·</td><td class="num dim">·</td><td class="right num">3</td></tr><tr><td>Venn diagram from survey data: complete diagram and count regions</td><td class="num hot">Q12</td><td class="num hot">Q5</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="right num">2</td></tr><tr><td>Number bases: convert between bases and compute in a base</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q3</td><td class="num hot">Q1</td><td class="right num">2</td></tr><tr><td>Perimeter and area of composite plane shapes and circles</td><td class="num hot">Q5</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q4</td><td class="num dim">·</td><td class="right num">1</td></tr><tr><td>Box plot construction and effect of changing data</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q12</td><td class="num hot">Q13</td><td class="num dim">·</td><td class="right num">0</td></tr><tr><td>Other taxes: service tax, road tax, assessment tax, quit rent, land tax, utility bills</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q8</td><td class="num dim">·</td><td class="right num">6</td></tr><tr><td>Graph terms: vertices, edges, degree, subgraphs, trees, directed graphs</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q6</td><td class="num dim">·</td><td class="num dim">·</td><td class="right num">6</td></tr><tr><td>Investment returns: ROI, dividends, capital gain and interest</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q12</td><td class="num dim">·</td><td class="right num">3</td></tr><tr><td>Standard deviation, variance and consistency of ungrouped data</td><td class="num dim">·</td><td class="num hot">Q16 Q17</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="right num">3</td></tr><tr><td>Tessellation and combined transformations with area of image</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q15</td><td class="right num">3</td></tr><tr><td>Draw and read cubic graph</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="num hot">Q2</td><td class="right num">3</td></tr><tr><td>Standard deviation of grouped data and consistency</td><td class="num hot">Q13</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="right num">2</td></tr><tr><td>Distance and midpoint between points on Cartesian plane</td><td class="num hot">Q1</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="num dim">·</td><td class="right num">1</td></tr></tbody></table></div></div>
+  </div>
+  <div class="section">
+    <div class="section-label">Every question, 2022–2025</div>
+    <div class="card"><div class="tbl-wrap"><table class="freq-table slots"><thead><tr><th>Q</th><th>2022</th><th>2023</th><th>2024</th><th>SPMU 2024</th><th>2025</th><th>MRSM 2026</th></tr></thead><tbody><tr><td class="k">1 · A</td><td><b>2.7 Coordinates</b><br>Coordinates: marking a point and distance between points</td><td><b>4.8 Measures of dispersion for ungrouped data</b><br>Stem-and-leaf plot of travel time to school</td><td><b>4.3 Logical reasoning</b><br>Statements and implications</td><td><b>4.3 Logical reasoning</b><br>Statements, implications and deductive argument</td><td><b>4.2 Number bases</b><br>Number bases: conversion and subtraction</td><td><b>5.3</b><br>Life insurance premium and compensation</td></tr><tr><td class="k">2 · A</td><td><b>4.8 Measures of dispersion for ungrouped data</b><br>Quartiles and interquartile range of ungrouped data</td><td><b>4.1 Quadratic functions and equations in one variable</b><br>Table of values and graph of y = 2x^2 - 3</td><td><b>4.1 Quadratic functions and equations in one variable</b><br>Graph of y = -x^2 + 4</td><td><b>4.4 Operations on sets</b><br>Venn diagram: listing sets and cardinality</td><td><b>2.8 Graphs of functions</b><br>Graph of cubic function y = x^3 + 1</td><td><b>5.1</b><br>Inverse proportion table and graph P = 150/W</td></tr><tr><td class="k">3 · A</td><td><b>4.3 Logical reasoning</b><br>Converse, contrapositive and induction</td><td><b>3.9 Straight lines</b><br>Equation of line parallel to PQ through T</td><td><b>3.5 Trigonometric ratios</b><br>Angle of elevation in a pyramid</td><td><b>4.2 Number bases</b><br>Number base conversion base 5 to base 7</td><td><b>3.5 Trigonometric ratios</b><br>Cuboid: length and angle of elevation</td><td><b>4.3</b><br>Negation, truth value and argument soundness</td></tr><tr><td class="k">4 · A</td><td><b>4.10 Consumer mathematics: financial management</b><br>Financial management steps and monthly cash flow</td><td><b>4.3 Logical reasoning</b><br>Deductive argument and arithmetic sequence of savings</td><td><b>5.3 Consumer mathematics: insurance</b><br>Medical insurance co-insurance</td><td><b>1.10 Perimeter and area</b><br>Pentagon from two trapezoids: perimeter and area</td><td><b>4.3 Logical reasoning</b><br>Statements, converse and deduction</td><td><b>5.4</b><br>Property assessment tax</td></tr><tr><td class="k">5 · A</td><td><b>1.10 Perimeter and area</b><br>Composite floor plan: hexagon and rhombus area</td><td><b>4.4 Operations on sets</b><br>Venn diagram of three activities</td><td><b>4.1 Quadratic functions and equations in one variable</b><br>Cuboid volume leading to quadratic equation</td><td><b>4.10 Consumer mathematics: financial management</b><br>Monthly cash flow and its type</td><td><b>4.4 Operations on sets</b><br>Venn diagrams: shading and finding x</td><td><b>5.1</b><br>Inverse variation with cube root</td></tr><tr><td class="k">6 · A</td><td><b>5.3 Consumer mathematics: insurance</b><br>House insurance with co-insurance</td><td><b>4.7 Graphs of motion</b><br>Speed-time graph: distances in acceleration and deceleration</td><td><b>4.5 Networks in graph theory</b><br>Weighted graph of bus fares</td><td><b>5.1 Variation</b><br>Joint variation with root and power</td><td><b>5.4 Consumer mathematics: taxation</b><br>Income tax payable</td><td><b>4.5</b><br>Weighted graph: edges and minimum spanning tree</td></tr><tr><td class="k">7 · A</td><td><b>4.1 Quadratic functions and equations in one variable</b><br>Quadratic equation from pool areas</td><td><b>5.3 Consumer mathematics: insurance</b><br>Medical insurance deductible and premium</td><td><b>4.10 Consumer mathematics: financial management</b><br>Personal budget and cash flow</td><td><b>3.5 Trigonometric ratios</b><br>Solar pole: distance using trigonometry</td><td><b>5.3 Consumer mathematics: insurance</b><br>Car insurance premium</td><td><b>3.4</b><br>Scale drawing</td></tr><tr><td class="k">8 · A</td><td><b>5.2 Matrices</b><br>Matrix method for pharmacy package prices</td><td><b>4.6 Linear inequalities in two variables</b><br>Linear inequalities from daily sales</td><td><b>5.7 Measures of dispersion for grouped data</b><br>Frequency table and frequency polygon</td><td><b>5.4 Consumer mathematics: taxation</b><br>Property assessment tax for half a year</td><td><b>2.9 Speed and acceleration</b><br>Distance-time graph of school trip</td><td><b>5.7</b><br>Ogive of clinic waiting time</td></tr><tr><td class="k">9 · A</td><td><b>5.5 Congruency, enlargement and combined transformations</b><br>Combined transformation TR on Cartesian plane</td><td><b>5.5 Congruency, enlargement and combined transformations</b><br>Congruent triangles and enlargement with negative scale factor</td><td><b>4.7 Graphs of motion</b><br>Speed-time graph of two particles</td><td><b>4.9 Probability of combined events</b><br>Combined events with two spinners</td><td><b>5.6 Ratios and graphs of trigonometric functions</b><br>Cosine function model of sea tide</td><td><b>4.7</b><br>Speed-time graph: unknown speed from total distance</td></tr><tr><td class="k">10 · A</td><td><b>5.6 Ratios and graphs of trigonometric functions</b><br>Sine graph sketch and trigonometry in a square frame</td><td><b>5.4 Consumer mathematics: taxation</b><br>Income tax with rebate</td><td><b>5.6 Ratios and graphs of trigonometric functions</b><br>Cosine function model of Ferris wheel</td><td><b>5.7 Measures of dispersion for grouped data</b><br>Cumulative frequency table and ogive</td><td><b>4.9 Probability of combined events</b><br>Probability with two boxes of cards</td><td><b>5.6</b><br>Sine function amplitude and value</td></tr><tr><td class="k">11 · B</td><td><b>3.9 Straight lines</b><br>Gradient, intercept and equation of straight lines</td><td><b>4.10 Consumer mathematics: financial management</b><br>Personal financial planning and fixed deposit vs unit trust</td><td><b>5.5 Congruency, enlargement and combined transformations</b><br>Rotation and combined transformation</td><td><b>5.2 Matrices</b><br>Matrix addition equation and matrix method for battery boxes</td><td><b>4.5 Networks in graph theory</b><br>Graph theory: degrees, weighted graph and shortest path</td><td><b>1.11</b><br>Venn diagrams: sets in universal set and unknown k</td></tr><tr><td class="k">12 · B</td><td><b>4.4 Operations on sets</b><br>Venn diagrams: set intersection and three-set survey</td><td><b>5.7 Measures of dispersion for grouped data</b><br>Frequency polygons comparing two days</td><td><b>4.8 Measures of dispersion for ungrouped data</b><br>Box plot, mean and effect of changing data</td><td><b>3.3 Consumer mathematics: savings, investments, credit and debt</b><br>Simple interest and cost averaging for shares</td><td><b>5.7 Measures of dispersion for grouped data</b><br>Frequency table, cumulative histogram and ogive</td><td><b>5.5</b><br>Tessellation and combined transformations on hexagons</td></tr><tr><td class="k">13 · B</td><td><b>5.7 Measures of dispersion for grouped data</b><br>Frequency polygon and standard deviation of grouped data</td><td><b>4.5 Networks in graph theory</b><br>Network graph: activities, minimum spanning tree and shortest routes</td><td><b>4.4 Operations on sets</b><br>Venn diagrams: activities and camp</td><td><b>4.8 Measures of dispersion for ungrouped data</b><br>Box plot, mean and SD of food rider income</td><td><b>5.2 Matrices</b><br>Matrices: order, elements and matrix method for tanks</td><td><b>3.3</b><br>Investment: types, compound interest and ROI</td></tr><tr><td class="k">14 · B</td><td><b>4.6 Linear inequalities in two variables</b><br>Linear programming: camp participants</td><td><b>5.6 Ratios and graphs of trigonometric functions</b><br>Sine curve model of watershed gate depth</td><td><b>4.6 Linear inequalities in two variables</b><br>Linear programming: handbag production</td><td><b>5.3 Consumer mathematics: insurance</b><br>Medical deductible and motor insurance premium</td><td><b>4.10 Consumer mathematics: financial management</b><br>Family financial plan: cash flow and deficit</td><td><b>4.9</b><br>Probability tree: food choices</td></tr><tr><td class="k">15 · B</td><td><b>5.4 Consumer mathematics: taxation</b><br>Income tax: chargeable income, tax payable and PCB</td><td><b>5.2 Matrices</b><br>Inverse matrix and simultaneous equations</td><td><b>5.4 Consumer mathematics: taxation</b><br>Income tax: reliefs and separate vs joint assessment</td><td><b>4.7 Graphs of motion</b><br>Speed-time graph of car and van</td><td><b>5.5 Congruency, enlargement and combined transformations</b><br>Tessellation, transformation and enlargement of banner</td><td><b>4.6</b><br>Linear inequalities: committee of girls and boys</td></tr><tr><td class="k">16 · C</td><td><b>2.12 Measures of central tendency</b><br>Basketball team: ratio, distance-time graph, mean, probability</td><td><b>4.9 Probability of combined events</b><br>Archery field: right triangle, probability, projectile, mean and SD</td><td><b>5.2 Matrices</b><br>Land clearing cost, matrix prices, bar chart and compound interest</td><td><b>1.6 Linear equations</b><br>Goat and cow farmer: savings, livestock, quadratic, SMART goal</td><td><b>2.12 Measures of central tendency</b><br>Canteen Day: Venn diagram, expressions, dot plot, linear programming</td><td><b>5.2</b><br>Number bases, cash flow, matrices and mean for a company manager</td></tr><tr><td class="k">17 · C</td><td><b>4.5 Networks in graph theory</b><br>Cycling: speed-time graph, network, wheel rotations, shop comparison</td><td><b>2.6 Three-dimensional geometrical shapes</b><br>Water rocket: quadratic model, SD, volume, projectile range</td><td><b>5.2 Matrices</b><br>Joint variation, matrix prices, profit chart and loan choice</td><td><b>1.6 Linear equations</b><br>Living room area, food packages, hemisphere cups, inequalities</td><td><b>1.10 Perimeter and area</b><br>Campsite: area, quadratic fence cost, tents programming, packages</td><td><b>4.1</b><br>Motorcycle: insurance, probability, quadratic and speed-time graph</td></tr></tbody></table></div></div>
+    <p class="note">Each question is labelled with the chapter that carries most of its marks. Section C questions mix several chapters.</p>
+  </div>
+  <div class="section">
+    <div class="section-label">Marks per chapter</div>
+    <div class="card"><div class="tbl-wrap"><table class="freq-table"><thead><tr><th>Chapter</th><th class="right">2022</th><th class="right">2023</th><th class="right">2024</th><th class="right">SPMU 2024</th><th class="right">2025</th><th class="right">Trials '25 avg</th></tr></thead><tbody><tr><td>1.1 Rational numbers</td><td class="right num">4</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">2</td><td class="right num">4</td><td class="right num">0</td></tr><tr><td>1.4 Ratios, rates and proportions</td><td class="right num">1</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">0.1</td></tr><tr><td>1.5 Algebraic expressions</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">1</td><td class="right num">0.3</td></tr><tr><td>1.6 Linear equations</td><td class="right num">2</td><td class="right num dim">0</td><td class="right num">2</td><td class="right num hot">9</td><td class="right num">3</td><td class="right num">3.9</td></tr><tr><td>1.10 Perimeter and area</td><td class="right num">3</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">7</td><td class="right num">4</td><td class="right num">0.2</td></tr><tr><td>1.11 Introduction to sets</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">1</td><td class="right num dim">0</td><td class="right num">1.2</td></tr><tr><td>1.12 Data handling</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">6</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">1</td></tr><tr><td>1.13 Pythagoras' theorem</td><td class="right num">2</td><td class="right num">3</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">1</td><td class="right num">0.6</td></tr><tr><td>2.1 Patterns and sequences</td><td class="right num dim">0</td><td class="right num">2</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">0.1</td></tr><tr><td>2.2 Factorisation and algebraic fractions</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">2</td><td class="right num dim">0</td><td class="right num">0.2</td></tr><tr><td>2.4 Polygons</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">1.1</td></tr><tr><td>2.5 Circles</td><td class="right num">4</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">0.9</td></tr><tr><td>2.6 Three-dimensional geometrical shapes</td><td class="right num dim">0</td><td class="right num">5</td><td class="right num dim">0</td><td class="right num">3</td><td class="right num dim">0</td><td class="right num">2.2</td></tr><tr><td>2.7 Coordinates</td><td class="right num">3</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">0.9</td></tr><tr><td>2.8 Graphs of functions</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">3</td><td class="right num">1.5</td></tr><tr><td>2.9 Speed and acceleration</td><td class="right num">1</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">3</td><td class="right num">0.3</td></tr><tr><td>2.11 Isometric transformations</td><td class="right num">2</td><td class="right num dim">0</td><td class="right num">4</td><td class="right num dim">0</td><td class="right num">3</td><td class="right num">1.3</td></tr><tr><td>2.12 Measures of central tendency</td><td class="right num">4</td><td class="right num">2</td><td class="right num">2</td><td class="right num">2</td><td class="right num">4</td><td class="right num">1.9</td></tr><tr><td>3.3 Consumer mathematics: savings, investments, credit and debt</td><td class="right num dim">0</td><td class="right num">3</td><td class="right num hot">8</td><td class="right num">7</td><td class="right num dim">0</td><td class="right num">2.9</td></tr><tr><td>3.5 Trigonometric ratios</td><td class="right num">1</td><td class="right num">4</td><td class="right num">3</td><td class="right num">3</td><td class="right num">2</td><td class="right num">1.6</td></tr><tr><td>3.9 Straight lines</td><td class="right num hot">8</td><td class="right num">4</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">3.3</td></tr><tr><td>4.1 Quadratic functions and equations in one variable</td><td class="right num">4</td><td class="right num hot">10</td><td class="right num">7</td><td class="right num">2</td><td class="right num">4</td><td class="right num">4.6</td></tr><tr><td>4.2 Number bases</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">4</td><td class="right num">4</td><td class="right num">1.9</td></tr><tr><td>4.3 Logical reasoning</td><td class="right num">4</td><td class="right num">2</td><td class="right num">4</td><td class="right num">4</td><td class="right num">5</td><td class="right num">4.4</td></tr><tr><td>4.4 Operations on sets</td><td class="right num hot">10</td><td class="right num">4</td><td class="right num hot">9</td><td class="right num">3</td><td class="right num">7</td><td class="right num">5.1</td></tr><tr><td>4.5 Networks in graph theory</td><td class="right num">4</td><td class="right num hot">9</td><td class="right num">4</td><td class="right num dim">0</td><td class="right num hot">8</td><td class="right num">5.7</td></tr><tr><td>4.6 Linear inequalities in two variables</td><td class="right num hot">9</td><td class="right num">4</td><td class="right num hot">9</td><td class="right num">4</td><td class="right num">7</td><td class="right num">6.1</td></tr><tr><td>4.7 Graphs of motion</td><td class="right num">6</td><td class="right num">4</td><td class="right num">5</td><td class="right num hot">9</td><td class="right num">2</td><td class="right num">6</td></tr><tr><td>4.8 Measures of dispersion for ungrouped data</td><td class="right num">3</td><td class="right num hot">10</td><td class="right num">6</td><td class="right num">7</td><td class="right num dim">0</td><td class="right num">4.6</td></tr><tr><td>4.9 Probability of combined events</td><td class="right num">4</td><td class="right num">4</td><td class="right num dim">0</td><td class="right num">4</td><td class="right num">4</td><td class="right num">5.1</td></tr><tr><td>4.10 Consumer mathematics: financial management</td><td class="right num">4</td><td class="right num">6</td><td class="right num">4</td><td class="right num hot">8</td><td class="right num hot">8</td><td class="right num">4.2</td></tr><tr><td>5.1 Variation</td><td class="right num dim">0</td><td class="right num dim">0</td><td class="right num">4</td><td class="right num">5</td><td class="right num dim">0</td><td class="right num">1.3</td></tr><tr><td>5.2 Matrices</td><td class="right num">5</td><td class="right num hot">9</td><td class="right num hot">10</td><td class="right num hot">9</td><td class="right num hot">9</td><td class="right num">6.9</td></tr><tr><td>5.3 Consumer mathematics: insurance</td><td class="right num">4</td><td class="right num">4</td><td class="right num">3</td><td class="right num">5</td><td class="right num">3</td><td class="right num">5.9</td></tr><tr><td>5.4 Consumer mathematics: taxation</td><td class="right num hot">8</td><td class="right num">4</td><td class="right num hot">10</td><td class="right num">3</td><td class="right num">5</td><td class="right num">7.7</td></tr><tr><td>5.5 Congruency, enlargement and combined transformations</td><td class="right num">3</td><td class="right num">4</td><td class="right num">5</td><td class="right num dim">0</td><td class="right num">7</td><td class="right num">6.9</td></tr><tr><td>5.6 Ratios and graphs of trigonometric functions</td><td class="right num">2</td><td class="right num hot">9</td><td class="right num">4</td><td class="right num dim">0</td><td class="right num">4</td><td class="right num">3.2</td></tr><tr><td>5.7 Measures of dispersion for grouped data</td><td class="right num hot">10</td><td class="right num hot">9</td><td class="right num">6</td><td class="right num">6</td><td class="right num hot">10</td><td class="right num">8.7</td></tr></tbody></table></div></div>
+    <p class="note">All parts of all 17 questions are counted, both Section C questions included.</p>
+  </div>
+</div>
+<div id="panel-method" class="tab-panel method">
+  <div class="section"><div class="section-label">How this report was built</div><div class="card"><div class="card-body"><ol>
+    <li><b>Sources.</b> The real SPM Matematik papers in the drill: Kertas 1 for 2023, 2024 and Ulangan 2024 (SPM 2022 and 2025 Kertas 1 are not available), and Kertas 2 for 2022, 2023, 2024, Ulangan 2024 and 2025. State trials: Kertas 1 from 9 states in 2025 and 17 in 2026; Kertas 2 from 10 states in 2025 and MRSM in 2026.</li>
+    <li><b>Tagging.</b> Every Kertas 1 question and every Kertas 2 part was coded to one of 53 KSSM chapters of Forms 1–5, a question type, and a one-line description of the task: 1159 Kertas 1 questions and 272 Kertas 2 questions.</li>
+    <li><b>Idea families.</b> Kertas 1 descriptions were grouped into 171 families of the same idea across all papers, and Kertas 2 questions into 40 question types. A re-ask is a real-paper question whose family appeared in an earlier real paper.</li>
+    <li><b>Forecast.</b> Kertas 2 predictions follow what the board has set every year and which way the Section B cycle points, then are checked against the trials. Kertas 1 predictions rest on chapters and ideas set in more than one real paper.</li>
+  </ol>
+  <p class="caveat">Only three real Kertas 1 papers and five real Kertas 2 papers are available, and a few questions in them could not be read fully (some figures in SPM 2023 Kertas 1, and parts of the SPM 2022 Kertas 2 answers). The board can break any pattern. Use this to decide where extra practice goes, not to skip chapters.</p></div></div></div>
+</div>
+<script>
+function switchTab(id){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id==='panel-'+id));
+document.querySelectorAll('.tab-btn').forEach(b=>{const on=b.dataset.panel===id;b.classList.toggle('active-sej',on);b.setAttribute('aria-selected',on)});
+try{localStorage.setItem('mm2026-tab',id)}catch(e){}}
+(function(){let t=null;try{t=localStorage.getItem('mm2026-tab')}catch(e){}if(t&&document.getElementById('panel-'+t))switchTab(t)})();
+</script>
